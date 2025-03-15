@@ -20,7 +20,7 @@ Stop settling for less. Make game servers a first class citizen on your platform
 * [Panel Documentation](https://pheonixpanel.io/panel/1.0/getting_started.html)
 * [Wings Documentation](https://pheonixpanel.io/wings/1.0/installing.html)
 * [Community Guides](https://pheonixpanel.io/community/about.html)
-* Or, get additional help [via Discord](https://discord.gg/pheonixpanel)
+* Or, get additional help [via Discord](https://discord.gg/vGDvr74q)
 
 ## Sponsors
 
