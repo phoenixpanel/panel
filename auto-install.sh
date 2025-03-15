@@ -210,7 +210,7 @@ sed -i "s/DB_DATABASE=panel/DB_DATABASE=${DB_NAME}/g" .env || error "Failed to s
 sed -i "s/APP_URL=http:\/\/localhost/APP_URL=https:\/\/${DOMAIN}/g" .env || error "Failed to set app URL in .env"
 sed -i "s/APP_ENVIRONMENT_ONLY=false/APP_ENVIRONMENT_ONLY=true/g" .env || error "Failed to set environment mode in .env"
 
-if ! COMPOSER_ALLOW_SUPERUSER=1 php /usr/local/bin/composer install --no-dev --optimize-autoloader; then
+if ! COMPOSER_ALLOW_SUPERUSER=1 php /usr/local/bin/composer install --no-interaction --no-dev --optimize-autoloader; then
     error "Failed to install Composer dependencies"
 fi
 success "Environment configured and dependencies installed successfully"
