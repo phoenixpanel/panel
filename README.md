@@ -29,12 +29,7 @@ I would like to extend my sincere thanks to the following sponsors for helping f
 
 | Company                                                                           | About                                                                                                                                                                                                                                           |
 |-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Aussie Server Hosts**](https://aussieserverhosts.com/)                         | No frills Australian Owned and operated High Performance Server hosting for some of the most demanding games serving Australia and New Zealand.                                                                                                 |
-| [**BisectHosting**](https://www.bisecthosting.com/)                               | BisectHosting provides Minecraft, Valheim and other server hosting services with the highest reliability and lightning fast support since 2012.                                                                                                 |
-| [**MineStrator**](https://minestrator.com/)                                       | Looking for the most highend French hosting company for your minecraft server? More than 24,000 members on our discord trust us. Give us a try!                                                                                                 |
-| [**HostEZ**](https://hostez.io)                                                   | US & EU Rust & Minecraft Hosting. DDoS Protected bare metal, VPS and colocation with low latency, high uptime and maximum availability. EZ!                                                                                                     |
-| [**Blueprint**](https://blueprint.zip/?utm_source=pheonixpanel&utm_medium=sponsor) | Create and install PheonixPanel addons and themes with the growing Blueprint framework - the package-manager for PheonixPanel. Use multiple modifications at once without worrying about conflicts and make use of the large extension ecosystem. |
-| [**indifferent broccoli**](https://indifferentbroccoli.com/)                      | indifferent broccoli is a game server hosting and rental company. With us, you get top-notch computer power for your gaming sessions. We destroy lag, latency, and complexity--letting you focus on the fun stuff.                              |
+| [**Your Awesome Host**](https://google.com/)                         | Your host here
 
 ### Supported Games
 
@@ -63,10 +58,12 @@ and there are plenty more games available provided by the community. Some of the
 * Xonotic
 * Starmade
 * Discord ATLBot, and most other Node.js/Python discord bots
-* [and many more...](https://github.com/parkervcp/eggs)
+* [and many more...](https://github.com/phoenixpanel/eggs)
 
 ## License
 
-PheonixPanel Copyright © 2015 - 2022 Dane Everitt and contributors.
+PheonixPanel Copyright © 2025
+
+This was forked from pterodactyl which was made by Dane Everitt and contributors.
 
 Code released under the [MIT License](./LICENSE.md).
