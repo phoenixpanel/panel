@@ -131,6 +131,12 @@ if ! curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/loca
     error "Failed to install Composer"
 fi
 
+# Add /usr/local/bin to PATH if not already present
+if ! echo $PATH | grep -q "/usr/local/bin"; then
+    echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+    source ~/.bashrc
+fi
+
 # Verify Composer installation
 if ! composer --version &> /dev/null; then
     error "Composer installation failed or not found in PATH"
@@ -168,7 +174,7 @@ success "Web directories created successfully"
 
 # Download the files
 stage "Downloading Phoenix Panel files..."
-if ! curl -Lo develop.tar.gz https://github.com/phoenixpanel/panel/archive/refs/tags/dev.tar.gz; then
+if ! curl -Lo develop.tar.gz https://github.com/phoenixpanel/panel/archive/refs/tags/development.tar.gz; then
     error "Failed to download Phoenix Panel files"
 fi
 
@@ -210,7 +216,7 @@ sed -i "s/DB_DATABASE=panel/DB_DATABASE=${DB_NAME}/g" .env || error "Failed to s
 sed -i "s/APP_URL=http:\/\/localhost/APP_URL=https:\/\/${DOMAIN}/g" .env || error "Failed to set app URL in .env"
 sed -i "s/APP_ENVIRONMENT_ONLY=false/APP_ENVIRONMENT_ONLY=true/g" .env || error "Failed to set environment mode in .env"
 
-if ! COMPOSER_ALLOW_SUPERUSER=1 php /usr/local/bin/composer install --no-interaction --no-dev --optimize-autoloader; then
+if ! COMPOSER_ALLOW_SUPERUSER=1 php /usr/local/bin/composer install --no-dev --optimize-autoloader; then
     error "Failed to install Composer dependencies"
 fi
 success "Environment configured and dependencies installed successfully"
