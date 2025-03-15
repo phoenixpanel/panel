@@ -20,6 +20,21 @@ Stop settling for less. Make game servers a first-class citizen on your platform
 I would like to extend my sincere thanks to the following sponsors for helping fund PhoenixPanel's development.
 [Interested in becoming a sponsor?](https://github.com/sponsors/phoenixpanel)
 
+
+
+
+# simple installation
+
+1. install almalinux 9
+2. run the onerliner!!!
+3. curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/auto-install.sh | sudo bash -s domain.com
+4. change domain.com to your panel domain e.g panel.example.com
+5. sit back and watch it complete!
+6. when its done go to your https://panel.example.com
+
+
+
+
 | Company                                                                           | About                                                                                                                                                                                                                                           |
 |-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Your Awesome Host**](https://google.com/)                         | Your host here

@@ -168,7 +168,7 @@ success "Web directories created successfully"
 
 # Download the files
 stage "Downloading Phoenix Panel files..."
-if ! curl -Lo develop.tar.gz https://github.com/phoenixpanel/panel/archive/refs/tags/development.tar.gz; then
+if ! curl -Lo develop.tar.gz https://github.com/phoenixpanel/panel/archive/refs/tags/dev.tar.gz; then
     error "Failed to download Phoenix Panel files"
 fi
 
