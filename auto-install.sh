@@ -149,7 +149,7 @@ cat > /etc/php-fpm.d/phoenixpanel.conf << 'EOL'
 [phoenixpanel]
 user = nginx
 group = nginx
-listen = /var/run/php-fpm/phoenixpanel.sock
+listen = /var/run/php-fpm/www.sock
 listen.owner = nginx
 listen.group = nginx
 listen.mode = 0750
@@ -353,7 +353,7 @@ server {
 
     location ~ \\.php$ {
         fastcgi_split_path_info ^(.+\\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php-fpm/phoenixpanel.sock;
+        fastcgi_pass unix:/var/run/php-fpm/www.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param PHP_VALUE "upload_max_filesize = 100M \\n post_max_size=100M";
