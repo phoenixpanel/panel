@@ -11,9 +11,33 @@
 #
 #################################
 
+# Colors for output
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Function to display success messages
+success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+# Function to display error messages
+error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+    echo -e "${YELLOW}Installation failed at: $(date)${NC}"
+    echo -e "${YELLOW}Please check the error above and try again.${NC}"
+    exit 1
+}
+
+# Function to display stage information
+stage() {
+    echo -e "\n${YELLOW}[STAGE]${NC} $1"
+}
+
 # Check if script is run as root
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
+   error "This script must be run as root" 
    exit 1
 fi
 
@@ -39,51 +63,82 @@ ADMIN_EMAIL="admin@${DOMAIN}"
 ADMIN_USERNAME="admin"
 ADMIN_PASSWORD=$(generate_password)
 
-echo "Starting Phoenix Panel installation..."
+stage "Starting Phoenix Panel installation..."
 
 # disable selinux
-echo "Disabling SELinux..."
+stage "Configuring SELinux..."
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-setenforce 0
+setenforce 0 || error "Failed to disable SELinux"
+success "SELinux disabled successfully"
 
 # Update system
-echo "Updating system..."
-dnf update -y
+stage "Updating system packages..."
+if ! dnf update -y; then
+    error "Failed to update system packages"
+fi
+success "System packages updated successfully"
 
 # Install EPEL and Remi repository
-echo "Installing EPEL and Remi repositories..."
-dnf install -y epel-release
-dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+stage "Installing EPEL and Remi repositories..."
+if ! dnf install -y epel-release; then
+    error "Failed to install EPEL repository"
+fi
+
+if ! dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm; then
+    error "Failed to install EPEL 9 repository"
+fi
+
+if ! dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm; then
+    error "Failed to install Remi repository"
+fi
+success "EPEL and Remi repositories installed successfully"
 
 # enable crb
-echo "Enabling CRB..."
-dnf config-manager --set-enabled crb
+stage "Enabling CodeReady Builder (CRB) repository..."
+if ! dnf config-manager --set-enabled crb; then
+    error "Failed to enable CRB repository"
+fi
+success "CRB repository enabled successfully"
 
 # Enable PHP 8.3 from Remi
-echo "Enabling PHP 8.3 from Remi..."
-dnf module reset php -y
-dnf module enable php:remi-8.3 -y
+stage "Setting up PHP 8.3..."
+if ! dnf module reset php -y; then
+    error "Failed to reset PHP module"
+fi
+
+if ! dnf module enable php:remi-8.3 -y; then
+    error "Failed to enable PHP 8.3 module"
+fi
+success "PHP 8.3 module enabled successfully"
 
 # Install dependencies
-echo "Installing dependencies..."
-dnf install -y php php-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip,process} mariadb mariadb-server nginx redis zip unzip tar
+stage "Installing dependencies..."
+if ! dnf install -y php php-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip,process} mariadb mariadb-server nginx redis zip unzip tar; then
+    error "Failed to install dependencies"
+fi
+success "Dependencies installed successfully"
 
 # Start and enable services
-echo "Starting and enabling services..."
-systemctl enable --now mariadb nginx redis
+stage "Starting core services..."
+if ! systemctl enable --now mariadb nginx redis; then
+    error "Failed to enable and start core services"
+fi
+success "Core services started successfully"
 
 # Install Composer
-echo "Installing Composer..."
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+stage "Installing Composer..."
+if ! curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; then
+    error "Failed to install Composer"
+fi
+success "Composer installed successfully"
 
 # Create PHP-FPM configuration
-echo "Creating Phoenix Panel PHP-FPM configuration..."
+stage "Configuring PHP-FPM..."
 cat > /etc/php-fpm.d/phoenixpanel.conf << 'EOL'
 [phoenixpanel]
 user = nginx
 group = nginx
-listen = /var/run/php-fpm/www.sock
+listen = /var/run/php-fpm/phoenixpanel.sock
 listen.owner = nginx
 listen.group = nginx
 listen.mode = 0750
@@ -94,46 +149,66 @@ pm.max_requests = 200
 EOL
 
 # Enable PHP-FPM
-echo "Enabling PHP-FPM..."
-systemctl enable --now php-fpm
+stage "Enabling PHP-FPM..."
+if ! systemctl enable --now php-fpm; then
+    error "Failed to enable PHP-FPM"
+fi
+success "PHP-FPM enabled successfully"
 
 # Create web directories for Phoenix Panel
-echo "Creating web directories..."
-mkdir -p /var/www/phoenixpanel
-cd /var/www/phoenixpanel
+stage "Creating web directories..."
+mkdir -p /var/www/phoenixpanel || error "Failed to create web directories"
+cd /var/www/phoenixpanel || error "Failed to change to web directory"
+success "Web directories created successfully"
 
 # Download the files
-echo "Downloading Phoenix Panel files..."
-curl -Lo develop.tar.gz https://github.com/phoenixpanel/panel/archive/refs/tags/development.tar.gz
-tar --strip-components=1 -xzvf develop.tar.gz
-chmod -R 755 storage/* bootstrap/cache
+stage "Downloading Phoenix Panel files..."
+if ! curl -Lo develop.tar.gz https://github.com/phoenixpanel/panel/archive/refs/tags/development.tar.gz; then
+    error "Failed to download Phoenix Panel files"
+fi
+
+if ! tar --strip-components=1 -xzvf develop.tar.gz; then
+    error "Failed to extract Phoenix Panel files"
+fi
+
+chmod -R 755 storage/* bootstrap/cache || error "Failed to set permissions on storage directories"
+success "Phoenix Panel files downloaded and extracted successfully"
 
 # Configure MariaDB
-echo "Configuring MariaDB..."
-mysql -u root << EOF
+stage "Configuring MariaDB database..."
+if ! mysql -u root << EOF
 CREATE USER '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';
 CREATE DATABASE ${DB_NAME};
 GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EXIT
 EOF
+then
+    error "Failed to configure MariaDB database"
+fi
+success "MariaDB database configured successfully"
 
 # Create storage directories
-echo "Creating storage directories..."
-cd /var/www/phoenixpanel/storage/
-mkdir -p framework/{sessions,views,cache}
-chmod -R 775 framework
+stage "Setting up storage directories..."
+cd /var/www/phoenixpanel/storage/ || error "Failed to change to storage directory"
+mkdir -p framework/{sessions,views,cache} || error "Failed to create framework directories"
+chmod -R 775 framework || error "Failed to set permissions on framework directories"
+success "Storage directories set up successfully"
 
 # Setup .env and composer
-echo "Setting up .env and running composer..."
-cd /var/www/phoenixpanel
-cp .env.example .env
-sed -i "s/DB_PASSWORD=/DB_PASSWORD=${DB_PASSWORD}/g" .env
-sed -i "s/DB_USERNAME=pterodactyl/DB_USERNAME=${DB_USER}/g" .env
-sed -i "s/DB_DATABASE=panel/DB_DATABASE=${DB_NAME}/g" .env
-sed -i "s/APP_URL=http:\/\/localhost/APP_URL=https:\/\/${DOMAIN}/g" .env
-sed -i "s/APP_ENVIRONMENT_ONLY=false/APP_ENVIRONMENT_ONLY=true/g" .env
-COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
+stage "Configuring environment and installing dependencies..."
+cd /var/www/phoenixpanel || error "Failed to change to Phoenix Panel directory"
+cp .env.example .env || error "Failed to create .env file"
+sed -i "s/DB_PASSWORD=/DB_PASSWORD=${DB_PASSWORD}/g" .env || error "Failed to set database password in .env"
+sed -i "s/DB_USERNAME=phoenixpanel/DB_USERNAME=${DB_USER}/g" .env || error "Failed to set database username in .env"
+sed -i "s/DB_DATABASE=panel/DB_DATABASE=${DB_NAME}/g" .env || error "Failed to set database name in .env"
+sed -i "s/APP_URL=http:\/\/localhost/APP_URL=https:\/\/${DOMAIN}/g" .env || error "Failed to set app URL in .env"
+sed -i "s/APP_ENVIRONMENT_ONLY=false/APP_ENVIRONMENT_ONLY=true/g" .env || error "Failed to set environment mode in .env"
+
+if ! COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader; then
+    error "Failed to install Composer dependencies"
+fi
+success "Environment configured and dependencies installed successfully"
 
 # Check if this is a first installation
 if [ -z "$2" ] || [ "$2" != "--skip-setup" ]; then
@@ -166,15 +241,19 @@ else
 fi
 
 # Set webserver permissions
-echo "Setting webserver permissions..."
-chown -R nginx:nginx /var/www/phoenixpanel/*
+stage "Setting webserver permissions..."
+chown -R nginx:nginx /var/www/phoenixpanel/* || error "Failed to set webserver permissions"
+success "Webserver permissions set successfully"
 
 # Setup cron job
-echo "Setting up cron job for queue processing..."
-(crontab -l 2>/dev/null; echo "* * * * * php /var/www/phoenixpanel/artisan schedule:run >> /dev/null 2>&1") | crontab -
+stage "Configuring cron job for queue processing..."
+if ! (crontab -l 2>/dev/null; echo "* * * * * php /var/www/phoenixpanel/artisan schedule:run >> /dev/null 2>&1") | crontab -; then
+    error "Failed to configure cron job"
+fi
+success "Cron job configured successfully"
 
 # Create queue worker service
-echo "Creating queue worker service..."
+stage "Creating queue worker service..."
 cat > /etc/systemd/system/phoenix.service << 'EOL'
 [Unit]
 Description=Phoenix Panel Queue Worker
@@ -192,20 +271,33 @@ RestartSec=5s
 [Install]
 WantedBy=multi-user.target
 EOL
+success "Queue worker service created successfully"
 
 # Enable services
-echo "Enabling services..."
-systemctl enable --now redis.service
-systemctl enable --now phoenix.service
+stage "Enabling services..."
+if ! systemctl enable --now redis.service; then
+    error "Failed to enable Redis service"
+fi
+
+if ! systemctl enable --now phoenix.service; then
+    error "Failed to enable Phoenix service"
+fi
+success "Services enabled successfully"
 
 # Install SSL certificate
-echo "Installing SSL certificate..."
-dnf install -y certbot python3-certbot-nginx
-systemctl stop nginx
-certbot certonly --standalone --non-interactive --agree-tos --email admin@${DOMAIN} -d ${DOMAIN}
+stage "Installing SSL certificate..."
+if ! dnf install -y certbot python3-certbot-nginx; then
+    error "Failed to install SSL tools"
+fi
+
+systemctl stop nginx || error "Failed to stop Nginx"
+if ! certbot certonly --standalone --non-interactive --agree-tos --email admin@${DOMAIN} -d ${DOMAIN}; then
+    error "Failed to obtain SSL certificate"
+fi
+success "SSL certificate installed successfully"
 
 # Configure Nginx
-echo "Configuring Nginx..."
+stage "Configuring Nginx server block..."
 cat > /etc/nginx/conf.d/phoenixpanel.conf << EOL
 server {
     listen 80;
@@ -270,13 +362,17 @@ server {
     }
 }
 EOL
+success "Nginx configuration applied successfully"
 
 # Restart Nginx
-echo "Restarting Nginx..."
-systemctl restart nginx
+stage "Restarting Nginx..."
+if ! systemctl restart nginx; then
+    error "Failed to restart Nginx"
+fi
+success "Nginx restarted successfully"
 
 # Save credentials to a file for reference
-echo "Saving credentials to /root/phoenixpanel-credentials.txt..."
+stage "Saving credentials..."
 cat > /root/phoenixpanel-credentials.txt << EOL
 Phoenix Panel Credentials
 ======================================
@@ -295,12 +391,13 @@ Password: ${DB_PASSWORD}
 Installation Date: $(date)
 ======================================
 EOL
-chmod 600 /root/phoenixpanel-credentials.txt
+chmod 600 /root/phoenixpanel-credentials.txt || error "Failed to secure credentials file"
+success "Credentials saved successfully"
 
-# Display completion message with credentials
+# Final completion message
+stage "Installation Complete"
+success "Phoenix Panel installation completed!"
 echo ""
-echo "Phoenix Panel installation completed!"
-echo "========================================"
 echo "Panel URL: https://${DOMAIN}"
 echo ""
 echo "Admin Credentials:"
