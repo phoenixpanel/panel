@@ -83,7 +83,7 @@ cat > /etc/php-fpm.d/phoenixpanel.conf << 'EOL'
 [phoenixpanel]
 user = nginx
 group = nginx
-listen = /var/run/php-fpm/phoenixpanel.sock
+listen = /var/run/php-fpm/www.sock
 listen.owner = nginx
 listen.group = nginx
 listen.mode = 0750
