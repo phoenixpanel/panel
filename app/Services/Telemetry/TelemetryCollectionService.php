@@ -46,7 +46,7 @@ class TelemetryCollectionService
     /**
      * Collects telemetry data and returns it as an array.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function collect(): array
     {

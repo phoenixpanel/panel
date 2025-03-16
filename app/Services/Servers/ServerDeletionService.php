@@ -38,7 +38,7 @@ class ServerDeletionService
      * Delete a server from the panel and remove any associated databases from hosts.
      *
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Phoenixpanel\Exceptions\DisplayException
      */
     public function handle(Server $server): void
     {

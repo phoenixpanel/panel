@@ -325,7 +325,7 @@ be considered deprecated, but will continue to work. Application keys _will not_
 ### Removed
 * Removes Google Analytics from the front end code.
 * Removes multiple middleware that were previously used for configuring API access and controlling model fetching. This has all been replaced with Laravel Sanctum and standard Laravel API tooling. This should make codebase discovery significantly more simple.
-* **DEPRECATED**: The use of `Pterodactyl\Models\AuditLog` is deprecated and all references to this model have been removed from the codebase. In the next major release this model and table will be fully dropped.
+* **DEPRECATED**: The use of `Phoenixpanel\Models\AuditLog` is deprecated and all references to this model have been removed from the codebase. In the next major release this model and table will be fully dropped.
 
 ## v1.7.0
 ### Fixed
@@ -1275,11 +1275,11 @@ spatie/laravel-fractal (4.0.0 => 4.0.1)
 * Server and Node view pages wee modified to split tabs into individual pages to make re-themeing and modifications significantly easier, and reduce MySQL query loads on page.
 * Most of the backend `UnhandledException` display errors now include a clearer error that directs admins to the program's logs.
 * Table seeders for services now can be run during upgrades and will attempt to locate and update, or create new if not found in the database.
-* Many structural changes to the database and `Pterodactyl\Models` classes that would flood this changelog if they were all included. All required migrations included to handle database changes.
+* Many structural changes to the database and `Phoenixpanel\Models` classes that would flood this changelog if they were all included. All required migrations included to handle database changes.
 * Clarified details for database hosts to prevent users entering invalid account details, as well as renamed tables and columns relating to it to keep things clearer.
 * Updated all code to be Laravel compliant when using `env()` and moved to using `config()` throughout non `config/*.php` files.
 * Subuser permissions are now stored in `Permission::listPermissions()` to make views way cleaner and make adding to views significantly cleaner.
-* Attempting to reset a password for an account that does not exist no longer returns an error, rather it displays a success message. Failed resets trigger a `Pterodactyl\Events\Auth\FailedPasswordReset` event that can be caught if needed to perform other actions.
+* Attempting to reset a password for an account that does not exist no longer returns an error, rather it displays a success message. Failed resets trigger a `Phoenixpanel\Events\Auth\FailedPasswordReset` event that can be caught if needed to perform other actions.
 * Servers are no longer queued for deletion due to the general hassle and extra logic required.
 * Updated all panel components to run on Laravel v5.4 rather than 5.3 which is EOL.
 * Routes are now handled in the `routes/` folder, and use a significantly cleaner syntax. Controller names and methods have been updated as well to be clearer as well as avoid conflicts with PHP reserved keywords.
@@ -1397,7 +1397,7 @@ spatie/laravel-fractal (4.0.0 => 4.0.1)
 ### Changed
 * Subuser permissions are now stored in `Permission::listPermissions()` to make views way cleaner and make adding to views significantly cleaner.
 * `[pre.7]` — Sidebar for file manager now is a single link rather than a dropdown.
-* Attempting to reset a password for an account that does not exist no longer returns an error, rather it displays a success message. Failed resets trigger a `Pterodactyl\Events\Auth\FailedPasswordReset` event that can be caught if needed to perform other actions.
+* Attempting to reset a password for an account that does not exist no longer returns an error, rather it displays a success message. Failed resets trigger a `Phoenixpanel\Events\Auth\FailedPasswordReset` event that can be caught if needed to perform other actions.
 * Servers are no longer queued for deletion due to the general hassle and extra logic required.
 * Updated all panel components to run on Laravel v5.4 rather than 5.3 which is EOL.
 * Routes are now handled in the `routes/` folder, and use a significantly cleaner syntax. Controller names and methods have been updated as well to be clearer as well as avoid conflicts with PHP reserved keywords.
@@ -1431,7 +1431,7 @@ spatie/laravel-fractal (4.0.0 => 4.0.1)
 * `[pre.4]` — Service and Pack management overhauled to be faster, cleaner, and more extensible in the future.
 * Most of the backend `UnhandledException` display errors now include a clearer error that directs admins to the program's logs.
 * Table seeders for services now can be run during upgrades and will attempt to locate and update, or create new if not found in the database.
-* Many structural changes to the database and `Pterodactyl\Models` classes that would flood this changelog if they were all included. All required migrations included to handle database changes.
+* Many structural changes to the database and `Phoenixpanel\Models` classes that would flood this changelog if they were all included. All required migrations included to handle database changes.
 * `[pre.4]` — Service pack files are now stored in the database rather than on the host system to make updates easier.
 * Clarified details for database hosts to prevent users entering invalid account details, as well as renamed tables and columns relating to it to keep things clearer.
 * Updated all code to be Laravel compliant when using `env()` and moved to using `config()` throughout non `config/*.php` files.

@@ -48,7 +48,7 @@ class DatabaseController extends Controller
     /**
      * Display database host to user.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function view(int $host): View
     {
@@ -117,7 +117,7 @@ class DatabaseController extends Controller
     /**
      * Handle request to delete a database host.
      *
-     * @throws \Pterodactyl\Exceptions\Service\HasActiveServersException
+     * @throws \Phoenixpanel\Exceptions\Service\HasActiveServersException
      */
     public function delete(int $host): RedirectResponse
     {

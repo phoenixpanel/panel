@@ -65,7 +65,7 @@ class ServersController extends Controller
      * Update the details for a server.
      *
      * @throws DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function setDetails(Request $request, Server $server): RedirectResponse
     {
@@ -83,7 +83,7 @@ class ServersController extends Controller
      *
      * @throws DisplayException
      * @throws DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function toggleInstall(Server $server): RedirectResponse
     {
@@ -105,7 +105,7 @@ class ServersController extends Controller
      *
      * @throws DisplayException
      * @throws DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function reinstallServer(Server $server): RedirectResponse
     {
@@ -120,7 +120,7 @@ class ServersController extends Controller
      *
      * @throws DisplayException
      * @throws DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function manageSuspension(Request $request, Server $server): RedirectResponse
     {
@@ -136,7 +136,7 @@ class ServersController extends Controller
      * Update the build configuration for a server.
      *
      * @throws DisplayException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      * @throws ValidationException
      */
     public function updateBuild(Request $request, Server $server): RedirectResponse

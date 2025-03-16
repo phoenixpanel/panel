@@ -29,8 +29,8 @@ class SettingsController extends ClientApiController
     /**
      * Renames a server.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function rename(RenameServerRequest $request, Server $server): JsonResponse
     {

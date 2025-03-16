@@ -16,7 +16,7 @@ class GetStartupAndVariablesTest extends ClientApiIntegrationTestCase
     #[\PHPUnit\Framework\Attributes\DataProvider('permissionsDataProvider')]
     public function testStartupVariablesAreReturnedForServer(array $permissions)
     {
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \Phoenixpanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount($permissions);
 
         $egg = $this->cloneEggAndVariables($server->egg);

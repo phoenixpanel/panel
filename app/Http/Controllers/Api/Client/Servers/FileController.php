@@ -38,7 +38,7 @@ class FileController extends ClientApiController
     /**
      * Returns a listing of files in a given directory.
      *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function directory(ListFilesRequest $request, Server $server): array
     {
@@ -102,7 +102,7 @@ class FileController extends ClientApiController
     /**
      * Writes the contents of the specified file to the server.
      *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function write(WriteFileContentRequest $request, Server $server): JsonResponse
     {
@@ -154,7 +154,7 @@ class FileController extends ClientApiController
     /**
      * Copies a file on the server.
      *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function copy(CopyFileRequest $request, Server $server): JsonResponse
     {
@@ -168,7 +168,7 @@ class FileController extends ClientApiController
     }
 
     /**
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function compress(CompressFilesRequest $request, Server $server): array
     {
@@ -188,7 +188,7 @@ class FileController extends ClientApiController
     }
 
     /**
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function decompress(DecompressFilesRequest $request, Server $server): JsonResponse
     {
@@ -210,7 +210,7 @@ class FileController extends ClientApiController
     /**
      * Deletes files or folders for the server in the given root directory.
      *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function delete(DeleteFileRequest $request, Server $server): JsonResponse
     {
@@ -230,7 +230,7 @@ class FileController extends ClientApiController
     /**
      * Updates file permissions for file(s) in the given root directory.
      *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function chmod(ChmodFilesRequest $request, Server $server): JsonResponse
     {

@@ -45,8 +45,8 @@ class WebsocketControllerTest extends ClientApiIntegrationTestCase
      */
     public function testJwtAndWebsocketUrlAreReturnedForServerOwner()
     {
-        /** @var \Pterodactyl\Models\User $user */
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \Phoenixpanel\Models\User $user */
+        /** @var \Phoenixpanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount();
 
         // Force the node to HTTPS since we want to confirm it gets transformed to wss:// in the URL.
@@ -98,8 +98,8 @@ class WebsocketControllerTest extends ClientApiIntegrationTestCase
     {
         $permissions = [Permission::ACTION_WEBSOCKET_CONNECT, Permission::ACTION_CONTROL_CONSOLE];
 
-        /** @var \Pterodactyl\Models\User $user */
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \Phoenixpanel\Models\User $user */
+        /** @var \Phoenixpanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount($permissions);
 
         $response = $this->actingAs($user)->getJson("/api/client/servers/$server->uuid/websocket");

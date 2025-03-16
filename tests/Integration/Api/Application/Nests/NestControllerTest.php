@@ -26,7 +26,7 @@ class NestControllerTest extends ApplicationApiIntegrationTestCase
      */
     public function testNestResponse()
     {
-        /** @var \Pterodactyl\Models\Nest[] $nests */
+        /** @var \Phoenixpanel\Models\Nest[] $nests */
         $nests = $this->repository->all();
 
         $response = $this->getJson('/api/application/nests');

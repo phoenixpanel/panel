@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Phoenixpanel\Extensions\Laravel\Sanctum\NewAccessToken;
 
 /**
- * @mixin \Pterodactyl\Models\Model
+ * @mixin \Phoenixpanel\Models\Model
  */
 trait HasAccessTokens
 {

@@ -30,7 +30,7 @@ class Handler extends ExceptionHandler
      * resulting in some weird rule names. This string will be parsed out and
      * replaced with 'p_' in the response code.
      */
-    private const PTERODACTYL_RULE_STRING = 'pterodactyl\_rules\_';
+    private const PTERODACTYL_RULE_STRING = 'Phoenixpanel\_rules\_';
 
     /**
      * A list of the exception types that should not be reported.

@@ -64,8 +64,8 @@ class UserController extends ApplicationApiController
      * Revocation errors are returned under the 'revocation_errors' key in the response
      * meta. If there are no errors this is an empty array.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateUserRequest $request, User $user): array
     {
@@ -83,7 +83,7 @@ class UserController extends ApplicationApiController
      * header on successful creation.
      *
      * @throws \Exception
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function store(StoreUserRequest $request): JsonResponse
     {
@@ -103,7 +103,7 @@ class UserController extends ApplicationApiController
      * Handle a request to delete a user from the Panel. Returns a HTTP/204 response
      * on successful deletion.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Phoenixpanel\Exceptions\DisplayException
      */
     public function delete(DeleteUserRequest $request, User $user): JsonResponse
     {

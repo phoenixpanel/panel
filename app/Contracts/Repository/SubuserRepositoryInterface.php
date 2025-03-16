@@ -19,7 +19,7 @@ interface SubuserRepositoryInterface extends RepositoryInterface
     /**
      * Return a subuser and associated permissions given a user_id and server_id.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithPermissionsUsingUserAndServer(int $user, int $server): Subuser;
 }

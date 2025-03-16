@@ -32,7 +32,7 @@ class NestSeeder extends Seeder
     /**
      * Run the seeder to add missing nests to the Panel.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function run()
     {
@@ -49,7 +49,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Minecraft nest to be used later on.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     private function createMinecraftNest(?array $nest = null)
     {
@@ -64,7 +64,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Source Engine Games nest to be used later on.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     private function createSourceEngineNest(?array $nest = null)
     {
@@ -79,7 +79,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Voice Servers nest to be used later on.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     private function createVoiceServersNest(?array $nest = null)
     {
@@ -94,7 +94,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Rust nest to be used later on.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     private function createRustNest(?array $nest = null)
     {

@@ -19,7 +19,7 @@ class SubstituteClientBindings extends SubstituteBindings
         });
 
         $this->router->bind('user', function ($value, $route) {
-            /** @var \Pterodactyl\Models\Subuser $match */
+            /** @var \Phoenixpanel\Models\Subuser $match */
             $match = $route->parameter('server')
                 ->subusers()
                 ->whereRelation('user', 'uuid', '=', $value)

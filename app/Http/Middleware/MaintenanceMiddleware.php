@@ -19,7 +19,7 @@ class MaintenanceMiddleware
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \Phoenixpanel\Models\Server $server */
         $server = $request->attributes->get('server');
         $node = $server->getRelation('node');
 

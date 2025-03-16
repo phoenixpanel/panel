@@ -30,8 +30,8 @@ class TwoFactorController extends ClientApiController
      * it on their account. If two-factor is already enabled this endpoint
      * will return a 400 error.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(Request $request): JsonResponse
     {
@@ -86,7 +86,7 @@ class TwoFactorController extends ClientApiController
             throw new BadRequestHttpException('The password provided was not valid.');
         }
 
-        /** @var \Pterodactyl\Models\User $user */
+        /** @var \Phoenixpanel\Models\User $user */
         $user = $request->user();
 
         $user->update([

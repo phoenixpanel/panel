@@ -33,7 +33,7 @@ class BackupRemoteUploadController extends Controller
     public function __invoke(Request $request, string $backup): JsonResponse
     {
         // Get the node associated with the request.
-        /** @var \Pterodactyl\Models\Node $node */
+        /** @var \Phoenixpanel\Models\Node $node */
         $node = $request->attributes->get('node');
 
         // Get the size query parameter.
@@ -49,7 +49,7 @@ class BackupRemoteUploadController extends Controller
 
         // Check that the backup is "owned" by the node making the request. This avoids other nodes
         // from messing with backups that they don't own.
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \Phoenixpanel\Models\Server $server */
         $server = $model->server;
         if ($server->node_id !== $node->id) {
             throw new HttpForbiddenException('You do not have permission to access that backup.');

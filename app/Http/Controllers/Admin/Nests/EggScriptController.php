@@ -51,9 +51,9 @@ class EggScriptController extends Controller
     /**
      * Handle a request to update the installation script for an Egg.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
-     * @throws \Pterodactyl\Exceptions\Service\Egg\InvalidCopyFromException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Service\Egg\InvalidCopyFromException
      */
     public function update(EggScriptFormRequest $request, Egg $egg): RedirectResponse
     {

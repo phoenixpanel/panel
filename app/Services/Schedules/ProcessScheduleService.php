@@ -27,7 +27,7 @@ class ProcessScheduleService
      */
     public function handle(Schedule $schedule, bool $now = false): void
     {
-        /** @var \Pterodactyl\Models\Task $task */
+        /** @var \Phoenixpanel\Models\Task $task */
         $task = $schedule->tasks()->orderBy('sequence_id')->first();
 
         if (is_null($task)) {

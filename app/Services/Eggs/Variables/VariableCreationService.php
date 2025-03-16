@@ -31,8 +31,8 @@ class VariableCreationService
     /**
      * Create a new variable for a given Egg.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Service\Egg\Variable\BadValidationRuleException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Service\Egg\Variable\BadValidationRuleException
      * @throws ReservedVariableNameException
      */
     public function handle(int $egg, array $data): EggVariable

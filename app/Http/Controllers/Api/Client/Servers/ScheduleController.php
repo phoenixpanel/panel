@@ -48,7 +48,7 @@ class ScheduleController extends ClientApiController
      * Store a new schedule for a server.
      *
      * @throws DisplayException
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function store(StoreScheduleRequest $request, Server $server): array
     {
@@ -96,8 +96,8 @@ class ScheduleController extends ClientApiController
      * Updates a given schedule with the new data provided.
      *
      * @throws DisplayException
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateScheduleRequest $request, Server $server, Schedule $schedule): array
     {

@@ -70,7 +70,7 @@ class StartupModificationServiceTest extends IntegrationTestCase
      */
     public function testServerIsProperlyModifiedAsAdminUser()
     {
-        /** @var \Pterodactyl\Models\Egg $nextEgg */
+        /** @var \Phoenixpanel\Models\Egg $nextEgg */
         $nextEgg = Nest::query()->findOrFail(2)->eggs()->firstOrFail();
 
         $server = $this->createServerModel(['egg_id' => 1]);

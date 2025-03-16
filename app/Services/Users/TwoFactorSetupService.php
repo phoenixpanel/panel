@@ -26,8 +26,8 @@ class TwoFactorSetupService
      * QR code URL. This URL will need to be attached to a QR generating service in
      * order to function.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function handle(User $user): array
     {

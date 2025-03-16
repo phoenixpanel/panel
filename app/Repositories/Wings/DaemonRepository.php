@@ -9,8 +9,8 @@ use Phoenixpanel\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 
 /**
- * @method \Pterodactyl\Repositories\Wings\DaemonRepository setNode(\Pterodactyl\Models\Node $node)
- * @method \Pterodactyl\Repositories\Wings\DaemonRepository setServer(\Pterodactyl\Models\Server $server)
+ * @method \Phoenixpanel\Repositories\Wings\DaemonRepository setNode(\Phoenixpanel\Models\Node $node)
+ * @method \Phoenixpanel\Repositories\Wings\DaemonRepository setServer(\Phoenixpanel\Models\Server $server)
  */
 abstract class DaemonRepository
 {

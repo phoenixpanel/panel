@@ -82,7 +82,7 @@ class EggTransformer extends BaseTransformer
     /**
      * Include the Nest relationship for the given Egg in the transformation.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeNest(Egg $model): Item|NullResource
     {
@@ -98,7 +98,7 @@ class EggTransformer extends BaseTransformer
     /**
      * Include the Servers relationship for the given Egg in the transformation.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServers(Egg $model): Collection|NullResource
     {
@@ -158,7 +158,7 @@ class EggTransformer extends BaseTransformer
     /**
      * Include the variables that are defined for this Egg.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeVariables(Egg $model): Collection|NullResource
     {

@@ -26,7 +26,7 @@ interface ServerRepositoryInterface extends RepositoryInterface
     /**
      * Return a server model and all variables associated with the server.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function findWithVariables(int $id): Server;
 
@@ -57,7 +57,7 @@ interface ServerRepositoryInterface extends RepositoryInterface
     /**
      * Return a server by UUID.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getByUuid(string $uuid): Server;
 

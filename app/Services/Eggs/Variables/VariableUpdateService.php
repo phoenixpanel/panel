@@ -34,8 +34,8 @@ class VariableUpdateService
      * Update a specific egg variable.
      *
      * @throws DisplayException
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      * @throws ReservedVariableNameException
      */
     public function handle(EggVariable $variable, array $data): mixed

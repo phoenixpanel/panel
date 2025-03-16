@@ -22,7 +22,7 @@ class NodeDeploymentController extends ApplicationApiController
      * similarly to the server creation process, but allows you to pass the deployment object
      * to this endpoint and get back a list of all Nodes satisfying the requirements.
      *
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException
      */
     public function __invoke(GetDeployableNodesRequest $request): array
     {

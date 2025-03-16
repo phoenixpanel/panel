@@ -35,7 +35,7 @@ class LoginController extends AbstractLoginController
     /**
      * Handle a login request to the application.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Phoenixpanel\Exceptions\DisplayException
      * @throws \Illuminate\Validation\ValidationException
      */
     public function login(Request $request): JsonResponse

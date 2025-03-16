@@ -7,7 +7,7 @@ use Phoenixpanel\Contracts\Http\ClientPermissionsRequest;
 use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 /**
- * @method \Pterodactyl\Models\User user($guard = null)
+ * @method \Phoenixpanel\Models\User user($guard = null)
  */
 class ClientApiRequest extends ApplicationApiRequest
 {

@@ -23,7 +23,7 @@ class TelemetryCommand extends Command
     /**
      * Handle execution of command.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

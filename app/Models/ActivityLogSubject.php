@@ -5,7 +5,7 @@ namespace Phoenixpanel\Models;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
- * \Pterodactyl\Models\ActivityLogSubject.
+ * \Phoenixpanel\Models\ActivityLogSubject.
  *
  * @property int $id
  * @property int $activity_log_id

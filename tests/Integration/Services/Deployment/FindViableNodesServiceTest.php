@@ -68,10 +68,10 @@ class FindViableNodesServiceTest extends IntegrationTestCase
 
     public function testExpectedNodeIsReturnedForLocation()
     {
-        /** @var \Pterodactyl\Models\Location[] $locations */
+        /** @var \Phoenixpanel\Models\Location[] $locations */
         $locations = Location::factory()->times(2)->create();
 
-        /** @var \Pterodactyl\Models\Node[] $nodes */
+        /** @var \Phoenixpanel\Models\Node[] $nodes */
         $nodes = [
             // This node should never be returned once we've completed the initial test which
             // runs without a location filter.

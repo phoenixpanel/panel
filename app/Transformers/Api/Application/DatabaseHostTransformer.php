@@ -42,7 +42,7 @@ class DatabaseHostTransformer extends BaseTransformer
     /**
      * Include the databases associated with this host.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeDatabases(DatabaseHost $model): Collection|NullResource
     {

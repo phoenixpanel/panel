@@ -19,8 +19,8 @@ class DeployServerDatabaseService
 
     /**
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \Pterodactyl\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws \Phoenixpanel\Exceptions\Service\Database\TooManyDatabasesException
+     * @throws \Phoenixpanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
      */
     public function handle(Server $server, array $data): Database
     {

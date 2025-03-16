@@ -47,12 +47,12 @@ class StartupController extends ClientApiController
      * Updates a single variable for a server.
      *
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateStartupVariableRequest $request, Server $server): array
     {
-        /** @var \Pterodactyl\Models\EggVariable $variable */
+        /** @var \Phoenixpanel\Models\EggVariable $variable */
         $variable = $server->variables()->where('env_variable', $request->input('key'))->first();
         $original = $variable->server_value;
 

@@ -81,7 +81,7 @@ trait CreatesTestModels
      *
      * @param string[] $permissions
      *
-     * @return array{\Pterodactyl\Models\User, \Pterodactyl\Models\Server}
+     * @return array{\Phoenixpanel\Models\User, \Phoenixpanel\Models\Server}
      */
     public function generateTestAccount(array $permissions = []): array
     {

@@ -191,16 +191,16 @@ return [
         /*
          * Application Service Providers...
          */
-        Pterodactyl\Providers\ActivityLogServiceProvider::class,
-        Pterodactyl\Providers\AppServiceProvider::class,
-        Pterodactyl\Providers\AuthServiceProvider::class,
-        Pterodactyl\Providers\BackupsServiceProvider::class,
-        Pterodactyl\Providers\BladeServiceProvider::class,
-        Pterodactyl\Providers\EventServiceProvider::class,
-        Pterodactyl\Providers\HashidsServiceProvider::class,
-        Pterodactyl\Providers\RouteServiceProvider::class,
-        Pterodactyl\Providers\RepositoryServiceProvider::class,
-        Pterodactyl\Providers\ViewComposerServiceProvider::class,
+        Phoenixpanel\Providers\ActivityLogServiceProvider::class,
+        Phoenixpanel\Providers\AppServiceProvider::class,
+        Phoenixpanel\Providers\AuthServiceProvider::class,
+        Phoenixpanel\Providers\BackupsServiceProvider::class,
+        Phoenixpanel\Providers\BladeServiceProvider::class,
+        Phoenixpanel\Providers\EventServiceProvider::class,
+        Phoenixpanel\Providers\HashidsServiceProvider::class,
+        Phoenixpanel\Providers\RouteServiceProvider::class,
+        Phoenixpanel\Providers\RepositoryServiceProvider::class,
+        Phoenixpanel\Providers\ViewComposerServiceProvider::class,
 
         /*
          * Additional Dependencies
@@ -223,11 +223,11 @@ return [
         'Alert' => Prologue\Alerts\Facades\Alert::class,
         'Carbon' => Carbon\Carbon::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
-        'Theme' => Pterodactyl\Extensions\Facades\Theme::class,
+        'Theme' => Phoenixpanel\Extensions\Facades\Theme::class,
 
         // Custom Facades
-        'Activity' => Pterodactyl\Facades\Activity::class,
-        'LogBatch' => Pterodactyl\Facades\LogBatch::class,
-        'LogTarget' => Pterodactyl\Facades\LogTarget::class,
+        'Activity' => Phoenixpanel\Facades\Activity::class,
+        'LogBatch' => Phoenixpanel\Facades\LogBatch::class,
+        'LogTarget' => Phoenixpanel\Facades\LogTarget::class,
     ])->toArray(),
 ];

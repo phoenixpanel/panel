@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Phoenixpanel\Exceptions\Http\Server\ServerStateConflictException;
 
 /**
- * \Pterodactyl\Models\Server.
+ * \Phoenixpanel\Models\Server.
  *
  * @property int $id
  * @property string|null $external_id
@@ -44,29 +44,29 @@ use Phoenixpanel\Exceptions\Http\Server\ServerStateConflictException;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $installed_at
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\ActivityLog[] $activity
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\ActivityLog[] $activity
  * @property int|null $activity_count
  * @property Allocation|null $allocation
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\Allocation[] $allocations
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\Allocation[] $allocations
  * @property int|null $allocations_count
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\Backup[] $backups
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\Backup[] $backups
  * @property int|null $backups_count
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\Database[] $databases
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\Database[] $databases
  * @property int|null $databases_count
  * @property Egg|null $egg
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\Mount[] $mounts
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\Mount[] $mounts
  * @property int|null $mounts_count
  * @property Nest $nest
  * @property Node $node
  * @property \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property int|null $notifications_count
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\Schedule[] $schedules
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\Schedule[] $schedules
  * @property int|null $schedules_count
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\Subuser[] $subusers
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\Subuser[] $subusers
  * @property int|null $subusers_count
  * @property ServerTransfer|null $transfer
  * @property User $user
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\EggVariable[] $variables
+ * @property \Illuminate\Database\Eloquent\Collection|\Phoenixpanel\Models\EggVariable[] $variables
  * @property int|null $variables_count
  *
  * @method static \Database\Factories\ServerFactory factory(...$parameters)

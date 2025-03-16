@@ -3,7 +3,7 @@
 namespace Phoenixpanel\Models;
 
 /**
- * Pterodactyl\Models\Setting.
+ * Phoenixpanel\Models\Setting.
  *
  * @property int $id
  * @property string $key

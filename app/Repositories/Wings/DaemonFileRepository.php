@@ -12,8 +12,8 @@ use Phoenixpanel\Exceptions\Http\Server\FileSizeTooLargeException;
 use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 /**
- * @method \Pterodactyl\Repositories\Wings\DaemonFileRepository setNode(\Pterodactyl\Models\Node $node)
- * @method \Pterodactyl\Repositories\Wings\DaemonFileRepository setServer(\Pterodactyl\Models\Server $server)
+ * @method \Phoenixpanel\Repositories\Wings\DaemonFileRepository setNode(\Phoenixpanel\Models\Node $node)
+ * @method \Phoenixpanel\Repositories\Wings\DaemonFileRepository setServer(\Phoenixpanel\Models\Server $server)
  */
 class DaemonFileRepository extends DaemonRepository
 {

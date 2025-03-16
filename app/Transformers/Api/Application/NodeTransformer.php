@@ -53,7 +53,7 @@ class NodeTransformer extends BaseTransformer
     /**
      * Return the nodes associated with this location.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeAllocations(Node $node): Collection|NullResource
     {
@@ -73,7 +73,7 @@ class NodeTransformer extends BaseTransformer
     /**
      * Return the nodes associated with this location.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeLocation(Node $node): Item|NullResource
     {
@@ -93,7 +93,7 @@ class NodeTransformer extends BaseTransformer
     /**
      * Return the nodes associated with this location.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServers(Node $node): Collection|NullResource
     {

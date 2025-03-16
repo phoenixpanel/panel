@@ -43,7 +43,7 @@ class LocationController extends Controller
     /**
      * Return the location view page.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function view(int $id): View
     {

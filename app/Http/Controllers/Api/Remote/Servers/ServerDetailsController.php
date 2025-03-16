@@ -30,7 +30,7 @@ class ServerDetailsController extends Controller
      * Returns details about the server that allows Wings to self-recover and ensure
      * that the state of the server matches the Panel at all times.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function __invoke(Request $request, string $uuid): JsonResponse
     {
@@ -47,7 +47,7 @@ class ServerDetailsController extends Controller
      */
     public function list(Request $request): ServerConfigurationCollection
     {
-        /** @var \Pterodactyl\Models\Node $node */
+        /** @var \Phoenixpanel\Models\Node $node */
         $node = $request->attributes->get('node');
 
         // Avoid run-away N+1 SQL queries by preloading the relationships that are used
@@ -92,7 +92,7 @@ class ServerDetailsController extends Controller
         $this->connection->transaction(function () use ($node, $servers) {
             /** @var Server $server */
             foreach ($servers as $server) {
-                /** @var \Pterodactyl\Models\ActivityLog|null $activity */
+                /** @var \Phoenixpanel\Models\ActivityLog|null $activity */
                 $activity = $server->activity->first();
                 if (!is_null($activity)) {
                     if ($subject = $activity->subjects->where('subject_type', 'backup')->first()) {

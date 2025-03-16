@@ -27,7 +27,7 @@ class UserCreationService
      * Create a new user on the system.
      *
      * @throws \Exception
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function handle(array $data): User
     {

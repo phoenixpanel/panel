@@ -33,7 +33,7 @@ class DatabaseSettingsCommand extends Command
     /**
      * Handle command execution.
      *
-     * @throws \Pterodactyl\Exceptions\PterodactylException
+     * @throws \Phoenixpanel\Exceptions\PterodactylException
      */
     public function handle(): int
     {

@@ -43,8 +43,8 @@ class IndexController extends Controller
     /**
      * Handle settings update.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(BaseSettingsFormRequest $request): RedirectResponse
     {

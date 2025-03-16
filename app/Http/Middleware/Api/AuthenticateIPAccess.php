@@ -19,7 +19,7 @@ class AuthenticateIPAccess
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var TransientToken|\Pterodactyl\Models\ApiKey $token */
+        /** @var TransientToken|\Phoenixpanel\Models\ApiKey $token */
         $token = $request->user()->currentAccessToken();
 
         // If this is a stateful request just push the request through to the next

@@ -58,7 +58,7 @@ class NodeController extends ApplicationApiController
      * Create a new node on the Panel. Returns the created node and an HTTP/201
      * status response on success.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
      */
     public function store(StoreNodeRequest $request): JsonResponse
     {
@@ -96,7 +96,7 @@ class NodeController extends ApplicationApiController
      * Deletes a given node from the Panel as long as there are no servers
      * currently attached to it.
      *
-     * @throws \Pterodactyl\Exceptions\Service\HasActiveServersException
+     * @throws \Phoenixpanel\Exceptions\Service\HasActiveServersException
      */
     public function delete(DeleteNodeRequest $request, Node $node): JsonResponse
     {

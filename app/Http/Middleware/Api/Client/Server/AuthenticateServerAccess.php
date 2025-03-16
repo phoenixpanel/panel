@@ -28,7 +28,7 @@ class AuthenticateServerAccess
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \Pterodactyl\Models\User $user */
+        /** @var \Phoenixpanel\Models\User $user */
         $user = $request->user();
         $server = $request->route()->parameter('server');
 
