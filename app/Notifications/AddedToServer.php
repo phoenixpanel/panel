@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Notifications;
+namespace Phoenixpanel\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Services\Subusers;
+namespace Phoenixpanel\Services\Subusers;
 
 use Illuminate\Support\Str;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Subuser;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Subuser;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Services\Users\UserCreationService;
-use Pterodactyl\Repositories\Eloquent\SubuserRepository;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
-use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
-use Pterodactyl\Exceptions\Service\Subuser\UserIsServerOwnerException;
-use Pterodactyl\Exceptions\Service\Subuser\ServerSubuserExistsException;
+use Phoenixpanel\Services\Users\UserCreationService;
+use Phoenixpanel\Repositories\Eloquent\SubuserRepository;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
+use Phoenixpanel\Exceptions\Service\Subuser\UserIsServerOwnerException;
+use Phoenixpanel\Exceptions\Service\Subuser\ServerSubuserExistsException;
 
 class SubuserCreationService
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Services\Locations;
+namespace Phoenixpanel\Services\Locations;
 
-use Pterodactyl\Models\Location;
-use Pterodactyl\Contracts\Repository\LocationRepositoryInterface;
+use Phoenixpanel\Models\Location;
+use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationCreationService
 {

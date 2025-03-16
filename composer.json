@@ -1,13 +1,19 @@
 {
-    "name": "pterodactyl/panel",
+    "name": "phoenixpanel/panel",
     "description": "The free, open-source game management panel. Supporting Minecraft, Spigot, BungeeCord, and SRCDS servers.",
     "license": "MIT",
     "authors": [
         {
+            "name": "Brad Smith",
+            "email": "brad@phoenixpanel.io",
+            "homepage": "https://github.com/phoenixpanel",
+            "role": "Lead Developer"
+        },
+        {
             "name": "Matthew Penner",
             "email": "matthew@pterodactyl.io",
             "homepage": "https://github.com/matthewpi",
-            "role": "Lead Developer"
+            "role": "Developer"
         },
         {
             "name": "Dane Everitt",

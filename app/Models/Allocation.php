@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Pterodactyl\Http\Controllers\Api\Client;
-use Pterodactyl\Http\Middleware\Activity\ServerSubject;
-use Pterodactyl\Http\Middleware\Activity\AccountSubject;
-use Pterodactyl\Http\Middleware\RequireTwoFactorAuthentication;
-use Pterodactyl\Http\Middleware\Api\Client\Server\ResourceBelongsToServer;
-use Pterodactyl\Http\Middleware\Api\Client\Server\AuthenticateServerAccess;
+use Phoenixpanel\Http\Controllers\Api\Client;
+use Phoenixpanel\Http\Middleware\Activity\ServerSubject;
+use Phoenixpanel\Http\Middleware\Activity\AccountSubject;
+use Phoenixpanel\Http\Middleware\RequireTwoFactorAuthentication;
+use Phoenixpanel\Http\Middleware\Api\Client\Server\ResourceBelongsToServer;
+use Phoenixpanel\Http\Middleware\Api\Client\Server\AuthenticateServerAccess;
 
 /*
 |--------------------------------------------------------------------------

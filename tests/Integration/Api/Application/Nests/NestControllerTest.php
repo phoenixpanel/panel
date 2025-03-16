@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Application\Nests;
+namespace Phoenixpanel\Tests\Integration\Api\Application\Nests;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
-use Pterodactyl\Transformers\Api\Application\NestTransformer;
-use Pterodactyl\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Transformers\Api\Application\NestTransformer;
+use Phoenixpanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
 
 class NestControllerTest extends ApplicationApiIntegrationTestCase
 {

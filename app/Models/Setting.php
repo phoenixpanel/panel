@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 /**
  * Pterodactyl\Models\Setting.

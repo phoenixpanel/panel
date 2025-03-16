@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Admin\Servers\Databases;
+namespace Phoenixpanel\Http\Requests\Admin\Servers\Databases;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Query\Builder;
-use Pterodactyl\Http\Requests\Admin\AdminFormRequest;
+use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
 
 class StoreServerDatabaseRequest extends AdminFormRequest
 {

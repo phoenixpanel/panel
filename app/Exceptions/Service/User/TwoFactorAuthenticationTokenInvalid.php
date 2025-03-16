@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Exceptions\Service\User;
+namespace Phoenixpanel\Exceptions\Service\User;
 
-use Pterodactyl\Exceptions\DisplayException;
+use Phoenixpanel\Exceptions\DisplayException;
 
 class TwoFactorAuthenticationTokenInvalid extends DisplayException
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Query\JoinClause;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Pterodactyl\Exceptions\Http\Server\ServerStateConflictException;
+use Phoenixpanel\Exceptions\Http\Server\ServerStateConflictException;
 
 /**
  * \Pterodactyl\Models\Server.

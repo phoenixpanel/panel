@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Client;
+namespace Phoenixpanel\Transformers\Api\Client;
 
-use Pterodactyl\Models\Subuser;
+use Phoenixpanel\Models\Subuser;
 
 class SubuserTransformer extends BaseClientTransformer
 {

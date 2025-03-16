@@ -1,18 +1,18 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Servers;
+namespace Phoenixpanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\Location;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Repositories\Eloquent\NestRepository;
-use Pterodactyl\Repositories\Eloquent\NodeRepository;
-use Pterodactyl\Http\Requests\Admin\ServerFormRequest;
-use Pterodactyl\Services\Servers\ServerCreationService;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Repositories\Eloquent\NestRepository;
+use Phoenixpanel\Repositories\Eloquent\NodeRepository;
+use Phoenixpanel\Http\Requests\Admin\ServerFormRequest;
+use Phoenixpanel\Services\Servers\ServerCreationService;
 
 class CreateServerController extends Controller
 {

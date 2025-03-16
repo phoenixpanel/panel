@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Extensions\Themes;
+namespace Phoenixpanel\Extensions\Themes;
 
 class Theme
 {

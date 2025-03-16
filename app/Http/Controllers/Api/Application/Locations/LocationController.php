@@ -1,21 +1,21 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Locations;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Locations;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Location;
+use Phoenixpanel\Models\Location;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use Pterodactyl\Services\Locations\LocationUpdateService;
-use Pterodactyl\Services\Locations\LocationCreationService;
-use Pterodactyl\Services\Locations\LocationDeletionService;
-use Pterodactyl\Transformers\Api\Application\LocationTransformer;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Pterodactyl\Http\Requests\Api\Application\Locations\GetLocationRequest;
-use Pterodactyl\Http\Requests\Api\Application\Locations\GetLocationsRequest;
-use Pterodactyl\Http\Requests\Api\Application\Locations\StoreLocationRequest;
-use Pterodactyl\Http\Requests\Api\Application\Locations\DeleteLocationRequest;
-use Pterodactyl\Http\Requests\Api\Application\Locations\UpdateLocationRequest;
+use Phoenixpanel\Services\Locations\LocationUpdateService;
+use Phoenixpanel\Services\Locations\LocationCreationService;
+use Phoenixpanel\Services\Locations\LocationDeletionService;
+use Phoenixpanel\Transformers\Api\Application\LocationTransformer;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Http\Requests\Api\Application\Locations\GetLocationRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Locations\GetLocationsRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Locations\StoreLocationRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Locations\DeleteLocationRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Locations\UpdateLocationRequest;
 
 class LocationController extends ApplicationApiController
 {

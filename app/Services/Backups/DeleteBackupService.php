@@ -1,15 +1,15 @@
 <?php
 
-namespace Pterodactyl\Services\Backups;
+namespace Phoenixpanel\Services\Backups;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Backup;
+use Phoenixpanel\Models\Backup;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Extensions\Backups\BackupManager;
-use Pterodactyl\Repositories\Wings\DaemonBackupRepository;
-use Pterodactyl\Exceptions\Service\Backup\BackupLockedException;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Extensions\Backups\BackupManager;
+use Phoenixpanel\Repositories\Wings\DaemonBackupRepository;
+use Phoenixpanel\Exceptions\Service\Backup\BackupLockedException;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class DeleteBackupService
 {

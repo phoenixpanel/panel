@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\Server;
 use League\Fractal\Resource\Item;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Allocation;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 class AllocationTransformer extends BaseTransformer
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
-use Pterodactyl\Models\Server;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Services\Servers\StartupCommandService;
-use Pterodactyl\Repositories\Eloquent\ServerVariableRepository;
-use Pterodactyl\Transformers\Api\Client\EggVariableTransformer;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Services\Servers\StartupCommandService;
+use Phoenixpanel\Repositories\Eloquent\ServerVariableRepository;
+use Phoenixpanel\Transformers\Api\Client\EggVariableTransformer;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Startup\GetStartupRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Startup\UpdateStartupVariableRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Startup\GetStartupRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Startup\UpdateStartupVariableRequest;
 
 class StartupController extends ClientApiController
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
-use Pterodactyl\Services\Servers\EnvironmentService;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Servers\EnvironmentService;
 
 class ServerTransformer extends BaseTransformer
 {

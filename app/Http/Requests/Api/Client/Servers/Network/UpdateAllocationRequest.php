@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Network;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Network;
 
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class UpdateAllocationRequest extends ClientApiRequest
 {

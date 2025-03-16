@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Exceptions\Service\Subuser;
+namespace Phoenixpanel\Exceptions\Service\Subuser;
 
-use Pterodactyl\Exceptions\DisplayException;
+use Phoenixpanel\Exceptions\DisplayException;
 
 class UserIsServerOwnerException extends DisplayException
 {

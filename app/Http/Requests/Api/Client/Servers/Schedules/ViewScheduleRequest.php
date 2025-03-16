@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Schedules;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules;
 
-use Pterodactyl\Models\Task;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Schedule;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Models\Task;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Schedule;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ViewScheduleRequest extends ClientApiRequest

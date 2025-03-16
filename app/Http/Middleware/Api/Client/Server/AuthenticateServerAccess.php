@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Http\Middleware\Api\Client\Server;
+namespace Phoenixpanel\Http\Middleware\Api\Client\Server;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Pterodactyl\Exceptions\Http\Server\ServerStateConflictException;
+use Phoenixpanel\Exceptions\Http\Server\ServerStateConflictException;
 
 class AuthenticateServerAccess
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\Environment;
+namespace Phoenixpanel\Console\Commands\Environment;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Kernel;
-use Pterodactyl\Traits\Commands\EnvironmentWriterTrait;
+use Phoenixpanel\Traits\Commands\EnvironmentWriterTrait;
 
 class AppSettingsCommand extends Command
 {

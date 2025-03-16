@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Services\Servers;
+namespace Phoenixpanel\Tests\Integration\Services\Servers;
 
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
-use Pterodactyl\Services\Servers\VariableValidatorService;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Services\Servers\VariableValidatorService;
 
 class VariableValidatorServiceTest extends IntegrationTestCase
 {

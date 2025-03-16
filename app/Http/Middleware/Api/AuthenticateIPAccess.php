@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Http\Middleware\Api;
+namespace Phoenixpanel\Http\Middleware\Api;
 
 use IPTools\IP;
 use IPTools\Range;
 use Illuminate\Http\Request;
-use Pterodactyl\Facades\Activity;
+use Phoenixpanel\Facades\Activity;
 use Laravel\Sanctum\TransientToken;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Contracts\Repository;
+namespace Phoenixpanel\Contracts\Repository;
 
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

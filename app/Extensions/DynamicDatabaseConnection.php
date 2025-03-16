@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Extensions;
+namespace Phoenixpanel\Extensions;
 
-use Pterodactyl\Models\DatabaseHost;
+use Phoenixpanel\Models\DatabaseHost;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Config\Repository as ConfigRepository;
-use Pterodactyl\Contracts\Repository\DatabaseHostRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class DynamicDatabaseConnection
 {

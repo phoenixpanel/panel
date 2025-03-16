@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Repositories\Wings;
+namespace Phoenixpanel\Repositories\Wings;
 
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 /**
  * @method \Pterodactyl\Repositories\Wings\DaemonCommandRepository setNode(\Pterodactyl\Models\Node $node)

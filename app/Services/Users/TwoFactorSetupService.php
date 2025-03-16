@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Services\Users;
+namespace Phoenixpanel\Services\Users;
 
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class TwoFactorSetupService

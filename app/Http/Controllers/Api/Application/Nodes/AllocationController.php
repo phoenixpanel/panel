@@ -1,20 +1,20 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Nodes;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Nodes;
 
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Allocation;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Pterodactyl\Services\Allocations\AssignmentService;
-use Pterodactyl\Services\Allocations\AllocationDeletionService;
-use Pterodactyl\Transformers\Api\Application\AllocationTransformer;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Pterodactyl\Http\Requests\Api\Application\Allocations\GetAllocationsRequest;
-use Pterodactyl\Http\Requests\Api\Application\Allocations\StoreAllocationRequest;
-use Pterodactyl\Http\Requests\Api\Application\Allocations\DeleteAllocationRequest;
+use Phoenixpanel\Services\Allocations\AssignmentService;
+use Phoenixpanel\Services\Allocations\AllocationDeletionService;
+use Phoenixpanel\Transformers\Api\Application\AllocationTransformer;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Http\Requests\Api\Application\Allocations\GetAllocationsRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Allocations\StoreAllocationRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Allocations\DeleteAllocationRequest;
 
 class AllocationController extends ApplicationApiController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Observers;
+namespace Phoenixpanel\Observers;
 
-use Pterodactyl\Models\EggVariable;
+use Phoenixpanel\Models\EggVariable;
 
 class EggVariableObserver
 {

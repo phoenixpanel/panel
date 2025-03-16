@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\User;
+namespace Phoenixpanel\Console\Commands\User;
 
 use Illuminate\Console\Command;
-use Pterodactyl\Services\Users\UserCreationService;
+use Phoenixpanel\Services\Users\UserCreationService;
 
 class MakeUserCommand extends Command
 {

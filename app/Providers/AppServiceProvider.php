@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Providers;
+namespace Phoenixpanel\Providers;
 
-use Pterodactyl\Models;
+use Phoenixpanel\Models;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Pterodactyl\Extensions\Themes\Theme;
+use Phoenixpanel\Extensions\Themes\Theme;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider

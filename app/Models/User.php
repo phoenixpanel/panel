@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
-use Pterodactyl\Rules\Username;
-use Pterodactyl\Facades\Activity;
+use Phoenixpanel\Rules\Username;
+use Phoenixpanel\Facades\Activity;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rules\In;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
-use Pterodactyl\Models\Traits\HasAccessTokens;
+use Phoenixpanel\Models\Traits\HasAccessTokens;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Pterodactyl\Traits\Helpers\AvailableLanguages;
+use Phoenixpanel\Traits\Helpers\AvailableLanguages;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Pterodactyl\Notifications\SendPasswordReset as ResetPasswordNotification;
+use Phoenixpanel\Notifications\SendPasswordReset as ResetPasswordNotification;
 
 /**
  * Pterodactyl\Models\User.

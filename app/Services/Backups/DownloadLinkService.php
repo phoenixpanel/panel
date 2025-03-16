@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Backups;
+namespace Phoenixpanel\Services\Backups;
 
 use Carbon\CarbonImmutable;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Backup;
-use Pterodactyl\Services\Nodes\NodeJWTService;
-use Pterodactyl\Extensions\Backups\BackupManager;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Backup;
+use Phoenixpanel\Services\Nodes\NodeJWTService;
+use Phoenixpanel\Extensions\Backups\BackupManager;
 
 class DownloadLinkService
 {

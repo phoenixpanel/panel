@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Services\Api;
+namespace Phoenixpanel\Services\Api;
 
-use Pterodactyl\Models\ApiKey;
+use Phoenixpanel\Models\ApiKey;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Contracts\Repository\ApiKeyRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\ApiKeyRepositoryInterface;
 
 class KeyCreationService
 {

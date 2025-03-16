@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Models\Traits;
+namespace Phoenixpanel\Models\Traits;
 
 use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
-use Pterodactyl\Models\ApiKey;
+use Phoenixpanel\Models\ApiKey;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Pterodactyl\Extensions\Laravel\Sanctum\NewAccessToken;
+use Phoenixpanel\Extensions\Laravel\Sanctum\NewAccessToken;
 
 /**
  * @mixin \Pterodactyl\Models\Model

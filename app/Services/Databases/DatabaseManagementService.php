@@ -1,18 +1,18 @@
 <?php
 
-namespace Pterodactyl\Services\Databases;
+namespace Phoenixpanel\Services\Databases;
 
 use Exception;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Database;
-use Pterodactyl\Helpers\Utilities;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Helpers\Utilities;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Extensions\DynamicDatabaseConnection;
-use Pterodactyl\Repositories\Eloquent\DatabaseRepository;
-use Pterodactyl\Exceptions\Repository\DuplicateDatabaseNameException;
-use Pterodactyl\Exceptions\Service\Database\TooManyDatabasesException;
-use Pterodactyl\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
+use Phoenixpanel\Extensions\DynamicDatabaseConnection;
+use Phoenixpanel\Repositories\Eloquent\DatabaseRepository;
+use Phoenixpanel\Exceptions\Repository\DuplicateDatabaseNameException;
+use Phoenixpanel\Exceptions\Service\Database\TooManyDatabasesException;
+use Phoenixpanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
 
 class DatabaseManagementService
 {

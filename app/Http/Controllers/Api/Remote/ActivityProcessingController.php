@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Remote;
+namespace Phoenixpanel\Http\Controllers\Api\Remote;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Support\Facades\Log;
-use Pterodactyl\Models\ActivityLog;
-use Pterodactyl\Models\ActivityLogSubject;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Http\Requests\Api\Remote\ActivityEventRequest;
+use Phoenixpanel\Models\ActivityLog;
+use Phoenixpanel\Models\ActivityLogSubject;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Http\Requests\Api\Remote\ActivityEventRequest;
 
 class ActivityProcessingController extends Controller
 {

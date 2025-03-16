@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Auth;
+namespace Phoenixpanel\Http\Controllers\Auth;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
+use Phoenixpanel\Facades\Activity;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

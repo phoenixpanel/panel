@@ -1,18 +1,18 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Services\Servers\ReinstallServerService;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Services\Servers\ReinstallServerService;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Settings\RenameServerRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Settings\SetDockerImageRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Settings\ReinstallServerRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Settings\RenameServerRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Settings\SetDockerImageRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Settings\ReinstallServerRequest;
 
 class SettingsController extends ClientApiController
 {

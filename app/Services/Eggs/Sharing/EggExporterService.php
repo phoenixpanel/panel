@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Eggs\Sharing;
+namespace Phoenixpanel\Services\Eggs\Sharing;
 
 use Carbon\Carbon;
-use Pterodactyl\Models\Egg;
+use Phoenixpanel\Models\Egg;
 use Illuminate\Support\Collection;
-use Pterodactyl\Models\EggVariable;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Models\EggVariable;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
 
 class EggExporterService
 {

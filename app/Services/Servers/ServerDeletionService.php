@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Services\Servers;
+namespace Phoenixpanel\Services\Servers;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Services\Databases\DatabaseManagementService;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Services\Databases\DatabaseManagementService;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerDeletionService
 {

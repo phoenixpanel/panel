@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Client\Server;
+namespace Phoenixpanel\Tests\Integration\Api\Client\Server;
 
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class NetworkAllocationControllerTest extends ClientApiIntegrationTestCase
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin;
+namespace Phoenixpanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
-use Pterodactyl\Models\Location;
+use Phoenixpanel\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Http\Requests\Admin\LocationFormRequest;
-use Pterodactyl\Services\Locations\LocationUpdateService;
-use Pterodactyl\Services\Locations\LocationCreationService;
-use Pterodactyl\Services\Locations\LocationDeletionService;
-use Pterodactyl\Contracts\Repository\LocationRepositoryInterface;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Http\Requests\Admin\LocationFormRequest;
+use Phoenixpanel\Services\Locations\LocationUpdateService;
+use Phoenixpanel\Services\Locations\LocationCreationService;
+use Phoenixpanel\Services\Locations\LocationDeletionService;
+use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationController extends Controller
 {

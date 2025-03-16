@@ -1,18 +1,18 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Services\Servers;
+namespace Phoenixpanel\Tests\Integration\Services\Servers;
 
 use Mockery\MockInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Allocation;
 use GuzzleHttp\Exception\RequestException;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Services\Servers\BuildModificationService;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Services\Servers\BuildModificationService;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class BuildModificationServiceTest extends IntegrationTestCase
 {

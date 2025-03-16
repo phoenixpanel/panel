@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Admin\Settings;
+namespace Phoenixpanel\Http\Requests\Admin\Settings;
 
-use Pterodactyl\Http\Requests\Admin\AdminFormRequest;
+use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
 
 class AdvancedSettingsFormRequest extends AdminFormRequest
 {

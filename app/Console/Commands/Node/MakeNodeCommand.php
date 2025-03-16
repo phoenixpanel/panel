@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\Node;
+namespace Phoenixpanel\Console\Commands\Node;
 
 use Illuminate\Console\Command;
-use Pterodactyl\Services\Nodes\NodeCreationService;
+use Phoenixpanel\Services\Nodes\NodeCreationService;
 
 class MakeNodeCommand extends Command
 {

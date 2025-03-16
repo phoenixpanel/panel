@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Pterodactyl\Contracts\Extensions\HashidsInterface;
+use Phoenixpanel\Contracts\Extensions\HashidsInterface;
 
 /**
  * @property int $id

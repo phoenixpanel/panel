@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Contracts\Repository;
+namespace Phoenixpanel\Contracts\Repository;
 
-use Pterodactyl\Models\Nest;
+use Phoenixpanel\Models\Nest;
 use Illuminate\Database\Eloquent\Collection;
 
 interface NestRepositoryInterface extends RepositoryInterface

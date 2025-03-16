@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Services\Eggs\Variables;
+namespace Phoenixpanel\Services\Eggs\Variables;
 
 use Illuminate\Support\Str;
-use Pterodactyl\Models\EggVariable;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Traits\Services\ValidatesValidationRules;
+use Phoenixpanel\Models\EggVariable;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Traits\Services\ValidatesValidationRules;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Pterodactyl\Contracts\Repository\EggVariableRepositoryInterface;
-use Pterodactyl\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
+use Phoenixpanel\Contracts\Repository\EggVariableRepositoryInterface;
+use Phoenixpanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
 
 class VariableUpdateService
 {

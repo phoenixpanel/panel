@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\Location;
+namespace Phoenixpanel\Console\Commands\Location;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Pterodactyl\Services\Locations\LocationDeletionService;
-use Pterodactyl\Contracts\Repository\LocationRepositoryInterface;
+use Phoenixpanel\Services\Locations\LocationDeletionService;
+use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
 
 class DeleteLocationCommand extends Command
 {

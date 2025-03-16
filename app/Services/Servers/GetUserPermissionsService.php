@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Services\Servers;
+namespace Phoenixpanel\Services\Servers;
 
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
 
 class GetUserPermissionsService
 {

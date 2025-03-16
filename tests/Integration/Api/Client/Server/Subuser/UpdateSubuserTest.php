@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Client\Server\Subuser;
+namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Subuser;
 
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Subuser;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Subuser;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class UpdateSubuserTest extends ClientApiIntegrationTestCase
 {

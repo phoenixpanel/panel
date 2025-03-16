@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Nodes;
+namespace Phoenixpanel\Services\Nodes;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Contracts\Repository\NodeRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\NodeRepositoryInterface;
 
 class NodeCreationService
 {

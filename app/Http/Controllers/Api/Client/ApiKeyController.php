@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client;
+namespace Phoenixpanel\Http\Controllers\Api\Client;
 
-use Pterodactyl\Models\ApiKey;
+use Phoenixpanel\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
-use Pterodactyl\Transformers\Api\Client\ApiKeyTransformer;
-use Pterodactyl\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Transformers\Api\Client\ApiKeyTransformer;
+use Phoenixpanel\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
 
 class ApiKeyController extends ClientApiController
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Servers;
 
-use Pterodactyl\Models\Server;
-use Pterodactyl\Services\Servers\BuildModificationService;
-use Pterodactyl\Services\Servers\DetailsModificationService;
-use Pterodactyl\Transformers\Api\Application\ServerTransformer;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Pterodactyl\Http\Requests\Api\Application\Servers\UpdateServerDetailsRequest;
-use Pterodactyl\Http\Requests\Api\Application\Servers\UpdateServerBuildConfigurationRequest;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Services\Servers\BuildModificationService;
+use Phoenixpanel\Services\Servers\DetailsModificationService;
+use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\UpdateServerDetailsRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\UpdateServerBuildConfigurationRequest;
 
 class ServerDetailsController extends ApplicationApiController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Traits\Commands;
+namespace Phoenixpanel\Traits\Commands;
 
-use Pterodactyl\Exceptions\PterodactylException;
+use Phoenixpanel\Exceptions\PterodactylException;
 
 trait EnvironmentWriterTrait
 {

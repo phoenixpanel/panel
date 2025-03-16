@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Yaml\Yaml;

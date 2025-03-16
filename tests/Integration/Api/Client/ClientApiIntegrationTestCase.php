@@ -1,23 +1,23 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Client;
+namespace Phoenixpanel\Tests\Integration\Api\Client;
 
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\Task;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Model;
-use Pterodactyl\Models\Backup;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Database;
-use Pterodactyl\Models\Location;
-use Pterodactyl\Models\Schedule;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\Task;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Model;
+use Phoenixpanel\Models\Backup;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Models\Location;
+use Phoenixpanel\Models\Schedule;
 use Illuminate\Support\Collection;
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Models\DatabaseHost;
-use Pterodactyl\Tests\Integration\TestResponse;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Models\DatabaseHost;
+use Phoenixpanel\Tests\Integration\TestResponse;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
-use Pterodactyl\Transformers\Api\Client\BaseClientTransformer;
+use Phoenixpanel\Transformers\Api\Client\BaseClientTransformer;
 
 abstract class ClientApiIntegrationTestCase extends IntegrationTestCase
 {

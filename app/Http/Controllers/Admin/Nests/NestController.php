@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Nests;
+namespace Phoenixpanel\Http\Controllers\Admin\Nests;
 
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Nests\NestUpdateService;
-use Pterodactyl\Services\Nests\NestCreationService;
-use Pterodactyl\Services\Nests\NestDeletionService;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
-use Pterodactyl\Http\Requests\Admin\Nest\StoreNestFormRequest;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Nests\NestUpdateService;
+use Phoenixpanel\Services\Nests\NestCreationService;
+use Phoenixpanel\Services\Nests\NestDeletionService;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Http\Requests\Admin\Nest\StoreNestFormRequest;
 
 class NestController extends Controller
 {

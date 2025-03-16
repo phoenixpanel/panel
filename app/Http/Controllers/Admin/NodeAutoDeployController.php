@@ -1,15 +1,15 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin;
+namespace Phoenixpanel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\ApiKey;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Http\Controllers\Controller;
+use Phoenixpanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Services\Api\KeyCreationService;
-use Pterodactyl\Repositories\Eloquent\ApiKeyRepository;
+use Phoenixpanel\Services\Api\KeyCreationService;
+use Phoenixpanel\Repositories\Eloquent\ApiKeyRepository;
 
 class NodeAutoDeployController extends Controller
 {

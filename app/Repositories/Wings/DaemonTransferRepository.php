@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Repositories\Wings;
+namespace Phoenixpanel\Repositories\Wings;
 
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Lcobucci\JWT\Token\Plain;
 use GuzzleHttp\Exception\GuzzleException;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 /**
  * @method \Pterodactyl\Repositories\Wings\DaemonTransferRepository setNode(\Pterodactyl\Models\Node $node)

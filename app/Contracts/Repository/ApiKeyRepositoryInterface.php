@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Contracts\Repository;
+namespace Phoenixpanel\Contracts\Repository;
 
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Support\Collection;
 
 interface ApiKeyRepositoryInterface extends RepositoryInterface

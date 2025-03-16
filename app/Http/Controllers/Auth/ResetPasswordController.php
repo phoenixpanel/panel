@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Auth;
+namespace Phoenixpanel\Http\Controllers\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
@@ -8,11 +8,11 @@ use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\Events\Dispatcher;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Http\Controllers\Controller;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Pterodactyl\Http\Requests\Auth\ResetPasswordRequest;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Http\Requests\Auth\ResetPasswordRequest;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
 
 class ResetPasswordController extends Controller
 {

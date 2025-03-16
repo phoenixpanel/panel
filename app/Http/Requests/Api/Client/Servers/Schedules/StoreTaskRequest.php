@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Schedules;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules;
 
-use Pterodactyl\Models\Permission;
+use Phoenixpanel\Models\Permission;
 
 class StoreTaskRequest extends ViewScheduleRequest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Notifications;
+namespace Phoenixpanel\Notifications;
 
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;

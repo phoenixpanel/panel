@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Repositories\Eloquent;
+namespace Phoenixpanel\Repositories\Eloquent;
 
-use Pterodactyl\Models\ServerVariable;
-use Pterodactyl\Contracts\Repository\ServerVariableRepositoryInterface;
+use Phoenixpanel\Models\ServerVariable;
+use Phoenixpanel\Contracts\Repository\ServerVariableRepositoryInterface;
 
 class ServerVariableRepository extends EloquentRepository implements ServerVariableRepositoryInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 use Illuminate\Validation\Rules\NotIn;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

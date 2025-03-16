@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Admin\Settings;
+namespace Phoenixpanel\Http\Requests\Admin\Settings;
 
 use Illuminate\Validation\Rule;
-use Pterodactyl\Traits\Helpers\AvailableLanguages;
-use Pterodactyl\Http\Requests\Admin\AdminFormRequest;
+use Phoenixpanel\Traits\Helpers\AvailableLanguages;
+use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
 
 class BaseSettingsFormRequest extends AdminFormRequest
 {

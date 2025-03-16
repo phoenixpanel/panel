@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Services\Eggs\Scripts;
+namespace Phoenixpanel\Services\Eggs\Scripts;
 
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
-use Pterodactyl\Exceptions\Service\Egg\InvalidCopyFromException;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Exceptions\Service\Egg\InvalidCopyFromException;
 
 class InstallScriptService
 {

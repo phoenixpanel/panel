@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client;
+namespace Phoenixpanel\Http\Requests\Api\Client;
 
-use Pterodactyl\Models\Server;
-use Pterodactyl\Contracts\Http\ClientPermissionsRequest;
-use Pterodactyl\Http\Requests\Api\Application\ApplicationApiRequest;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Contracts\Http\ClientPermissionsRequest;
+use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 /**
  * @method \Pterodactyl\Models\User user($guard = null)

@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Remote\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Remote\Servers;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
+use Phoenixpanel\Facades\Activity;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Eggs\EggConfigurationService;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Http\Resources\Wings\ServerConfigurationCollection;
-use Pterodactyl\Services\Servers\ServerConfigurationStructureService;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Eggs\EggConfigurationService;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Http\Resources\Wings\ServerConfigurationCollection;
+use Phoenixpanel\Services\Servers\ServerConfigurationStructureService;
 
 class ServerDetailsController extends Controller
 {

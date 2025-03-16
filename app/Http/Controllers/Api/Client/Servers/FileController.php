@@ -1,27 +1,27 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Services\Nodes\NodeJWTService;
-use Pterodactyl\Repositories\Wings\DaemonFileRepository;
-use Pterodactyl\Transformers\Api\Client\FileObjectTransformer;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\CopyFileRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\PullFileRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\ListFilesRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\ChmodFilesRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\DeleteFileRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\RenameFileRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\CreateFolderRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\CompressFilesRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\DecompressFilesRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\GetFileContentsRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Files\WriteFileContentRequest;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Services\Nodes\NodeJWTService;
+use Phoenixpanel\Repositories\Wings\DaemonFileRepository;
+use Phoenixpanel\Transformers\Api\Client\FileObjectTransformer;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\CopyFileRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\PullFileRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\ListFilesRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\ChmodFilesRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\DeleteFileRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\RenameFileRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\CreateFolderRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\CompressFilesRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\DecompressFilesRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\GetFileContentsRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\WriteFileContentRequest;
 
 class FileController extends ClientApiController
 {

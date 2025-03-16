@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Settings;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Settings;
 
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class ReinstallServerRequest extends ClientApiRequest
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Settings;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Settings;
 
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Validation\Rule;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Contracts\Http\ClientPermissionsRequest;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Contracts\Http\ClientPermissionsRequest;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class SetDockerImageRequest extends ClientApiRequest implements ClientPermissionsRequest
 {

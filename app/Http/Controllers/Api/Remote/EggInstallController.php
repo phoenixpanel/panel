@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Remote;
+namespace Phoenixpanel\Http\Controllers\Api\Remote;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Servers\EnvironmentService;
-use Pterodactyl\Contracts\Repository\ServerRepositoryInterface;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Servers\EnvironmentService;
+use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
 
 class EggInstallController extends Controller
 {

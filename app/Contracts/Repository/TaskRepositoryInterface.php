@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Contracts\Repository;
+namespace Phoenixpanel\Contracts\Repository;
 
-use Pterodactyl\Models\Task;
+use Phoenixpanel\Models\Task;
 
 interface TaskRepositoryInterface extends RepositoryInterface
 {

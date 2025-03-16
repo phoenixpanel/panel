@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers;
 
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class SendCommandRequest extends ClientApiRequest
 {

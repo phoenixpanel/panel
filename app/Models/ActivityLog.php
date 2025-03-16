@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Models;
+namespace Phoenixpanel\Models;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
-use Pterodactyl\Events\ActivityLogged;
+use Phoenixpanel\Events\ActivityLogged;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\HasOne;

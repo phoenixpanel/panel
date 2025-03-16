@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Databases;
+namespace Phoenixpanel\Services\Databases;
 
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Database;
-use Pterodactyl\Models\DatabaseHost;
-use Pterodactyl\Exceptions\Service\Database\NoSuitableDatabaseHostException;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Models\DatabaseHost;
+use Phoenixpanel\Exceptions\Service\Database\NoSuitableDatabaseHostException;
 
 class DeployServerDatabaseService
 {

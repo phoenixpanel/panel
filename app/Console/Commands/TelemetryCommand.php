@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Console\Commands;
+namespace Phoenixpanel\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\VarDumper\VarDumper;
-use Pterodactyl\Services\Telemetry\TelemetryCollectionService;
+use Phoenixpanel\Services\Telemetry\TelemetryCollectionService;
 
 class TelemetryCommand extends Command
 {

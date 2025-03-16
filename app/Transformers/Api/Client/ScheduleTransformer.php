@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Client;
+namespace Phoenixpanel\Transformers\Api\Client;
 
-use Pterodactyl\Models\Task;
-use Pterodactyl\Models\Schedule;
+use Phoenixpanel\Models\Task;
+use Phoenixpanel\Models\Schedule;
 use League\Fractal\Resource\Collection;
 
 class ScheduleTransformer extends BaseClientTransformer

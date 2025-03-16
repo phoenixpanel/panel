@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Servers;
+namespace Phoenixpanel\Services\Servers;
 
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Support\Collection;
-use Pterodactyl\Models\EggVariable;
+use Phoenixpanel\Models\EggVariable;
 use Illuminate\Validation\ValidationException;
-use Pterodactyl\Traits\Services\HasUserLevels;
+use Phoenixpanel\Traits\Services\HasUserLevels;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class VariableValidatorService

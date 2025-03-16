@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\Schedule;
+namespace Phoenixpanel\Console\Commands\Schedule;
 
 use Exception;
 use Illuminate\Console\Command;
-use Pterodactyl\Models\Schedule;
+use Phoenixpanel\Models\Schedule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
-use Pterodactyl\Services\Schedules\ProcessScheduleService;
+use Phoenixpanel\Services\Schedules\ProcessScheduleService;
 
 class ProcessRunnableCommand extends Command
 {

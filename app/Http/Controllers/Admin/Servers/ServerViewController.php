@@ -1,22 +1,22 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Servers;
+namespace Phoenixpanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Nest;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Servers\EnvironmentService;
+use Phoenixpanel\Models\Nest;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Servers\EnvironmentService;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Pterodactyl\Repositories\Eloquent\NestRepository;
-use Pterodactyl\Repositories\Eloquent\NodeRepository;
-use Pterodactyl\Repositories\Eloquent\MountRepository;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Traits\Controllers\JavascriptInjection;
-use Pterodactyl\Repositories\Eloquent\LocationRepository;
-use Pterodactyl\Repositories\Eloquent\DatabaseHostRepository;
+use Phoenixpanel\Repositories\Eloquent\NestRepository;
+use Phoenixpanel\Repositories\Eloquent\NodeRepository;
+use Phoenixpanel\Repositories\Eloquent\MountRepository;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Traits\Controllers\JavascriptInjection;
+use Phoenixpanel\Repositories\Eloquent\LocationRepository;
+use Phoenixpanel\Repositories\Eloquent\DatabaseHostRepository;
 
 class ServerViewController extends Controller
 {

@@ -1,21 +1,21 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin;
+namespace Phoenixpanel\Http\Controllers\Admin;
 
 use Exception;
 use Illuminate\View\View;
-use Pterodactyl\Models\DatabaseHost;
+use Phoenixpanel\Models\DatabaseHost;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Databases\Hosts\HostUpdateService;
-use Pterodactyl\Http\Requests\Admin\DatabaseHostFormRequest;
-use Pterodactyl\Services\Databases\Hosts\HostCreationService;
-use Pterodactyl\Services\Databases\Hosts\HostDeletionService;
-use Pterodactyl\Contracts\Repository\DatabaseRepositoryInterface;
-use Pterodactyl\Contracts\Repository\LocationRepositoryInterface;
-use Pterodactyl\Contracts\Repository\DatabaseHostRepositoryInterface;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Databases\Hosts\HostUpdateService;
+use Phoenixpanel\Http\Requests\Admin\DatabaseHostFormRequest;
+use Phoenixpanel\Services\Databases\Hosts\HostCreationService;
+use Phoenixpanel\Services\Databases\Hosts\HostDeletionService;
+use Phoenixpanel\Contracts\Repository\DatabaseRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class DatabaseController extends Controller
 {

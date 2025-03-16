@@ -1,19 +1,19 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin;
+namespace Phoenixpanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Pterodactyl\Models\ApiKey;
+use Phoenixpanel\Models\ApiKey;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Api\KeyCreationService;
-use Pterodactyl\Contracts\Repository\ApiKeyRepositoryInterface;
-use Pterodactyl\Http\Requests\Admin\Api\StoreApplicationApiKeyRequest;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Api\KeyCreationService;
+use Phoenixpanel\Contracts\Repository\ApiKeyRepositoryInterface;
+use Phoenixpanel\Http\Requests\Admin\Api\StoreApplicationApiKeyRequest;
 
 class ApiController extends Controller
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Services\Servers;
+namespace Phoenixpanel\Tests\Integration\Services\Servers;
 
 use Exception;
-use Pterodactyl\Models\Nest;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\ServerVariable;
+use Phoenixpanel\Models\Nest;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\ServerVariable;
 use Illuminate\Validation\ValidationException;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Pterodactyl\Services\Servers\StartupModificationService;
+use Phoenixpanel\Services\Servers\StartupModificationService;
 
 class StartupModificationServiceTest extends IntegrationTestCase
 {

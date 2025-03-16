@@ -1,16 +1,16 @@
 <?php
 
-namespace Pterodactyl\Services\Nodes;
+namespace Phoenixpanel\Services\Nodes;
 
 use Illuminate\Support\Str;
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Repositories\Eloquent\NodeRepository;
-use Pterodactyl\Repositories\Wings\DaemonConfigurationRepository;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
-use Pterodactyl\Exceptions\Service\Node\ConfigurationNotPersistedException;
+use Phoenixpanel\Repositories\Eloquent\NodeRepository;
+use Phoenixpanel\Repositories\Wings\DaemonConfigurationRepository;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
 
 class NodeUpdateService
 {

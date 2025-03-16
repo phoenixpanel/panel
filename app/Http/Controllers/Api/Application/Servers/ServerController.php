@@ -1,19 +1,19 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Servers;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use Pterodactyl\Services\Servers\ServerCreationService;
-use Pterodactyl\Services\Servers\ServerDeletionService;
-use Pterodactyl\Transformers\Api\Application\ServerTransformer;
-use Pterodactyl\Http\Requests\Api\Application\Servers\GetServerRequest;
-use Pterodactyl\Http\Requests\Api\Application\Servers\GetServersRequest;
-use Pterodactyl\Http\Requests\Api\Application\Servers\ServerWriteRequest;
-use Pterodactyl\Http\Requests\Api\Application\Servers\StoreServerRequest;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Services\Servers\ServerCreationService;
+use Phoenixpanel\Services\Servers\ServerDeletionService;
+use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\GetServerRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\GetServersRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\ServerWriteRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\StoreServerRequest;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class ServerController extends ApplicationApiController
 {

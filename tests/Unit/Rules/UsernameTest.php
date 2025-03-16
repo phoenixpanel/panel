@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Tests\Unit\Rules;
+namespace Phoenixpanel\Tests\Unit\Rules;
 
-use Pterodactyl\Rules\Username;
-use Pterodactyl\Tests\TestCase;
+use Phoenixpanel\Rules\Username;
+use Phoenixpanel\Tests\TestCase;
 
 class UsernameTest extends TestCase
 {

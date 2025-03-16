@@ -1,21 +1,21 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Transformers\Api\Client\AllocationTransformer;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
-use Pterodactyl\Services\Allocations\FindAssignableAllocationService;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Network\GetNetworkRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Network\NewAllocationRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Network\DeleteAllocationRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Network\UpdateAllocationRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Network\SetPrimaryAllocationRequest;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Transformers\Api\Client\AllocationTransformer;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Services\Allocations\FindAssignableAllocationService;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Network\GetNetworkRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Network\NewAllocationRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Network\DeleteAllocationRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Network\UpdateAllocationRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Network\SetPrimaryAllocationRequest;
 
 class NetworkAllocationController extends ClientApiController
 {

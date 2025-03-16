@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Client;
+namespace Phoenixpanel\Tests\Integration\Api\Client;
 
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Subuser;
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Models\Permission;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Subuser;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Models\Permission;
 
 class ClientControllerTest extends ClientApiIntegrationTestCase
 {

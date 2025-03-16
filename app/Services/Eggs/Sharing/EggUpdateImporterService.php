@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Services\Eggs\Sharing;
+namespace Phoenixpanel\Services\Eggs\Sharing;
 
-use Pterodactyl\Models\Egg;
+use Phoenixpanel\Models\Egg;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
-use Pterodactyl\Models\EggVariable;
+use Phoenixpanel\Models\EggVariable;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Services\Eggs\EggParserService;
+use Phoenixpanel\Services\Eggs\EggParserService;
 
 class EggUpdateImporterService
 {

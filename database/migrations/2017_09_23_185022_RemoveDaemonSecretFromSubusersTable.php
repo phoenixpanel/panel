@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Pterodactyl\Contracts\Repository\DaemonKeyRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\DaemonKeyRepositoryInterface;
 
 class RemoveDaemonSecretFromSubusersTable extends Migration
 {

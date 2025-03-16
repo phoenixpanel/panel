@@ -1,15 +1,15 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application;
+namespace Phoenixpanel\Http\Controllers\Api\Application;
 
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Extensions\Spatie\Fractalistic\Fractal;
-use Pterodactyl\Transformers\Api\Application\BaseTransformer;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Extensions\Spatie\Fractalistic\Fractal;
+use Phoenixpanel\Transformers\Api\Application\BaseTransformer;
 
 abstract class ApplicationApiController extends Controller
 {

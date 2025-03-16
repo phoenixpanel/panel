@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Client;
+namespace Phoenixpanel\Transformers\Api\Client;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;

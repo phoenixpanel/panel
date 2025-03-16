@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Http\Middleware\Api\Application;
+namespace Phoenixpanel\Http\Middleware\Api\Application;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;

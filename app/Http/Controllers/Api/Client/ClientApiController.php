@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client;
+namespace Phoenixpanel\Http\Controllers\Api\Client;
 
 use Webmozart\Assert\Assert;
-use Pterodactyl\Transformers\Api\Client\BaseClientTransformer;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Transformers\Api\Client\BaseClientTransformer;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 abstract class ClientApiController extends ApplicationApiController
 {

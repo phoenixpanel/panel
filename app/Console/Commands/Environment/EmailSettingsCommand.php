@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\Environment;
+namespace Phoenixpanel\Console\Commands\Environment;
 
 use Illuminate\Console\Command;
-use Pterodactyl\Traits\Commands\EnvironmentWriterTrait;
+use Phoenixpanel\Traits\Commands\EnvironmentWriterTrait;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class EmailSettingsCommand extends Command

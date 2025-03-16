@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Client\Server\Startup;
+namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Startup;
 
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Models\EggVariable;
-use Pterodactyl\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Models\EggVariable;
+use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class GetStartupAndVariablesTest extends ClientApiIntegrationTestCase
 {

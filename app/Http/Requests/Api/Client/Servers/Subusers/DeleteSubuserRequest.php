@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Subusers;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers;
 
-use Pterodactyl\Models\Permission;
+use Phoenixpanel\Models\Permission;
 
 class DeleteSubuserRequest extends SubuserRequest
 {

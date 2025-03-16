@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Extensions;
+namespace Phoenixpanel\Extensions;
 
 use Hashids\Hashids as VendorHashids;
-use Pterodactyl\Contracts\Extensions\HashidsInterface;
+use Phoenixpanel\Contracts\Extensions\HashidsInterface;
 
 class Hashids extends VendorHashids implements HashidsInterface
 {

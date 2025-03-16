@@ -1,19 +1,19 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Nests;
+namespace Phoenixpanel\Http\Controllers\Admin\Nests;
 
 use Illuminate\View\View;
-use Pterodactyl\Models\Egg;
+use Phoenixpanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Eggs\EggUpdateService;
-use Pterodactyl\Services\Eggs\EggCreationService;
-use Pterodactyl\Services\Eggs\EggDeletionService;
-use Pterodactyl\Http\Requests\Admin\Egg\EggFormRequest;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Eggs\EggUpdateService;
+use Phoenixpanel\Services\Eggs\EggCreationService;
+use Phoenixpanel\Services\Eggs\EggDeletionService;
+use Phoenixpanel\Http\Requests\Admin\Egg\EggFormRequest;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
 
 class EggController extends Controller
 {

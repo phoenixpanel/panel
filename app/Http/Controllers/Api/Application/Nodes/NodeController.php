@@ -1,20 +1,20 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Nodes;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Nodes;
 
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use Pterodactyl\Services\Nodes\NodeUpdateService;
-use Pterodactyl\Services\Nodes\NodeCreationService;
-use Pterodactyl\Services\Nodes\NodeDeletionService;
-use Pterodactyl\Transformers\Api\Application\NodeTransformer;
-use Pterodactyl\Http\Requests\Api\Application\Nodes\GetNodeRequest;
-use Pterodactyl\Http\Requests\Api\Application\Nodes\GetNodesRequest;
-use Pterodactyl\Http\Requests\Api\Application\Nodes\StoreNodeRequest;
-use Pterodactyl\Http\Requests\Api\Application\Nodes\DeleteNodeRequest;
-use Pterodactyl\Http\Requests\Api\Application\Nodes\UpdateNodeRequest;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Services\Nodes\NodeUpdateService;
+use Phoenixpanel\Services\Nodes\NodeCreationService;
+use Phoenixpanel\Services\Nodes\NodeDeletionService;
+use Phoenixpanel\Transformers\Api\Application\NodeTransformer;
+use Phoenixpanel\Http\Requests\Api\Application\Nodes\GetNodeRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Nodes\GetNodesRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Nodes\StoreNodeRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Nodes\DeleteNodeRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Nodes\UpdateNodeRequest;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class NodeController extends ApplicationApiController
 {

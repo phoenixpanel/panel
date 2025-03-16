@@ -1,38 +1,38 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin;
+namespace Phoenixpanel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Mount;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Database;
-use Pterodactyl\Models\MountServer;
+use Phoenixpanel\Models\Mount;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Models\MountServer;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Http\Controllers\Controller;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
-use Pterodactyl\Services\Servers\SuspensionService;
-use Pterodactyl\Repositories\Eloquent\MountRepository;
-use Pterodactyl\Services\Servers\ServerDeletionService;
-use Pterodactyl\Services\Servers\ReinstallServerService;
-use Pterodactyl\Exceptions\Model\DataValidationException;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Services\Servers\BuildModificationService;
-use Pterodactyl\Services\Databases\DatabasePasswordService;
-use Pterodactyl\Services\Servers\DetailsModificationService;
-use Pterodactyl\Services\Servers\StartupModificationService;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
-use Pterodactyl\Repositories\Eloquent\DatabaseHostRepository;
-use Pterodactyl\Services\Databases\DatabaseManagementService;
+use Phoenixpanel\Services\Servers\SuspensionService;
+use Phoenixpanel\Repositories\Eloquent\MountRepository;
+use Phoenixpanel\Services\Servers\ServerDeletionService;
+use Phoenixpanel\Services\Servers\ReinstallServerService;
+use Phoenixpanel\Exceptions\Model\DataValidationException;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Services\Servers\BuildModificationService;
+use Phoenixpanel\Services\Databases\DatabasePasswordService;
+use Phoenixpanel\Services\Servers\DetailsModificationService;
+use Phoenixpanel\Services\Servers\StartupModificationService;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Repositories\Eloquent\DatabaseHostRepository;
+use Phoenixpanel\Services\Databases\DatabaseManagementService;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Pterodactyl\Contracts\Repository\ServerRepositoryInterface;
-use Pterodactyl\Contracts\Repository\DatabaseRepositoryInterface;
-use Pterodactyl\Contracts\Repository\AllocationRepositoryInterface;
-use Pterodactyl\Services\Servers\ServerConfigurationStructureService;
-use Pterodactyl\Http\Requests\Admin\Servers\Databases\StoreServerDatabaseRequest;
+use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\DatabaseRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
+use Phoenixpanel\Services\Servers\ServerConfigurationStructureService;
+use Phoenixpanel\Http\Requests\Admin\Servers\Databases\StoreServerDatabaseRequest;
 
 class ServersController extends Controller
 {

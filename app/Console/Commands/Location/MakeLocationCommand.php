@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\Location;
+namespace Phoenixpanel\Console\Commands\Location;
 
 use Illuminate\Console\Command;
-use Pterodactyl\Services\Locations\LocationCreationService;
+use Phoenixpanel\Services\Locations\LocationCreationService;
 
 class MakeLocationCommand extends Command
 {

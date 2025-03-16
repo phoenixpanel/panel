@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client;
+namespace Phoenixpanel\Http\Controllers\Api\Client;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Services\Users\TwoFactorSetupService;
-use Pterodactyl\Services\Users\ToggleTwoFactorService;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Services\Users\TwoFactorSetupService;
+use Phoenixpanel\Services\Users\ToggleTwoFactorService;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 

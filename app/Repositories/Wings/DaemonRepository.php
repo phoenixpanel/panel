@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Repositories\Wings;
+namespace Phoenixpanel\Repositories\Wings;
 
 use GuzzleHttp\Client;
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 
 /**

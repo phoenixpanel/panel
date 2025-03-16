@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Repositories\Eloquent;
+namespace Phoenixpanel\Repositories\Eloquent;
 
-use Pterodactyl\Contracts\Repository\PermissionRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\PermissionRepositoryInterface;
 
 class PermissionRepository extends EloquentRepository implements PermissionRepositoryInterface
 {

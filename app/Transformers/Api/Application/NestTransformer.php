@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\Nest;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\Nest;
+use Phoenixpanel\Models\Server;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 class NestTransformer extends BaseTransformer
 {

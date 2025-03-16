@@ -1,15 +1,15 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Services\Deployment;
+namespace Phoenixpanel\Tests\Integration\Services\Deployment;
 
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Database;
-use Pterodactyl\Models\Location;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Models\Location;
 use Illuminate\Support\Collection;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
-use Pterodactyl\Services\Deployment\FindViableNodesService;
-use Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Services\Deployment\FindViableNodesService;
+use Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException;
 
 class FindViableNodesServiceTest extends IntegrationTestCase
 {

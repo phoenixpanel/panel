@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Application\Servers\Databases;
+namespace Phoenixpanel\Http\Requests\Api\Application\Servers\Databases;
 
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 class ServerDatabaseWriteRequest extends GetServerDatabasesRequest
 {

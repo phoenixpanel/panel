@@ -1,6 +1,6 @@
 <?php
 
-namespace Pterodactyl\Contracts\Http;
+namespace Phoenixpanel\Contracts\Http;
 
 interface ClientPermissionsRequest
 {

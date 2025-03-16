@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Services\Servers;
+namespace Phoenixpanel\Services\Servers;
 
 use Illuminate\Support\Arr;
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\ServerVariable;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\ServerVariable;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Traits\Services\HasUserLevels;
+use Phoenixpanel\Traits\Services\HasUserLevels;
 
 class StartupModificationService
 {

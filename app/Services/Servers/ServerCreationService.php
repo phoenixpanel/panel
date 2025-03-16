@@ -1,23 +1,23 @@
 <?php
 
-namespace Pterodactyl\Services\Servers;
+namespace Phoenixpanel\Services\Servers;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\User;
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Support\Collection;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Allocation;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Models\Objects\DeploymentObject;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Services\Deployment\FindViableNodesService;
-use Pterodactyl\Repositories\Eloquent\ServerVariableRepository;
-use Pterodactyl\Services\Deployment\AllocationSelectionService;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Models\Objects\DeploymentObject;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Services\Deployment\FindViableNodesService;
+use Phoenixpanel\Repositories\Eloquent\ServerVariableRepository;
+use Phoenixpanel\Services\Deployment\AllocationSelectionService;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerCreationService
 {

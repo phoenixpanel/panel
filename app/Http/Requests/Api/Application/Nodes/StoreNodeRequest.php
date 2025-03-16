@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Application\Nodes;
+namespace Phoenixpanel\Http\Requests\Api\Application\Nodes;
 
-use Pterodactyl\Models\Node;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
-use Pterodactyl\Http\Requests\Api\Application\ApplicationApiRequest;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreNodeRequest extends ApplicationApiRequest
 {

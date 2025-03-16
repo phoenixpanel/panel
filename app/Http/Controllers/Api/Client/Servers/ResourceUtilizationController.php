@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\Carbon;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Cache\Repository;
-use Pterodactyl\Transformers\Api\Client\StatsTransformer;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
-use Pterodactyl\Http\Requests\Api\Client\Servers\GetServerRequest;
+use Phoenixpanel\Transformers\Api\Client\StatsTransformer;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\GetServerRequest;
 
 class ResourceUtilizationController extends ClientApiController
 {

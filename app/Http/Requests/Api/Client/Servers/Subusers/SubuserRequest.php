@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Client\Servers\Subusers;
+namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Subuser;
-use Pterodactyl\Exceptions\Http\HttpForbiddenException;
-use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
-use Pterodactyl\Services\Servers\GetUserPermissionsService;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Subuser;
+use Phoenixpanel\Exceptions\Http\HttpForbiddenException;
+use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use Phoenixpanel\Services\Servers\GetUserPermissionsService;
 
 abstract class SubuserRequest extends ClientApiRequest
 {

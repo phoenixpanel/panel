@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Http\Middleware\Api\Daemon;
+namespace Phoenixpanel\Http\Middleware\Api\Daemon;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Repositories\Eloquent\NodeRepository;
+use Phoenixpanel\Repositories\Eloquent\NodeRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
+use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 

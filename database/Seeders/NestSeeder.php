@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Pterodactyl\Services\Nests\NestCreationService;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Services\Nests\NestCreationService;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
 
 class NestSeeder extends Seeder
 {

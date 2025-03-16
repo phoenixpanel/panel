@@ -1,23 +1,23 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Models\Permission;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Models\Permission;
 use Illuminate\Support\Facades\Log;
-use Pterodactyl\Repositories\Eloquent\SubuserRepository;
-use Pterodactyl\Services\Subusers\SubuserCreationService;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Transformers\Api\Client\SubuserTransformer;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Subusers\GetSubuserRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Subusers\StoreSubuserRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Subusers\DeleteSubuserRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Subusers\UpdateSubuserRequest;
+use Phoenixpanel\Repositories\Eloquent\SubuserRepository;
+use Phoenixpanel\Services\Subusers\SubuserCreationService;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Transformers\Api\Client\SubuserTransformer;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\GetSubuserRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\StoreSubuserRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\DeleteSubuserRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\UpdateSubuserRequest;
 
 class SubuserController extends ClientApiController
 {

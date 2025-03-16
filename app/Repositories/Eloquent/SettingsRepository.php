@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Repositories\Eloquent;
+namespace Phoenixpanel\Repositories\Eloquent;
 
-use Pterodactyl\Models\Setting;
-use Pterodactyl\Contracts\Repository\SettingsRepositoryInterface;
+use Phoenixpanel\Models\Setting;
+use Phoenixpanel\Contracts\Repository\SettingsRepositoryInterface;
 
 class SettingsRepository extends EloquentRepository implements SettingsRepositoryInterface
 {

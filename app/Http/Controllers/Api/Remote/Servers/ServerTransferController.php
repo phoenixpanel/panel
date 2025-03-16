@@ -1,18 +1,18 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Remote\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Remote\Servers;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Allocation;
 use Illuminate\Support\Facades\Log;
-use Pterodactyl\Models\ServerTransfer;
+use Phoenixpanel\Models\ServerTransfer;
 use Illuminate\Database\ConnectionInterface;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerTransferController extends Controller
 {

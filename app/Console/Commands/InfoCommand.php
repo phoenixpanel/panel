@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Console\Commands;
+namespace Phoenixpanel\Console\Commands;
 
 use Illuminate\Console\Command;
-use Pterodactyl\Services\Helpers\SoftwareVersionService;
+use Phoenixpanel\Services\Helpers\SoftwareVersionService;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class InfoCommand extends Command

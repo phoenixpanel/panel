@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Settings;
+namespace Phoenixpanel\Http\Controllers\Admin\Settings;
 
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Traits\Helpers\AvailableLanguages;
-use Pterodactyl\Services\Helpers\SoftwareVersionService;
-use Pterodactyl\Contracts\Repository\SettingsRepositoryInterface;
-use Pterodactyl\Http\Requests\Admin\Settings\BaseSettingsFormRequest;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Traits\Helpers\AvailableLanguages;
+use Phoenixpanel\Services\Helpers\SoftwareVersionService;
+use Phoenixpanel\Contracts\Repository\SettingsRepositoryInterface;
+use Phoenixpanel\Http\Requests\Admin\Settings\BaseSettingsFormRequest;
 
 class IndexController extends Controller
 {

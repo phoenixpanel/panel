@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Servers;
 
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Services\Servers\StartupModificationService;
-use Pterodactyl\Transformers\Api\Application\ServerTransformer;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Pterodactyl\Http\Requests\Api\Application\Servers\UpdateServerStartupRequest;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Services\Servers\StartupModificationService;
+use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Http\Requests\Api\Application\Servers\UpdateServerStartupRequest;
 
 class StartupController extends ApplicationApiController
 {

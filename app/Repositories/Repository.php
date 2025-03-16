@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Repositories;
+namespace Phoenixpanel\Repositories;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Database\Eloquent\Model;
-use Pterodactyl\Contracts\Repository\RepositoryInterface;
+use Phoenixpanel\Contracts\Repository\RepositoryInterface;
 
 abstract class Repository implements RepositoryInterface
 {

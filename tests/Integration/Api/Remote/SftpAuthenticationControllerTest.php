@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Remote;
+namespace Phoenixpanel\Tests\Integration\Api\Remote;
 
 use phpseclib3\Crypt\EC;
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Permission;
-use Pterodactyl\Models\UserSSHKey;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Permission;
+use Phoenixpanel\Models\UserSSHKey;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
 
 class SftpAuthenticationControllerTest extends IntegrationTestCase
 {

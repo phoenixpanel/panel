@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
 use League\Fractal\Resource\Item;
-use Pterodactyl\Models\EggVariable;
+use Phoenixpanel\Models\EggVariable;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 class ServerVariableTransformer extends BaseTransformer
 {

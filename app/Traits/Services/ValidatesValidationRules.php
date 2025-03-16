@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Traits\Services;
+namespace Phoenixpanel\Traits\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Pterodactyl\Exceptions\Service\Egg\Variable\BadValidationRuleException;
+use Phoenixpanel\Exceptions\Service\Egg\Variable\BadValidationRuleException;
 
 trait ValidatesValidationRules
 {

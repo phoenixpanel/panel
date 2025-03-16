@@ -1,42 +1,42 @@
 <?php
 
-namespace Pterodactyl\Providers;
+namespace Phoenixpanel\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Pterodactyl\Repositories\Eloquent\EggRepository;
-use Pterodactyl\Repositories\Eloquent\NestRepository;
-use Pterodactyl\Repositories\Eloquent\NodeRepository;
-use Pterodactyl\Repositories\Eloquent\TaskRepository;
-use Pterodactyl\Repositories\Eloquent\UserRepository;
-use Pterodactyl\Repositories\Eloquent\ApiKeyRepository;
-use Pterodactyl\Repositories\Eloquent\ServerRepository;
-use Pterodactyl\Repositories\Eloquent\SessionRepository;
-use Pterodactyl\Repositories\Eloquent\SubuserRepository;
-use Pterodactyl\Repositories\Eloquent\DatabaseRepository;
-use Pterodactyl\Repositories\Eloquent\LocationRepository;
-use Pterodactyl\Repositories\Eloquent\ScheduleRepository;
-use Pterodactyl\Repositories\Eloquent\SettingsRepository;
-use Pterodactyl\Repositories\Eloquent\AllocationRepository;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
-use Pterodactyl\Repositories\Eloquent\EggVariableRepository;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
-use Pterodactyl\Contracts\Repository\NodeRepositoryInterface;
-use Pterodactyl\Contracts\Repository\TaskRepositoryInterface;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
-use Pterodactyl\Repositories\Eloquent\DatabaseHostRepository;
-use Pterodactyl\Contracts\Repository\ApiKeyRepositoryInterface;
-use Pterodactyl\Contracts\Repository\ServerRepositoryInterface;
-use Pterodactyl\Repositories\Eloquent\ServerVariableRepository;
-use Pterodactyl\Contracts\Repository\SessionRepositoryInterface;
-use Pterodactyl\Contracts\Repository\SubuserRepositoryInterface;
-use Pterodactyl\Contracts\Repository\DatabaseRepositoryInterface;
-use Pterodactyl\Contracts\Repository\LocationRepositoryInterface;
-use Pterodactyl\Contracts\Repository\ScheduleRepositoryInterface;
-use Pterodactyl\Contracts\Repository\SettingsRepositoryInterface;
-use Pterodactyl\Contracts\Repository\AllocationRepositoryInterface;
-use Pterodactyl\Contracts\Repository\EggVariableRepositoryInterface;
-use Pterodactyl\Contracts\Repository\DatabaseHostRepositoryInterface;
-use Pterodactyl\Contracts\Repository\ServerVariableRepositoryInterface;
+use Phoenixpanel\Repositories\Eloquent\EggRepository;
+use Phoenixpanel\Repositories\Eloquent\NestRepository;
+use Phoenixpanel\Repositories\Eloquent\NodeRepository;
+use Phoenixpanel\Repositories\Eloquent\TaskRepository;
+use Phoenixpanel\Repositories\Eloquent\UserRepository;
+use Phoenixpanel\Repositories\Eloquent\ApiKeyRepository;
+use Phoenixpanel\Repositories\Eloquent\ServerRepository;
+use Phoenixpanel\Repositories\Eloquent\SessionRepository;
+use Phoenixpanel\Repositories\Eloquent\SubuserRepository;
+use Phoenixpanel\Repositories\Eloquent\DatabaseRepository;
+use Phoenixpanel\Repositories\Eloquent\LocationRepository;
+use Phoenixpanel\Repositories\Eloquent\ScheduleRepository;
+use Phoenixpanel\Repositories\Eloquent\SettingsRepository;
+use Phoenixpanel\Repositories\Eloquent\AllocationRepository;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Repositories\Eloquent\EggVariableRepository;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\NodeRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\TaskRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Repositories\Eloquent\DatabaseHostRepository;
+use Phoenixpanel\Contracts\Repository\ApiKeyRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
+use Phoenixpanel\Repositories\Eloquent\ServerVariableRepository;
+use Phoenixpanel\Contracts\Repository\SessionRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\SubuserRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\DatabaseRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\ScheduleRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\SettingsRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\EggVariableRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\ServerVariableRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

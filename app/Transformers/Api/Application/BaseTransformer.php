@@ -1,16 +1,16 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\ApiKey;
+use Phoenixpanel\Models\ApiKey;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use League\Fractal\TransformerAbstract;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 /**
  * @method array transform(Model $model)

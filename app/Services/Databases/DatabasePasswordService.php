@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Services\Databases;
+namespace Phoenixpanel\Services\Databases;
 
-use Pterodactyl\Models\Database;
-use Pterodactyl\Helpers\Utilities;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Helpers\Utilities;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Pterodactyl\Extensions\DynamicDatabaseConnection;
-use Pterodactyl\Contracts\Repository\DatabaseRepositoryInterface;
+use Phoenixpanel\Extensions\DynamicDatabaseConnection;
+use Phoenixpanel\Contracts\Repository\DatabaseRepositoryInterface;
 
 class DatabasePasswordService
 {

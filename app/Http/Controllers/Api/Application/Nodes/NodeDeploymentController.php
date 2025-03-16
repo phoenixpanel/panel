@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Nodes;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Nodes;
 
-use Pterodactyl\Services\Deployment\FindViableNodesService;
-use Pterodactyl\Transformers\Api\Application\NodeTransformer;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Pterodactyl\Http\Requests\Api\Application\Nodes\GetDeployableNodesRequest;
+use Phoenixpanel\Services\Deployment\FindViableNodesService;
+use Phoenixpanel\Transformers\Api\Application\NodeTransformer;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Http\Requests\Api\Application\Nodes\GetDeployableNodesRequest;
 
 class NodeDeploymentController extends ApplicationApiController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Admin\Node;
+namespace Phoenixpanel\Http\Requests\Admin\Node;
 
-use Pterodactyl\Http\Requests\Admin\AdminFormRequest;
+use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
 
 class AllocationFormRequest extends AdminFormRequest
 {

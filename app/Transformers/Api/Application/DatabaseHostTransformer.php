@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
-use Pterodactyl\Models\Database;
-use Pterodactyl\Models\DatabaseHost;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Models\DatabaseHost;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 class DatabaseHostTransformer extends BaseTransformer
 {

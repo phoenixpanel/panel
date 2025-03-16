@@ -1,16 +1,16 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Nests;
+namespace Phoenixpanel\Http\Controllers\Admin\Nests;
 
-use Pterodactyl\Models\Egg;
+use Phoenixpanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use Pterodactyl\Http\Controllers\Controller;
+use Phoenixpanel\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Pterodactyl\Services\Eggs\Sharing\EggExporterService;
-use Pterodactyl\Services\Eggs\Sharing\EggImporterService;
-use Pterodactyl\Http\Requests\Admin\Egg\EggImportFormRequest;
-use Pterodactyl\Services\Eggs\Sharing\EggUpdateImporterService;
+use Phoenixpanel\Services\Eggs\Sharing\EggExporterService;
+use Phoenixpanel\Services\Eggs\Sharing\EggImporterService;
+use Phoenixpanel\Http\Requests\Admin\Egg\EggImportFormRequest;
+use Phoenixpanel\Services\Eggs\Sharing\EggUpdateImporterService;
 
 class EggShareController extends Controller
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Services\Nests;
+namespace Phoenixpanel\Services\Nests;
 
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
 
 class NestUpdateService
 {

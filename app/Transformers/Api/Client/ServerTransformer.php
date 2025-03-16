@@ -1,18 +1,18 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Client;
+namespace Phoenixpanel\Transformers\Api\Client;
 
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Subuser;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Subuser;
 use League\Fractal\Resource\Item;
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Models\Permission;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Models\Permission;
 use Illuminate\Container\Container;
-use Pterodactyl\Models\EggVariable;
+use Phoenixpanel\Models\EggVariable;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Servers\StartupCommandService;
+use Phoenixpanel\Services\Servers\StartupCommandService;
 
 class ServerTransformer extends BaseClientTransformer
 {

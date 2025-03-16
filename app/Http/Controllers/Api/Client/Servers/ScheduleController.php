@@ -1,26 +1,26 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Schedule;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Schedule;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Helpers\Utilities;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Repositories\Eloquent\ScheduleRepository;
-use Pterodactyl\Services\Schedules\ProcessScheduleService;
-use Pterodactyl\Transformers\Api\Client\ScheduleTransformer;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Helpers\Utilities;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Repositories\Eloquent\ScheduleRepository;
+use Phoenixpanel\Services\Schedules\ProcessScheduleService;
+use Phoenixpanel\Transformers\Api\Client\ScheduleTransformer;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Schedules\ViewScheduleRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Schedules\StoreScheduleRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Schedules\DeleteScheduleRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Schedules\UpdateScheduleRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Schedules\TriggerScheduleRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\ViewScheduleRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\StoreScheduleRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\DeleteScheduleRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\UpdateScheduleRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\TriggerScheduleRequest;
 
 class ScheduleController extends ClientApiController
 {

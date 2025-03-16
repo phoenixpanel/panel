@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Admin\Api;
+namespace Phoenixpanel\Http\Requests\Admin\Api;
 
-use Pterodactyl\Models\ApiKey;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
-use Pterodactyl\Http\Requests\Admin\AdminFormRequest;
+use Phoenixpanel\Models\ApiKey;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
 
 class StoreApplicationApiKeyRequest extends AdminFormRequest
 {

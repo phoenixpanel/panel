@@ -1,24 +1,24 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Services\Servers;
+namespace Phoenixpanel\Tests\Integration\Services\Servers;
 
 use Mockery\MockInterface;
-use Pterodactyl\Models\Egg;
+use Phoenixpanel\Models\Egg;
 use GuzzleHttp\Psr7\Request;
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\User;
 use GuzzleHttp\Psr7\Response;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Location;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Location;
+use Phoenixpanel\Models\Allocation;
 use Illuminate\Foundation\Testing\WithFaker;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Validation\ValidationException;
-use Pterodactyl\Models\Objects\DeploymentObject;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
-use Pterodactyl\Services\Servers\ServerCreationService;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
-use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
+use Phoenixpanel\Models\Objects\DeploymentObject;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Services\Servers\ServerCreationService;
+use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerCreationServiceTest extends IntegrationTestCase
 {

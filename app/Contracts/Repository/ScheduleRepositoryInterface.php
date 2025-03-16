@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Contracts\Repository;
+namespace Phoenixpanel\Contracts\Repository;
 
-use Pterodactyl\Models\Schedule;
+use Phoenixpanel\Models\Schedule;
 use Illuminate\Support\Collection;
 
 interface ScheduleRepositoryInterface extends RepositoryInterface

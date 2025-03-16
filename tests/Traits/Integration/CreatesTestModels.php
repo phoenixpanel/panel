@@ -1,15 +1,15 @@
 <?php
 
-namespace Pterodactyl\Tests\Traits\Integration;
+namespace Phoenixpanel\Tests\Traits\Integration;
 
 use Ramsey\Uuid\Uuid;
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Subuser;
-use Pterodactyl\Models\Location;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Subuser;
+use Phoenixpanel\Models\Location;
+use Phoenixpanel\Models\Allocation;
 
 trait CreatesTestModels
 {

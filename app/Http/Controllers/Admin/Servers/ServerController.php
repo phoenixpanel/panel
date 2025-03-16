@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Servers;
+namespace Phoenixpanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Models\Filters\AdminServerFilter;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Models\Filters\AdminServerFilter;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 
 class ServerController extends Controller

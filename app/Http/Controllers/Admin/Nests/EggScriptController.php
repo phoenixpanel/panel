@@ -1,16 +1,16 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Nests;
+namespace Phoenixpanel\Http\Controllers\Admin\Nests;
 
 use Illuminate\View\View;
-use Pterodactyl\Models\Egg;
+use Phoenixpanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Services\Eggs\Scripts\InstallScriptService;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
-use Pterodactyl\Http\Requests\Admin\Egg\EggScriptFormRequest;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Services\Eggs\Scripts\InstallScriptService;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Http\Requests\Admin\Egg\EggScriptFormRequest;
 
 class EggScriptController extends Controller
 {

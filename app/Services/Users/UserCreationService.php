@@ -1,14 +1,14 @@
 <?php
 
-namespace Pterodactyl\Services\Users;
+namespace Phoenixpanel\Services\Users;
 
 use Ramsey\Uuid\Uuid;
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Auth\PasswordBroker;
-use Pterodactyl\Notifications\AccountCreated;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Notifications\AccountCreated;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserCreationService
 {

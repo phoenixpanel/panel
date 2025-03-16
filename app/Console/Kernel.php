@@ -1,17 +1,17 @@
 <?php
 
-namespace Pterodactyl\Console;
+namespace Phoenixpanel\Console;
 
 use Ramsey\Uuid\Uuid;
-use Pterodactyl\Models\ActivityLog;
+use Phoenixpanel\Models\ActivityLog;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Console\PruneCommand;
-use Pterodactyl\Repositories\Eloquent\SettingsRepository;
+use Phoenixpanel\Repositories\Eloquent\SettingsRepository;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Pterodactyl\Services\Telemetry\TelemetryCollectionService;
-use Pterodactyl\Console\Commands\Schedule\ProcessRunnableCommand;
-use Pterodactyl\Console\Commands\Maintenance\PruneOrphanedBackupsCommand;
-use Pterodactyl\Console\Commands\Maintenance\CleanServiceBackupFilesCommand;
+use Phoenixpanel\Services\Telemetry\TelemetryCollectionService;
+use Phoenixpanel\Console\Commands\Schedule\ProcessRunnableCommand;
+use Phoenixpanel\Console\Commands\Maintenance\PruneOrphanedBackupsCommand;
+use Phoenixpanel\Console\Commands\Maintenance\CleanServiceBackupFilesCommand;
 
 class Kernel extends ConsoleKernel
 {

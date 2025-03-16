@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Allocations;
+namespace Phoenixpanel\Services\Allocations;
 
 use Webmozart\Assert\Assert;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
-use Pterodactyl\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
+use Phoenixpanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
 
 class FindAssignableAllocationService
 {

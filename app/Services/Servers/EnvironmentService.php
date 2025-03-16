@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Services\Servers;
+namespace Phoenixpanel\Services\Servers;
 
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\EggVariable;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\EggVariable;
 
 class EnvironmentService
 {

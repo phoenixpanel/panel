@@ -1,15 +1,15 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Api\Client\Server;
+namespace Phoenixpanel\Tests\Integration\Api\Client\Server;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Response;
 use Lcobucci\JWT\Configuration;
-use Pterodactyl\Models\Permission;
+use Phoenixpanel\Models\Permission;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
-use Pterodactyl\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class WebsocketControllerTest extends ClientApiIntegrationTestCase
 {

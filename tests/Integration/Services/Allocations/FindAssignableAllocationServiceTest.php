@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Tests\Integration\Services\Allocations;
+namespace Phoenixpanel\Tests\Integration\Services\Allocations;
 
-use Pterodactyl\Models\Allocation;
-use Pterodactyl\Tests\Integration\IntegrationTestCase;
-use Pterodactyl\Services\Allocations\FindAssignableAllocationService;
-use Pterodactyl\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
-use Pterodactyl\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
+use Phoenixpanel\Models\Allocation;
+use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use Phoenixpanel\Services\Allocations\FindAssignableAllocationService;
+use Phoenixpanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
+use Phoenixpanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
 
 class FindAssignableAllocationServiceTest extends IntegrationTestCase
 {

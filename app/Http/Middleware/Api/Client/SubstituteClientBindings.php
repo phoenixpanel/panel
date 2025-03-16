@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Http\Middleware\Api\Client;
+namespace Phoenixpanel\Http\Middleware\Api\Client;
 
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 
 class SubstituteClientBindings extends SubstituteBindings

@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Services\Eggs;
+namespace Phoenixpanel\Services\Eggs;
 
 use Ramsey\Uuid\Uuid;
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Pterodactyl\Exceptions\Service\Egg\NoParentConfigurationFoundException;
+use Phoenixpanel\Exceptions\Service\Egg\NoParentConfigurationFoundException;
 
 // When a mommy and a daddy pterodactyl really like each other...
 class EggCreationService

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Exceptions\Service\Allocation;
+namespace Phoenixpanel\Exceptions\Service\Allocation;
 
-use Pterodactyl\Exceptions\DisplayException;
+use Phoenixpanel\Exceptions\DisplayException;
 
 class AutoAllocationNotEnabledException extends DisplayException
 {

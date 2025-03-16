@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Pterodactyl\Http\Controllers\Auth;
+use Phoenixpanel\Http\Controllers\Auth;
 
 /*
 |--------------------------------------------------------------------------

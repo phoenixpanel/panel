@@ -1,11 +1,11 @@
 <?php
 
-namespace Pterodactyl\Transformers\Api\Application;
+namespace Phoenixpanel\Transformers\Api\Application;
 
-use Pterodactyl\Models\Subuser;
+use Phoenixpanel\Models\Subuser;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\NullResource;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
 
 class SubuserTransformer extends BaseTransformer
 {

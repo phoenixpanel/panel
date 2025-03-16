@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Http\Requests\Api\Application\Users;
+namespace Phoenixpanel\Http\Requests\Api\Application\Users;
 
-use Pterodactyl\Models\User;
-use Pterodactyl\Services\Acl\Api\AdminAcl;
-use Pterodactyl\Http\Requests\Api\Application\ApplicationApiRequest;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreUserRequest extends ApplicationApiRequest
 {

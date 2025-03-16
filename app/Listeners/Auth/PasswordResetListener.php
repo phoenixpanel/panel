@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Listeners\Auth;
+namespace Phoenixpanel\Listeners\Auth;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Facades\Activity;
+use Phoenixpanel\Facades\Activity;
 use Illuminate\Auth\Events\PasswordReset;
 
 class PasswordResetListener

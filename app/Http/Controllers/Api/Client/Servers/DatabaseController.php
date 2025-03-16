@@ -1,20 +1,20 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
+namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Database;
-use Pterodactyl\Facades\Activity;
-use Pterodactyl\Services\Databases\DatabasePasswordService;
-use Pterodactyl\Transformers\Api\Client\DatabaseTransformer;
-use Pterodactyl\Services\Databases\DatabaseManagementService;
-use Pterodactyl\Services\Databases\DeployServerDatabaseService;
-use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Databases\GetDatabasesRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Databases\StoreDatabaseRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Databases\DeleteDatabaseRequest;
-use Pterodactyl\Http\Requests\Api\Client\Servers\Databases\RotatePasswordRequest;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Database;
+use Phoenixpanel\Facades\Activity;
+use Phoenixpanel\Services\Databases\DatabasePasswordService;
+use Phoenixpanel\Transformers\Api\Client\DatabaseTransformer;
+use Phoenixpanel\Services\Databases\DatabaseManagementService;
+use Phoenixpanel\Services\Databases\DeployServerDatabaseService;
+use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Databases\GetDatabasesRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Databases\StoreDatabaseRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Databases\DeleteDatabaseRequest;
+use Phoenixpanel\Http\Requests\Api\Client\Servers\Databases\RotatePasswordRequest;
 
 class DatabaseController extends ClientApiController
 {

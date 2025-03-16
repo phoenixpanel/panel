@@ -1,13 +1,13 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin\Nodes;
+namespace Phoenixpanel\Http\Controllers\Admin\Nodes;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Node;
+use Phoenixpanel\Models\Node;
 use Illuminate\Http\JsonResponse;
-use Pterodactyl\Http\Controllers\Controller;
-use Pterodactyl\Repositories\Wings\DaemonConfigurationRepository;
+use Phoenixpanel\Http\Controllers\Controller;
+use Phoenixpanel\Repositories\Wings\DaemonConfigurationRepository;
 
 class SystemInformationController extends Controller
 {

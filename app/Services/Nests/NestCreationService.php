@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Services\Nests;
+namespace Phoenixpanel\Services\Nests;
 
 use Ramsey\Uuid\Uuid;
-use Pterodactyl\Models\Nest;
-use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
+use Phoenixpanel\Models\Nest;
+use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class NestCreationService

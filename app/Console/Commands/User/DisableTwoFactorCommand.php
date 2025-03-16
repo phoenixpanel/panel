@@ -1,9 +1,9 @@
 <?php
 
-namespace Pterodactyl\Console\Commands\User;
+namespace Phoenixpanel\Console\Commands\User;
 
 use Illuminate\Console\Command;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
 
 class DisableTwoFactorCommand extends Command
 {

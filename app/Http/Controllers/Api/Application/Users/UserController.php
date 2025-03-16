@@ -1,19 +1,19 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Api\Application\Users;
+namespace Phoenixpanel\Http\Controllers\Api\Application\Users;
 
-use Pterodactyl\Models\User;
+use Phoenixpanel\Models\User;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use Pterodactyl\Services\Users\UserUpdateService;
-use Pterodactyl\Services\Users\UserCreationService;
-use Pterodactyl\Services\Users\UserDeletionService;
-use Pterodactyl\Transformers\Api\Application\UserTransformer;
-use Pterodactyl\Http\Requests\Api\Application\Users\GetUsersRequest;
-use Pterodactyl\Http\Requests\Api\Application\Users\StoreUserRequest;
-use Pterodactyl\Http\Requests\Api\Application\Users\DeleteUserRequest;
-use Pterodactyl\Http\Requests\Api\Application\Users\UpdateUserRequest;
-use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
+use Phoenixpanel\Services\Users\UserUpdateService;
+use Phoenixpanel\Services\Users\UserCreationService;
+use Phoenixpanel\Services\Users\UserDeletionService;
+use Phoenixpanel\Transformers\Api\Application\UserTransformer;
+use Phoenixpanel\Http\Requests\Api\Application\Users\GetUsersRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Users\StoreUserRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Users\DeleteUserRequest;
+use Phoenixpanel\Http\Requests\Api\Application\Users\UpdateUserRequest;
+use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class UserController extends ApplicationApiController
 {

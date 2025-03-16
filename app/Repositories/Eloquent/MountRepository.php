@@ -1,12 +1,12 @@
 <?php
 
-namespace Pterodactyl\Repositories\Eloquent;
+namespace Phoenixpanel\Repositories\Eloquent;
 
-use Pterodactyl\Models\Mount;
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Mount;
+use Phoenixpanel\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
+use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
 
 class MountRepository extends EloquentRepository
 {

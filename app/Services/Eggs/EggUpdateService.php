@@ -1,10 +1,10 @@
 <?php
 
-namespace Pterodactyl\Services\Eggs;
+namespace Phoenixpanel\Services\Eggs;
 
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Contracts\Repository\EggRepositoryInterface;
-use Pterodactyl\Exceptions\Service\Egg\NoParentConfigurationFoundException;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
+use Phoenixpanel\Exceptions\Service\Egg\NoParentConfigurationFoundException;
 
 class EggUpdateService
 {

@@ -1,22 +1,22 @@
 <?php
 
-namespace Pterodactyl\Services\Telemetry;
+namespace Phoenixpanel\Services\Telemetry;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use Pterodactyl\Models\Egg;
-use Pterodactyl\Models\Nest;
-use Pterodactyl\Models\Node;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Mount;
-use Pterodactyl\Models\Backup;
-use Pterodactyl\Models\Server;
-use Pterodactyl\Models\Location;
+use Phoenixpanel\Models\Egg;
+use Phoenixpanel\Models\Nest;
+use Phoenixpanel\Models\Node;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Mount;
+use Phoenixpanel\Models\Backup;
+use Phoenixpanel\Models\Server;
+use Phoenixpanel\Models\Location;
 use Illuminate\Support\Facades\DB;
-use Pterodactyl\Models\Allocation;
+use Phoenixpanel\Models\Allocation;
 use Illuminate\Support\Facades\Http;
-use Pterodactyl\Repositories\Eloquent\SettingsRepository;
-use Pterodactyl\Repositories\Wings\DaemonConfigurationRepository;
+use Phoenixpanel\Repositories\Eloquent\SettingsRepository;
+use Phoenixpanel\Repositories\Wings\DaemonConfigurationRepository;
 
 class TelemetryCollectionService
 {

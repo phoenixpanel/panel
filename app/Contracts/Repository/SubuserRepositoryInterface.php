@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Contracts\Repository;
+namespace Phoenixpanel\Contracts\Repository;
 
-use Pterodactyl\Models\Subuser;
+use Phoenixpanel\Models\Subuser;
 
 interface SubuserRepositoryInterface extends RepositoryInterface
 {

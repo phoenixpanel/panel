@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Exceptions\Http\Server;
+namespace Phoenixpanel\Exceptions\Http\Server;
 
-use Pterodactyl\Models\Server;
+use Phoenixpanel\Models\Server;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class ServerStateConflictException extends ConflictHttpException

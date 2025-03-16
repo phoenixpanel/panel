@@ -1,8 +1,8 @@
 <?php
 
-namespace Pterodactyl\Exceptions\Transformer;
+namespace Phoenixpanel\Exceptions\Transformer;
 
-use Pterodactyl\Exceptions\PterodactylException;
+use Phoenixpanel\Exceptions\PterodactylException;
 
 class InvalidTransformerLevelException extends PterodactylException
 {

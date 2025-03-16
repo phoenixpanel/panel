@@ -1,26 +1,26 @@
 <?php
 
-namespace Pterodactyl\Http\Controllers\Admin;
+namespace Phoenixpanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Pterodactyl\Models\User;
-use Pterodactyl\Models\Model;
+use Phoenixpanel\Models\User;
+use Phoenixpanel\Models\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\View\Factory as ViewFactory;
-use Pterodactyl\Exceptions\DisplayException;
-use Pterodactyl\Http\Controllers\Controller;
+use Phoenixpanel\Exceptions\DisplayException;
+use Phoenixpanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Translation\Translator;
-use Pterodactyl\Services\Users\UserUpdateService;
-use Pterodactyl\Traits\Helpers\AvailableLanguages;
-use Pterodactyl\Services\Users\UserCreationService;
-use Pterodactyl\Services\Users\UserDeletionService;
-use Pterodactyl\Http\Requests\Admin\UserFormRequest;
-use Pterodactyl\Http\Requests\Admin\NewUserFormRequest;
-use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
+use Phoenixpanel\Services\Users\UserUpdateService;
+use Phoenixpanel\Traits\Helpers\AvailableLanguages;
+use Phoenixpanel\Services\Users\UserCreationService;
+use Phoenixpanel\Services\Users\UserDeletionService;
+use Phoenixpanel\Http\Requests\Admin\UserFormRequest;
+use Phoenixpanel\Http\Requests\Admin\NewUserFormRequest;
+use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserController extends Controller
 {
