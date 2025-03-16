@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'PheonixPanel'),
+    'name' => env('APP_NAME', 'Pterodactyl'),
 
     /*
     |--------------------------------------------------------------------------
