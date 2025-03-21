@@ -1,6 +1,6 @@
 <?php
 
-use Phoenixpanel\Models\Backup;
+use PhoenixPanel\Models\Backup;
 
 return [
     // The backup driver to use for this Panel instance. All client generated server backups

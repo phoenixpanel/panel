@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Repository\Daemon;
+namespace PhoenixPanel\Exceptions\Repository\Daemon;
 
-use Phoenixpanel\Exceptions\Repository\RepositoryException;
+use PhoenixPanel\Exceptions\Repository\RepositoryException;
 
 class InvalidPowerSignalException extends RepositoryException
 {

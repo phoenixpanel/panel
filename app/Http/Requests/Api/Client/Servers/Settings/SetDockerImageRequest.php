@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Settings;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Settings;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Validation\Rule;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Contracts\Http\ClientPermissionsRequest;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Contracts\Http\ClientPermissionsRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class SetDockerImageRequest extends ClientApiRequest implements ClientPermissionsRequest
 {

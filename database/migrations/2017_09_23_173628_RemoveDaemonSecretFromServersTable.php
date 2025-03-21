@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Phoenixpanel\Contracts\Repository\DaemonKeyRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\DaemonKeyRepositoryInterface;
 
 class RemoveDaemonSecretFromServersTable extends Migration
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Validation\Rules\NotIn;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $target
  * @property bool $read_only
  * @property bool $user_mountable
- * @property \Phoenixpanel\Models\Egg[]|\Illuminate\Database\Eloquent\Collection $eggs
- * @property \Phoenixpanel\Models\Node[]|\Illuminate\Database\Eloquent\Collection $nodes
- * @property \Phoenixpanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
+ * @property \Pterodactyl\Models\Egg[]|\Illuminate\Database\Eloquent\Collection $eggs
+ * @property \Pterodactyl\Models\Node[]|\Illuminate\Database\Eloquent\Collection $nodes
+ * @property \Pterodactyl\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
  */
 class Mount extends Model
 {

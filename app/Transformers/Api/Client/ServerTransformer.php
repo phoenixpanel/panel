@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
-use Phoenixpanel\Models\Egg;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Subuser;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
 use League\Fractal\Resource\Item;
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Container\Container;
-use Phoenixpanel\Models\EggVariable;
+use PhoenixPanel\Models\EggVariable;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use Phoenixpanel\Services\Servers\StartupCommandService;
+use PhoenixPanel\Services\Servers\StartupCommandService;
 
 class ServerTransformer extends BaseClientTransformer
 {
@@ -78,7 +78,7 @@ class ServerTransformer extends BaseClientTransformer
     /**
      * Returns the allocations associated with this server.
      *
-     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeAllocations(Server $server): Collection
     {
@@ -103,7 +103,7 @@ class ServerTransformer extends BaseClientTransformer
     }
 
     /**
-     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeVariables(Server $server): Collection|NullResource
     {
@@ -121,7 +121,7 @@ class ServerTransformer extends BaseClientTransformer
     /**
      * Returns the egg associated with this server.
      *
-     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeEgg(Server $server): Item
     {
@@ -131,7 +131,7 @@ class ServerTransformer extends BaseClientTransformer
     /**
      * Returns the subusers associated with this server.
      *
-     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeSubusers(Server $server): Collection|NullResource
     {

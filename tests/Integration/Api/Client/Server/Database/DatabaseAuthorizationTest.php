@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Database;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Database;
 
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\DatabaseHost;
-use Phoenixpanel\Contracts\Extensions\HashidsInterface;
-use Phoenixpanel\Services\Databases\DatabasePasswordService;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\DatabaseHost;
+use PhoenixPanel\Contracts\Extensions\HashidsInterface;
+use PhoenixPanel\Services\Databases\DatabasePasswordService;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class DatabaseAuthorizationTest extends ClientApiIntegrationTestCase
 {

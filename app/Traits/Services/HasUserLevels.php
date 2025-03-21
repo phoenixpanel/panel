@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Traits\Services;
+namespace PhoenixPanel\Traits\Services;
 
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 
 trait HasUserLevels
 {

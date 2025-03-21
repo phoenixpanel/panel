@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Wings;
+namespace PhoenixPanel\Repositories\Wings;
 
 use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\TransferException;
-use Phoenixpanel\Exceptions\Http\Server\FileSizeTooLargeException;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\Http\Server\FileSizeTooLargeException;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 /**
- * @method \Phoenixpanel\Repositories\Wings\DaemonFileRepository setNode(\Phoenixpanel\Models\Node $node)
- * @method \Phoenixpanel\Repositories\Wings\DaemonFileRepository setServer(\Phoenixpanel\Models\Server $server)
+ * @method \Pterodactyl\Repositories\Wings\DaemonFileRepository setNode(\Pterodactyl\Models\Node $node)
+ * @method \Pterodactyl\Repositories\Wings\DaemonFileRepository setServer(\Pterodactyl\Models\Server $server)
  */
 class DaemonFileRepository extends DaemonRepository
 {

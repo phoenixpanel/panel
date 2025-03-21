@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin;
+namespace PhoenixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
-use Phoenixpanel\Models\Location;
+use PhoenixPanel\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Http\Requests\Admin\LocationFormRequest;
-use Phoenixpanel\Services\Locations\LocationUpdateService;
-use Phoenixpanel\Services\Locations\LocationCreationService;
-use Phoenixpanel\Services\Locations\LocationDeletionService;
-use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Http\Requests\Admin\LocationFormRequest;
+use PhoenixPanel\Services\Locations\LocationUpdateService;
+use PhoenixPanel\Services\Locations\LocationCreationService;
+use PhoenixPanel\Services\Locations\LocationDeletionService;
+use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationController extends Controller
 {
@@ -43,7 +43,7 @@ class LocationController extends Controller
     /**
      * Return the location view page.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function view(int $id): View
     {

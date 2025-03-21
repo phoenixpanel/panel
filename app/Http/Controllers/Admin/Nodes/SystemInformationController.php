@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Nodes;
+namespace PhoenixPanel\Http\Controllers\Admin\Nodes;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Repositories\Wings\DaemonConfigurationRepository;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository;
 
 class SystemInformationController extends Controller
 {
@@ -21,7 +21,7 @@ class SystemInformationController extends Controller
     /**
      * Returns system information from the Daemon.
      *
-     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function __invoke(Request $request, Node $node): JsonResponse
     {

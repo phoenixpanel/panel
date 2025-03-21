@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration;
+namespace PhoenixPanel\Tests\Integration;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Phoenixpanel\Tests\TestCase;
+use PhoenixPanel\Tests\TestCase;
 use Illuminate\Support\Facades\Event;
-use Phoenixpanel\Events\ActivityLogged;
-use Phoenixpanel\Tests\Assertions\AssertsActivityLogged;
-use Phoenixpanel\Tests\Traits\Integration\CreatesTestModels;
-use Phoenixpanel\Transformers\Api\Application\BaseTransformer;
+use PhoenixPanel\Events\ActivityLogged;
+use PhoenixPanel\Tests\Assertions\AssertsActivityLogged;
+use PhoenixPanel\Tests\Traits\Integration\CreatesTestModels;
+use PhoenixPanel\Transformers\Api\Application\BaseTransformer;
 
 abstract class IntegrationTestCase extends TestCase
 {

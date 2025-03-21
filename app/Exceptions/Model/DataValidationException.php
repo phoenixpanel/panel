@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Model;
+namespace PhoenixPanel\Exceptions\Model;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Validation\Validator;
-use Phoenixpanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PterodactylException;
 use Illuminate\Contracts\Support\MessageProvider;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 

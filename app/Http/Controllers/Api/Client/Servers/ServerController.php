@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Transformers\Api\Client\ServerTransformer;
-use Phoenixpanel\Services\Servers\GetUserPermissionsService;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\GetServerRequest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Transformers\Api\Client\ServerTransformer;
+use PhoenixPanel\Services\Servers\GetUserPermissionsService;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\GetServerRequest;
 
 class ServerController extends ClientApiController
 {

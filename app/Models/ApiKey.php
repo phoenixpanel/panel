@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Phoenixpanel\Models\ApiKey.
+ * Pterodactyl\Models\ApiKey.
  *
  * @property int $id
  * @property int $user_id

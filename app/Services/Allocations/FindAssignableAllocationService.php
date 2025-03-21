@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Allocations;
+namespace PhoenixPanel\Services\Allocations;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
-use Phoenixpanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
+use PhoenixPanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
 
 class FindAssignableAllocationService
 {
@@ -22,11 +22,11 @@ class FindAssignableAllocationService
      * no allocation can be found, a new one will be created with a random port between the defined
      * range from the configuration.
      *
-     * @throws \Phoenixpanel\Exceptions\DisplayException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     public function handle(Server $server): Allocation
     {
@@ -56,11 +56,11 @@ class FindAssignableAllocationService
      * in the settings. If there are no matches in that range, or something is wrong with the
      * range information provided an exception will be raised.
      *
-     * @throws \Phoenixpanel\Exceptions\DisplayException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \Phoenixpanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \Pterodactyl\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     protected function createNewAllocation(Server $server): Allocation
     {

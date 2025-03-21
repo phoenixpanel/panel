@@ -1,17 +1,17 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Remote\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Remote\Servers;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
+use PhoenixPanel\Facades\Activity;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Services\Eggs\EggConfigurationService;
-use Phoenixpanel\Repositories\Eloquent\ServerRepository;
-use Phoenixpanel\Http\Resources\Wings\ServerConfigurationCollection;
-use Phoenixpanel\Services\Servers\ServerConfigurationStructureService;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Eggs\EggConfigurationService;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Http\Resources\Wings\ServerConfigurationCollection;
+use PhoenixPanel\Services\Servers\ServerConfigurationStructureService;
 
 class ServerDetailsController extends Controller
 {
@@ -30,7 +30,7 @@ class ServerDetailsController extends Controller
      * Returns details about the server that allows Wings to self-recover and ensure
      * that the state of the server matches the Panel at all times.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function __invoke(Request $request, string $uuid): JsonResponse
     {
@@ -47,7 +47,7 @@ class ServerDetailsController extends Controller
      */
     public function list(Request $request): ServerConfigurationCollection
     {
-        /** @var \Phoenixpanel\Models\Node $node */
+        /** @var \Pterodactyl\Models\Node $node */
         $node = $request->attributes->get('node');
 
         // Avoid run-away N+1 SQL queries by preloading the relationships that are used
@@ -92,7 +92,7 @@ class ServerDetailsController extends Controller
         $this->connection->transaction(function () use ($node, $servers) {
             /** @var Server $server */
             foreach ($servers as $server) {
-                /** @var \Phoenixpanel\Models\ActivityLog|null $activity */
+                /** @var \Pterodactyl\Models\ActivityLog|null $activity */
                 $activity = $server->activity->first();
                 if (!is_null($activity)) {
                     if ($subject = $activity->subjects->where('subject_type', 'backup')->first()) {

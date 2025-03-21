@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Services\Nodes;
+namespace PhoenixPanel\Services\Nodes;
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Phoenixpanel\Repositories\Eloquent\NodeRepository;
-use Phoenixpanel\Repositories\Wings\DaemonConfigurationRepository;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
-use Phoenixpanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
 
 class NodeUpdateService
 {

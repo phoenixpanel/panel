@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Databases;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Databases;
 
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Contracts\Http\ClientPermissionsRequest;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Contracts\Http\ClientPermissionsRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class GetDatabasesRequest extends ClientApiRequest implements ClientPermissionsRequest
 {

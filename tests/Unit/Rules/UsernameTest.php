@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Rules;
+namespace PhoenixPanel\Tests\Unit\Rules;
 
-use Phoenixpanel\Rules\Username;
-use Phoenixpanel\Tests\TestCase;
+use PhoenixPanel\Rules\Username;
+use PhoenixPanel\Tests\TestCase;
 
 class UsernameTest extends TestCase
 {

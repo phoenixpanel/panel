@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Nests;
+namespace PhoenixPanel\Http\Controllers\Admin\Nests;
 
 use Illuminate\View\View;
-use Phoenixpanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Services\Eggs\Scripts\InstallScriptService;
-use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
-use Phoenixpanel\Http\Requests\Admin\Egg\EggScriptFormRequest;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Eggs\Scripts\InstallScriptService;
+use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
+use PhoenixPanel\Http\Requests\Admin\Egg\EggScriptFormRequest;
 
 class EggScriptController extends Controller
 {
@@ -51,9 +51,9 @@ class EggScriptController extends Controller
     /**
      * Handle a request to update the installation script for an Egg.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \Phoenixpanel\Exceptions\Service\Egg\InvalidCopyFromException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Service\Egg\InvalidCopyFromException
      */
     public function update(EggScriptFormRequest $request, Egg $egg): RedirectResponse
     {

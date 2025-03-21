@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Extensions\Themes;
+namespace PhoenixPanel\Extensions\Themes;
 
 class Theme
 {

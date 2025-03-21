@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Events\Subuser;
+namespace PhoenixPanel\Events\Subuser;
 
-use Phoenixpanel\Events\Event;
-use Phoenixpanel\Models\Subuser;
+use PhoenixPanel\Events\Event;
+use PhoenixPanel\Models\Subuser;
 use Illuminate\Queue\SerializesModels;
 
 class Creating extends Event

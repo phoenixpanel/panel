@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Account;
+namespace PhoenixPanel\Http\Requests\Api\Client\Account;
 
 use phpseclib3\Crypt\DSA;
 use phpseclib3\Crypt\RSA;
-use Phoenixpanel\Models\UserSSHKey;
+use PhoenixPanel\Models\UserSSHKey;
 use Illuminate\Validation\Validator;
 use phpseclib3\Crypt\PublicKeyLoader;
 use phpseclib3\Crypt\Common\PublicKey;
 use phpseclib3\Exception\NoKeyLoadedException;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class StoreSSHKeyRequest extends ClientApiRequest
 {

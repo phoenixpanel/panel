@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware\Api\Client;
+namespace PhoenixPanel\Http\Middleware\Api\Client;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class RequireClientApiKey

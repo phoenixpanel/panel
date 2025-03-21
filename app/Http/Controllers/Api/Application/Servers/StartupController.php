@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Application\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Servers;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Services\Servers\StartupModificationService;
-use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
-use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\UpdateServerStartupRequest;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Services\Servers\StartupModificationService;
+use PhoenixPanel\Transformers\Api\Application\ServerTransformer;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\UpdateServerStartupRequest;
 
 class StartupController extends ApplicationApiController
 {
@@ -23,9 +23,9 @@ class StartupController extends ApplicationApiController
      * Update the startup and environment settings for a specific server.
      *
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function index(UpdateServerStartupRequest $request, Server $server): array
     {

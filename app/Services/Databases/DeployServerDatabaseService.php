@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Databases;
+namespace PhoenixPanel\Services\Databases;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\DatabaseHost;
-use Phoenixpanel\Exceptions\Service\Database\NoSuitableDatabaseHostException;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\DatabaseHost;
+use PhoenixPanel\Exceptions\Service\Database\NoSuitableDatabaseHostException;
 
 class DeployServerDatabaseService
 {
@@ -19,8 +19,8 @@ class DeployServerDatabaseService
 
     /**
      * @throws \Throwable
-     * @throws \Phoenixpanel\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \Phoenixpanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws \Pterodactyl\Exceptions\Service\Database\TooManyDatabasesException
+     * @throws \Pterodactyl\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
      */
     public function handle(Server $server, array $data): Database
     {

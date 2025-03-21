@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware;
+namespace PhoenixPanel\Http\Middleware;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Prologue\Alerts\AlertsMessageBag;
-use Phoenixpanel\Exceptions\Http\TwoFactorAuthRequiredException;
+use PhoenixPanel\Exceptions\Http\TwoFactorAuthRequiredException;
 
 class RequireTwoFactorAuthentication
 {
@@ -35,7 +35,7 @@ class RequireTwoFactorAuthentication
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \Phoenixpanel\Models\User $user */
+        /** @var \Pterodactyl\Models\User $user */
         $user = $request->user();
         $uri = rtrim($request->getRequestUri(), '/') . '/';
         $current = $request->route()->getName();

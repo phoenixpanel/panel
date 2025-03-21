@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Startup;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Startup;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Models\EggVariable;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Models\EggVariable;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class GetStartupAndVariablesTest extends ClientApiIntegrationTestCase
 {
@@ -16,7 +16,7 @@ class GetStartupAndVariablesTest extends ClientApiIntegrationTestCase
     #[\PHPUnit\Framework\Attributes\DataProvider('permissionsDataProvider')]
     public function testStartupVariablesAreReturnedForServer(array $permissions)
     {
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\Server $server */
         [$user, $server] = $this->generateTestAccount($permissions);
 
         $egg = $this->cloneEggAndVariables($server->egg);

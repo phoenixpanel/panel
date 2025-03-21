@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Tests\Traits\Http;
+namespace PhoenixPanel\Tests\Traits\Http;
 
 use Closure;
 use Illuminate\Http\Request;

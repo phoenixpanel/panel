@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Phoenixpanel\Http\Controllers\Api\Client;
-use Phoenixpanel\Http\Middleware\Activity\ServerSubject;
-use Phoenixpanel\Http\Middleware\Activity\AccountSubject;
-use Phoenixpanel\Http\Middleware\RequireTwoFactorAuthentication;
-use Phoenixpanel\Http\Middleware\Api\Client\Server\ResourceBelongsToServer;
-use Phoenixpanel\Http\Middleware\Api\Client\Server\AuthenticateServerAccess;
+use PhoenixPanel\Http\Controllers\Api\Client;
+use PhoenixPanel\Http\Middleware\Activity\ServerSubject;
+use PhoenixPanel\Http\Middleware\Activity\AccountSubject;
+use PhoenixPanel\Http\Middleware\RequireTwoFactorAuthentication;
+use PhoenixPanel\Http\Middleware\Api\Client\Server\ResourceBelongsToServer;
+use PhoenixPanel\Http\Middleware\Api\Client\Server\AuthenticateServerAccess;
 
 /*
 |--------------------------------------------------------------------------

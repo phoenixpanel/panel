@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Nodes;
+namespace PhoenixPanel\Services\Nodes;
 
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Contracts\Translation\Translator;
-use Phoenixpanel\Contracts\Repository\NodeRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\HasActiveServersException;
-use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\NodeRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\HasActiveServersException;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class NodeDeletionService
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Servers;
+namespace PhoenixPanel\Http\Requests\Api\Application\Servers;
 
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 
 class UpdateServerDetailsRequest extends ServerWriteRequest
 {

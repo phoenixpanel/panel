@@ -1,7 +1,7 @@
 <?php
 
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

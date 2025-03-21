@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Allocations;
+namespace PhoenixPanel\Tests\Integration\Services\Allocations;
 
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Services\Allocations\FindAssignableAllocationService;
-use Phoenixpanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
-use Phoenixpanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Services\Allocations\FindAssignableAllocationService;
+use PhoenixPanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
+use PhoenixPanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
 
 class FindAssignableAllocationServiceTest extends IntegrationTestCase
 {

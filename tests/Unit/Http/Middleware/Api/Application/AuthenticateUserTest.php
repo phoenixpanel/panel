@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Http\Middleware\Api\Application;
+namespace PhoenixPanel\Tests\Unit\Http\Middleware\Api\Application;
 
-use Phoenixpanel\Tests\Unit\Http\Middleware\MiddlewareTestCase;
+use PhoenixPanel\Tests\Unit\Http\Middleware\MiddlewareTestCase;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Phoenixpanel\Http\Middleware\Api\Application\AuthenticateApplicationUser;
+use PhoenixPanel\Http\Middleware\Api\Application\AuthenticateApplicationUser;
 
 class AuthenticateUserTest extends MiddlewareTestCase
 {

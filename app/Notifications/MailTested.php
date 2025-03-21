@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Notifications;
+namespace PhoenixPanel\Notifications;
 
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 

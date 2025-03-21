@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
-use Phoenixpanel\Contracts\Repository\SubuserRepositoryInterface;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Contracts\Repository\SubuserRepositoryInterface;
 
 class SubuserRepository extends EloquentRepository implements SubuserRepositoryInterface
 {

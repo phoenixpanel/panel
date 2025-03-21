@@ -1,20 +1,20 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Jobs\Schedule;
+namespace PhoenixPanel\Tests\Integration\Jobs\Schedule;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Request;
-use Phoenixpanel\Models\Task;
+use PhoenixPanel\Models\Task;
 use GuzzleHttp\Psr7\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Support\Facades\Bus;
-use Phoenixpanel\Jobs\Schedule\RunTaskJob;
+use PhoenixPanel\Jobs\Schedule\RunTaskJob;
 use GuzzleHttp\Exception\BadResponseException;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Repositories\Wings\DaemonPowerRepository;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Repositories\Wings\DaemonPowerRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class RunTaskJobTest extends IntegrationTestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Exceptions;
+namespace PhoenixPanel\Exceptions;
 
 class PterodactylException extends \Exception
 {

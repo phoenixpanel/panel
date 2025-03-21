@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Servers;
+namespace PhoenixPanel\Tests\Integration\Services\Servers;
 
 use Mockery\MockInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\DatabaseHost;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\DatabaseHost;
 use GuzzleHttp\Exception\BadResponseException;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Services\Servers\ServerDeletionService;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Services\Servers\ServerDeletionService;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerDeletionServiceTest extends IntegrationTestCase
 {

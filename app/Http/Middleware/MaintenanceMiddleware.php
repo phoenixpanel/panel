@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware;
+namespace PhoenixPanel\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -19,7 +19,7 @@ class MaintenanceMiddleware
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\Server $server */
         $server = $request->attributes->get('server');
         $node = $server->getRelation('node');
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Account;
+namespace PhoenixPanel\Http\Requests\Api\Client\Account;
 
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Hashing\Hasher;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
-use Phoenixpanel\Exceptions\Http\Base\InvalidPasswordProvidedException;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException;
 
 class UpdateEmailRequest extends ClientApiRequest
 {

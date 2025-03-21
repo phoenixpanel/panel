@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands\Environment;
+namespace PhoenixPanel\Console\Commands\Environment;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Database\DatabaseManager;
-use Phoenixpanel\Traits\Commands\EnvironmentWriterTrait;
+use PhoenixPanel\Traits\Commands\EnvironmentWriterTrait;
 
 class DatabaseSettingsCommand extends Command
 {
@@ -33,7 +33,7 @@ class DatabaseSettingsCommand extends Command
     /**
      * Handle command execution.
      *
-     * @throws \Phoenixpanel\Exceptions\PterodactylException
+     * @throws \Pterodactyl\Exceptions\PterodactylException
      */
     public function handle(): int
     {

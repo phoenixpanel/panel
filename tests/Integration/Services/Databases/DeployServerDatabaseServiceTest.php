@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Databases;
+namespace PhoenixPanel\Tests\Integration\Services\Databases;
 
 use Mockery\MockInterface;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\DatabaseHost;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Services\Databases\DeployServerDatabaseService;
-use Phoenixpanel\Exceptions\Service\Database\NoSuitableDatabaseHostException;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\DatabaseHost;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Services\Databases\DeployServerDatabaseService;
+use PhoenixPanel\Exceptions\Service\Database\NoSuitableDatabaseHostException;
 
 class DeployServerDatabaseServiceTest extends IntegrationTestCase
 {

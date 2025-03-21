@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Wings;
+namespace PhoenixPanel\Repositories\Wings;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 /**
- * @method \Phoenixpanel\Repositories\Wings\DaemonPowerRepository setNode(\Phoenixpanel\Models\Node $node)
- * @method \Phoenixpanel\Repositories\Wings\DaemonPowerRepository setServer(\Phoenixpanel\Models\Server $server)
+ * @method \Pterodactyl\Repositories\Wings\DaemonPowerRepository setNode(\Pterodactyl\Models\Node $node)
+ * @method \Pterodactyl\Repositories\Wings\DaemonPowerRepository setServer(\Pterodactyl\Models\Server $server)
  */
 class DaemonPowerRepository extends DaemonRepository
 {

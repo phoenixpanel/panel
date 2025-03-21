@@ -1,23 +1,23 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
-use Phoenixpanel\Models\Task;
+use PhoenixPanel\Models\Task;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Repositories\Eloquent\TaskRepository;
-use Phoenixpanel\Exceptions\Http\HttpForbiddenException;
-use Phoenixpanel\Transformers\Api\Client\TaskTransformer;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
-use Phoenixpanel\Exceptions\Service\ServiceLimitExceededException;
+use PhoenixPanel\Repositories\Eloquent\TaskRepository;
+use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
+use PhoenixPanel\Transformers\Api\Client\TaskTransformer;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Exceptions\Service\ServiceLimitExceededException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\StoreTaskRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\StoreTaskRequest;
 
 class ScheduleTaskController extends ClientApiController
 {
@@ -34,7 +34,7 @@ class ScheduleTaskController extends ClientApiController
     /**
      * Create a new task for a given schedule and store it in the database.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      * @throws ServiceLimitExceededException
      */
     public function store(StoreTaskRequest $request, Server $server, Schedule $schedule): array
@@ -95,8 +95,8 @@ class ScheduleTaskController extends ClientApiController
     /**
      * Updates a given task for a server.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function update(StoreTaskRequest $request, Server $server, Schedule $schedule, Task $task): array
     {

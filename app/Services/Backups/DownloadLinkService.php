@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Backups;
+namespace PhoenixPanel\Services\Backups;
 
 use Carbon\CarbonImmutable;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Backup;
-use Phoenixpanel\Services\Nodes\NodeJWTService;
-use Phoenixpanel\Extensions\Backups\BackupManager;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Services\Nodes\NodeJWTService;
+use PhoenixPanel\Extensions\Backups\BackupManager;
 
 class DownloadLinkService
 {
@@ -45,7 +45,7 @@ class DownloadLinkService
      */
     protected function getS3BackupUrl(Backup $backup): string
     {
-        /** @var \Phoenixpanel\Extensions\Filesystem\S3Filesystem $adapter */
+        /** @var \Pterodactyl\Extensions\Filesystem\S3Filesystem $adapter */
         $adapter = $this->backupManager->adapter(Backup::ADAPTER_AWS_S3);
 
         $request = $adapter->getClient()->createPresignedRequest(

@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 
 class AccountTransformer extends BaseClientTransformer
 {

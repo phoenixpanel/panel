@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Schedule;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Schedule;
 
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class CreateServerScheduleTest extends ClientApiIntegrationTestCase
 {

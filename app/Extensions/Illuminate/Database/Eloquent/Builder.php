@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Extensions\Illuminate\Database\Eloquent;
+namespace PhoenixPanel\Extensions\Illuminate\Database\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 

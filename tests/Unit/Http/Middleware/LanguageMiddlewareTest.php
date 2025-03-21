@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Http\Middleware;
+namespace PhoenixPanel\Tests\Unit\Http\Middleware;
 
 use Mockery as m;
 use Mockery\MockInterface;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Foundation\Application;
-use Phoenixpanel\Http\Middleware\LanguageMiddleware;
+use PhoenixPanel\Http\Middleware\LanguageMiddleware;
 
 class LanguageMiddlewareTest extends MiddlewareTestCase
 {

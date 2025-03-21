@@ -1,23 +1,23 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client;
+namespace PhoenixPanel\Tests\Integration\Api\Client;
 
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\Task;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Model;
-use Phoenixpanel\Models\Backup;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\Location;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\Task;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Model;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Support\Collection;
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Models\DatabaseHost;
-use Phoenixpanel\Tests\Integration\TestResponse;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Models\DatabaseHost;
+use PhoenixPanel\Tests\Integration\TestResponse;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
-use Phoenixpanel\Transformers\Api\Client\BaseClientTransformer;
+use PhoenixPanel\Transformers\Api\Client\BaseClientTransformer;
 
 abstract class ClientApiIntegrationTestCase extends IntegrationTestCase
 {
@@ -87,7 +87,7 @@ abstract class ClientApiIntegrationTestCase extends IntegrationTestCase
     protected function assertJsonTransformedWith(array $data, Model|EloquentModel $model)
     {
         $reflect = new \ReflectionClass($model);
-        $transformer = sprintf('\\Phoenixpanel\\Transformers\\Api\\Client\\%sTransformer', $reflect->getShortName());
+        $transformer = sprintf('\\Pterodactyl\\Transformers\\Api\\Client\\%sTransformer', $reflect->getShortName());
 
         $transformer = new $transformer();
         $this->assertInstanceOf(BaseClientTransformer::class, $transformer);

@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 /**
- * Phoenixpanel\Models\Setting.
+ * Pterodactyl\Models\Setting.
  *
  * @property int $id
  * @property string $key

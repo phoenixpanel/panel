@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules;
 
-use Phoenixpanel\Models\Task;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Task;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ViewScheduleRequest extends ClientApiRequest

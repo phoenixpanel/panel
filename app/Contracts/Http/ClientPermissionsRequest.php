@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Contracts\Http;
+namespace PhoenixPanel\Contracts\Http;
 
 interface ClientPermissionsRequest
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Jobs;
+namespace PhoenixPanel\Jobs;
 
 use Illuminate\Bus\Queueable;
 

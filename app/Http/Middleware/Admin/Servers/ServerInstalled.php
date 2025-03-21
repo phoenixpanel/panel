@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware\Admin\Servers;
+namespace PhoenixPanel\Http\Middleware\Admin\Servers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

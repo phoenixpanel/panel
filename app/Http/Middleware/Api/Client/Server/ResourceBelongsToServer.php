@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware\Api\Client\Server;
+namespace PhoenixPanel\Http\Middleware\Api\Client\Server;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Task;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Backup;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Task;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

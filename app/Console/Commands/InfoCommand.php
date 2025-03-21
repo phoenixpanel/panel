@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands;
+namespace PhoenixPanel\Console\Commands;
 
 use Illuminate\Console\Command;
-use Phoenixpanel\Services\Helpers\SoftwareVersionService;
+use PhoenixPanel\Services\Helpers\SoftwareVersionService;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class InfoCommand extends Command

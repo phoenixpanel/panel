@@ -1,22 +1,22 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Servers;
+namespace PhoenixPanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Nest;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Services\Servers\EnvironmentService;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Servers\EnvironmentService;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Phoenixpanel\Repositories\Eloquent\NestRepository;
-use Phoenixpanel\Repositories\Eloquent\NodeRepository;
-use Phoenixpanel\Repositories\Eloquent\MountRepository;
-use Phoenixpanel\Repositories\Eloquent\ServerRepository;
-use Phoenixpanel\Traits\Controllers\JavascriptInjection;
-use Phoenixpanel\Repositories\Eloquent\LocationRepository;
-use Phoenixpanel\Repositories\Eloquent\DatabaseHostRepository;
+use PhoenixPanel\Repositories\Eloquent\NestRepository;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Eloquent\MountRepository;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Traits\Controllers\JavascriptInjection;
+use PhoenixPanel\Repositories\Eloquent\LocationRepository;
+use PhoenixPanel\Repositories\Eloquent\DatabaseHostRepository;
 
 class ServerViewController extends Controller
 {
@@ -70,7 +70,7 @@ class ServerViewController extends Controller
     /**
      * Returns the server startup management page.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function startup(Request $request, Server $server): View
     {

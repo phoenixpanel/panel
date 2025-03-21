@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Repository;
+namespace PhoenixPanel\Exceptions\Repository;
 
-use Phoenixpanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class DuplicateDatabaseNameException extends DisplayException
 {

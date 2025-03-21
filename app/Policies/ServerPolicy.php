@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Policies;
+namespace PhoenixPanel\Policies;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
 
 class ServerPolicy
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Schedule;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Schedule;
 
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class ScheduleAuthorizationTest extends ClientApiIntegrationTestCase
 {

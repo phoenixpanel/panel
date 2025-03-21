@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Transformers\Api\Application;
+namespace PhoenixPanel\Transformers\Api\Application;
 
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\DatabaseHost;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\DatabaseHost;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 
 class DatabaseHostTransformer extends BaseTransformer
 {
@@ -42,7 +42,7 @@ class DatabaseHostTransformer extends BaseTransformer
     /**
      * Include the databases associated with this host.
      *
-     * @throws \Phoenixpanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeDatabases(DatabaseHost $model): Collection|NullResource
     {

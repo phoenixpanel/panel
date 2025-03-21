@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Wings;
+namespace PhoenixPanel\Repositories\Wings;
 
 use GuzzleHttp\Client;
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 
 /**
- * @method \Phoenixpanel\Repositories\Wings\DaemonRepository setNode(\Phoenixpanel\Models\Node $node)
- * @method \Phoenixpanel\Repositories\Wings\DaemonRepository setServer(\Phoenixpanel\Models\Server $server)
+ * @method \Pterodactyl\Repositories\Wings\DaemonRepository setNode(\Pterodactyl\Models\Node $node)
+ * @method \Pterodactyl\Repositories\Wings\DaemonRepository setServer(\Pterodactyl\Models\Server $server)
  */
 abstract class DaemonRepository
 {

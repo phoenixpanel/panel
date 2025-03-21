@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration;
+namespace PhoenixPanel\Tests\Integration;
 
 use Illuminate\Http\Response;
 use Illuminate\Testing\Assert as PHPUnit;
-use Phoenixpanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Testing\TestResponse as IlluminateTestResponse;
 

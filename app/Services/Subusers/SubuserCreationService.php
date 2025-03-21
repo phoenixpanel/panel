@@ -1,17 +1,17 @@
 <?php
 
-namespace Phoenixpanel\Services\Subusers;
+namespace PhoenixPanel\Services\Subusers;
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Subuser;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Services\Users\UserCreationService;
-use Phoenixpanel\Repositories\Eloquent\SubuserRepository;
-use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
-use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
-use Phoenixpanel\Exceptions\Service\Subuser\UserIsServerOwnerException;
-use Phoenixpanel\Exceptions\Service\Subuser\ServerSubuserExistsException;
+use PhoenixPanel\Services\Users\UserCreationService;
+use PhoenixPanel\Repositories\Eloquent\SubuserRepository;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException;
+use PhoenixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException;
 
 class SubuserCreationService
 {
@@ -31,7 +31,7 @@ class SubuserCreationService
      * If the email address already belongs to a user on the system a new user will not
      * be created.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      * @throws ServerSubuserExistsException
      * @throws UserIsServerOwnerException
      * @throws \Throwable

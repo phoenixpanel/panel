@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Locations;
+namespace PhoenixPanel\Http\Requests\Api\Application\Locations;
 
-use Phoenixpanel\Models\Location;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreLocationRequest extends ApplicationApiRequest
 {

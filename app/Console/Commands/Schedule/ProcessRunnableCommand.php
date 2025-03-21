@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands\Schedule;
+namespace PhoenixPanel\Console\Commands\Schedule;
 
 use Exception;
 use Illuminate\Console\Command;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
-use Phoenixpanel\Services\Schedules\ProcessScheduleService;
+use PhoenixPanel\Services\Schedules\ProcessScheduleService;
 
 class ProcessRunnableCommand extends Command
 {
@@ -52,7 +52,7 @@ class ProcessRunnableCommand extends Command
      * never throw an exception out, otherwise you'll end up killing the entire run group causing
      * any other schedules to not process correctly.
      *
-     * @see https://github.com/pterodactyl/panel/issues/2609
+     * @see https://github.com/phoenixpanel/panel/issues/2609
      */
     protected function processSchedule(Schedule $schedule)
     {

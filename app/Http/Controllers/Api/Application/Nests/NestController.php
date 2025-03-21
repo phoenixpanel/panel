@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Application\Nests;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Nests;
 
-use Phoenixpanel\Models\Nest;
-use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
-use Phoenixpanel\Transformers\Api\Application\NestTransformer;
-use Phoenixpanel\Http\Requests\Api\Application\Nests\GetNestsRequest;
-use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Transformers\Api\Application\NestTransformer;
+use PhoenixPanel\Http\Requests\Api\Application\Nests\GetNestsRequest;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class NestController extends ApplicationApiController
 {

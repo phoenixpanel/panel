@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client;
+namespace PhoenixPanel\Tests\Integration\Api\Client;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Models\Permission;
 
 class ClientControllerTest extends ClientApiIntegrationTestCase
 {
@@ -18,10 +18,10 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
      */
     public function testOnlyLoggedInUsersServersAreReturned()
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(3)->create();
 
-        /** @var \Phoenixpanel\Models\Server[] $servers */
+        /** @var \Pterodactyl\Models\Server[] $servers */
         $servers = [
             $this->createServerModel(['user_id' => $users[0]->id]),
             $this->createServerModel(['user_id' => $users[1]->id]),
@@ -45,11 +45,11 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
      */
     public function testServersAreFilteredUsingNameAndUuidInformation()
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(2)->create();
         $users[0]->update(['root_admin' => true]);
 
-        /** @var \Phoenixpanel\Models\Server[] $servers */
+        /** @var \Pterodactyl\Models\Server[] $servers */
         $servers = [
             $this->createServerModel(['user_id' => $users[0]->id, 'name' => 'Julia']),
             $this->createServerModel(['user_id' => $users[1]->id, 'uuidShort' => '12121212', 'name' => 'Janice']),
@@ -143,7 +143,7 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
      */
     public function testServersUserIsASubuserOfAreReturned()
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(3)->create();
         $servers = [
             $this->createServerModel(['user_id' => $users[0]->id]),
@@ -174,7 +174,7 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
      */
     public function testFilterOnlyOwnerServers()
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(3)->create();
         $servers = [
             $this->createServerModel(['user_id' => $users[0]->id]),
@@ -223,7 +223,7 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
      */
     public function testOnlyAdminLevelServersAreReturned()
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(4)->create();
         $users[0]->update(['root_admin' => true]);
 
@@ -258,7 +258,7 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
      */
     public function testAllServersAreReturnedToAdmin()
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(4)->create();
         $users[0]->update(['root_admin' => true]);
 
@@ -289,7 +289,7 @@ class ClientControllerTest extends ClientApiIntegrationTestCase
     #[\PHPUnit\Framework\Attributes\DataProvider('filterTypeDataProvider')]
     public function testNoServersAreReturnedIfAdminFilterIsPassedByRegularUser(string $type)
     {
-        /** @var \Phoenixpanel\Models\User[] $users */
+        /** @var \Pterodactyl\Models\User[] $users */
         $users = User::factory()->times(3)->create();
 
         $this->createServerModel(['user_id' => $users[0]->id]);

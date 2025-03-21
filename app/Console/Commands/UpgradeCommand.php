@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands;
+namespace PhoenixPanel\Console\Commands;
 
 use Illuminate\Console\Command;
-use Phoenixpanel\Console\Kernel;
+use PhoenixPanel\Console\Kernel;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Helper\ProgressBar;
 

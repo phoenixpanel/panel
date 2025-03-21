@@ -4,16 +4,10 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Brad Smith",
-            "email": "brad@phoenixpanel.io",
-            "homepage": "https://github.com/phoenixpanel",
-            "role": "Lead Developer"
-        },
-        {
             "name": "Matthew Penner",
             "email": "matthew@pterodactyl.io",
             "homepage": "https://github.com/matthewpi",
-            "role": "Developer"
+            "role": "Lead Developer"
         },
         {
             "name": "Dane Everitt",
@@ -77,14 +71,14 @@
             "app/helpers.php"
         ],
         "psr-4": {
-            "Phoenixpanel\\": "app/",
+            "PhoenixPanel\\": "app/",
             "Database\\Factories\\": "database/Factories/",
             "Database\\Seeders\\": "database/Seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Phoenixpanel\\Tests\\": "tests/"
+            "PhoenixPanel\\Tests\\": "tests/"
         }
     },
     "scripts": {

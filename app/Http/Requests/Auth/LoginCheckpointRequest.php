@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Auth;
+namespace PhoenixPanel\Http\Requests\Auth;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;

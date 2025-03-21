@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Services\Backups;
+namespace PhoenixPanel\Services\Backups;
 
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Backup;
+use PhoenixPanel\Models\Backup;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Extensions\Backups\BackupManager;
-use Phoenixpanel\Repositories\Wings\DaemonBackupRepository;
-use Phoenixpanel\Exceptions\Service\Backup\BackupLockedException;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Extensions\Backups\BackupManager;
+use PhoenixPanel\Repositories\Wings\DaemonBackupRepository;
+use PhoenixPanel\Exceptions\Service\Backup\BackupLockedException;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class DeleteBackupService
 {
@@ -70,7 +70,7 @@ class DeleteBackupService
         $this->connection->transaction(function () use ($backup) {
             $backup->delete();
 
-            /** @var \Phoenixpanel\Extensions\Filesystem\S3Filesystem $adapter */
+            /** @var \Pterodactyl\Extensions\Filesystem\S3Filesystem $adapter */
             $adapter = $this->manager->adapter(Backup::ADAPTER_AWS_S3);
 
             $adapter->getClient()->deleteObject([

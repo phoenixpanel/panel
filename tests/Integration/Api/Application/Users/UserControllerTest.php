@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Application\Users;
+namespace PhoenixPanel\Tests\Integration\Api\Application\Users;
 
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Transformers\Api\Application\UserTransformer;
-use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
-use Phoenixpanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Transformers\Api\Application\UserTransformer;
+use PhoenixPanel\Transformers\Api\Application\ServerTransformer;
+use PhoenixPanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
 
 class UserControllerTest extends ApplicationApiIntegrationTestCase
 {

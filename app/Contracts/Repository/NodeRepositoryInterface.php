@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Contracts\Repository;
+namespace PhoenixPanel\Contracts\Repository;
 
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Support\Collection;
 
 interface NodeRepositoryInterface extends RepositoryInterface

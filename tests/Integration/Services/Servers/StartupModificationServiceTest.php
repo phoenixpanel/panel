@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Servers;
+namespace PhoenixPanel\Tests\Integration\Services\Servers;
 
 use Exception;
-use Phoenixpanel\Models\Nest;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\ServerVariable;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\ServerVariable;
 use Illuminate\Validation\ValidationException;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Phoenixpanel\Services\Servers\StartupModificationService;
+use PhoenixPanel\Services\Servers\StartupModificationService;
 
 class StartupModificationServiceTest extends IntegrationTestCase
 {
@@ -70,7 +70,7 @@ class StartupModificationServiceTest extends IntegrationTestCase
      */
     public function testServerIsProperlyModifiedAsAdminUser()
     {
-        /** @var \Phoenixpanel\Models\Egg $nextEgg */
+        /** @var \Pterodactyl\Models\Egg $nextEgg */
         $nextEgg = Nest::query()->findOrFail(2)->eggs()->firstOrFail();
 
         $server = $this->createServerModel(['egg_id' => 1]);

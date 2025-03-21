@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Helpers;
+namespace PhoenixPanel\Helpers;
 
 use Carbon\CarbonImmutable;
 

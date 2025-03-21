@@ -1,24 +1,24 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Backup;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Auth\Access\AuthorizationException;
-use Phoenixpanel\Services\Backups\DeleteBackupService;
-use Phoenixpanel\Services\Backups\DownloadLinkService;
-use Phoenixpanel\Repositories\Eloquent\BackupRepository;
-use Phoenixpanel\Services\Backups\InitiateBackupService;
-use Phoenixpanel\Repositories\Wings\DaemonBackupRepository;
-use Phoenixpanel\Transformers\Api\Client\BackupTransformer;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Services\Backups\DeleteBackupService;
+use PhoenixPanel\Services\Backups\DownloadLinkService;
+use PhoenixPanel\Repositories\Eloquent\BackupRepository;
+use PhoenixPanel\Services\Backups\InitiateBackupService;
+use PhoenixPanel\Repositories\Wings\DaemonBackupRepository;
+use PhoenixPanel\Transformers\Api\Client\BackupTransformer;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Backups\StoreBackupRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Backups\RestoreBackupRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Backups\StoreBackupRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Backups\RestoreBackupRequest;
 
 class BackupController extends ClientApiController
 {

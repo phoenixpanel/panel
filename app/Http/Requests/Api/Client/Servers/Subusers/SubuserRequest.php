@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Exceptions\Http\HttpForbiddenException;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
-use Phoenixpanel\Services\Servers\GetUserPermissionsService;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Services\Servers\GetUserPermissionsService;
 
 abstract class SubuserRequest extends ClientApiRequest
 {
@@ -52,7 +52,7 @@ abstract class SubuserRequest extends ClientApiRequest
     protected function validatePermissionsCanBeAssigned(array $permissions)
     {
         $user = $this->user();
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\Server $server */
         $server = $this->route()->parameter('server');
 
         // If we are a root admin or the server owner, no need to perform these checks.

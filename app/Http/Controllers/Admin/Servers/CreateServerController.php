@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Servers;
+namespace PhoenixPanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\Location;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Repositories\Eloquent\NestRepository;
-use Phoenixpanel\Repositories\Eloquent\NodeRepository;
-use Phoenixpanel\Http\Requests\Admin\ServerFormRequest;
-use Phoenixpanel\Services\Servers\ServerCreationService;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Repositories\Eloquent\NestRepository;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Http\Requests\Admin\ServerFormRequest;
+use PhoenixPanel\Services\Servers\ServerCreationService;
 
 class CreateServerController extends Controller
 {
@@ -31,7 +31,7 @@ class CreateServerController extends Controller
     /**
      * Displays the create server page.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function index(): View|RedirectResponse
     {
@@ -63,9 +63,9 @@ class CreateServerController extends Controller
      * Create a new server on the remote system.
      *
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Phoenixpanel\Exceptions\DisplayException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableAllocationException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
      * @throws \Throwable
      */
     public function store(ServerFormRequest $request): RedirectResponse

@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Admin\Settings;
+namespace PhoenixPanel\Http\Requests\Admin\Settings;
 
 use Illuminate\Validation\Rule;
-use Phoenixpanel\Traits\Helpers\AvailableLanguages;
-use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
+use PhoenixPanel\Traits\Helpers\AvailableLanguages;
+use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class BaseSettingsFormRequest extends AdminFormRequest
 {

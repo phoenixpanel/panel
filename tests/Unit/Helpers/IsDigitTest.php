@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Helpers;
+namespace PhoenixPanel\Tests\Unit\Helpers;
 
-use Phoenixpanel\Tests\TestCase;
+use PhoenixPanel\Tests\TestCase;
 
 class IsDigitTest extends TestCase
 {

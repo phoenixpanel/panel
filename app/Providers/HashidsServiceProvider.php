@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Providers;
+namespace PhoenixPanel\Providers;
 
-use Phoenixpanel\Extensions\Hashids;
+use PhoenixPanel\Extensions\Hashids;
 use Illuminate\Support\ServiceProvider;
-use Phoenixpanel\Contracts\Extensions\HashidsInterface;
+use PhoenixPanel\Contracts\Extensions\HashidsInterface;
 
 class HashidsServiceProvider extends ServiceProvider
 {

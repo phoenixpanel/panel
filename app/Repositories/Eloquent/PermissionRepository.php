@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use Phoenixpanel\Contracts\Repository\PermissionRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\PermissionRepositoryInterface;
 
 class PermissionRepository extends EloquentRepository implements PermissionRepositoryInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Service\Subuser;
+namespace PhoenixPanel\Exceptions\Service\Subuser;
 
-use Phoenixpanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class ServerSubuserExistsException extends DisplayException
 {

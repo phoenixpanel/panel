@@ -1,17 +1,17 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Auth;
+namespace PhoenixPanel\Http\Controllers\Auth;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\JsonResponse;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Phoenixpanel\Events\Auth\ProvidedAuthenticationToken;
-use Phoenixpanel\Http\Requests\Auth\LoginCheckpointRequest;
+use PhoenixPanel\Events\Auth\ProvidedAuthenticationToken;
+use PhoenixPanel\Http\Requests\Auth\LoginCheckpointRequest;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginCheckpointController extends AbstractLoginController

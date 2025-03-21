@@ -1,17 +1,17 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Facades\Activity;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Facades\Activity;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Phoenixpanel\Repositories\Wings\DaemonCommandRepository;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\SendCommandRequest;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Repositories\Wings\DaemonCommandRepository;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\SendCommandRequest;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class CommandController extends ClientApiController
 {

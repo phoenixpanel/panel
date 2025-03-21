@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Contracts\Repository;
+namespace PhoenixPanel\Contracts\Repository;
 
-use Phoenixpanel\Models\Location;
+use PhoenixPanel\Models\Location;
 use Illuminate\Support\Collection;
 
 interface LocationRepositoryInterface extends RepositoryInterface
@@ -20,14 +20,14 @@ interface LocationRepositoryInterface extends RepositoryInterface
     /**
      * Return all the nodes and their respective count of servers for a location.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithNodes(int $id): Location;
 
     /**
      * Return a location and the count of nodes in that location.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithNodeCount(int $id): Location;
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client;
+namespace PhoenixPanel\Http\Controllers\Api\Client;
 
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
-use Phoenixpanel\Transformers\Api\Client\ApiKeyTransformer;
-use Phoenixpanel\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Transformers\Api\Client\ApiKeyTransformer;
+use PhoenixPanel\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
 
 class ApiKeyController extends ClientApiController
 {

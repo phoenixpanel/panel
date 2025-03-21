@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Assertions;
+namespace PhoenixPanel\Tests\Assertions;
 
 use PHPUnit\Framework\Assert;
 use Illuminate\Support\Facades\Event;
-use Phoenixpanel\Events\ActivityLogged;
+use PhoenixPanel\Events\ActivityLogged;
 use Illuminate\Database\Eloquent\Model;
-use Phoenixpanel\Models\ActivityLogSubject;
+use PhoenixPanel\Models\ActivityLogSubject;
 
 trait AssertsActivityLogged
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Application\Users;
+namespace PhoenixPanel\Tests\Integration\Api\Application\Users;
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
-use Phoenixpanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
+use PhoenixPanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
 
 class ExternalUserControllerTest extends ApplicationApiIntegrationTestCase
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin;
+namespace PhoenixPanel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Http\Controllers\Controller;
+use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Phoenixpanel\Services\Api\KeyCreationService;
-use Phoenixpanel\Repositories\Eloquent\ApiKeyRepository;
+use PhoenixPanel\Services\Api\KeyCreationService;
+use PhoenixPanel\Repositories\Eloquent\ApiKeyRepository;
 
 class NodeAutoDeployController extends Controller
 {
@@ -27,7 +27,7 @@ class NodeAutoDeployController extends Controller
      * Generates a new API key for the logged-in user with only permission to read
      * nodes, and returns that as the deployment key for a node.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     public function __invoke(Request $request, Node $node): JsonResponse
     {

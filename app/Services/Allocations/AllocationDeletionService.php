@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Services\Allocations;
+namespace PhoenixPanel\Services\Allocations;
 
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Allocation\ServerUsingAllocationException;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException;
 
 class AllocationDeletionService
 {

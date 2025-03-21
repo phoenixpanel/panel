@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Servers;
+namespace PhoenixPanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Models\Filters\AdminServerFilter;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Models\Filters\AdminServerFilter;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 
 class ServerController extends Controller

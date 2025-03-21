@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands;
+namespace PhoenixPanel\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\VarDumper\VarDumper;
-use Phoenixpanel\Services\Telemetry\TelemetryCollectionService;
+use PhoenixPanel\Services\Telemetry\TelemetryCollectionService;
 
 class TelemetryCommand extends Command
 {
@@ -23,7 +23,7 @@ class TelemetryCommand extends Command
     /**
      * Handle execution of command.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

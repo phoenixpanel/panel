@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Rules;
+namespace PhoenixPanel\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 

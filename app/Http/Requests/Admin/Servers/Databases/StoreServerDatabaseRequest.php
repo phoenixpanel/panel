@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Admin\Servers\Databases;
+namespace PhoenixPanel\Http\Requests\Admin\Servers\Databases;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Query\Builder;
-use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
+use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class StoreServerDatabaseRequest extends AdminFormRequest
 {

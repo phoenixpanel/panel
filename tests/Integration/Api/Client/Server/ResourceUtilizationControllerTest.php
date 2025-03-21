@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server;
 
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class ResourceUtilizationControllerTest extends ClientApiIntegrationTestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Database\Eloquent\Builder;
-use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
 
 class AllocationRepository extends EloquentRepository implements AllocationRepositoryInterface
 {

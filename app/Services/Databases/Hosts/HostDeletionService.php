@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Services\Databases\Hosts;
+namespace PhoenixPanel\Services\Databases\Hosts;
 
-use Phoenixpanel\Exceptions\Service\HasActiveServersException;
-use Phoenixpanel\Contracts\Repository\DatabaseRepositoryInterface;
-use Phoenixpanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\HasActiveServersException;
+use PhoenixPanel\Contracts\Repository\DatabaseRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class HostDeletionService
 {

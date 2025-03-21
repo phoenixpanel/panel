@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Providers;
+namespace PhoenixPanel\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Phoenixpanel\Services\Activity\ActivityLogBatchService;
-use Phoenixpanel\Services\Activity\ActivityLogTargetableService;
+use PhoenixPanel\Services\Activity\ActivityLogBatchService;
+use PhoenixPanel\Services\Activity\ActivityLogTargetableService;
 
 class ActivityLogServiceProvider extends ServiceProvider
 {

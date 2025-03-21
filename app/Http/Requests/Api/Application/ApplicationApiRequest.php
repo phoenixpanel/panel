@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application;
+namespace PhoenixPanel\Http\Requests\Api\Application;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Laravel\Sanctum\TransientToken;
 use Illuminate\Validation\Validator;
 use Illuminate\Database\Eloquent\Model;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 use Illuminate\Foundation\Http\FormRequest;
-use Phoenixpanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PterodactylException;
 
 abstract class ApplicationApiRequest extends FormRequest
 {

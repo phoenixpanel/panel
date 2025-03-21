@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Eggs\Variables;
+namespace PhoenixPanel\Services\Eggs\Variables;
 
-use Phoenixpanel\Models\EggVariable;
-use Phoenixpanel\Traits\Services\ValidatesValidationRules;
+use PhoenixPanel\Models\EggVariable;
+use PhoenixPanel\Traits\Services\ValidatesValidationRules;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Phoenixpanel\Contracts\Repository\EggVariableRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
+use PhoenixPanel\Contracts\Repository\EggVariableRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
 
 class VariableCreationService
 {
@@ -31,8 +31,8 @@ class VariableCreationService
     /**
      * Create a new variable for a given Egg.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Service\Egg\Variable\BadValidationRuleException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Service\Egg\Variable\BadValidationRuleException
      * @throws ReservedVariableNameException
      */
     public function handle(int $egg, array $data): EggVariable

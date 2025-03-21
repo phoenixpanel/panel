@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * \Phoenixpanel\Models\UserSSHKey.
+ * \Pterodactyl\Models\UserSSHKey.
  *
  * @property int $id
  * @property int $user_id

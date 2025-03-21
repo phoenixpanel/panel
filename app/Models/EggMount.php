@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 class EggMount extends Model
 {

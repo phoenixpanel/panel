@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Application\Nests;
+namespace PhoenixPanel\Tests\Integration\Api\Application\Nests;
 
 use Illuminate\Support\Arr;
-use Phoenixpanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use Illuminate\Http\Response;
-use Phoenixpanel\Transformers\Api\Application\EggTransformer;
-use Phoenixpanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
+use PhoenixPanel\Transformers\Api\Application\EggTransformer;
+use PhoenixPanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
 
 class EggControllerTest extends ApplicationApiIntegrationTestCase
 {

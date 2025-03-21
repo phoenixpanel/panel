@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Listeners\Auth;
+namespace PhoenixPanel\Listeners\Auth;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Facades\Activity;
+use PhoenixPanel\Facades\Activity;
 use Illuminate\Auth\Events\PasswordReset;
 
 class PasswordResetListener

@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\CarbonImmutable;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Services\Nodes\NodeJWTService;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Files\UploadFileRequest;
+use PhoenixPanel\Services\Nodes\NodeJWTService;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\UploadFileRequest;
 
 class FileUploadController extends ClientApiController
 {

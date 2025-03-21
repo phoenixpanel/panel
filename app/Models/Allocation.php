@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Phoenixpanel\Models\Allocation.
+ * Pterodactyl\Models\Allocation.
  *
  * @property int $id
  * @property int $node_id

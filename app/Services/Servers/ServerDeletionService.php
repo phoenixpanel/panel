@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerDeletionService
 {
@@ -38,7 +38,7 @@ class ServerDeletionService
      * Delete a server from the panel and remove any associated databases from hosts.
      *
      * @throws \Throwable
-     * @throws \Phoenixpanel\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\DisplayException
      */
     public function handle(Server $server): void
     {

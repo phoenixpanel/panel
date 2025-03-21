@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Application\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Servers;
 
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Database;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Services\Databases\DatabasePasswordService;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Transformers\Api\Application\ServerDatabaseTransformer;
-use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\Databases\GetServerDatabaseRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\Databases\GetServerDatabasesRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\Databases\ServerDatabaseWriteRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\Databases\StoreServerDatabaseRequest;
+use PhoenixPanel\Services\Databases\DatabasePasswordService;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Transformers\Api\Application\ServerDatabaseTransformer;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\Databases\GetServerDatabaseRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\Databases\GetServerDatabasesRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\Databases\ServerDatabaseWriteRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\Databases\StoreServerDatabaseRequest;
 
 class DatabaseController extends ApplicationApiController
 {

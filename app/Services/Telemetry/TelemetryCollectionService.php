@@ -1,22 +1,22 @@
 <?php
 
-namespace Phoenixpanel\Services\Telemetry;
+namespace PhoenixPanel\Services\Telemetry;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use Phoenixpanel\Models\Egg;
-use Phoenixpanel\Models\Nest;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Mount;
-use Phoenixpanel\Models\Backup;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Location;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Mount;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Location;
 use Illuminate\Support\Facades\DB;
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Support\Facades\Http;
-use Phoenixpanel\Repositories\Eloquent\SettingsRepository;
-use Phoenixpanel\Repositories\Wings\DaemonConfigurationRepository;
+use PhoenixPanel\Repositories\Eloquent\SettingsRepository;
+use PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository;
 
 class TelemetryCollectionService
 {
@@ -46,7 +46,7 @@ class TelemetryCollectionService
     /**
      * Collects telemetry data and returns it as an array.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     public function collect(): array
     {

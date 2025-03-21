@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Tests\Traits;
+namespace PhoenixPanel\Tests\Traits;
 
 use Mockery as m;
 use Ramsey\Uuid\Uuid;

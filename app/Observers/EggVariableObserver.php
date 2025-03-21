@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Observers;
+namespace PhoenixPanel\Observers;
 
-use Phoenixpanel\Models\EggVariable;
+use PhoenixPanel\Models\EggVariable;
 
 class EggVariableObserver
 {

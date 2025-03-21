@@ -1,17 +1,17 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Schedules;
+namespace PhoenixPanel\Tests\Integration\Services\Schedules;
 
 use Exception;
 use Carbon\CarbonImmutable;
-use Phoenixpanel\Models\Task;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Task;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Phoenixpanel\Jobs\Schedule\RunTaskJob;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Services\Schedules\ProcessScheduleService;
+use PhoenixPanel\Jobs\Schedule\RunTaskJob;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Services\Schedules\ProcessScheduleService;
 
 class ProcessScheduleServiceTest extends IntegrationTestCase
 {

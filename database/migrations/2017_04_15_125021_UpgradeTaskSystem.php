@@ -1,6 +1,6 @@
 <?php
 
-use Phoenixpanel\Models\Task;
+use PhoenixPanel\Models\Task;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

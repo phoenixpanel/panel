@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Servers;
+namespace PhoenixPanel\Http\Requests\Api\Application\Servers;
 
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class UpdateServerStartupRequest extends ApplicationApiRequest
 {

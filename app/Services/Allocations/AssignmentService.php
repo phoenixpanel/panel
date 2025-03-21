@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Services\Allocations;
+namespace PhoenixPanel\Services\Allocations;
 
 use IPTools\Network;
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Allocation\CidrOutOfRangeException;
-use Phoenixpanel\Exceptions\Service\Allocation\PortOutOfRangeException;
-use Phoenixpanel\Exceptions\Service\Allocation\InvalidPortMappingException;
-use Phoenixpanel\Exceptions\Service\Allocation\TooManyPortsInRangeException;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException;
+use PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException;
+use PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException;
+use PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException;
 
 class AssignmentService
 {

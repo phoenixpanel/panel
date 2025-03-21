@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Services\Nests;
+namespace PhoenixPanel\Services\Nests;
 
 use Ramsey\Uuid\Uuid;
-use Phoenixpanel\Models\Nest;
-use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class NestCreationService
@@ -19,7 +19,7 @@ class NestCreationService
     /**
      * Create a new nest on the system.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     public function handle(array $data, ?string $author = null): Nest
     {

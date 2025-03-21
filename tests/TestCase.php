@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Tests;
+namespace PhoenixPanel\Tests;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;

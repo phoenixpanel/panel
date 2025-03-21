@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Services\Databases;
+namespace PhoenixPanel\Services\Databases;
 
 use Exception;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Helpers\Utilities;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Helpers\Utilities;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Phoenixpanel\Extensions\DynamicDatabaseConnection;
-use Phoenixpanel\Repositories\Eloquent\DatabaseRepository;
-use Phoenixpanel\Exceptions\Repository\DuplicateDatabaseNameException;
-use Phoenixpanel\Exceptions\Service\Database\TooManyDatabasesException;
-use Phoenixpanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
+use PhoenixPanel\Extensions\DynamicDatabaseConnection;
+use PhoenixPanel\Repositories\Eloquent\DatabaseRepository;
+use PhoenixPanel\Exceptions\Repository\DuplicateDatabaseNameException;
+use PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException;
+use PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
 
 class DatabaseManagementService
 {
@@ -20,7 +20,7 @@ class DatabaseManagementService
      * The regex used to validate that the database name passed through to the function is
      * in the expected format.
      *
-     * @see \Phoenixpanel\Services\Databases\DatabaseManagementService::generateUniqueDatabaseName()
+     * @see \Pterodactyl\Services\Databases\DatabaseManagementService::generateUniqueDatabaseName()
      */
     private const MATCH_NAME_REGEX = '/^(s[\d]+_)(.*)$/';
 

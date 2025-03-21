@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Remote\Backups;
+namespace PhoenixPanel\Http\Controllers\Api\Remote\Backups;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Backup;
+use PhoenixPanel\Models\Backup;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Extensions\Backups\BackupManager;
-use Phoenixpanel\Extensions\Filesystem\S3Filesystem;
-use Phoenixpanel\Exceptions\Http\HttpForbiddenException;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Extensions\Backups\BackupManager;
+use PhoenixPanel\Extensions\Filesystem\S3Filesystem;
+use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Phoenixpanel\Http\Requests\Api\Remote\ReportBackupCompleteRequest;
+use PhoenixPanel\Http\Requests\Api\Remote\ReportBackupCompleteRequest;
 
 class BackupStatusController extends Controller
 {
@@ -32,7 +32,7 @@ class BackupStatusController extends Controller
     public function index(ReportBackupCompleteRequest $request, string $backup): JsonResponse
     {
         // Get the node associated with the request.
-        /** @var \Phoenixpanel\Models\Node $node */
+        /** @var \Pterodactyl\Models\Node $node */
         $node = $request->attributes->get('node');
 
         /** @var Backup $model */
@@ -42,7 +42,7 @@ class BackupStatusController extends Controller
 
         // Check that the backup is "owned" by the node making the request. This avoids other nodes
         // from messing with backups that they don't own.
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\Server $server */
         $server = $model->server;
         if ($server->node_id !== $node->id) {
             throw new HttpForbiddenException('You do not have permission to access that backup.');

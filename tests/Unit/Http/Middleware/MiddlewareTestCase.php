@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Http\Middleware;
+namespace PhoenixPanel\Tests\Unit\Http\Middleware;
 
-use Phoenixpanel\Tests\TestCase;
-use Phoenixpanel\Tests\Traits\Http\RequestMockHelpers;
-use Phoenixpanel\Tests\Traits\Http\MocksMiddlewareClosure;
-use Phoenixpanel\Tests\Assertions\MiddlewareAttributeAssertionsTrait;
+use PhoenixPanel\Tests\TestCase;
+use PhoenixPanel\Tests\Traits\Http\RequestMockHelpers;
+use PhoenixPanel\Tests\Traits\Http\MocksMiddlewareClosure;
+use PhoenixPanel\Tests\Assertions\MiddlewareAttributeAssertionsTrait;
 
 abstract class MiddlewareTestCase extends TestCase
 {

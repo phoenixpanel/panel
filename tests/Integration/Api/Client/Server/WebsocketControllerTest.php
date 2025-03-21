@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Response;
 use Lcobucci\JWT\Configuration;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Permission;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class WebsocketControllerTest extends ClientApiIntegrationTestCase
 {
@@ -45,8 +45,8 @@ class WebsocketControllerTest extends ClientApiIntegrationTestCase
      */
     public function testJwtAndWebsocketUrlAreReturnedForServerOwner()
     {
-        /** @var \Phoenixpanel\Models\User $user */
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\User $user */
+        /** @var \Pterodactyl\Models\Server $server */
         [$user, $server] = $this->generateTestAccount();
 
         // Force the node to HTTPS since we want to confirm it gets transformed to wss:// in the URL.
@@ -98,8 +98,8 @@ class WebsocketControllerTest extends ClientApiIntegrationTestCase
     {
         $permissions = [Permission::ACTION_WEBSOCKET_CONNECT, Permission::ACTION_CONTROL_CONSOLE];
 
-        /** @var \Phoenixpanel\Models\User $user */
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\User $user */
+        /** @var \Pterodactyl\Models\Server $server */
         [$user, $server] = $this->generateTestAccount($permissions);
 
         $response = $this->actingAs($user)->getJson("/api/client/servers/$server->uuid/websocket");

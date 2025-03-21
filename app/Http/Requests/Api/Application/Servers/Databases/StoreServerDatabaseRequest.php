@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Servers\Databases;
+namespace PhoenixPanel\Http\Requests\Api\Application\Servers\Databases;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Validation\Rule;
 use Illuminate\Database\Query\Builder;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreServerDatabaseRequest extends ApplicationApiRequest
 {

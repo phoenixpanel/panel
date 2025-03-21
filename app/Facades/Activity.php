@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Facades;
+namespace PhoenixPanel\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Phoenixpanel\Services\Activity\ActivityLogService;
+use PhoenixPanel\Services\Activity\ActivityLogService;
 
 class Activity extends Facade
 {

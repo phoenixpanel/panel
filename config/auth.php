@@ -82,7 +82,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Phoenixpanel\Models\User::class,
+            'model' => Pterodactyl\Models\User::class,
         ],
     ],
 

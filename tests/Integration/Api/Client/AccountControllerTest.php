@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client;
+namespace PhoenixPanel\Tests\Integration\Api\Client;
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 

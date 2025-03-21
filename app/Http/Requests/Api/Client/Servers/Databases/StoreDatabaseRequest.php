@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Databases;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Databases;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Validation\Rule;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Database\Query\Builder;
-use Phoenixpanel\Contracts\Http\ClientPermissionsRequest;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Contracts\Http\ClientPermissionsRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
 
 class StoreDatabaseRequest extends ClientApiRequest implements ClientPermissionsRequest
 {

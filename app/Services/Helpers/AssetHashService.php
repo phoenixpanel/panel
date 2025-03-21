@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Services\Helpers;
+namespace PhoenixPanel\Services\Helpers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use Phoenixpanel\Exceptions\ManifestDoesNotExistException;
+use PhoenixPanel\Exceptions\ManifestDoesNotExistException;
 
 class AssetHashService
 {

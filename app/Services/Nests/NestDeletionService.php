@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Services\Nests;
+namespace PhoenixPanel\Services\Nests;
 
-use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\HasActiveServersException;
-use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\HasActiveServersException;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class NestDeletionService
 {

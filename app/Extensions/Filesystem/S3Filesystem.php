@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Extensions\Filesystem;
+namespace PhoenixPanel\Extensions\Filesystem;
 
 use Aws\S3\S3ClientInterface;
 use League\Flysystem\AwsS3V3\AwsS3V3Adapter;

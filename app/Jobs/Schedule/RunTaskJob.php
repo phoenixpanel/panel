@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Jobs\Schedule;
+namespace PhoenixPanel\Jobs\Schedule;
 
 use Exception;
-use Phoenixpanel\Jobs\Job;
+use PhoenixPanel\Jobs\Job;
 use Carbon\CarbonImmutable;
-use Phoenixpanel\Models\Task;
+use PhoenixPanel\Models\Task;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Phoenixpanel\Services\Backups\InitiateBackupService;
-use Phoenixpanel\Repositories\Wings\DaemonPowerRepository;
-use Phoenixpanel\Repositories\Wings\DaemonCommandRepository;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Services\Backups\InitiateBackupService;
+use PhoenixPanel\Repositories\Wings\DaemonPowerRepository;
+use PhoenixPanel\Repositories\Wings\DaemonCommandRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class RunTaskJob extends Job implements ShouldQueue
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Services\Databases\Hosts;
+namespace PhoenixPanel\Services\Databases\Hosts;
 
-use Phoenixpanel\Models\DatabaseHost;
+use PhoenixPanel\Models\DatabaseHost;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Phoenixpanel\Extensions\DynamicDatabaseConnection;
-use Phoenixpanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PhoenixPanel\Extensions\DynamicDatabaseConnection;
+use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class HostUpdateService
 {

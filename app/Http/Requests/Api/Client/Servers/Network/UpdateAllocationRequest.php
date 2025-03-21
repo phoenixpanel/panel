@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Network;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Network;
 
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class UpdateAllocationRequest extends ClientApiRequest
 {

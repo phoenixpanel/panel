@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Extensions;
+namespace PhoenixPanel\Extensions;
 
 use Hashids\Hashids as VendorHashids;
-use Phoenixpanel\Contracts\Extensions\HashidsInterface;
+use PhoenixPanel\Contracts\Extensions\HashidsInterface;
 
 class Hashids extends VendorHashids implements HashidsInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware;
+namespace PhoenixPanel\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as BaseTrimmer;
 

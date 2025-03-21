@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Tests\Traits\Integration;
+namespace PhoenixPanel\Tests\Traits\Integration;
 
 use Ramsey\Uuid\Uuid;
-use Phoenixpanel\Models\Egg;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Location;
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Models\Allocation;
 
 trait CreatesTestModels
 {
@@ -81,7 +81,7 @@ trait CreatesTestModels
      *
      * @param string[] $permissions
      *
-     * @return array{\Phoenixpanel\Models\User, \Phoenixpanel\Models\Server}
+     * @return array{\Pterodactyl\Models\User, \Pterodactyl\Models\Server}
      */
     public function generateTestAccount(array $permissions = []): array
     {

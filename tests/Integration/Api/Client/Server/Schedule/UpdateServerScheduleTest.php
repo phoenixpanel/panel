@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Schedule;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Schedule;
 
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Helpers\Utilities;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Helpers\Utilities;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class UpdateServerScheduleTest extends ClientApiIntegrationTestCase
 {

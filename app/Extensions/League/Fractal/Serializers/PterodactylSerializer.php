@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Extensions\League\Fractal\Serializers;
+namespace PhoenixPanel\Extensions\League\Fractal\Serializers;
 
 use League\Fractal\Serializer\ArraySerializer;
 

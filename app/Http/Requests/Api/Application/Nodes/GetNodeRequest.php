@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Nodes;
+namespace PhoenixPanel\Http\Requests\Api\Application\Nodes;
 
 class GetNodeRequest extends GetNodesRequest
 {

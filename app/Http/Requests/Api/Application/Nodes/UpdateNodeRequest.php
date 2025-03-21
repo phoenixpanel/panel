@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Nodes;
+namespace PhoenixPanel\Http\Requests\Api\Application\Nodes;
 
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 
 class UpdateNodeRequest extends StoreNodeRequest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 
 class AllocationTransformer extends BaseClientTransformer
 {

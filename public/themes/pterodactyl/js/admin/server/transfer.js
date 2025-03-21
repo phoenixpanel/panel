@@ -35,7 +35,7 @@ function updateAdditionalAllocations() {
     let currentAllocation = $('#pAllocation').val();
     let currentNode = $('#pNodeId').val();
 
-    $.each(Pterodactyl.nodeData, function (i, v) {
+    $.each(PhoenixPanel.nodeData, function (i, v) {
         if (v.id == currentNode) {
             let allocations = [];
 

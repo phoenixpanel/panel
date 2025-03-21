@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Application\Nests;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Nests;
 
-use Phoenixpanel\Models\Egg;
-use Phoenixpanel\Models\Nest;
-use Phoenixpanel\Transformers\Api\Application\EggTransformer;
-use Phoenixpanel\Http\Requests\Api\Application\Nests\Eggs\GetEggRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Nests\Eggs\GetEggsRequest;
-use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Transformers\Api\Application\EggTransformer;
+use PhoenixPanel\Http\Requests\Api\Application\Nests\Eggs\GetEggRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Nests\Eggs\GetEggsRequest;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class EggController extends ApplicationApiController
 {

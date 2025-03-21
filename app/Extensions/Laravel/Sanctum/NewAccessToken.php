@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Extensions\Laravel\Sanctum;
+namespace PhoenixPanel\Extensions\Laravel\Sanctum;
 
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Laravel\Sanctum\NewAccessToken as SanctumAccessToken;
 
 /**

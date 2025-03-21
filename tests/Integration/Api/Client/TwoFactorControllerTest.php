@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client;
+namespace PhoenixPanel\Tests\Integration\Api\Client;
 
 use Carbon\Carbon;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
 use PragmaRX\Google2FA\Google2FA;
-use Phoenixpanel\Models\RecoveryToken;
+use PhoenixPanel\Models\RecoveryToken;
 use PHPUnit\Framework\ExpectationFailedException;
 
 class TwoFactorControllerTest extends ClientApiIntegrationTestCase

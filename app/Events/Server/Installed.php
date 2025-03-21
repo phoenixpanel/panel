@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Events\Server;
+namespace PhoenixPanel\Events\Server;
 
-use Phoenixpanel\Events\Event;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Events\Event;
+use PhoenixPanel\Models\Server;
 use Illuminate\Queue\SerializesModels;
 
 class Installed extends Event

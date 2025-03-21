@@ -1,26 +1,26 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Helpers\Utilities;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Repositories\Eloquent\ScheduleRepository;
-use Phoenixpanel\Services\Schedules\ProcessScheduleService;
-use Phoenixpanel\Transformers\Api\Client\ScheduleTransformer;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Helpers\Utilities;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Repositories\Eloquent\ScheduleRepository;
+use PhoenixPanel\Services\Schedules\ProcessScheduleService;
+use PhoenixPanel\Transformers\Api\Client\ScheduleTransformer;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\ViewScheduleRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\StoreScheduleRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\DeleteScheduleRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\UpdateScheduleRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Schedules\TriggerScheduleRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\ViewScheduleRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\StoreScheduleRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\DeleteScheduleRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\UpdateScheduleRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\TriggerScheduleRequest;
 
 class ScheduleController extends ClientApiController
 {
@@ -48,7 +48,7 @@ class ScheduleController extends ClientApiController
      * Store a new schedule for a server.
      *
      * @throws DisplayException
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     public function store(StoreScheduleRequest $request, Server $server): array
     {
@@ -96,8 +96,8 @@ class ScheduleController extends ClientApiController
      * Updates a given schedule with the new data provided.
      *
      * @throws DisplayException
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateScheduleRequest $request, Server $server, Schedule $schedule): array
     {

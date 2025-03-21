@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Models\Traits;
+namespace PhoenixPanel\Models\Traits;
 
 use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Phoenixpanel\Extensions\Laravel\Sanctum\NewAccessToken;
+use PhoenixPanel\Extensions\Laravel\Sanctum\NewAccessToken;
 
 /**
- * @mixin \Phoenixpanel\Models\Model
+ * @mixin \Pterodactyl\Models\Model
  */
 trait HasAccessTokens
 {

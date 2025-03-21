@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Helpers\Time;
+use PhoenixPanel\Helpers\Time;
 
 return [
     /*

@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Databases;
+namespace PhoenixPanel\Tests\Integration\Services\Databases;
 
 use Mockery\MockInterface;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\DatabaseHost;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Repositories\Eloquent\DatabaseRepository;
-use Phoenixpanel\Services\Databases\DatabaseManagementService;
-use Phoenixpanel\Exceptions\Repository\DuplicateDatabaseNameException;
-use Phoenixpanel\Exceptions\Service\Database\TooManyDatabasesException;
-use Phoenixpanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\DatabaseHost;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Repositories\Eloquent\DatabaseRepository;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Exceptions\Repository\DuplicateDatabaseNameException;
+use PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException;
+use PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
 
 class DatabaseManagementServiceTest extends IntegrationTestCase
 {

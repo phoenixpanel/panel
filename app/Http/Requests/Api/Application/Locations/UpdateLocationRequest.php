@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Locations;
+namespace PhoenixPanel\Http\Requests\Api\Application\Locations;
 
-use Phoenixpanel\Models\Location;
+use PhoenixPanel\Models\Location;
 
 class UpdateLocationRequest extends StoreLocationRequest
 {

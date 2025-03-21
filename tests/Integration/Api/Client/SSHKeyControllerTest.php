@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client;
+namespace PhoenixPanel\Tests\Integration\Api\Client;
 
 use phpseclib3\Crypt\EC;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\UserSSHKey;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\UserSSHKey;
 
 class SSHKeyControllerTest extends ClientApiIntegrationTestCase
 {

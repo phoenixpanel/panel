@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Subuser;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Subuser;
 
 use Ramsey\Uuid\Uuid;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class DeleteSubuserTest extends ClientApiIntegrationTestCase
 {

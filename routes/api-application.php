@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Phoenixpanel\Http\Controllers\Api\Application;
+use PhoenixPanel\Http\Controllers\Api\Application;
 
 /*
 |--------------------------------------------------------------------------

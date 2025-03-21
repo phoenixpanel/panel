@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\ScheduleTask;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\ScheduleTask;
 
-use Phoenixpanel\Models\Task;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\Task;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class DeleteScheduleTaskTest extends ClientApiIntegrationTestCase
 {

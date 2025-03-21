@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Deployment;
+namespace PhoenixPanel\Services\Deployment;
 
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Services\Allocations\AssignmentService;
-use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Deployment\NoViableAllocationException;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Services\Allocations\AssignmentService;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException;
 
 class AllocationSelectionService
 {

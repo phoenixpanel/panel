@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Phoenixpanel\Models\DatabaseHost;
+use PhoenixPanel\Models\DatabaseHost;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

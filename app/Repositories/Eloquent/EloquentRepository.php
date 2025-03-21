@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Phoenixpanel\Repositories\Repository;
+use PhoenixPanel\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Phoenixpanel\Contracts\Repository\RepositoryInterface;
-use Phoenixpanel\Exceptions\Model\DataValidationException;
-use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Contracts\Repository\RepositoryInterface;
+use PhoenixPanel\Exceptions\Model\DataValidationException;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
 
 abstract class EloquentRepository extends Repository implements RepositoryInterface
 {

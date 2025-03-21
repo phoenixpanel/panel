@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Services\Servers\StartupCommandService;
-use Phoenixpanel\Repositories\Eloquent\ServerVariableRepository;
-use Phoenixpanel\Transformers\Api\Client\EggVariableTransformer;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Services\Servers\StartupCommandService;
+use PhoenixPanel\Repositories\Eloquent\ServerVariableRepository;
+use PhoenixPanel\Transformers\Api\Client\EggVariableTransformer;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Startup\GetStartupRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Startup\UpdateStartupVariableRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Startup\GetStartupRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Startup\UpdateStartupVariableRequest;
 
 class StartupController extends ClientApiController
 {
@@ -47,12 +47,12 @@ class StartupController extends ClientApiController
      * Updates a single variable for a server.
      *
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateStartupVariableRequest $request, Server $server): array
     {
-        /** @var \Phoenixpanel\Models\EggVariable $variable */
+        /** @var \Pterodactyl\Models\EggVariable $variable */
         $variable = $server->variables()->where('env_variable', $request->input('key'))->first();
         $original = $variable->server_value;
 

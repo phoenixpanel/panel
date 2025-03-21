@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use Phoenixpanel\Models\Mount;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Mount;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
 
 class MountRepository extends EloquentRepository
 {

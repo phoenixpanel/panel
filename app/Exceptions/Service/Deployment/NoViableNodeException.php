@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Service\Deployment;
+namespace PhoenixPanel\Exceptions\Service\Deployment;
 
-use Phoenixpanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class NoViableNodeException extends DisplayException
 {

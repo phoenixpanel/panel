@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Base;
+namespace PhoenixPanel\Http\Controllers\Base;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Translation\Translator;
 use Illuminate\Contracts\Translation\Loader;
-use Phoenixpanel\Http\Controllers\Controller;
+use PhoenixPanel\Http\Controllers\Controller;
 
 class LocaleController extends Controller
 {

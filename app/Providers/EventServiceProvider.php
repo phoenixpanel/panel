@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Providers;
+namespace PhoenixPanel\Providers;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\EggVariable;
-use Phoenixpanel\Observers\UserObserver;
-use Phoenixpanel\Observers\ServerObserver;
-use Phoenixpanel\Observers\SubuserObserver;
-use Phoenixpanel\Observers\EggVariableObserver;
-use Phoenixpanel\Listeners\Auth\AuthenticationListener;
-use Phoenixpanel\Events\Server\Installed as ServerInstalledEvent;
-use Phoenixpanel\Notifications\ServerInstalled as ServerInstalledNotification;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\EggVariable;
+use PhoenixPanel\Observers\UserObserver;
+use PhoenixPanel\Observers\ServerObserver;
+use PhoenixPanel\Observers\SubuserObserver;
+use PhoenixPanel\Observers\EggVariableObserver;
+use PhoenixPanel\Listeners\Auth\AuthenticationListener;
+use PhoenixPanel\Events\Server\Installed as ServerInstalledEvent;
+use PhoenixPanel\Notifications\ServerInstalled as ServerInstalledNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider

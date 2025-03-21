@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Deployment;
+namespace PhoenixPanel\Tests\Integration\Services\Deployment;
 
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Database;
-use Phoenixpanel\Models\Location;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\Location;
 use Illuminate\Support\Collection;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Services\Deployment\FindViableNodesService;
-use Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Services\Deployment\FindViableNodesService;
+use PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException;
 
 class FindViableNodesServiceTest extends IntegrationTestCase
 {
@@ -68,10 +68,10 @@ class FindViableNodesServiceTest extends IntegrationTestCase
 
     public function testExpectedNodeIsReturnedForLocation()
     {
-        /** @var \Phoenixpanel\Models\Location[] $locations */
+        /** @var \Pterodactyl\Models\Location[] $locations */
         $locations = Location::factory()->times(2)->create();
 
-        /** @var \Phoenixpanel\Models\Node[] $nodes */
+        /** @var \Pterodactyl\Models\Node[] $nodes */
         $nodes = [
             // This node should never be returned once we've completed the initial test which
             // runs without a location filter.

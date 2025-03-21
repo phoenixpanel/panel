@@ -1,23 +1,23 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Facades\Activity;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Support\Facades\Log;
-use Phoenixpanel\Repositories\Eloquent\SubuserRepository;
-use Phoenixpanel\Services\Subusers\SubuserCreationService;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Transformers\Api\Client\SubuserTransformer;
-use Phoenixpanel\Http\Controllers\Api\Client\ClientApiController;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\GetSubuserRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\StoreSubuserRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\DeleteSubuserRequest;
-use Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers\UpdateSubuserRequest;
+use PhoenixPanel\Repositories\Eloquent\SubuserRepository;
+use PhoenixPanel\Services\Subusers\SubuserCreationService;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Transformers\Api\Client\SubuserTransformer;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers\GetSubuserRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers\StoreSubuserRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers\DeleteSubuserRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers\UpdateSubuserRequest;
 
 class SubuserController extends ClientApiController
 {
@@ -57,9 +57,9 @@ class SubuserController extends ClientApiController
     /**
      * Create a new subuser for the given server.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Service\Subuser\ServerSubuserExistsException
-     * @throws \Phoenixpanel\Exceptions\Service\Subuser\UserIsServerOwnerException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Service\Subuser\ServerSubuserExistsException
+     * @throws \Pterodactyl\Exceptions\Service\Subuser\UserIsServerOwnerException
      * @throws \Throwable
      */
     public function store(StoreSubuserRequest $request, Server $server): array
@@ -83,12 +83,12 @@ class SubuserController extends ClientApiController
     /**
      * Update a given subuser in the system for the server.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateSubuserRequest $request, Server $server): array
     {
-        /** @var \Phoenixpanel\Models\Subuser $subuser */
+        /** @var \Pterodactyl\Models\Subuser $subuser */
         $subuser = $request->attributes->get('subuser');
 
         $permissions = $this->getDefaultPermissions($request);
@@ -138,7 +138,7 @@ class SubuserController extends ClientApiController
      */
     public function delete(DeleteSubuserRequest $request, Server $server): JsonResponse
     {
-        /** @var \Phoenixpanel\Models\Subuser $subuser */
+        /** @var \Pterodactyl\Models\Subuser $subuser */
         $subuser = $request->attributes->get('subuser');
 
         $log = Activity::event('server:subuser.delete')

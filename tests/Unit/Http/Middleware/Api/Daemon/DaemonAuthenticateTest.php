@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Http\Middleware\Api\Daemon;
+namespace PhoenixPanel\Tests\Unit\Http\Middleware\Api\Daemon;
 
 use Mockery as m;
 use Mockery\MockInterface;
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Contracts\Encryption\Encrypter;
-use Phoenixpanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
-use Phoenixpanel\Http\Middleware\Api\Daemon\DaemonAuthenticate;
-use Phoenixpanel\Tests\Unit\Http\Middleware\MiddlewareTestCase;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Http\Middleware\Api\Daemon\DaemonAuthenticate;
+use PhoenixPanel\Tests\Unit\Http\Middleware\MiddlewareTestCase;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware\Activity;
+namespace PhoenixPanel\Http\Middleware\Activity;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\ApiKey;
-use Phoenixpanel\Facades\LogTarget;
+use PhoenixPanel\Models\ApiKey;
+use PhoenixPanel\Facades\LogTarget;
 
 class TrackAPIKey
 {

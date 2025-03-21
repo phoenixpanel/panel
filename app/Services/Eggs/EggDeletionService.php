@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Services\Eggs;
+namespace PhoenixPanel\Services\Eggs;
 
-use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Egg\HasChildrenException;
-use Phoenixpanel\Exceptions\Service\HasActiveServersException;
-use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Egg\HasChildrenException;
+use PhoenixPanel\Exceptions\Service\HasActiveServersException;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class EggDeletionService
 {

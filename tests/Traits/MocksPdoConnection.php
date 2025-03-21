@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Tests\Traits;
+namespace PhoenixPanel\Tests\Traits;
 
 use PDO;
 use Mockery;

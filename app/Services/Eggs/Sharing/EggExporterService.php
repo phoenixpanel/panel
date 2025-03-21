@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Eggs\Sharing;
+namespace PhoenixPanel\Services\Eggs\Sharing;
 
 use Carbon\Carbon;
-use Phoenixpanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use Illuminate\Support\Collection;
-use Phoenixpanel\Models\EggVariable;
-use Phoenixpanel\Contracts\Repository\EggRepositoryInterface;
+use PhoenixPanel\Models\EggVariable;
+use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
 
 class EggExporterService
 {
@@ -20,7 +20,7 @@ class EggExporterService
     /**
      * Return a JSON representation of an egg and its variables.
      *
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function handle(int $egg): string
     {

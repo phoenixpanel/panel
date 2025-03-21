@@ -1,17 +1,17 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Remote;
+namespace PhoenixPanel\Http\Controllers\Api\Remote;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Facades\Log;
-use Phoenixpanel\Models\ActivityLog;
-use Phoenixpanel\Models\ActivityLogSubject;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Http\Requests\Api\Remote\ActivityEventRequest;
+use PhoenixPanel\Models\ActivityLog;
+use PhoenixPanel\Models\ActivityLogSubject;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Http\Requests\Api\Remote\ActivityEventRequest;
 
 class ActivityProcessingController extends Controller
 {
@@ -19,7 +19,7 @@ class ActivityProcessingController extends Controller
     {
         $tz = Carbon::now()->getTimezone();
 
-        /** @var \Phoenixpanel\Models\Node $node */
+        /** @var \Pterodactyl\Models\Node $node */
         $node = $request->attributes->get('node');
 
         $servers = $node->servers()->whereIn('uuid', $request->servers())->get()->keyBy('uuid');

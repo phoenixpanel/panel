@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands\Environment;
+namespace PhoenixPanel\Console\Commands\Environment;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Kernel;
-use Phoenixpanel\Traits\Commands\EnvironmentWriterTrait;
+use PhoenixPanel\Traits\Commands\EnvironmentWriterTrait;
 
 class AppSettingsCommand extends Command
 {
@@ -59,7 +59,7 @@ class AppSettingsCommand extends Command
     /**
      * Handle command execution.
      *
-     * @throws \Phoenixpanel\Exceptions\PterodactylException
+     * @throws \Pterodactyl\Exceptions\PterodactylException
      */
     public function handle(): int
     {

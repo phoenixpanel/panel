@@ -1,15 +1,15 @@
 <?php
 
-namespace Phoenixpanel\Services\Schedules;
+namespace PhoenixPanel\Services\Schedules;
 
 use Exception;
-use Phoenixpanel\Models\Schedule;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Phoenixpanel\Jobs\Schedule\RunTaskJob;
+use PhoenixPanel\Jobs\Schedule\RunTaskJob;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ProcessScheduleService
 {
@@ -27,7 +27,7 @@ class ProcessScheduleService
      */
     public function handle(Schedule $schedule, bool $now = false): void
     {
-        /** @var \Phoenixpanel\Models\Task $task */
+        /** @var \Pterodactyl\Models\Task $task */
         $task = $schedule->tasks()->orderBy('sequence_id')->first();
 
         if (is_null($task)) {

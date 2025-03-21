@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Support\Facades\Schema;
-use Phoenixpanel\Models\Permission as P;
+use PhoenixPanel\Models\Permission as P;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 

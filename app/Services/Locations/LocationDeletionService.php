@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Locations;
+namespace PhoenixPanel\Services\Locations;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Location;
-use Phoenixpanel\Contracts\Repository\NodeRepositoryInterface;
-use Phoenixpanel\Contracts\Repository\LocationRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Location\HasActiveNodesException;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Contracts\Repository\NodeRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Location\HasActiveNodesException;
 
 class LocationDeletionService
 {

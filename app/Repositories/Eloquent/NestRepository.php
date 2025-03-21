@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use Phoenixpanel\Models\Nest;
+use PhoenixPanel\Models\Nest;
 use Illuminate\Database\Eloquent\Collection;
-use Phoenixpanel\Contracts\Repository\NestRepositoryInterface;
-use Phoenixpanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
 
 class NestRepository extends EloquentRepository implements NestRepositoryInterface
 {

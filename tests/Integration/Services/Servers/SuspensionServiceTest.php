@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Servers;
+namespace PhoenixPanel\Tests\Integration\Services\Servers;
 
 use Mockery\MockInterface;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Services\Servers\SuspensionService;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Services\Servers\SuspensionService;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
 
 class SuspensionServiceTest extends IntegrationTestCase
 {

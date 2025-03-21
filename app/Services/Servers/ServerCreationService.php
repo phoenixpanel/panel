@@ -1,23 +1,23 @@
 <?php
 
-namespace Phoenixpanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use Phoenixpanel\Models\Egg;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\User;
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Collection;
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Models\Objects\DeploymentObject;
-use Phoenixpanel\Repositories\Eloquent\ServerRepository;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Services\Deployment\FindViableNodesService;
-use Phoenixpanel\Repositories\Eloquent\ServerVariableRepository;
-use Phoenixpanel\Services\Deployment\AllocationSelectionService;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Models\Objects\DeploymentObject;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Services\Deployment\FindViableNodesService;
+use PhoenixPanel\Repositories\Eloquent\ServerVariableRepository;
+use PhoenixPanel\Services\Deployment\AllocationSelectionService;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerCreationService
 {
@@ -43,11 +43,11 @@ class ServerCreationService
      * no node_id the node_is will be picked from the allocation.
      *
      * @throws \Throwable
-     * @throws \Phoenixpanel\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\DisplayException
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
      */
     public function handle(array $data, ?DeploymentObject $deployment = null): Server
     {
@@ -109,9 +109,9 @@ class ServerCreationService
     /**
      * Gets an allocation to use for automatic deployment.
      *
-     * @throws \Phoenixpanel\Exceptions\DisplayException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableAllocationException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
      */
     private function configureDeployment(array $data, DeploymentObject $deployment): Allocation
     {
@@ -130,7 +130,7 @@ class ServerCreationService
     /**
      * Store the server in the database and return the model.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     private function createModel(array $data): Server
     {

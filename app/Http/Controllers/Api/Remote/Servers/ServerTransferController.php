@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Remote\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Remote\Servers;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Support\Facades\Log;
-use Phoenixpanel\Models\ServerTransfer;
+use PhoenixPanel\Models\ServerTransfer;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Repositories\Eloquent\ServerRepository;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerTransferController extends Controller
 {
@@ -55,7 +55,7 @@ class ServerTransferController extends Controller
             throw new ConflictHttpException('Server is not being transferred.');
         }
 
-        /** @var \Phoenixpanel\Models\Server $server */
+        /** @var \Pterodactyl\Models\Server $server */
         $server = $this->connection->transaction(function () use ($server, $transfer) {
             $allocations = array_merge([$transfer->old_allocation], $transfer->old_additional_allocations);
 

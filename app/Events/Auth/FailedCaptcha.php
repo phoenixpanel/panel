@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Events\Auth;
+namespace PhoenixPanel\Events\Auth;
 
-use Phoenixpanel\Events\Event;
+use PhoenixPanel\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
 class FailedCaptcha extends Event

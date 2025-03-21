@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Http\Server;
+namespace PhoenixPanel\Exceptions\Http\Server;
 
-use Phoenixpanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class FileSizeTooLargeException extends DisplayException
 {

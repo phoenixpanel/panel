@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Subuser;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Subuser;
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Foundation\Testing\WithFaker;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class CreateServerSubuserTest extends ClientApiIntegrationTestCase
 {

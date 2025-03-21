@@ -1,18 +1,18 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Application;
+namespace PhoenixPanel\Tests\Integration\Api\Application;
 
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use PHPUnit\Framework\Assert;
-use Phoenixpanel\Models\ApiKey;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Models\ApiKey;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Phoenixpanel\Tests\Traits\Integration\CreatesTestModels;
-use Phoenixpanel\Transformers\Api\Application\BaseTransformer;
-use Phoenixpanel\Transformers\Api\Client\BaseClientTransformer;
-use Phoenixpanel\Tests\Traits\Http\IntegrationJsonRequestAssertions;
+use PhoenixPanel\Tests\Traits\Integration\CreatesTestModels;
+use PhoenixPanel\Transformers\Api\Application\BaseTransformer;
+use PhoenixPanel\Transformers\Api\Client\BaseClientTransformer;
+use PhoenixPanel\Tests\Traits\Http\IntegrationJsonRequestAssertions;
 
 abstract class ApplicationApiIntegrationTestCase extends IntegrationTestCase
 {

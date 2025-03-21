@@ -1,24 +1,24 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Services\Servers;
+namespace PhoenixPanel\Tests\Integration\Services\Servers;
 
 use Mockery\MockInterface;
-use Phoenixpanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use GuzzleHttp\Psr7\Request;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\User;
 use GuzzleHttp\Psr7\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Location;
-use Phoenixpanel\Models\Allocation;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Foundation\Testing\WithFaker;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Validation\ValidationException;
-use Phoenixpanel\Models\Objects\DeploymentObject;
-use Phoenixpanel\Tests\Integration\IntegrationTestCase;
-use Phoenixpanel\Services\Servers\ServerCreationService;
-use Phoenixpanel\Repositories\Wings\DaemonServerRepository;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Models\Objects\DeploymentObject;
+use PhoenixPanel\Tests\Integration\IntegrationTestCase;
+use PhoenixPanel\Services\Servers\ServerCreationService;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerCreationServiceTest extends IntegrationTestCase
 {
@@ -65,7 +65,7 @@ class ServerCreationServiceTest extends IntegrationTestCase
             'location_id' => $location->id,
         ]);
 
-        /** @var \Phoenixpanel\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations */
+        /** @var \Pterodactyl\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations */
         $allocations = Allocation::factory()->times(5)->create([
             'node_id' => $node->id,
         ]);

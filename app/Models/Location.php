@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $long
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \Phoenixpanel\Models\Node[] $nodes
- * @property \Phoenixpanel\Models\Server[] $servers
+ * @property \Pterodactyl\Models\Node[] $nodes
+ * @property \Pterodactyl\Models\Server[] $servers
  */
 class Location extends Model
 {

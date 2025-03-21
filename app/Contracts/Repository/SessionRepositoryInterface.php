@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Contracts\Repository;
+namespace PhoenixPanel\Contracts\Repository;
 
 use Illuminate\Support\Collection;
 

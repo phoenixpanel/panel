@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Allocation;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Allocation;
 
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class AllocationAuthorizationTest extends ClientApiIntegrationTestCase
 {

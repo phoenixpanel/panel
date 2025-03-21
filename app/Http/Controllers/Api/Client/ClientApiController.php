@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Client;
+namespace PhoenixPanel\Http\Controllers\Api\Client;
 
 use Webmozart\Assert\Assert;
-use Phoenixpanel\Transformers\Api\Client\BaseClientTransformer;
-use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Transformers\Api\Client\BaseClientTransformer;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 abstract class ClientApiController extends ApplicationApiController
 {
@@ -39,7 +39,7 @@ abstract class ClientApiController extends ApplicationApiController
     /**
      * Return an instance of an application transformer.
      *
-     * @template T of \Phoenixpanel\Transformers\Api\Client\BaseClientTransformer
+     * @template T of \Pterodactyl\Transformers\Api\Client\BaseClientTransformer
      *
      * @param class-string<T> $abstract
      *

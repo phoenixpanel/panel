@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Services\Users;
+namespace PhoenixPanel\Services\Users;
 
 use Ramsey\Uuid\Uuid;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Auth\PasswordBroker;
-use Phoenixpanel\Notifications\AccountCreated;
-use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Notifications\AccountCreated;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserCreationService
 {
@@ -27,7 +27,7 @@ class UserCreationService
      * Create a new user on the system.
      *
      * @throws \Exception
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
     public function handle(array $data): User
     {

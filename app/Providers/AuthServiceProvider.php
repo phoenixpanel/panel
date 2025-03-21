@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Providers;
+namespace PhoenixPanel\Providers;
 
 use Laravel\Sanctum\Sanctum;
-use Phoenixpanel\Models\ApiKey;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Policies\ServerPolicy;
+use PhoenixPanel\Models\ApiKey;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Policies\ServerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

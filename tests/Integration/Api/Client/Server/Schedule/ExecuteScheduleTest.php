@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Schedule;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Schedule;
 
-use Phoenixpanel\Models\Task;
+use PhoenixPanel\Models\Task;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Schedule;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Support\Facades\Bus;
-use Phoenixpanel\Jobs\Schedule\RunTaskJob;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Jobs\Schedule\RunTaskJob;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class ExecuteScheduleTest extends ClientApiIntegrationTestCase
 {

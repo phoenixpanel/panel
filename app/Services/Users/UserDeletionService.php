@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Users;
+namespace PhoenixPanel\Services\Users;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Exceptions\DisplayException;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Exceptions\DisplayException;
 use Illuminate\Contracts\Translation\Translator;
-use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
-use Phoenixpanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class UserDeletionService
 {

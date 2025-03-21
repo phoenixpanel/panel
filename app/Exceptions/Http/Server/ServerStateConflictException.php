@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Http\Server;
+namespace PhoenixPanel\Exceptions\Http\Server;
 
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class ServerStateConflictException extends ConflictHttpException

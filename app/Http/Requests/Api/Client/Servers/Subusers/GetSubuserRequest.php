@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Servers\Subusers;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers;
 
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Permission;
 
 class GetSubuserRequest extends SubuserRequest
 {

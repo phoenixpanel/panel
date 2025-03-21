@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
 use Illuminate\Support\Arr;
-use Phoenixpanel\Models\Egg;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\ServerVariable;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\ServerVariable;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Traits\Services\HasUserLevels;
+use PhoenixPanel\Traits\Services\HasUserLevels;
 
 class StartupModificationService
 {

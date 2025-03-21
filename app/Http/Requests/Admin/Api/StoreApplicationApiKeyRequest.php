@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Admin\Api;
+namespace PhoenixPanel\Http\Requests\Admin\Api;
 
-use Phoenixpanel\Models\ApiKey;
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Http\Requests\Admin\AdminFormRequest;
+use PhoenixPanel\Models\ApiKey;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class StoreApplicationApiKeyRequest extends AdminFormRequest
 {

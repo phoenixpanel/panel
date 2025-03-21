@@ -1,38 +1,38 @@
 <?php
 
-namespace Phoenixpanel\Http;
+namespace PhoenixPanel\Http;
 
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Middleware\TrustProxies;
-use Phoenixpanel\Http\Middleware\TrimStrings;
+use PhoenixPanel\Http\Middleware\TrimStrings;
 use Illuminate\Session\Middleware\StartSession;
-use Phoenixpanel\Http\Middleware\EncryptCookies;
-use Phoenixpanel\Http\Middleware\Api\IsValidJson;
-use Phoenixpanel\Http\Middleware\VerifyCsrfToken;
-use Phoenixpanel\Http\Middleware\VerifyReCaptcha;
+use PhoenixPanel\Http\Middleware\EncryptCookies;
+use PhoenixPanel\Http\Middleware\Api\IsValidJson;
+use PhoenixPanel\Http\Middleware\VerifyCsrfToken;
+use PhoenixPanel\Http\Middleware\VerifyReCaptcha;
 use Illuminate\Routing\Middleware\ThrottleRequests;
-use Phoenixpanel\Http\Middleware\LanguageMiddleware;
+use PhoenixPanel\Http\Middleware\LanguageMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Routing\Middleware\SubstituteBindings;
-use Phoenixpanel\Http\Middleware\Activity\TrackAPIKey;
+use PhoenixPanel\Http\Middleware\Activity\TrackAPIKey;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Phoenixpanel\Http\Middleware\MaintenanceMiddleware;
-use Phoenixpanel\Http\Middleware\EnsureStatefulRequests;
-use Phoenixpanel\Http\Middleware\RedirectIfAuthenticated;
+use PhoenixPanel\Http\Middleware\MaintenanceMiddleware;
+use PhoenixPanel\Http\Middleware\EnsureStatefulRequests;
+use PhoenixPanel\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
-use Phoenixpanel\Http\Middleware\Api\AuthenticateIPAccess;
+use PhoenixPanel\Http\Middleware\Api\AuthenticateIPAccess;
 use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Phoenixpanel\Http\Middleware\Api\Daemon\DaemonAuthenticate;
-use Phoenixpanel\Http\Middleware\Api\Client\RequireClientApiKey;
-use Phoenixpanel\Http\Middleware\RequireTwoFactorAuthentication;
+use PhoenixPanel\Http\Middleware\Api\Daemon\DaemonAuthenticate;
+use PhoenixPanel\Http\Middleware\Api\Client\RequireClientApiKey;
+use PhoenixPanel\Http\Middleware\RequireTwoFactorAuthentication;
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
-use Phoenixpanel\Http\Middleware\Api\Client\SubstituteClientBindings;
+use PhoenixPanel\Http\Middleware\Api\Client\SubstituteClientBindings;
 use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
-use Phoenixpanel\Http\Middleware\Api\Application\AuthenticateApplicationUser;
+use PhoenixPanel\Http\Middleware\Api\Application\AuthenticateApplicationUser;
 
 class Kernel extends HttpKernel
 {

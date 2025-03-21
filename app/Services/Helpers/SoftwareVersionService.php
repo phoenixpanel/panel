@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Services\Helpers;
+namespace PhoenixPanel\Services\Helpers;
 
 use GuzzleHttp\Client;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Cache\Repository as CacheRepository;
-use Phoenixpanel\Exceptions\Service\Helper\CdnVersionFetchingException;
+use PhoenixPanel\Exceptions\Service\Helper\CdnVersionFetchingException;
 
 class SoftwareVersionService
 {

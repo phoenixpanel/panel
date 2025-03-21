@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Client\Account;
+namespace PhoenixPanel\Http\Requests\Api\Client\Account;
 
 use IPTools\Range;
-use Phoenixpanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Illuminate\Validation\Validator;
-use Phoenixpanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class StoreApiKeyRequest extends ClientApiRequest
 {

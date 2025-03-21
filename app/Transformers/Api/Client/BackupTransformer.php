@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
-use Phoenixpanel\Models\Backup;
+use PhoenixPanel\Models\Backup;
 
 class BackupTransformer extends BaseClientTransformer
 {

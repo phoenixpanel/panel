@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Backup;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Backup;
 
 use Carbon\CarbonImmutable;
-use Phoenixpanel\Models\Backup;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Services\Backups\DeleteBackupService;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Services\Backups\DeleteBackupService;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class BackupAuthorizationTest extends ClientApiIntegrationTestCase
 {

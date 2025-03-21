@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Services\Nodes;
+namespace PhoenixPanel\Services\Nodes;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\Node;
-use Phoenixpanel\Models\User;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\User;
 use Lcobucci\JWT\Token\Plain;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
-use Phoenixpanel\Extensions\Lcobucci\JWT\Encoding\TimestampDates;
+use PhoenixPanel\Extensions\Lcobucci\JWT\Encoding\TimestampDates;
 
 class NodeJWTService
 {

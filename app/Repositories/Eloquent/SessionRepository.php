@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use Phoenixpanel\Models\Session;
+use PhoenixPanel\Models\Session;
 use Illuminate\Support\Collection;
-use Phoenixpanel\Contracts\Repository\SessionRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\SessionRepositoryInterface;
 
 class SessionRepository extends EloquentRepository implements SessionRepositoryInterface
 {

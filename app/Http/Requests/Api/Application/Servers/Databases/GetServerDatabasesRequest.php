@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Http\Requests\Api\Application\Servers\Databases;
+namespace PhoenixPanel\Http\Requests\Api\Application\Servers\Databases;
 
-use Phoenixpanel\Services\Acl\Api\AdminAcl;
-use Phoenixpanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class GetServerDatabasesRequest extends ApplicationApiRequest
 {

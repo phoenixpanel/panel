@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Servers;
+namespace PhoenixPanel\Http\Controllers\Admin\Servers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use Phoenixpanel\Models\ServerTransfer;
+use PhoenixPanel\Models\ServerTransfer;
 use Illuminate\Database\ConnectionInterface;
-use Phoenixpanel\Http\Controllers\Controller;
-use Phoenixpanel\Services\Nodes\NodeJWTService;
-use Phoenixpanel\Repositories\Eloquent\NodeRepository;
-use Phoenixpanel\Repositories\Wings\DaemonTransferRepository;
-use Phoenixpanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Nodes\NodeJWTService;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Wings\DaemonTransferRepository;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
 
 class ServerTransferController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server\Subuser;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server\Subuser;
 
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Subuser;
-use Phoenixpanel\Models\Permission;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class UpdateSubuserTest extends ClientApiIntegrationTestCase
 {

@@ -1,20 +1,20 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin\Nodes;
+namespace PhoenixPanel\Http\Controllers\Admin\Nodes;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Support\Collection;
-use Phoenixpanel\Models\Allocation;
-use Phoenixpanel\Http\Controllers\Controller;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Phoenixpanel\Repositories\Eloquent\NodeRepository;
-use Phoenixpanel\Repositories\Eloquent\ServerRepository;
-use Phoenixpanel\Traits\Controllers\JavascriptInjection;
-use Phoenixpanel\Services\Helpers\SoftwareVersionService;
-use Phoenixpanel\Repositories\Eloquent\LocationRepository;
-use Phoenixpanel\Repositories\Eloquent\AllocationRepository;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Traits\Controllers\JavascriptInjection;
+use PhoenixPanel\Services\Helpers\SoftwareVersionService;
+use PhoenixPanel\Repositories\Eloquent\LocationRepository;
+use PhoenixPanel\Repositories\Eloquent\AllocationRepository;
 
 class NodeViewController extends Controller
 {

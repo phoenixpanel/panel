@@ -1,11 +1,11 @@
 <?php
 
-namespace Phoenixpanel\Http\Middleware;
+namespace PhoenixPanel\Http\Middleware;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Phoenixpanel\Events\Auth\FailedCaptcha;
+use PhoenixPanel\Events\Auth\FailedCaptcha;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Symfony\Component\HttpKernel\Exception\HttpException;

@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Services\Eggs\Variables;
+namespace PhoenixPanel\Services\Eggs\Variables;
 
 use Illuminate\Support\Str;
-use Phoenixpanel\Models\EggVariable;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Traits\Services\ValidatesValidationRules;
+use PhoenixPanel\Models\EggVariable;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Traits\Services\ValidatesValidationRules;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Phoenixpanel\Contracts\Repository\EggVariableRepositoryInterface;
-use Phoenixpanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
+use PhoenixPanel\Contracts\Repository\EggVariableRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
 
 class VariableUpdateService
 {
@@ -34,8 +34,8 @@ class VariableUpdateService
      * Update a specific egg variable.
      *
      * @throws DisplayException
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      * @throws ReservedVariableNameException
      */
     public function handle(EggVariable $variable, array $data): mixed

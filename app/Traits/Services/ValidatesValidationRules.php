@@ -1,10 +1,10 @@
 <?php
 
-namespace Phoenixpanel\Traits\Services;
+namespace PhoenixPanel\Traits\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Phoenixpanel\Exceptions\Service\Egg\Variable\BadValidationRuleException;
+use PhoenixPanel\Exceptions\Service\Egg\Variable\BadValidationRuleException;
 
 trait ValidatesValidationRules
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Api\Application\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Servers;
 
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use Phoenixpanel\Services\Servers\ServerCreationService;
-use Phoenixpanel\Services\Servers\ServerDeletionService;
-use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\GetServerRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\GetServersRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\ServerWriteRequest;
-use Phoenixpanel\Http\Requests\Api\Application\Servers\StoreServerRequest;
-use Phoenixpanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Services\Servers\ServerCreationService;
+use PhoenixPanel\Services\Servers\ServerDeletionService;
+use PhoenixPanel\Transformers\Api\Application\ServerTransformer;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\GetServerRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\GetServersRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\ServerWriteRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\StoreServerRequest;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class ServerController extends ApplicationApiController
 {
@@ -47,11 +47,11 @@ class ServerController extends ApplicationApiController
      *
      * @throws \Throwable
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Phoenixpanel\Exceptions\DisplayException
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableAllocationException
-     * @throws \Phoenixpanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
      */
     public function store(StoreServerRequest $request): JsonResponse
     {
@@ -75,7 +75,7 @@ class ServerController extends ApplicationApiController
     /**
      * Deletes a server.
      *
-     * @throws \Phoenixpanel\Exceptions\DisplayException
+     * @throws \Pterodactyl\Exceptions\DisplayException
      */
     public function delete(ServerWriteRequest $request, Server $server, string $force = ''): Response
     {

@@ -1,5 +1,5 @@
 {
-    "name": "phoenix-panel",
+    "name": "pterodactyl-panel",
     "engines": {
         "node": ">=14"
     },

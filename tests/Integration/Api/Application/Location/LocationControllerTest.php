@@ -1,14 +1,14 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Application\Location;
+namespace PhoenixPanel\Tests\Integration\Api\Application\Location;
 
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Location;
-use Phoenixpanel\Transformers\Api\Application\NodeTransformer;
-use Phoenixpanel\Transformers\Api\Application\ServerTransformer;
-use Phoenixpanel\Transformers\Api\Application\LocationTransformer;
-use Phoenixpanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Transformers\Api\Application\NodeTransformer;
+use PhoenixPanel\Transformers\Api\Application\ServerTransformer;
+use PhoenixPanel\Transformers\Api\Application\LocationTransformer;
+use PhoenixPanel\Tests\Integration\Api\Application\ApplicationApiIntegrationTestCase;
 
 class LocationControllerTest extends ApplicationApiIntegrationTestCase
 {

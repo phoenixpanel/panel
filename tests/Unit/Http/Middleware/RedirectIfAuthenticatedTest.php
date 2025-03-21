@@ -1,12 +1,12 @@
 <?php
 
-namespace Phoenixpanel\Tests\Unit\Http\Middleware;
+namespace PhoenixPanel\Tests\Unit\Http\Middleware;
 
 use Mockery as m;
 use Mockery\MockInterface;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\RedirectResponse;
-use Phoenixpanel\Http\Middleware\RedirectIfAuthenticated;
+use PhoenixPanel\Http\Middleware\RedirectIfAuthenticated;
 
 class RedirectIfAuthenticatedTest extends MiddlewareTestCase
 {

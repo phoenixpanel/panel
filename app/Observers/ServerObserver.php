@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Observers;
+namespace PhoenixPanel\Observers;
 
-use Phoenixpanel\Events;
-use Phoenixpanel\Models\Server;
+use PhoenixPanel\Events;
+use PhoenixPanel\Models\Server;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class ServerObserver

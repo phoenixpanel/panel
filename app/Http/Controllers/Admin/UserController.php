@@ -1,26 +1,26 @@
 <?php
 
-namespace Phoenixpanel\Http\Controllers\Admin;
+namespace PhoenixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Phoenixpanel\Models\User;
-use Phoenixpanel\Models\Model;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\View\Factory as ViewFactory;
-use Phoenixpanel\Exceptions\DisplayException;
-use Phoenixpanel\Http\Controllers\Controller;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Translation\Translator;
-use Phoenixpanel\Services\Users\UserUpdateService;
-use Phoenixpanel\Traits\Helpers\AvailableLanguages;
-use Phoenixpanel\Services\Users\UserCreationService;
-use Phoenixpanel\Services\Users\UserDeletionService;
-use Phoenixpanel\Http\Requests\Admin\UserFormRequest;
-use Phoenixpanel\Http\Requests\Admin\NewUserFormRequest;
-use Phoenixpanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Services\Users\UserUpdateService;
+use PhoenixPanel\Traits\Helpers\AvailableLanguages;
+use PhoenixPanel\Services\Users\UserCreationService;
+use PhoenixPanel\Services\Users\UserDeletionService;
+use PhoenixPanel\Http\Requests\Admin\UserFormRequest;
+use PhoenixPanel\Http\Requests\Admin\NewUserFormRequest;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserController extends Controller
 {
@@ -115,8 +115,8 @@ class UserController extends Controller
     /**
      * Update a user on the system.
      *
-     * @throws \Phoenixpanel\Exceptions\Model\DataValidationException
-     * @throws \Phoenixpanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UserFormRequest $request, User $user): RedirectResponse
     {

@@ -32,17 +32,17 @@ if (isset($_ENV['APP_STORAGE_PATH'])) {
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    Phoenixpanel\Http\Kernel::class
+    PhoenixPanel\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    Phoenixpanel\Console\Kernel::class
+    PhoenixPanel\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    Phoenixpanel\Exceptions\Handler::class
+    PhoenixPanel\Exceptions\Handler::class
 );
 
 /*

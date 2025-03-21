@@ -7,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     | Application Version
     |--------------------------------------------------------------------------
-    | This value is set when creating a Phoenixpanel release. You should not
+    | This value is set when creating a PhoenixPanel release. You should not
     | change this value if you are not maintaining your own internal versions.
     */
 
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Phoenixpanel'),
+    'name' => env('APP_NAME', 'PhoenixPanel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -191,16 +191,16 @@ return [
         /*
          * Application Service Providers...
          */
-        Phoenixpanel\Providers\ActivityLogServiceProvider::class,
-        Phoenixpanel\Providers\AppServiceProvider::class,
-        Phoenixpanel\Providers\AuthServiceProvider::class,
-        Phoenixpanel\Providers\BackupsServiceProvider::class,
-        Phoenixpanel\Providers\BladeServiceProvider::class,
-        Phoenixpanel\Providers\EventServiceProvider::class,
-        Phoenixpanel\Providers\HashidsServiceProvider::class,
-        Phoenixpanel\Providers\RouteServiceProvider::class,
-        Phoenixpanel\Providers\RepositoryServiceProvider::class,
-        Phoenixpanel\Providers\ViewComposerServiceProvider::class,
+        PhoenixPanel\Providers\ActivityLogServiceProvider::class,
+        PhoenixPanel\Providers\AppServiceProvider::class,
+        PhoenixPanel\Providers\AuthServiceProvider::class,
+        PhoenixPanel\Providers\BackupsServiceProvider::class,
+        PhoenixPanel\Providers\BladeServiceProvider::class,
+        PhoenixPanel\Providers\EventServiceProvider::class,
+        PhoenixPanel\Providers\HashidsServiceProvider::class,
+        PhoenixPanel\Providers\RouteServiceProvider::class,
+        PhoenixPanel\Providers\RepositoryServiceProvider::class,
+        PhoenixPanel\Providers\ViewComposerServiceProvider::class,
 
         /*
          * Additional Dependencies
@@ -223,11 +223,11 @@ return [
         'Alert' => Prologue\Alerts\Facades\Alert::class,
         'Carbon' => Carbon\Carbon::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
-        'Theme' => Phoenixpanel\Extensions\Facades\Theme::class,
+        'Theme' => PhoenixPanel\Extensions\Facades\Theme::class,
 
         // Custom Facades
-        'Activity' => Phoenixpanel\Facades\Activity::class,
-        'LogBatch' => Phoenixpanel\Facades\LogBatch::class,
-        'LogTarget' => Phoenixpanel\Facades\LogTarget::class,
+        'Activity' => PhoenixPanel\Facades\Activity::class,
+        'LogBatch' => PhoenixPanel\Facades\LogBatch::class,
+        'LogTarget' => PhoenixPanel\Facades\LogTarget::class,
     ])->toArray(),
 ];

@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Console\Commands\Node;
+namespace PhoenixPanel\Console\Commands\Node;
 
-use Phoenixpanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Console\Command;
 
 class NodeConfigurationCommand extends Command

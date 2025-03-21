@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenixpanel\Models;
+namespace PhoenixPanel\Models;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Phoenixpanel\Http\ViewComposers;
+namespace PhoenixPanel\Http\ViewComposers;
 
 use Illuminate\View\View;
-use Phoenixpanel\Services\Helpers\AssetHashService;
+use PhoenixPanel\Services\Helpers\AssetHashService;
 
 class AssetComposer
 {

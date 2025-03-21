@@ -1,16 +1,16 @@
 <?php
 
-namespace Phoenixpanel\Tests\Integration\Api\Client\Server;
+namespace PhoenixPanel\Tests\Integration\Api\Client\Server;
 
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Response;
-use Phoenixpanel\Models\Server;
-use Phoenixpanel\Models\Permission;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Permission;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
-use Phoenixpanel\Repositories\Wings\DaemonCommandRepository;
-use Phoenixpanel\Exceptions\Http\Connection\DaemonConnectionException;
-use Phoenixpanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
+use PhoenixPanel\Repositories\Wings\DaemonCommandRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Tests\Integration\Api\Client\ClientApiIntegrationTestCase;
 
 class CommandControllerTest extends ClientApiIntegrationTestCase
 {

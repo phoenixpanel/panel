@@ -1,8 +1,8 @@
 <?php
 
-namespace Phoenixpanel\Exceptions\Service\Server;
+namespace PhoenixPanel\Exceptions\Service\Server;
 
-use Phoenixpanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PterodactylException;
 
 class RequiredVariableMissingException extends PterodactylException
 {
