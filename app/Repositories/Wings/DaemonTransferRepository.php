@@ -8,8 +8,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 /**
- * @method \Pterodactyl\Repositories\Wings\DaemonTransferRepository setNode(\Pterodactyl\Models\Node $node)
- * @method \Pterodactyl\Repositories\Wings\DaemonTransferRepository setServer(\Pterodactyl\Models\Server $server)
+ * @method \PhoenixPanel\Repositories\Wings\DaemonTransferRepository setNode(\PhoenixPanel\Models\Node $node)
+ * @method \PhoenixPanel\Repositories\Wings\DaemonTransferRepository setServer(\PhoenixPanel\Models\Server $server)
  */
 class DaemonTransferRepository extends DaemonRepository
 {

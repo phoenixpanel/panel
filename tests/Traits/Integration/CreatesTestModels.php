@@ -81,7 +81,7 @@ trait CreatesTestModels
      *
      * @param string[] $permissions
      *
-     * @return array{\Pterodactyl\Models\User, \Pterodactyl\Models\Server}
+     * @return array{\PhoenixPanel\Models\User, \PhoenixPanel\Models\Server}
      */
     public function generateTestAccount(array $permissions = []): array
     {
@@ -130,7 +130,7 @@ trait CreatesTestModels
     private function getBungeecordEgg(): Egg
     {
         /** @var Egg $egg */
-        $egg = Egg::query()->where('author', 'support@pterodactyl.io')->where('name', 'Bungeecord')->firstOrFail();
+        $egg = Egg::query()->where('author', 'support@phoenixpanel.io')->where('name', 'Bungeecord')->firstOrFail();
 
         return $egg;
     }

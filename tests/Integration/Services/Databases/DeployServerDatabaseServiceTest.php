@@ -31,7 +31,7 @@ class DeployServerDatabaseServiceTest extends IntegrationTestCase
      */
     protected function tearDown(): void
     {
-        config()->set('pterodactyl.client_features.databases.allow_random', true);
+        config()->set('phoenixpanel.client_features.databases.allow_random', true);
 
         Database::query()->delete();
         DatabaseHost::query()->delete();
@@ -63,7 +63,7 @@ class DeployServerDatabaseServiceTest extends IntegrationTestCase
         $node = Node::factory()->create(['location_id' => $server->location->id]);
         DatabaseHost::factory()->create(['node_id' => $node->id]);
 
-        config()->set('pterodactyl.client_features.databases.allow_random', false);
+        config()->set('phoenixpanel.client_features.databases.allow_random', false);
 
         $this->expectException(NoSuitableDatabaseHostException::class);
 

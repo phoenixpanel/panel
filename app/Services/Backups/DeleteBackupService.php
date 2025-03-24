@@ -70,7 +70,7 @@ class DeleteBackupService
         $this->connection->transaction(function () use ($backup) {
             $backup->delete();
 
-            /** @var \Pterodactyl\Extensions\Filesystem\S3Filesystem $adapter */
+            /** @var \PhoenixPanel\Extensions\Filesystem\S3Filesystem $adapter */
             $adapter = $this->manager->adapter(Backup::ADAPTER_AWS_S3);
 
             $adapter->getClient()->deleteObject([

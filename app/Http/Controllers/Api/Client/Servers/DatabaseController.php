@@ -43,8 +43,8 @@ class DatabaseController extends ClientApiController
      * Create a new database for the given server and return it.
      *
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \Pterodactyl\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws \PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException
+     * @throws \PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
      */
     public function store(StoreDatabaseRequest $request, Server $server): array
     {
@@ -86,7 +86,7 @@ class DatabaseController extends ClientApiController
     /**
      * Removes a database from the server.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function delete(DeleteDatabaseRequest $request, Server $server, Database $database): Response
     {

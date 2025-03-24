@@ -36,7 +36,7 @@ class Task extends Model
     public const RESOURCE_NAME = 'schedule_task';
 
     /**
-     * The default actions that can exist for a task in Pterodactyl.
+     * The default actions that can exist for a task in PhoenixPanel.
      */
     public const ACTION_POWER = 'power';
     public const ACTION_COMMAND = 'command';

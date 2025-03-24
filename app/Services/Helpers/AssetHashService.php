@@ -61,7 +61,7 @@ class AssetHashService
             'referrerpolicy' => 'no-referrer',
         ];
 
-        if (config('pterodactyl.assets.use_hash')) {
+        if (config('phoenixpanel.assets.use_hash')) {
             $attributes['integrity'] = $this->integrity($resource);
         }
 
@@ -83,7 +83,7 @@ class AssetHashService
             'crossorigin' => 'anonymous',
         ];
 
-        if (config('pterodactyl.assets.use_hash')) {
+        if (config('phoenixpanel.assets.use_hash')) {
             $attributes['integrity'] = $this->integrity($resource);
         }
 

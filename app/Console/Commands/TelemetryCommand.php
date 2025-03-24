@@ -8,7 +8,7 @@ use PhoenixPanel\Services\Telemetry\TelemetryCollectionService;
 
 class TelemetryCommand extends Command
 {
-    protected $description = 'Displays all the data that would be sent to the Pterodactyl Telemetry Service if telemetry collection is enabled.';
+    protected $description = 'Displays all the data that would be sent to the PhoenixPanel Telemetry Service if telemetry collection is enabled.';
 
     protected $signature = 'p:telemetry';
 
@@ -23,7 +23,7 @@ class TelemetryCommand extends Command
     /**
      * Handle execution of command.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

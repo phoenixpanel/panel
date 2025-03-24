@@ -23,7 +23,7 @@ class DatabaseManagementServiceTest extends IntegrationTestCase
     {
         parent::setUp();
 
-        config()->set('pterodactyl.client_features.databases.enabled', true);
+        config()->set('phoenixpanel.client_features.databases.enabled', true);
 
         $this->repository = $this->mock(DatabaseRepository::class);
     }
@@ -43,7 +43,7 @@ class DatabaseManagementServiceTest extends IntegrationTestCase
      */
     public function testExceptionIsThrownIfClientDatabasesAreNotEnabled()
     {
-        config()->set('pterodactyl.client_features.databases.enabled', false);
+        config()->set('phoenixpanel.client_features.databases.enabled', false);
 
         $this->expectException(DatabaseClientFeatureNotEnabledException::class);
 

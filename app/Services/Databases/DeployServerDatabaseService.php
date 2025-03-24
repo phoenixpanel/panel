@@ -19,8 +19,8 @@ class DeployServerDatabaseService
 
     /**
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \Pterodactyl\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws \PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException
+     * @throws \PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
      */
     public function handle(Server $server, array $data): Database
     {
@@ -33,7 +33,7 @@ class DeployServerDatabaseService
         } else {
             $nodeHosts = $hosts->where('node_id', $server->node_id)->toBase();
 
-            if ($nodeHosts->isEmpty() && !config('pterodactyl.client_features.databases.allow_random')) {
+            if ($nodeHosts->isEmpty() && !config('phoenixpanel.client_features.databases.allow_random')) {
                 throw new NoSuitableDatabaseHostException();
             }
         }

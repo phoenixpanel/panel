@@ -38,7 +38,7 @@ class ServerDeletionService
      * Delete a server from the panel and remove any associated databases from hosts.
      *
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function handle(Server $server): void
     {
@@ -70,7 +70,7 @@ class ServerDeletionService
                     // the host instance, but we couldn't delete it anyways so not sure how we would
                     // handle this better anyways.
                     //
-                    // @see https://github.com/pterodactyl/panel/issues/2085
+                    // @see https://github.com/phoenixpanel/panel/issues/2085
                     $database->delete();
 
                     Log::warning($exception);

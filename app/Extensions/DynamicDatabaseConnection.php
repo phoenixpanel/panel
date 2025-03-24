@@ -26,7 +26,7 @@ class DynamicDatabaseConnection
     /**
      * Adds a dynamic database connection entry to the runtime config.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function set(string $connection, DatabaseHost|int $host, string $database = 'mysql'): void
     {

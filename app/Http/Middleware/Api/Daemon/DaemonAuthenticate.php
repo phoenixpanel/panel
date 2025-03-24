@@ -48,7 +48,7 @@ class DaemonAuthenticate
         }
 
         try {
-            /** @var \Pterodactyl\Models\Node $node */
+            /** @var \PhoenixPanel\Models\Node $node */
             $node = $this->repository->findFirstWhere([
                 'daemon_token_id' => $parts[0],
             ]);

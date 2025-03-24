@@ -43,11 +43,11 @@ class ServerCreationService
      * no node_id the node_is will be picked from the allocation.
      *
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException
      */
     public function handle(array $data, ?DeploymentObject $deployment = null): Server
     {
@@ -109,9 +109,9 @@ class ServerCreationService
     /**
      * Gets an allocation to use for automatic deployment.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
      */
     private function configureDeployment(array $data, DeploymentObject $deployment): Allocation
     {
@@ -130,7 +130,7 @@ class ServerCreationService
     /**
      * Store the server in the database and return the model.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     private function createModel(array $data): Server
     {

@@ -57,7 +57,7 @@ interface ServerRepositoryInterface extends RepositoryInterface
     /**
      * Return a server by UUID.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getByUuid(string $uuid): Server;
 

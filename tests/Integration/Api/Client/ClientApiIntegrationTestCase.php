@@ -87,7 +87,7 @@ abstract class ClientApiIntegrationTestCase extends IntegrationTestCase
     protected function assertJsonTransformedWith(array $data, Model|EloquentModel $model)
     {
         $reflect = new \ReflectionClass($model);
-        $transformer = sprintf('\\Pterodactyl\\Transformers\\Api\\Client\\%sTransformer', $reflect->getShortName());
+        $transformer = sprintf('\\PhoenixPanel\\Transformers\\Api\\Client\\%sTransformer', $reflect->getShortName());
 
         $transformer = new $transformer();
         $this->assertInstanceOf(BaseClientTransformer::class, $transformer);

@@ -20,7 +20,7 @@ class EggImporterService
     /**
      * Take an uploaded JSON file and parse it into a new egg.
      *
-     * @throws \Pterodactyl\Exceptions\Service\InvalidFileUploadException|\Throwable
+     * @throws \PhoenixPanel\Exceptions\Service\InvalidFileUploadException|\Throwable
      */
     public function handle(UploadedFile $file, int $nest): Egg
     {

@@ -35,7 +35,7 @@ class RequireTwoFactorAuthentication
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \Pterodactyl\Models\User $user */
+        /** @var \PhoenixPanel\Models\User $user */
         $user = $request->user();
         $uri = rtrim($request->getRequestUri(), '/') . '/';
         $current = $request->route()->getName();
@@ -44,7 +44,7 @@ class RequireTwoFactorAuthentication
             return $next($request);
         }
 
-        $level = (int) config('pterodactyl.auth.2fa_required');
+        $level = (int) config('phoenixpanel.auth.2fa_required');
         // If this setting is not configured, or the user is already using 2FA then we can just
         // send them right through, nothing else needs to be checked.
         //

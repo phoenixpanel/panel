@@ -19,7 +19,7 @@ class VariableValidatorServiceTest extends IntegrationTestCase
 
         /* @noinspection PhpFieldAssignmentTypeMismatchInspection */
         $this->egg = Egg::query()
-            ->where('author', 'support@pterodactyl.io')
+            ->where('author', 'support@phoenixpanel.io')
             ->where('name', 'Bungeecord')
             ->firstOrFail();
     }

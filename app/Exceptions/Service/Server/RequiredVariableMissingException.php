@@ -2,8 +2,8 @@
 
 namespace PhoenixPanel\Exceptions\Service\Server;
 
-use PhoenixPanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PhoenixPanelException;
 
-class RequiredVariableMissingException extends PterodactylException
+class RequiredVariableMissingException extends PhoenixPanelException
 {
 }

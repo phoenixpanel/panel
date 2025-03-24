@@ -40,7 +40,7 @@ class SubuserTransformer extends BaseTransformer
     /**
      * Return a generic item of user for this subuser.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeUser(Subuser $subuser): Item|NullResource
     {
@@ -56,7 +56,7 @@ class SubuserTransformer extends BaseTransformer
     /**
      * Return a generic item of server for this subuser.
      *
-     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServer(Subuser $subuser): Item|NullResource
     {

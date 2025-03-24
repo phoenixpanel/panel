@@ -57,9 +57,9 @@ class SubuserController extends ClientApiController
     /**
      * Create a new subuser for the given server.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Service\Subuser\ServerSubuserExistsException
-     * @throws \Pterodactyl\Exceptions\Service\Subuser\UserIsServerOwnerException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException
+     * @throws \PhoenixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException
      * @throws \Throwable
      */
     public function store(StoreSubuserRequest $request, Server $server): array
@@ -83,12 +83,12 @@ class SubuserController extends ClientApiController
     /**
      * Update a given subuser in the system for the server.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateSubuserRequest $request, Server $server): array
     {
-        /** @var \Pterodactyl\Models\Subuser $subuser */
+        /** @var \PhoenixPanel\Models\Subuser $subuser */
         $subuser = $request->attributes->get('subuser');
 
         $permissions = $this->getDefaultPermissions($request);
@@ -138,7 +138,7 @@ class SubuserController extends ClientApiController
      */
     public function delete(DeleteSubuserRequest $request, Server $server): JsonResponse
     {
-        /** @var \Pterodactyl\Models\Subuser $subuser */
+        /** @var \PhoenixPanel\Models\Subuser $subuser */
         $subuser = $request->attributes->get('subuser');
 
         $log = Activity::event('server:subuser.delete')

@@ -21,7 +21,7 @@ class SystemInformationController extends Controller
     /**
      * Returns system information from the Daemon.
      *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function __invoke(Request $request, Node $node): JsonResponse
     {

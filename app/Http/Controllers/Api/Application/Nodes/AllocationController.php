@@ -56,11 +56,11 @@ class AllocationController extends ApplicationApiController
     /**
      * Store new allocations for a given node.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     public function store(StoreAllocationRequest $request, Node $node): JsonResponse
     {
@@ -72,7 +72,7 @@ class AllocationController extends ApplicationApiController
     /**
      * Delete a specific allocation from the Panel.
      *
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\ServerUsingAllocationException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
      */
     public function delete(DeleteAllocationRequest $request, Node $node, Allocation $allocation): JsonResponse
     {

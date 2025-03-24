@@ -18,8 +18,8 @@ class InstallScriptService
     /**
      * Modify the install script for a given Egg.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      * @throws InvalidCopyFromException
      */
     public function handle(Egg $egg, array $data): void

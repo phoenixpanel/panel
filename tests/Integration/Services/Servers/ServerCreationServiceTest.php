@@ -37,7 +37,7 @@ class ServerCreationServiceTest extends IntegrationTestCase
 
         /* @noinspection PhpFieldAssignmentTypeMismatchInspection */
         $this->bungeecord = Egg::query()
-            ->where('author', 'support@pterodactyl.io')
+            ->where('author', 'support@phoenixpanel.io')
             ->where('name', 'Bungeecord')
             ->firstOrFail();
 
@@ -65,7 +65,7 @@ class ServerCreationServiceTest extends IntegrationTestCase
             'location_id' => $location->id,
         ]);
 
-        /** @var \Pterodactyl\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations */
+        /** @var \PhoenixPanel\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations */
         $allocations = Allocation::factory()->times(5)->create([
             'node_id' => $node->id,
         ]);

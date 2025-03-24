@@ -4,16 +4,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Matthew Penner",
-            "email": "matthew@pterodactyl.io",
-            "homepage": "https://github.com/matthewpi",
-            "role": "Lead Developer"
+            "name": "Sneaky",
+            "email": "sneaky@phoenixpanel.com",
+            "homepage": "https://github.com/phoenixpanel",
+            "role": "Project Management"
         },
         {
-            "name": "Dane Everitt",
-            "email": "dane@daneeveritt.com",
-            "homepage": "https://github.com/DaneEveritt",
-            "role": "Developer"
+            "name": "Benno",
+            "email": "benno@phoenixpanel.com",
+            "homepage": "https://github.com/SHBenno",
+            "role": "Lead Developer"
         }
     ],
     "require": {

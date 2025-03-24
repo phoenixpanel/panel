@@ -15,7 +15,7 @@ $(document).ready(function () {
 $('#pNodeId').on('change', function () {
     let currentNode = $(this).val();
 
-    $.each(Pterodactyl.nodeData, function (i, v) {
+    $.each(PhoenixPanel.nodeData, function (i, v) {
         if (v.id == currentNode) {
             $('#pAllocation').html('').select2({
                 data: v.allocations,

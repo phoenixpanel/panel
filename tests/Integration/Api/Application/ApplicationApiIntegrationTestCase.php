@@ -36,7 +36,7 @@ abstract class ApplicationApiIntegrationTestCase extends IntegrationTestCase
         $this->key = $this->createApiKey($this->user);
 
         $this
-            ->withHeader('Accept', 'application/vnd.pterodactyl.v1+json')
+            ->withHeader('Accept', 'application/vnd.phoenixpanel.v1+json')
             ->withHeader('Authorization', 'Bearer ' . $this->key->identifier . decrypt($this->key->token));
     }
 

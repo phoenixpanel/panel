@@ -115,8 +115,8 @@ class UserController extends Controller
     /**
      * Update a user on the system.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UserFormRequest $request, User $user): RedirectResponse
     {

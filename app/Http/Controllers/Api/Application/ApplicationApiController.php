@@ -49,7 +49,7 @@ abstract class ApplicationApiController extends Controller
     /**
      * Return an instance of an application transformer.
      *
-     * @template T of \Pterodactyl\Transformers\Api\Application\BaseTransformer
+     * @template T of \PhoenixPanel\Transformers\Api\Application\BaseTransformer
      *
      * @param class-string<T> $abstract
      *

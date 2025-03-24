@@ -20,7 +20,7 @@ class DatabaseManagementService
      * The regex used to validate that the database name passed through to the function is
      * in the expected format.
      *
-     * @see \Pterodactyl\Services\Databases\DatabaseManagementService::generateUniqueDatabaseName()
+     * @see \PhoenixPanel\Services\Databases\DatabaseManagementService::generateUniqueDatabaseName()
      */
     private const MATCH_NAME_REGEX = '/^(s[\d]+_)(.*)$/';
 
@@ -71,7 +71,7 @@ class DatabaseManagementService
      */
     public function create(Server $server, array $data): Database
     {
-        if (!config('pterodactyl.client_features.databases.enabled')) {
+        if (!config('phoenixpanel.client_features.databases.enabled')) {
             throw new DatabaseClientFeatureNotEnabledException();
         }
 

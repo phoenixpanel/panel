@@ -2,8 +2,8 @@
 
 namespace PhoenixPanel\Exceptions\Transformer;
 
-use PhoenixPanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PhoenixPanelException;
 
-class InvalidTransformerLevelException extends PterodactylException
+class InvalidTransformerLevelException extends PhoenixPanelException
 {
 }

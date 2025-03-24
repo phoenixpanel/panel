@@ -24,7 +24,7 @@ class MakeLocationCommand extends Command
     /**
      * Handle the command execution process.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

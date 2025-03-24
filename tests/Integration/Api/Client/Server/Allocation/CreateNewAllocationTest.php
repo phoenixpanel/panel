@@ -16,9 +16,9 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
     {
         parent::setUp();
 
-        config()->set('pterodactyl.client_features.allocations.enabled', true);
-        config()->set('pterodactyl.client_features.allocations.range_start', 5000);
-        config()->set('pterodactyl.client_features.allocations.range_end', 5050);
+        config()->set('phoenixpanel.client_features.allocations.enabled', true);
+        config()->set('phoenixpanel.client_features.allocations.range_start', 5000);
+        config()->set('phoenixpanel.client_features.allocations.range_end', 5050);
     }
 
     /**
@@ -27,7 +27,7 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
     #[\PHPUnit\Framework\Attributes\DataProvider('permissionDataProvider')]
     public function testNewAllocationCanBeAssignedToServer(array $permission)
     {
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount($permission);
         $server->update(['allocation_limit' => 2]);
 
@@ -46,7 +46,7 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
      */
     public function testAllocationCannotBeCreatedIfUserDoesNotHavePermission()
     {
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount([Permission::ACTION_ALLOCATION_UPDATE]);
         $server->update(['allocation_limit' => 2]);
 
@@ -58,9 +58,9 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
      */
     public function testAllocationCannotBeCreatedIfNotEnabled()
     {
-        config()->set('pterodactyl.client_features.allocations.enabled', false);
+        config()->set('phoenixpanel.client_features.allocations.enabled', false);
 
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount();
         $server->update(['allocation_limit' => 2]);
 
@@ -75,7 +75,7 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
      */
     public function testAllocationCannotBeCreatedIfServerIsAtLimit()
     {
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         [$user, $server] = $this->generateTestAccount();
         $server->update(['allocation_limit' => 1]);
 

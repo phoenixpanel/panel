@@ -58,7 +58,7 @@ return [
 
     'middleware' => [
         'authenticate_session' => Laravel\Sanctum\Http\Middleware\AuthenticateSession::class,
-        'encrypt_cookies' => Pterodactyl\Http\Middleware\EncryptCookies::class,
-        'verify_csrf_token' => Pterodactyl\Http\Middleware\VerifyCsrfToken::class,
+        'encrypt_cookies' => PhoenixPanel\Http\Middleware\EncryptCookies::class,
+        'verify_csrf_token' => PhoenixPanel\Http\Middleware\VerifyCsrfToken::class,
     ],
 ];

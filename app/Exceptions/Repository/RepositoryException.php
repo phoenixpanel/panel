@@ -2,8 +2,8 @@
 
 namespace PhoenixPanel\Exceptions\Repository;
 
-use PhoenixPanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PhoenixPanelException;
 
-class RepositoryException extends PterodactylException
+class RepositoryException extends PhoenixPanelException
 {
 }

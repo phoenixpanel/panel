@@ -31,7 +31,7 @@ class SubuserCreationService
      * If the email address already belongs to a user on the system a new user will not
      * be created.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws ServerSubuserExistsException
      * @throws UserIsServerOwnerException
      * @throws \Throwable

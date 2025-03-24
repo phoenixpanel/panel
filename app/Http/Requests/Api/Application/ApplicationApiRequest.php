@@ -9,7 +9,7 @@ use Illuminate\Validation\Validator;
 use Illuminate\Database\Eloquent\Model;
 use PhoenixPanel\Services\Acl\Api\AdminAcl;
 use Illuminate\Foundation\Http\FormRequest;
-use PhoenixPanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PhoenixPanelException;
 
 abstract class ApplicationApiRequest extends FormRequest
 {
@@ -29,12 +29,12 @@ abstract class ApplicationApiRequest extends FormRequest
      * Determine if the current user is authorized to perform
      * the requested action against the API.
      *
-     * @throws PterodactylException
+     * @throws PhoenixPanelException
      */
     public function authorize(): bool
     {
         if (is_null($this->resource)) {
-            throw new PterodactylException('An ACL resource must be defined on API requests.');
+            throw new PhoenixPanelException('An ACL resource must be defined on API requests.');
         }
 
         $token = $this->user()->currentAccessToken();

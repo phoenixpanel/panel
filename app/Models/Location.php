@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $long
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \Pterodactyl\Models\Node[] $nodes
- * @property \Pterodactyl\Models\Server[] $servers
+ * @property \PhoenixPanel\Models\Node[] $nodes
+ * @property \PhoenixPanel\Models\Server[] $servers
  */
 class Location extends Model
 {

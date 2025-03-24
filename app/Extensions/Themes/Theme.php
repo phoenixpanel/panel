@@ -16,6 +16,6 @@ class Theme
 
     protected function getUrl($path): string
     {
-        return '/themes/pterodactyl/' . ltrim($path, '/');
+        return '/themes/phoenixpanel/' . ltrim($path, '/');
     }
 }

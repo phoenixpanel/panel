@@ -31,7 +31,7 @@ class CreateServerController extends Controller
     /**
      * Displays the create server page.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(): View|RedirectResponse
     {
@@ -63,9 +63,9 @@ class CreateServerController extends Controller
      * Create a new server on the remote system.
      *
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \Pterodactyl\Exceptions\DisplayException
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
-     * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
      * @throws \Throwable
      */
     public function store(ServerFormRequest $request): RedirectResponse

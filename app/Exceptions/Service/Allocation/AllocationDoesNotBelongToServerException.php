@@ -2,8 +2,8 @@
 
 namespace PhoenixPanel\Exceptions\Service\Allocation;
 
-use PhoenixPanel\Exceptions\PterodactylException;
+use PhoenixPanel\Exceptions\PhoenixPanelException;
 
-class AllocationDoesNotBelongToServerException extends PterodactylException
+class AllocationDoesNotBelongToServerException extends PhoenixPanelException
 {
 }

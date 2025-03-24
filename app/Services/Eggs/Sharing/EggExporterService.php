@@ -20,7 +20,7 @@ class EggExporterService
     /**
      * Return a JSON representation of an egg and its variables.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function handle(int $egg): string
     {

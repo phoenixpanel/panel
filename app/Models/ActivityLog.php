@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 
 /**
- * \Pterodactyl\Models\ActivityLog.
+ * \PhoenixPanel\Models\ActivityLog.
  *
  * @property int $id
  * @property string|null $batch
@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model as IlluminateModel;
  * @property \Illuminate\Support\Collection|null $properties
  * @property Carbon $timestamp
  * @property IlluminateModel|\Eloquent $actor
- * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\ActivityLogSubject[] $subjects
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\ActivityLogSubject[] $subjects
  * @property int|null $subjects_count
  * @property ApiKey|null $apiKey
  *

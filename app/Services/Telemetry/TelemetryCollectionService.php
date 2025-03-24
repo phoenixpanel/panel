@@ -30,7 +30,7 @@ class TelemetryCollectionService
     }
 
     /**
-     * Collects telemetry data and sends it to the Pterodactyl Telemetry Service.
+     * Collects telemetry data and sends it to the PhoenixPanel Telemetry Service.
      */
     public function __invoke(): void
     {
@@ -40,13 +40,13 @@ class TelemetryCollectionService
             return;
         }
 
-        Http::post('https://telemetry.pterodactyl.io', $data);
+        Http::post('https://telemetry.phoenixpanel.io', $data);
     }
 
     /**
      * Collects telemetry data and returns it as an array.
      *
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function collect(): array
     {

@@ -25,7 +25,7 @@ class ServerInstallController extends Controller
     /**
      * Returns installation information for a server.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(Request $request, string $uuid): JsonResponse
     {
@@ -42,8 +42,8 @@ class ServerInstallController extends Controller
     /**
      * Updates the installation state of a server.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function store(InstallationDataRequest $request, string $uuid): JsonResponse
     {
@@ -69,9 +69,9 @@ class ServerInstallController extends Controller
         // If the server successfully installed, fire installed event.
         // This logic allows individually disabling install and reinstall notifications separately.
         $isInitialInstall = is_null($server->installed_at);
-        if ($isInitialInstall && config()->get('pterodactyl.email.send_install_notification', true)) {
+        if ($isInitialInstall && config()->get('phoenixpanel.email.send_install_notification', true)) {
             $this->eventDispatcher->dispatch(new ServerInstalled($server));
-        } elseif (!$isInitialInstall && config()->get('pterodactyl.email.send_reinstall_notification', true)) {
+        } elseif (!$isInitialInstall && config()->get('phoenixpanel.email.send_reinstall_notification', true)) {
             $this->eventDispatcher->dispatch(new ServerInstalled($server));
         }
 

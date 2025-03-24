@@ -45,8 +45,8 @@ class AdvancedController extends Controller
     }
 
     /**
-     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
-     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(AdvancedSettingsFormRequest $request): RedirectResponse
     {

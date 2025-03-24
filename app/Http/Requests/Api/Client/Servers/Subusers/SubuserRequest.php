@@ -52,7 +52,7 @@ abstract class SubuserRequest extends ClientApiRequest
     protected function validatePermissionsCanBeAssigned(array $permissions)
     {
         $user = $this->user();
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $this->route()->parameter('server');
 
         // If we are a root admin or the server owner, no need to perform these checks.

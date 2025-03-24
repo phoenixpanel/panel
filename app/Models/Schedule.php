@@ -28,7 +28,7 @@ use PhoenixPanel\Contracts\Extensions\HashidsInterface;
  * @property \Carbon\Carbon $updated_at
  * @property string $hashid
  * @property Server $server
- * @property \Pterodactyl\Models\Task[]|\Illuminate\Support\Collection $tasks
+ * @property \PhoenixPanel\Models\Task[]|\Illuminate\Support\Collection $tasks
  */
 class Schedule extends Model
 {

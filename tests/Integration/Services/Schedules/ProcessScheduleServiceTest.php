@@ -88,7 +88,7 @@ class ProcessScheduleServiceTest extends IntegrationTestCase
      * Test that even if a schedule's task sequence gets messed up the first task based on
      * the ascending order of tasks is used.
      *
-     * @see https://github.com/pterodactyl/panel/issues/2534
+     * @see https://github.com/phoenixpanel/panel/issues/2534
      */
     public function testFirstSequenceTaskIsFound()
     {
@@ -119,7 +119,7 @@ class ProcessScheduleServiceTest extends IntegrationTestCase
      * Tests that a task's processing state is reset correctly if using "dispatchNow" and there is
      * an exception encountered while running it.
      *
-     * @see https://github.com/pterodactyl/panel/issues/2550
+     * @see https://github.com/phoenixpanel/panel/issues/2550
      */
     public function testTaskDispatchedNowIsResetProperlyIfErrorIsEncountered()
     {

@@ -20,7 +20,7 @@ return [
     |
     | Each panel installation is assigned a unique UUID to identify the
     | author of custom services, and make upgrades easier by identifying
-    | standard Pterodactyl shipped services.
+    | standard PhoenixPanel shipped services.
     */
 
     'service' => [
@@ -92,7 +92,7 @@ return [
 
     'cdn' => [
         'cache_time' => 60,
-        'url' => 'https://cdn.pterodactyl.io/releases/latest.json',
+        'url' => 'https://cdn.phoenixpanel.io/releases/latest.json',
     ],
 
     /*
@@ -105,19 +105,19 @@ return [
 
     'client_features' => [
         'databases' => [
-            'enabled' => env('PTERODACTYL_CLIENT_DATABASES_ENABLED', true),
-            'allow_random' => env('PTERODACTYL_CLIENT_DATABASES_ALLOW_RANDOM', true),
+            'enabled' => env('PHOENIXPANEL_CLIENT_DATABASES_ENABLED', true),
+            'allow_random' => env('PHOENIXPANEL_CLIENT_DATABASES_ALLOW_RANDOM', true),
         ],
 
         'schedules' => [
             // The total number of tasks that can exist for any given schedule at once.
-            'per_schedule_task_limit' => env('PTERODACTYL_PER_SCHEDULE_TASK_LIMIT', 10),
+            'per_schedule_task_limit' => env('PHOENIXPANEL_PER_SCHEDULE_TASK_LIMIT', 10),
         ],
 
         'allocations' => [
-            'enabled' => env('PTERODACTYL_CLIENT_ALLOCATIONS_ENABLED', false),
-            'range_start' => env('PTERODACTYL_CLIENT_ALLOCATIONS_RANGE_START'),
-            'range_end' => env('PTERODACTYL_CLIENT_ALLOCATIONS_RANGE_END'),
+            'enabled' => env('PHOENIXPANEL_CLIENT_ALLOCATIONS_ENABLED', false),
+            'range_start' => env('PHOENIXPANEL_CLIENT_ALLOCATIONS_RANGE_START'),
+            'range_end' => env('PHOENIXPANEL_CLIENT_ALLOCATIONS_RANGE_END'),
         ],
     ],
 
@@ -130,7 +130,7 @@ return [
     */
 
     'files' => [
-        'max_edit_size' => env('PTERODACTYL_FILES_MAX_EDIT_SIZE', 1024 * 1024 * 4),
+        'max_edit_size' => env('PHOENIXPANEL_FILES_MAX_EDIT_SIZE', 1024 * 1024 * 4),
     ],
 
     /*
@@ -160,7 +160,7 @@ return [
     */
 
     'assets' => [
-        'use_hash' => env('PTERODACTYL_USE_ASSET_HASH', false),
+        'use_hash' => env('PHOENIXPANEL_USE_ASSET_HASH', false),
     ],
 
     /*
@@ -173,9 +173,9 @@ return [
 
     'email' => [
         // Should an email be sent to a server owner once their server has completed it's first install process?
-        'send_install_notification' => env('PTERODACTYL_SEND_INSTALL_NOTIFICATION', true),
+        'send_install_notification' => env('PHOENIXPANEL_SEND_INSTALL_NOTIFICATION', true),
         // Should an email be sent to a server owner whenever their server is reinstalled?
-        'send_reinstall_notification' => env('PTERODACTYL_SEND_REINSTALL_NOTIFICATION', true),
+        'send_reinstall_notification' => env('PHOENIXPANEL_SEND_REINSTALL_NOTIFICATION', true),
     ],
 
     /*
@@ -183,10 +183,10 @@ return [
     | Telemetry Settings
     |--------------------------------------------------------------------------
     |
-    | This section controls the telemetry sent by Pterodactyl.
+    | This section controls the telemetry sent by PhoenixPanel.
     */
 
     'telemetry' => [
-        'enabled' => env('PTERODACTYL_TELEMETRY_ENABLED', true),
+        'enabled' => env('PHOENIXPANEL_TELEMETRY_ENABLED', true),
     ],
 ];
