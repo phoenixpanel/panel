@@ -2,6 +2,6 @@
 
 namespace PhoenixPanel\Exceptions;
 
-class PhoenixPanelException extends \Exception
+class PterodactylException extends \Exception
 {
 }

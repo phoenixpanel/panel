@@ -118,7 +118,7 @@ This project follows [Semantic Versioning](http://semver.org) guidelines.
 ### Added (since 1.10.4)
 * Added the `server:settings.description` activity log event for when a server description is changed.
 * Added the ability to cancel file uploads in the file manager for a server.
-* Added a telemetry service to collect anonymous metrics from the panel, this feature is *enabled* by default and can be toggled using the `PTERODACTYL_TELEMETRY_ENABLED` environment variable.
+* Added a telemetry service to collect anonymous metrics from the panel, this feature is *enabled* by default and can be toggled using the `PHOENIXPANEL_TELEMETRY_ENABLED` environment variable.
 
 ## v1.11.0-rc.2
 ### Changed
@@ -132,7 +132,7 @@ This project follows [Semantic Versioning](http://semver.org) guidelines.
 ### Added
 * Added the `server:settings.description` activity log event for when a server description is changed.
 * Added the ability to cancel file uploads in the file manager for a server.
-* Added a telemetry service to collect anonymous metrics from the panel, this feature is disabled by default and can be toggled using the `PTERODACTYL_TELEMETRY_ENABLED` environment variable.
+* Added a telemetry service to collect anonymous metrics from the panel, this feature is disabled by default and can be toggled using the `PHOENIXPANEL_TELEMETRY_ENABLED` environment variable.
 
 ## v1.11.0-rc.1
 ### Changed

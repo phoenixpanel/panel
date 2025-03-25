@@ -4,16 +4,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Sneaky",
-            "email": "sneaky@phoenixpanel.com",
-            "homepage": "https://github.com/phoenixpanel",
-            "role": "Project Management"
+            "name": "Matthew Penner",
+            "email": "matthew@phoenixpanel.io",
+            "homepage": "https://github.com/matthewpi",
+            "role": "Lead Developer"
         },
         {
-            "name": "Benno",
-            "email": "benno@phoenixpanel.com",
-            "homepage": "https://github.com/SHBenno",
-            "role": "Lead Developer"
+            "name": "Dane Everitt",
+            "email": "dane@daneeveritt.com",
+            "homepage": "https://github.com/DaneEveritt",
+            "role": "Developer"
         }
     ],
     "require": {
