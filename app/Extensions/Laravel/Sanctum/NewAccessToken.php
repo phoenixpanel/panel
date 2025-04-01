@@ -6,7 +6,7 @@ use PhoenixPanel\Models\ApiKey;
 use Laravel\Sanctum\NewAccessToken as SanctumAccessToken;
 
 /**
- * @property ApiKey $accessToken
+ * @property \PhoenixPanel\Models\ApiKey $accessToken
  */
 class NewAccessToken extends SanctumAccessToken
 {

@@ -22,7 +22,7 @@ class EggCreationService
      * Create a new service option and assign it to the given service.
      *
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws NoParentConfigurationFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
      */
     public function handle(array $data): Egg
     {

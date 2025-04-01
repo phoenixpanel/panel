@@ -5,7 +5,6 @@ namespace PhoenixPanel\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -14,13 +13,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property array $permissions
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property User $user
- * @property Server $server
+ * @property \PhoenixPanel\Models\User $user
+ * @property \PhoenixPanel\Models\Server $server
  */
 class Subuser extends Model
 {
-    /** @use HasFactory<\Database\Factories\SubuserFactory> */
-    use HasFactory;
     use Notifiable;
 
     /**

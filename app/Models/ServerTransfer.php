@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $archived
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property Server $server
- * @property Node $oldNode
- * @property Node $newNode
+ * @property \PhoenixPanel\Models\Server $server
+ * @property \PhoenixPanel\Models\Node $oldNode
+ * @property \PhoenixPanel\Models\Node $newNode
  */
 class ServerTransfer extends Model
 {

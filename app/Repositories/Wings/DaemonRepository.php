@@ -8,10 +8,6 @@ use Webmozart\Assert\Assert;
 use PhoenixPanel\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 
-/**
- * @method \PhoenixPanel\Repositories\Wings\DaemonRepository setNode(\PhoenixPanel\Models\Node $node)
- * @method \PhoenixPanel\Repositories\Wings\DaemonRepository setServer(\PhoenixPanel\Models\Server $server)
- */
 abstract class DaemonRepository
 {
     protected ?Server $server;

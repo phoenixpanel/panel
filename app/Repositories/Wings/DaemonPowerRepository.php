@@ -8,16 +8,12 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
 use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
-/**
- * @method \PhoenixPanel\Repositories\Wings\DaemonPowerRepository setNode(\PhoenixPanel\Models\Node $node)
- * @method \PhoenixPanel\Repositories\Wings\DaemonPowerRepository setServer(\PhoenixPanel\Models\Server $server)
- */
 class DaemonPowerRepository extends DaemonRepository
 {
     /**
      * Sends a power action to the server instance.
      *
-     * @throws DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function send(string $action): ResponseInterface
     {

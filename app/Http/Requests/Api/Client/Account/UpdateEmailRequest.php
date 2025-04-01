@@ -11,7 +11,7 @@ use PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException;
 class UpdateEmailRequest extends ClientApiRequest
 {
     /**
-     * @throws InvalidPasswordProvidedException
+     * @throws \PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException
      */
     public function authorize(): bool
     {

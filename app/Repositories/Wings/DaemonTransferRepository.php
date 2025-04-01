@@ -7,14 +7,10 @@ use Lcobucci\JWT\Token\Plain;
 use GuzzleHttp\Exception\GuzzleException;
 use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
-/**
- * @method \PhoenixPanel\Repositories\Wings\DaemonTransferRepository setNode(\PhoenixPanel\Models\Node $node)
- * @method \PhoenixPanel\Repositories\Wings\DaemonTransferRepository setServer(\PhoenixPanel\Models\Server $server)
- */
 class DaemonTransferRepository extends DaemonRepository
 {
     /**
-     * @throws DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function notify(Node $targetNode, Plain $token): void
     {

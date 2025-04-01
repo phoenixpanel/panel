@@ -33,7 +33,7 @@ class VariableCreationService
      *
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \PhoenixPanel\Exceptions\Service\Egg\Variable\BadValidationRuleException
-     * @throws ReservedVariableNameException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException
      */
     public function handle(int $egg, array $data): EggVariable
     {

@@ -7,16 +7,12 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
 use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
-/**
- * @method \PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository setNode(\PhoenixPanel\Models\Node $node)
- * @method \PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository setServer(\PhoenixPanel\Models\Server $server)
- */
 class DaemonConfigurationRepository extends DaemonRepository
 {
     /**
      * Returns system information from the wings instance.
      *
-     * @throws DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function getSystemInformation(?int $version = null): array
     {
@@ -34,7 +30,7 @@ class DaemonConfigurationRepository extends DaemonRepository
      * this instance using a passed-in model. This allows us to change plenty of information
      * in the model, and still use the old, pre-update model to actually make the HTTP request.
      *
-     * @throws DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function update(Node $node): ResponseInterface
     {

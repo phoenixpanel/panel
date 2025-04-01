@@ -8,16 +8,12 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
 use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
-/**
- * @method \PhoenixPanel\Repositories\Wings\DaemonCommandRepository setNode(\PhoenixPanel\Models\Node $node)
- * @method \PhoenixPanel\Repositories\Wings\DaemonCommandRepository setServer(\PhoenixPanel\Models\Server $server)
- */
 class DaemonCommandRepository extends DaemonRepository
 {
     /**
      * Sends a command or multiple commands to a running server instance.
      *
-     * @throws DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function send(array|string $command): ResponseInterface
     {

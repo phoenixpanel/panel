@@ -4,7 +4,6 @@ namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -41,17 +40,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $inherit_config_stop
  * @property string $inherit_file_denylist
  * @property array|null $inherit_features
- * @property Nest $nest
+ * @property \PhoenixPanel\Models\Nest $nest
  * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Server[] $servers
  * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\EggVariable[] $variables
- * @property Egg|null $scriptFrom
- * @property Egg|null $configFrom
+ * @property \PhoenixPanel\Models\Egg|null $scriptFrom
+ * @property \PhoenixPanel\Models\Egg|null $configFrom
  */
 class Egg extends Model
 {
-    /** @use HasFactory<\Database\Factories\EggFactory> */
-    use HasFactory;
-
     /**
      * The resource name for this model when it is transformed into an
      * API representation using fractal.
@@ -127,7 +123,7 @@ class Egg extends Model
         'file_denylist' => 'array|nullable',
         'file_denylist.*' => 'string',
         'docker_images' => 'required|array|min:1',
-        'docker_images.*' => ['required', 'string', 'max:191', 'regex:/^[\w#\.\/\- ]*\|?~?[\w\.\/\-:@ ]*$/'],
+        'docker_images.*' => ['required', 'string', 'max:191', 'regex:/^[\w#\.\/\- ]*\|*[\w\.\/\-:@ ]*$/'],
         'startup' => 'required|nullable|string',
         'config_from' => 'sometimes|bail|nullable|numeric|exists:eggs,id',
         'config_stop' => 'required_without:config_from|nullable|string|max:191',

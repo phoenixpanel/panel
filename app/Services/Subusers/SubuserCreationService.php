@@ -22,7 +22,7 @@ class SubuserCreationService
         private ConnectionInterface $connection,
         private SubuserRepository $subuserRepository,
         private UserCreationService $userCreationService,
-        private UserRepositoryInterface $userRepository,
+        private UserRepositoryInterface $userRepository
     ) {
     }
 
@@ -32,8 +32,8 @@ class SubuserCreationService
      * be created.
      *
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws ServerSubuserExistsException
-     * @throws UserIsServerOwnerException
+     * @throws \PhoenixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException
+     * @throws \PhoenixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException
      * @throws \Throwable
      */
     public function handle(Server $server, string $email, array $permissions): Subuser

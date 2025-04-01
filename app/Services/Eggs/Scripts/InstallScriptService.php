@@ -20,7 +20,7 @@ class InstallScriptService
      *
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws InvalidCopyFromException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\InvalidCopyFromException
      */
     public function handle(Egg $egg, array $data): void
     {

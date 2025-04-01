@@ -72,7 +72,7 @@ class DisplayException extends PhoenixPanelException implements HttpExceptionInt
 
         try {
             $logger = Container::getInstance()->make(LoggerInterface::class);
-        } catch (\Exception) {
+        } catch (Exception) {
             throw $this->getPrevious();
         }
 

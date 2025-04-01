@@ -20,7 +20,7 @@ class EggUpdateService
      *
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws NoParentConfigurationFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
      */
     public function handle(Egg $egg, array $data): void
     {

@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $variable_value
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property EggVariable $variable
- * @property Server $server
+ * @property \PhoenixPanel\Models\EggVariable $variable
+ * @property \PhoenixPanel\Models\Server $server
  */
 class ServerVariable extends Model
 {

@@ -11,7 +11,6 @@ use PhoenixPanel\Exceptions\DisplayException;
 use PhoenixPanel\Http\Controllers\Controller;
 use PhoenixPanel\Extensions\Backups\BackupManager;
 use PhoenixPanel\Extensions\Filesystem\S3Filesystem;
-use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use PhoenixPanel\Http\Requests\Api\Remote\ReportBackupCompleteRequest;
 
@@ -35,7 +34,7 @@ class BackupStatusController extends Controller
         /** @var \PhoenixPanel\Models\Node $node */
         $node = $request->attributes->get('node');
 
-        /** @var Backup $model */
+        /** @var \PhoenixPanel\Models\Backup $model */
         $model = Backup::query()
             ->where('uuid', $backup)
             ->firstOrFail();
@@ -92,7 +91,7 @@ class BackupStatusController extends Controller
      */
     public function restore(Request $request, string $backup): JsonResponse
     {
-        /** @var Backup $model */
+        /** @var \PhoenixPanel\Models\Backup $model */
         $model = Backup::query()->where('uuid', $backup)->firstOrFail();
 
         $model->server->update(['status' => null]);
@@ -110,7 +109,7 @@ class BackupStatusController extends Controller
      * the given backup.
      *
      * @throws \Exception
-     * @throws DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     protected function completeMultipartUpload(Backup $backup, S3Filesystem $adapter, bool $successful, ?array $parts): void
     {

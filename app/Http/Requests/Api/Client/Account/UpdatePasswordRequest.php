@@ -10,7 +10,7 @@ use PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException;
 class UpdatePasswordRequest extends ClientApiRequest
 {
     /**
-     * @throws InvalidPasswordProvidedException
+     * @throws \PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException
      */
     public function authorize(): bool
     {

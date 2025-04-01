@@ -33,10 +33,10 @@ class VariableUpdateService
     /**
      * Update a specific egg variable.
      *
-     * @throws DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws ReservedVariableNameException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException
      */
     public function handle(EggVariable $variable, array $data): mixed
     {

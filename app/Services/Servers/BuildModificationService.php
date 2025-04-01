@@ -20,7 +20,7 @@ class BuildModificationService
     public function __construct(
         private ConnectionInterface $connection,
         private DaemonServerRepository $daemonServerRepository,
-        private ServerConfigurationStructureService $structureService,
+        private ServerConfigurationStructureService $structureService
     ) {
     }
 
@@ -28,11 +28,11 @@ class BuildModificationService
      * Change the build details for a specified server.
      *
      * @throws \Throwable
-     * @throws DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function handle(Server $server, array $data): Server
     {
-        /** @var Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $this->connection->transaction(function () use ($server, $data) {
             $this->processAllocations($server, $data);
 
@@ -77,7 +77,7 @@ class BuildModificationService
     /**
      * Process the allocations being assigned in the data and ensure they are available for a server.
      *
-     * @throws DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     private function processAllocations(Server $server, array &$data): void
     {
