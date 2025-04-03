@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Contracts\Repository;
+namespace PhoenixPanel\Contracts\Repository;
 
 interface PermissionRepositoryInterface extends RepositoryInterface
 {

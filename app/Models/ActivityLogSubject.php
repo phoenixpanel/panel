@@ -1,17 +1,17 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
- * \PheonixPanel\Models\ActivityLogSubject.
+ * \PhoenixPanel\Models\ActivityLogSubject.
  *
  * @property int $id
  * @property int $activity_log_id
  * @property int $subject_id
  * @property string $subject_type
- * @property \PheonixPanel\Models\ActivityLog|null $activityLog
+ * @property \PhoenixPanel\Models\ActivityLog|null $activityLog
  * @property \Illuminate\Database\Eloquent\Model|\Eloquent $subject
  *
  * @method static \Illuminate\Database\Eloquent\Builder|ActivityLogSubject newModelQuery()

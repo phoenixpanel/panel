@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Providers;
+namespace PhoenixPanel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

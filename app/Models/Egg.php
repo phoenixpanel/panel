@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,11 +40,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $inherit_config_stop
  * @property string $inherit_file_denylist
  * @property array|null $inherit_features
- * @property \PheonixPanel\Models\Nest $nest
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Server[] $servers
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\EggVariable[] $variables
- * @property \PheonixPanel\Models\Egg|null $scriptFrom
- * @property \PheonixPanel\Models\Egg|null $configFrom
+ * @property \PhoenixPanel\Models\Nest $nest
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Server[] $servers
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\EggVariable[] $variables
+ * @property \PhoenixPanel\Models\Egg|null $scriptFrom
+ * @property \PhoenixPanel\Models\Egg|null $configFrom
  */
 class Egg extends Model
 {

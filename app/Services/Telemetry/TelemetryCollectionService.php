@@ -1,23 +1,23 @@
 <?php
 
-namespace PheonixPanel\Services\Telemetry;
+namespace PhoenixPanel\Services\Telemetry;
 
 use Exception;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use PheonixPanel\Models\Egg;
-use PheonixPanel\Models\Nest;
-use PheonixPanel\Models\Node;
-use PheonixPanel\Models\User;
-use PheonixPanel\Models\Mount;
-use PheonixPanel\Models\Backup;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\Location;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Mount;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Location;
 use Illuminate\Support\Facades\DB;
-use PheonixPanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Support\Facades\Http;
-use PheonixPanel\Repositories\Eloquent\SettingsRepository;
-use PheonixPanel\Repositories\Wings\DaemonConfigurationRepository;
+use PhoenixPanel\Repositories\Eloquent\SettingsRepository;
+use PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository;
 
 class TelemetryCollectionService
 {
@@ -31,7 +31,7 @@ class TelemetryCollectionService
     }
 
     /**
-     * Collects telemetry data and sends it to the PheonixPanel Telemetry Service.
+     * Collects telemetry data and sends it to the PhoenixPanel Telemetry Service.
      */
     public function __invoke(): void
     {
@@ -47,7 +47,7 @@ class TelemetryCollectionService
     /**
      * Collects telemetry data and returns it as an array.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function collect(): array
     {

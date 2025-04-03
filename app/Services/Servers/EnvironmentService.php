@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\EggVariable;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\EggVariable;
 
 class EnvironmentService
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Services\Activity;
+namespace PhoenixPanel\Services\Activity;
 
 use Ramsey\Uuid\Uuid;
 

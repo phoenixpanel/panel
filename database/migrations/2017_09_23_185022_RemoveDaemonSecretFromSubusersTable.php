@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use PheonixPanel\Contracts\Repository\DaemonKeyRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\DaemonKeyRepositoryInterface;
 
 class RemoveDaemonSecretFromSubusersTable extends Migration
 {

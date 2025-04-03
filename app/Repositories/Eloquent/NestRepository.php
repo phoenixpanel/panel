@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use PheonixPanel\Models\Nest;
+use PhoenixPanel\Models\Nest;
 use Illuminate\Database\Eloquent\Collection;
-use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
-use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
 
 class NestRepository extends EloquentRepository implements NestRepositoryInterface
 {
@@ -20,7 +20,7 @@ class NestRepository extends EloquentRepository implements NestRepositoryInterfa
     /**
      * Return a nest or all nests with their associated eggs and variables.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithEggs(int $id = null): Collection|Nest
     {
@@ -41,7 +41,7 @@ class NestRepository extends EloquentRepository implements NestRepositoryInterfa
     /**
      * Return a nest or all nests and the count of eggs and servers for that nest.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithCounts(int $id = null): Collection|Nest
     {
@@ -62,7 +62,7 @@ class NestRepository extends EloquentRepository implements NestRepositoryInterfa
     /**
      * Return a nest along with its associated eggs and the servers relation on those eggs.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithEggServers(int $id): Nest
     {

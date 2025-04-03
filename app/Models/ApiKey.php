@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
-use PheonixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * PheonixPanel\Models\ApiKey.
+ * PhoenixPanel\Models\ApiKey.
  *
  * @property int $id
  * @property int $user_id
@@ -30,8 +30,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $r_eggs
  * @property int $r_database_hosts
  * @property int $r_server_databases
- * @property \PheonixPanel\Models\User $tokenable
- * @property \PheonixPanel\Models\User $user
+ * @property \PhoenixPanel\Models\User $tokenable
+ * @property \PhoenixPanel\Models\User $user
  *
  * @method static \Database\Factories\ApiKeyFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ApiKey newModelQuery()

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
-use PheonixPanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 
 class ApiKeyTransformer extends BaseClientTransformer
 {

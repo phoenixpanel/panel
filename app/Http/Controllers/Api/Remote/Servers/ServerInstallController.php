@@ -1,17 +1,17 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Remote\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Remote\Servers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Repositories\Eloquent\ServerRepository;
-use PheonixPanel\Events\Server\Installed as ServerInstalled;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Events\Server\Installed as ServerInstalled;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
-use PheonixPanel\Http\Requests\Api\Remote\InstallationDataRequest;
+use PhoenixPanel\Http\Requests\Api\Remote\InstallationDataRequest;
 
 class ServerInstallController extends Controller
 {
@@ -25,7 +25,7 @@ class ServerInstallController extends Controller
     /**
      * Returns installation information for a server.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(Request $request, string $uuid): JsonResponse
     {
@@ -42,8 +42,8 @@ class ServerInstallController extends Controller
     /**
      * Updates the installation state of a server.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function store(InstallationDataRequest $request, string $uuid): JsonResponse
     {

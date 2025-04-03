@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
-use PheonixPanel\Models\Database;
+use PhoenixPanel\Models\Database;
 use League\Fractal\Resource\Item;
-use PheonixPanel\Models\Permission;
+use PhoenixPanel\Models\Permission;
 use League\Fractal\Resource\NullResource;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PheonixPanel\Contracts\Extensions\HashidsInterface;
+use PhoenixPanel\Contracts\Extensions\HashidsInterface;
 
 class DatabaseTransformer extends BaseClientTransformer
 {

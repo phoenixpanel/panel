@@ -1,26 +1,26 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin;
+namespace PhoenixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use PheonixPanel\Models\User;
-use PheonixPanel\Models\Model;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\View\Factory as ViewFactory;
-use PheonixPanel\Exceptions\DisplayException;
-use PheonixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Translation\Translator;
-use PheonixPanel\Services\Users\UserUpdateService;
-use PheonixPanel\Traits\Helpers\AvailableLanguages;
-use PheonixPanel\Services\Users\UserCreationService;
-use PheonixPanel\Services\Users\UserDeletionService;
-use PheonixPanel\Http\Requests\Admin\UserFormRequest;
-use PheonixPanel\Http\Requests\Admin\NewUserFormRequest;
-use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Services\Users\UserUpdateService;
+use PhoenixPanel\Traits\Helpers\AvailableLanguages;
+use PhoenixPanel\Services\Users\UserCreationService;
+use PhoenixPanel\Services\Users\UserDeletionService;
+use PhoenixPanel\Http\Requests\Admin\UserFormRequest;
+use PhoenixPanel\Http\Requests\Admin\NewUserFormRequest;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserController extends Controller
 {
@@ -85,7 +85,7 @@ class UserController extends Controller
      * Delete a user from the system.
      *
      * @throws \Exception
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function delete(Request $request, User $user): RedirectResponse
     {
@@ -115,8 +115,8 @@ class UserController extends Controller
     /**
      * Update a user on the system.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UserFormRequest $request, User $user): RedirectResponse
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware\Admin\Servers;
+namespace PhoenixPanel\Http\Middleware\Admin\Servers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -15,7 +15,7 @@ class ServerInstalled
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \PheonixPanel\Models\Server|null $server */
+        /** @var \PhoenixPanel\Models\Server|null $server */
         $server = $request->route()->parameter('server');
 
         if (!$server instanceof Server) {

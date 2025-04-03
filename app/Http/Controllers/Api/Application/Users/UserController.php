@@ -1,19 +1,19 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Application\Users;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Users;
 
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use PheonixPanel\Services\Users\UserUpdateService;
-use PheonixPanel\Services\Users\UserCreationService;
-use PheonixPanel\Services\Users\UserDeletionService;
-use PheonixPanel\Transformers\Api\Application\UserTransformer;
-use PheonixPanel\Http\Requests\Api\Application\Users\GetUsersRequest;
-use PheonixPanel\Http\Requests\Api\Application\Users\StoreUserRequest;
-use PheonixPanel\Http\Requests\Api\Application\Users\DeleteUserRequest;
-use PheonixPanel\Http\Requests\Api\Application\Users\UpdateUserRequest;
-use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Services\Users\UserUpdateService;
+use PhoenixPanel\Services\Users\UserCreationService;
+use PhoenixPanel\Services\Users\UserDeletionService;
+use PhoenixPanel\Transformers\Api\Application\UserTransformer;
+use PhoenixPanel\Http\Requests\Api\Application\Users\GetUsersRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Users\StoreUserRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Users\DeleteUserRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Users\UpdateUserRequest;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class UserController extends ApplicationApiController
 {
@@ -64,8 +64,8 @@ class UserController extends ApplicationApiController
      * Revocation errors are returned under the 'revocation_errors' key in the response
      * meta. If there are no errors this is an empty array.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateUserRequest $request, User $user): array
     {
@@ -83,7 +83,7 @@ class UserController extends ApplicationApiController
      * header on successful creation.
      *
      * @throws \Exception
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function store(StoreUserRequest $request): JsonResponse
     {
@@ -103,7 +103,7 @@ class UserController extends ApplicationApiController
      * Handle a request to delete a user from the Panel. Returns a HTTP/204 response
      * on successful deletion.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function delete(DeleteUserRequest $request, User $user): JsonResponse
     {

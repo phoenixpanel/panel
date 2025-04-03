@@ -1,6 +1,6 @@
 <?php
 
-use PheonixPanel\Models\Setting;
+use PhoenixPanel\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Services\Deployment;
+namespace PhoenixPanel\Services\Deployment;
 
-use PheonixPanel\Models\Allocation;
-use PheonixPanel\Exceptions\DisplayException;
-use PheonixPanel\Services\Allocations\AssignmentService;
-use PheonixPanel\Contracts\Repository\AllocationRepositoryInterface;
-use PheonixPanel\Exceptions\Service\Deployment\NoViableAllocationException;
+use PhoenixPanel\Models\Allocation;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Services\Allocations\AssignmentService;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException;
 
 class AllocationSelectionService
 {
@@ -51,7 +51,7 @@ class AllocationSelectionService
      * empty, all ports will be considered when finding an allocation. If set, only ports appearing
      * in the array or range will be used.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function setPorts(array $ports): self
     {
@@ -80,7 +80,7 @@ class AllocationSelectionService
     /**
      * Return a single allocation that should be used as the default allocation for a server.
      *
-     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException
      */
     public function handle(): Allocation
     {

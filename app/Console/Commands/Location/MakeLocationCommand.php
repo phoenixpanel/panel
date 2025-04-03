@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\Location;
+namespace PhoenixPanel\Console\Commands\Location;
 
 use Illuminate\Console\Command;
-use PheonixPanel\Services\Locations\LocationCreationService;
+use PhoenixPanel\Services\Locations\LocationCreationService;
 
 class MakeLocationCommand extends Command
 {
@@ -24,7 +24,7 @@ class MakeLocationCommand extends Command
     /**
      * Handle the command execution process.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

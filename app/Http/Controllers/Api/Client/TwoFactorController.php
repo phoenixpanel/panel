@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client;
+namespace PhoenixPanel\Http\Controllers\Api\Client;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
-use PheonixPanel\Facades\Activity;
-use PheonixPanel\Services\Users\TwoFactorSetupService;
-use PheonixPanel\Services\Users\ToggleTwoFactorService;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Services\Users\TwoFactorSetupService;
+use PhoenixPanel\Services\Users\ToggleTwoFactorService;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -30,8 +30,8 @@ class TwoFactorController extends ClientApiController
      * it on their account. If two-factor is already enabled this endpoint
      * will return a 400 error.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(Request $request): JsonResponse
     {
@@ -86,7 +86,7 @@ class TwoFactorController extends ClientApiController
             throw new BadRequestHttpException('The password provided was not valid.');
         }
 
-        /** @var \PheonixPanel\Models\User $user */
+        /** @var \PhoenixPanel\Models\User $user */
         $user = $request->user();
 
         $user->update([

@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use PheonixPanel\Models\Mount;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Mount;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
 
 class MountRepository extends EloquentRepository
 {
@@ -29,7 +29,7 @@ class MountRepository extends EloquentRepository
     /**
      * Return all the mounts and their respective relations.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithRelations(string $id): Mount
     {

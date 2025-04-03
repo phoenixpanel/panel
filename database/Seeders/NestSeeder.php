@@ -3,18 +3,18 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use PheonixPanel\Services\Nests\NestCreationService;
-use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Services\Nests\NestCreationService;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
 
 class NestSeeder extends Seeder
 {
     /**
-     * @var \PheonixPanel\Services\Nests\NestCreationService
+     * @var \PhoenixPanel\Services\Nests\NestCreationService
      */
     private $creationService;
 
     /**
-     * @var \PheonixPanel\Contracts\Repository\NestRepositoryInterface
+     * @var \PhoenixPanel\Contracts\Repository\NestRepositoryInterface
      */
     private $repository;
 
@@ -32,7 +32,7 @@ class NestSeeder extends Seeder
     /**
      * Run the seeder to add missing nests to the Panel.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function run()
     {
@@ -49,7 +49,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Minecraft nest to be used later on.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     private function createMinecraftNest(array $nest = null)
     {
@@ -64,7 +64,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Source Engine Games nest to be used later on.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     private function createSourceEngineNest(array $nest = null)
     {
@@ -79,7 +79,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Voice Servers nest to be used later on.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     private function createVoiceServersNest(array $nest = null)
     {
@@ -94,7 +94,7 @@ class NestSeeder extends Seeder
     /**
      * Create the Rust nest to be used later on.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     private function createRustNest(array $nest = null)
     {

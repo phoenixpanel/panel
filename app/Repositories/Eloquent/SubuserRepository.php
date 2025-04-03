@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use PheonixPanel\Models\Subuser;
-use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
-use PheonixPanel\Contracts\Repository\SubuserRepositoryInterface;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Contracts\Repository\SubuserRepositoryInterface;
 
 class SubuserRepository extends EloquentRepository implements SubuserRepositoryInterface
 {
@@ -51,7 +51,7 @@ class SubuserRepository extends EloquentRepository implements SubuserRepositoryI
     /**
      * Return a subuser and associated permissions given a user_id and server_id.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithPermissionsUsingUserAndServer(int $user, int $server): Subuser
     {

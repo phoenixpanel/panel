@@ -1,18 +1,18 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
-use PheonixPanel\Models\User;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\Permission;
-use PheonixPanel\Models\ActivityLog;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Models\ActivityLog;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PheonixPanel\Transformers\Api\Client\ActivityLogTransformer;
-use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Transformers\Api\Client\ActivityLogTransformer;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
 
 class ActivityLogController extends ClientApiController
 {

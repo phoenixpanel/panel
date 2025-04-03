@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Base;
+namespace PhoenixPanel\Http\Controllers\Base;
 
 use Illuminate\View\View;
 use Illuminate\View\Factory as ViewFactory;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class IndexController extends Controller
 {

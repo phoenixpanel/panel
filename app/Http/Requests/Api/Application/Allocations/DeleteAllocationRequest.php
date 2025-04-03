@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Application\Allocations;
+namespace PhoenixPanel\Http\Requests\Api\Application\Allocations;
 
-use PheonixPanel\Services\Acl\Api\AdminAcl;
-use PheonixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class DeleteAllocationRequest extends ApplicationApiRequest
 {

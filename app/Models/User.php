@@ -1,27 +1,27 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
-use PheonixPanel\Rules\Username;
-use PheonixPanel\Facades\Activity;
+use PhoenixPanel\Rules\Username;
+use PhoenixPanel\Facades\Activity;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rules\In;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
-use PheonixPanel\Models\Traits\HasAccessTokens;
+use PhoenixPanel\Models\Traits\HasAccessTokens;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use PheonixPanel\Traits\Helpers\AvailableLanguages;
+use PhoenixPanel\Traits\Helpers\AvailableLanguages;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use PheonixPanel\Notifications\SendPasswordReset as ResetPasswordNotification;
+use PhoenixPanel\Notifications\SendPasswordReset as ResetPasswordNotification;
 
 /**
- * PheonixPanel\Models\User.
+ * PhoenixPanel\Models\User.
  *
  * @property int $id
  * @property string|null $external_id
@@ -40,18 +40,18 @@ use PheonixPanel\Notifications\SendPasswordReset as ResetPasswordNotification;
  * @property bool $gravatar
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\ApiKey[] $apiKeys
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\ApiKey[] $apiKeys
  * @property int|null $api_keys_count
  * @property string $name
  * @property \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property int|null $notifications_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\RecoveryToken[] $recoveryTokens
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\RecoveryToken[] $recoveryTokens
  * @property int|null $recovery_tokens_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Server[] $servers
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Server[] $servers
  * @property int|null $servers_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\UserSSHKey[] $sshKeys
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\UserSSHKey[] $sshKeys
  * @property int|null $ssh_keys_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\ApiKey[] $tokens
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\ApiKey[] $tokens
  * @property int|null $tokens_count
  *
  * @method static \Database\Factories\UserFactory factory(...$parameters)

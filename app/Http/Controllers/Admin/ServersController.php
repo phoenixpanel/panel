@@ -1,38 +1,38 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin;
+namespace PhoenixPanel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\Response;
-use PheonixPanel\Models\Mount;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\Database;
-use PheonixPanel\Models\MountServer;
+use PhoenixPanel\Models\Mount;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\MountServer;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use PheonixPanel\Exceptions\DisplayException;
-use PheonixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
-use PheonixPanel\Services\Servers\SuspensionService;
-use PheonixPanel\Repositories\Eloquent\MountRepository;
-use PheonixPanel\Services\Servers\ServerDeletionService;
-use PheonixPanel\Services\Servers\ReinstallServerService;
-use PheonixPanel\Exceptions\Model\DataValidationException;
-use PheonixPanel\Repositories\Wings\DaemonServerRepository;
-use PheonixPanel\Services\Servers\BuildModificationService;
-use PheonixPanel\Services\Databases\DatabasePasswordService;
-use PheonixPanel\Services\Servers\DetailsModificationService;
-use PheonixPanel\Services\Servers\StartupModificationService;
-use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
-use PheonixPanel\Repositories\Eloquent\DatabaseHostRepository;
-use PheonixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Services\Servers\SuspensionService;
+use PhoenixPanel\Repositories\Eloquent\MountRepository;
+use PhoenixPanel\Services\Servers\ServerDeletionService;
+use PhoenixPanel\Services\Servers\ReinstallServerService;
+use PhoenixPanel\Exceptions\Model\DataValidationException;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Services\Servers\BuildModificationService;
+use PhoenixPanel\Services\Databases\DatabasePasswordService;
+use PhoenixPanel\Services\Servers\DetailsModificationService;
+use PhoenixPanel\Services\Servers\StartupModificationService;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Repositories\Eloquent\DatabaseHostRepository;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
-use PheonixPanel\Contracts\Repository\DatabaseRepositoryInterface;
-use PheonixPanel\Contracts\Repository\AllocationRepositoryInterface;
-use PheonixPanel\Services\Servers\ServerConfigurationStructureService;
-use PheonixPanel\Http\Requests\Admin\Servers\Databases\StoreServerDatabaseRequest;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\DatabaseRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PhoenixPanel\Services\Servers\ServerConfigurationStructureService;
+use PhoenixPanel\Http\Requests\Admin\Servers\Databases\StoreServerDatabaseRequest;
 
 class ServersController extends Controller
 {
@@ -64,8 +64,8 @@ class ServersController extends Controller
     /**
      * Update the details for a server.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function setDetails(Request $request, Server $server): RedirectResponse
     {
@@ -81,9 +81,9 @@ class ServersController extends Controller
     /**
      * Toggles the installation status for a server.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function toggleInstall(Server $server): RedirectResponse
     {
@@ -103,9 +103,9 @@ class ServersController extends Controller
     /**
      * Reinstalls the server with the currently assigned service.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function reinstallServer(Server $server): RedirectResponse
     {
@@ -118,9 +118,9 @@ class ServersController extends Controller
     /**
      * Manage the suspension status for a server.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function manageSuspension(Request $request, Server $server): RedirectResponse
     {
@@ -135,8 +135,8 @@ class ServersController extends Controller
     /**
      * Update the build configuration for a server.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      * @throws \Illuminate\Validation\ValidationException
      */
     public function updateBuild(Request $request, Server $server): RedirectResponse
@@ -159,7 +159,7 @@ class ServersController extends Controller
     /**
      * Start the server deletion process.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      * @throws \Throwable
      */
     public function delete(Request $request, Server $server): RedirectResponse
@@ -220,7 +220,7 @@ class ServersController extends Controller
      */
     public function resetDatabasePassword(Request $request, Server $server): Response
     {
-        /** @var \PheonixPanel\Models\Database $database */
+        /** @var \PhoenixPanel\Models\Database $database */
         $database = $server->databases()->findOrFail($request->input('database'));
 
         $this->databasePasswordService->handle($database);

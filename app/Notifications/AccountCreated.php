@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Notifications;
+namespace PhoenixPanel\Notifications;
 
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;

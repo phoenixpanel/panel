@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Http\ViewComposers;
+namespace PhoenixPanel\Http\ViewComposers;
 
 use Illuminate\View\View;
-use PheonixPanel\Services\Helpers\AssetHashService;
+use PhoenixPanel\Services\Helpers\AssetHashService;
 
 class AssetComposer
 {
@@ -21,7 +21,7 @@ class AssetComposer
     {
         $view->with('asset', $this->assetHashService);
         $view->with('siteConfiguration', [
-            'name' => config('app.name') ?? 'PheonixPanel',
+            'name' => config('app.name') ?? 'PhoenixPanel',
             'locale' => config('app.locale') ?? 'en',
             'recaptcha' => [
                 'enabled' => config('recaptcha.enabled', false),

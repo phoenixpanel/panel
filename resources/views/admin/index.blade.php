@@ -27,9 +27,9 @@
             </div>
             <div class="box-body">
                 @if ($version->isLatestPanel())
-                    You are running PheonixPanel Panel version <code>{{ config('app.version') }}</code>. Your panel is up-to-date!
+                    You are running PhoenixPanel Panel version <code>{{ config('app.version') }}</code>. Your panel is up-to-date!
                 @else
-                    Your panel is <strong>not up-to-date!</strong> The latest version is <a href="https://github.com/PheonixPanel/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> and you are currently running version <code>{{ config('app.version') }}</code>.
+                    Your panel is <strong>not up-to-date!</strong> The latest version is <a href="https://github.com/PhoenixPanel/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> and you are currently running version <code>{{ config('app.version') }}</code>.
                 @endif
             </div>
         </div>

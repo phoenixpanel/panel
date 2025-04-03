@@ -1,19 +1,19 @@
 <?php
 
-namespace PheonixPanel\Jobs\Schedule;
+namespace PhoenixPanel\Jobs\Schedule;
 
 use Exception;
-use PheonixPanel\Jobs\Job;
+use PhoenixPanel\Jobs\Job;
 use Carbon\CarbonImmutable;
-use PheonixPanel\Models\Task;
+use PhoenixPanel\Models\Task;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use PheonixPanel\Services\Backups\InitiateBackupService;
-use PheonixPanel\Repositories\Wings\DaemonPowerRepository;
-use PheonixPanel\Repositories\Wings\DaemonCommandRepository;
-use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Services\Backups\InitiateBackupService;
+use PhoenixPanel\Repositories\Wings\DaemonPowerRepository;
+use PhoenixPanel\Repositories\Wings\DaemonCommandRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class RunTaskJob extends Job implements ShouldQueue
 {
@@ -99,7 +99,7 @@ class RunTaskJob extends Job implements ShouldQueue
      */
     private function queueNextTask()
     {
-        /** @var \PheonixPanel\Models\Task|null $nextTask */
+        /** @var \PhoenixPanel\Models\Task|null $nextTask */
         $nextTask = Task::query()->where('schedule_id', $this->task->schedule_id)
             ->orderBy('sequence_id', 'asc')
             ->where('sequence_id', '>', $this->task->sequence_id)

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Http\Base;
+namespace PhoenixPanel\Exceptions\Http\Base;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class InvalidPasswordProvidedException extends DisplayException
 {

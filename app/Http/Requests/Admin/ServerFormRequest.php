@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Admin;
+namespace PhoenixPanel\Http\Requests\Admin;
 
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Admin\Node;
+namespace PhoenixPanel\Http\Requests\Admin\Node;
 
-use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
+use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class AllocationAliasFormRequest extends AdminFormRequest
 {

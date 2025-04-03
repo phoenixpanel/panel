@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Application\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Servers;
 
-use PheonixPanel\Models\Server;
-use PheonixPanel\Transformers\Api\Application\ServerTransformer;
-use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
-use PheonixPanel\Http\Requests\Api\Application\Servers\GetExternalServerRequest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Transformers\Api\Application\ServerTransformer;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Http\Requests\Api\Application\Servers\GetExternalServerRequest;
 
 class ExternalServerController extends ApplicationApiController
 {

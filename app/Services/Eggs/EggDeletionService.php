@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Services\Eggs;
+namespace PhoenixPanel\Services\Eggs;
 
-use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
-use PheonixPanel\Exceptions\Service\Egg\HasChildrenException;
-use PheonixPanel\Exceptions\Service\HasActiveServersException;
-use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\Egg\HasChildrenException;
+use PhoenixPanel\Exceptions\Service\HasActiveServersException;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class EggDeletionService
 {
@@ -21,8 +21,8 @@ class EggDeletionService
     /**
      * Delete an Egg from the database if it has no active servers attached to it.
      *
-     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
-     * @throws \PheonixPanel\Exceptions\Service\Egg\HasChildrenException
+     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\HasChildrenException
      */
     public function handle(int $egg): int
     {

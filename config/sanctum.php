@@ -57,7 +57,7 @@ return [
     */
 
     'middleware' => [
-        'verify_csrf_token' => PheonixPanel\Http\Middleware\VerifyCsrfToken::class,
-        'encrypt_cookies' => PheonixPanel\Http\Middleware\EncryptCookies::class,
+        'verify_csrf_token' => PhoenixPanel\Http\Middleware\VerifyCsrfToken::class,
+        'encrypt_cookies' => PhoenixPanel\Http\Middleware\EncryptCookies::class,
     ],
 ];

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Schedules;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules;
 
-use PheonixPanel\Models\Permission;
+use PhoenixPanel\Models\Permission;
 
 class StoreTaskRequest extends ViewScheduleRequest
 {

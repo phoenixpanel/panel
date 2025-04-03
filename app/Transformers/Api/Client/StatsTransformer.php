@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
 use Illuminate\Support\Arr;
 

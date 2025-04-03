@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use PheonixPanel\Models\Location;
+use PhoenixPanel\Models\Location;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
-use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationRepository extends EloquentRepository implements LocationRepositoryInterface
 {
@@ -37,7 +37,7 @@ class LocationRepository extends EloquentRepository implements LocationRepositor
     /**
      * Return all the nodes and their respective count of servers for a location.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithNodes(int $id): Location
     {
@@ -51,7 +51,7 @@ class LocationRepository extends EloquentRepository implements LocationRepositor
     /**
      * Return a location and the count of nodes in that location.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithNodeCount(int $id): Location
     {

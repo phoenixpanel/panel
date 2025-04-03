@@ -1,20 +1,20 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Application\Nodes;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Nodes;
 
-use PheonixPanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
-use PheonixPanel\Services\Nodes\NodeUpdateService;
-use PheonixPanel\Services\Nodes\NodeCreationService;
-use PheonixPanel\Services\Nodes\NodeDeletionService;
-use PheonixPanel\Transformers\Api\Application\NodeTransformer;
-use PheonixPanel\Http\Requests\Api\Application\Nodes\GetNodeRequest;
-use PheonixPanel\Http\Requests\Api\Application\Nodes\GetNodesRequest;
-use PheonixPanel\Http\Requests\Api\Application\Nodes\StoreNodeRequest;
-use PheonixPanel\Http\Requests\Api\Application\Nodes\DeleteNodeRequest;
-use PheonixPanel\Http\Requests\Api\Application\Nodes\UpdateNodeRequest;
-use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Services\Nodes\NodeUpdateService;
+use PhoenixPanel\Services\Nodes\NodeCreationService;
+use PhoenixPanel\Services\Nodes\NodeDeletionService;
+use PhoenixPanel\Transformers\Api\Application\NodeTransformer;
+use PhoenixPanel\Http\Requests\Api\Application\Nodes\GetNodeRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Nodes\GetNodesRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Nodes\StoreNodeRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Nodes\DeleteNodeRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Nodes\UpdateNodeRequest;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class NodeController extends ApplicationApiController
 {
@@ -58,7 +58,7 @@ class NodeController extends ApplicationApiController
      * Create a new node on the Panel. Returns the created node and an HTTP/201
      * status response on success.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function store(StoreNodeRequest $request): JsonResponse
     {
@@ -96,7 +96,7 @@ class NodeController extends ApplicationApiController
      * Deletes a given node from the Panel as long as there are no servers
      * currently attached to it.
      *
-     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
      */
     public function delete(DeleteNodeRequest $request, Node $node): JsonResponse
     {

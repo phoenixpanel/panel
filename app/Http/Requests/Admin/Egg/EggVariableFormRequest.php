@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Admin\Egg;
+namespace PhoenixPanel\Http\Requests\Admin\Egg;
 
-use PheonixPanel\Models\EggVariable;
-use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
+use PhoenixPanel\Models\EggVariable;
+use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class EggVariableFormRequest extends AdminFormRequest
 {

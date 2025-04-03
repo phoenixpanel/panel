@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Console\Commands;
+namespace PhoenixPanel\Console\Commands;
 
 use Illuminate\Console\Command;
-use PheonixPanel\Console\Kernel;
+use PhoenixPanel\Console\Kernel;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Helper\ProgressBar;
 
@@ -15,14 +15,14 @@ class UpgradeCommand extends Command
         {--user= : The user that PHP runs under. All files will be owned by this user.}
         {--group= : The group that PHP runs under. All files will be owned by this group.}
         {--url= : The specific archive to download.}
-        {--release= : A specific PheonixPanel version to download from GitHub. Leave blank to use latest.}
+        {--release= : A specific PhoenixPanel version to download from GitHub. Leave blank to use latest.}
         {--skip-download : If set no archive will be downloaded.}';
 
-    protected $description = 'Downloads a new archive for PheonixPanel from GitHub and then executes the normal upgrade commands.';
+    protected $description = 'Downloads a new archive for PhoenixPanel from GitHub and then executes the normal upgrade commands.';
 
     /**
      * Executes an upgrade command which will run through all of our standard
-     * commands for PheonixPanel and enable users to basically just download
+     * commands for PhoenixPanel and enable users to basically just download
      * the archive and execute this and be done.
      *
      * This places the application in maintenance mode as well while the commands
@@ -133,7 +133,7 @@ class UpgradeCommand extends Command
 
         /** @var \Illuminate\Foundation\Application $app */
         $app = require __DIR__ . '/../../../bootstrap/app.php';
-        /** @var \PheonixPanel\Console\Kernel $kernel */
+        /** @var \PhoenixPanel\Console\Kernel $kernel */
         $kernel = $app->make(Kernel::class);
         $kernel->bootstrap();
         $this->setLaravel($app);

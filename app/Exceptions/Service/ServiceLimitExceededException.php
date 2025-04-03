@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service;
+namespace PhoenixPanel\Exceptions\Service;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class ServiceLimitExceededException extends DisplayException
 {

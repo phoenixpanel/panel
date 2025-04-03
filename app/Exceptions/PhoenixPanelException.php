@@ -1,7 +1,7 @@
 <?php
 
-namespace PheonixPanel\Exceptions;
+namespace PhoenixPanel\Exceptions;
 
-class PheonixPanelException extends \Exception
+class PhoenixPanelException extends \Exception
 {
 }

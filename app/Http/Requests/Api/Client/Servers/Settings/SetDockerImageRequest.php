@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Settings;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Settings;
 
 use Webmozart\Assert\Assert;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Validation\Rule;
-use PheonixPanel\Models\Permission;
-use PheonixPanel\Contracts\Http\ClientPermissionsRequest;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Contracts\Http\ClientPermissionsRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class SetDockerImageRequest extends ClientApiRequest implements ClientPermissionsRequest
 {
@@ -18,7 +18,7 @@ class SetDockerImageRequest extends ClientApiRequest implements ClientPermission
 
     public function rules(): array
     {
-        /** @var \PheonixPanel\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $this->route()->parameter('server');
 
         Assert::isInstanceOf($server, Server::class);

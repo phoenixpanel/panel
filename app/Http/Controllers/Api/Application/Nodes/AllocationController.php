@@ -1,20 +1,20 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Application\Nodes;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Nodes;
 
-use PheonixPanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Http\JsonResponse;
-use PheonixPanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Database\Eloquent\Builder;
-use PheonixPanel\Services\Allocations\AssignmentService;
-use PheonixPanel\Services\Allocations\AllocationDeletionService;
-use PheonixPanel\Transformers\Api\Application\AllocationTransformer;
-use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
-use PheonixPanel\Http\Requests\Api\Application\Allocations\GetAllocationsRequest;
-use PheonixPanel\Http\Requests\Api\Application\Allocations\StoreAllocationRequest;
-use PheonixPanel\Http\Requests\Api\Application\Allocations\DeleteAllocationRequest;
+use PhoenixPanel\Services\Allocations\AssignmentService;
+use PhoenixPanel\Services\Allocations\AllocationDeletionService;
+use PhoenixPanel\Transformers\Api\Application\AllocationTransformer;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Http\Requests\Api\Application\Allocations\GetAllocationsRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Allocations\StoreAllocationRequest;
+use PhoenixPanel\Http\Requests\Api\Application\Allocations\DeleteAllocationRequest;
 
 class AllocationController extends ApplicationApiController
 {
@@ -56,11 +56,11 @@ class AllocationController extends ApplicationApiController
     /**
      * Store new allocations for a given node.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
-     * @throws \PheonixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \PheonixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \PheonixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \PheonixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     public function store(StoreAllocationRequest $request, Node $node): JsonResponse
     {
@@ -72,7 +72,7 @@ class AllocationController extends ApplicationApiController
     /**
      * Delete a specific allocation from the Panel.
      *
-     * @throws \PheonixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
+     * @throws \PhoenixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
      */
     public function delete(DeleteAllocationRequest $request, Node $node, Allocation $allocation): JsonResponse
     {

@@ -64,7 +64,7 @@
             "name": "Description",
             "description": "The description under your server title. Commonly used for rules & info. Use \\n for newlines.",
             "env_variable": "DESCRIPTION",
-            "default_value": "Powered by PheonixPanel",
+            "default_value": "Powered by PhoenixPanel",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",

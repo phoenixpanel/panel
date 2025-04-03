@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $archived
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \PheonixPanel\Models\Server $server
- * @property \PheonixPanel\Models\Node $oldNode
- * @property \PheonixPanel\Models\Node $newNode
+ * @property \PhoenixPanel\Models\Server $server
+ * @property \PhoenixPanel\Models\Node $oldNode
+ * @property \PhoenixPanel\Models\Node $newNode
  */
 class ServerTransfer extends Model
 {

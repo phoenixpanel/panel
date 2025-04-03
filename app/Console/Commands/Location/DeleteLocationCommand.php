@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\Location;
+namespace PhoenixPanel\Console\Commands\Location;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use PheonixPanel\Services\Locations\LocationDeletionService;
-use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PhoenixPanel\Services\Locations\LocationDeletionService;
+use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class DeleteLocationCommand extends Command
 {
@@ -28,8 +28,8 @@ class DeleteLocationCommand extends Command
     /**
      * Respond to the command request.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PheonixPanel\Exceptions\Service\Location\HasActiveNodesException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Location\HasActiveNodesException
      */
     public function handle()
     {

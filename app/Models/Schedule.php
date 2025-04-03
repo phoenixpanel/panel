@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Cron\CronExpression;
 use Carbon\CarbonImmutable;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PheonixPanel\Contracts\Extensions\HashidsInterface;
+use PhoenixPanel\Contracts\Extensions\HashidsInterface;
 
 /**
  * @property int $id
@@ -26,8 +26,8 @@ use PheonixPanel\Contracts\Extensions\HashidsInterface;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $hashid
- * @property \PheonixPanel\Models\Server $server
- * @property \PheonixPanel\Models\Task[]|\Illuminate\Support\Collection $tasks
+ * @property \PhoenixPanel\Models\Server $server
+ * @property \PhoenixPanel\Models\Task[]|\Illuminate\Support\Collection $tasks
  */
 class Schedule extends Model
 {

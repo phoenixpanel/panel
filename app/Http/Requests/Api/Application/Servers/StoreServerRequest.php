@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Application\Servers;
+namespace PhoenixPanel\Http\Requests\Api\Application\Servers;
 
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
-use PheonixPanel\Services\Acl\Api\AdminAcl;
-use PheonixPanel\Models\Objects\DeploymentObject;
-use PheonixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Models\Objects\DeploymentObject;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreServerRequest extends ApplicationApiRequest
 {

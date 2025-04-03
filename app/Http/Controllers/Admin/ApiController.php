@@ -1,19 +1,19 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin;
+namespace PhoenixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use PheonixPanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use PheonixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 use Illuminate\View\Factory as ViewFactory;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Services\Api\KeyCreationService;
-use PheonixPanel\Contracts\Repository\ApiKeyRepositoryInterface;
-use PheonixPanel\Http\Requests\Admin\Api\StoreApplicationApiKeyRequest;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Api\KeyCreationService;
+use PhoenixPanel\Contracts\Repository\ApiKeyRepositoryInterface;
+use PhoenixPanel\Http\Requests\Admin\Api\StoreApplicationApiKeyRequest;
 
 class ApiController extends Controller
 {
@@ -61,7 +61,7 @@ class ApiController extends Controller
     /**
      * Store the new key and redirect the user back to the application key listing.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function store(StoreApplicationApiKeyRequest $request): RedirectResponse
     {

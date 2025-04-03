@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
-use PheonixPanel\Models\Server;
-use PheonixPanel\Facades\Activity;
-use PheonixPanel\Services\Servers\StartupCommandService;
-use PheonixPanel\Repositories\Eloquent\ServerVariableRepository;
-use PheonixPanel\Transformers\Api\Client\EggVariableTransformer;
-use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Services\Servers\StartupCommandService;
+use PhoenixPanel\Repositories\Eloquent\ServerVariableRepository;
+use PhoenixPanel\Transformers\Api\Client\EggVariableTransformer;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use PheonixPanel\Http\Requests\Api\Client\Servers\Startup\GetStartupRequest;
-use PheonixPanel\Http\Requests\Api\Client\Servers\Startup\UpdateStartupVariableRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Startup\GetStartupRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Startup\UpdateStartupVariableRequest;
 
 class StartupController extends ClientApiController
 {
@@ -47,12 +47,12 @@ class StartupController extends ClientApiController
      * Updates a single variable for a server.
      *
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateStartupVariableRequest $request, Server $server): array
     {
-        /** @var \PheonixPanel\Models\EggVariable $variable */
+        /** @var \PhoenixPanel\Models\EggVariable $variable */
         $variable = $server->variables()->where('env_variable', $request->input('key'))->first();
         $original = $variable->server_value;
 

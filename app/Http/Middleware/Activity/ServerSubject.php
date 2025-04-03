@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware\Activity;
+namespace PhoenixPanel\Http\Middleware\Activity;
 
 use Illuminate\Http\Request;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Facades\LogTarget;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Facades\LogTarget;
 
 class ServerSubject
 {

@@ -5,10 +5,10 @@
 ![GitHub Releases](https://img.shields.io/github/downloads/pheonixpanel/panel/latest/total?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/pheonixpanel/panel?style=for-the-badge)
 
-# PheonixPanel Panel
+# PhoenixPanel Panel
 
-PheonixPanel® is a free, open-source game server management panel built with PHP, React, and Go. Designed with security
-in mind, PheonixPanel runs all game servers in isolated Docker containers while exposing a beautiful and intuitive
+PhoenixPanel® is a free, open-source game server management panel built with PHP, React, and Go. Designed with security
+in mind, PhoenixPanel runs all game servers in isolated Docker containers while exposing a beautiful and intuitive
 UI to end users.
 
 Stop settling for less. Make game servers a first class citizen on your platform.
@@ -24,7 +24,7 @@ Stop settling for less. Make game servers a first class citizen on your platform
 
 ## Sponsors
 
-I would like to extend my sincere thanks to the following sponsors for helping fund PheonixPanel's development.
+I would like to extend my sincere thanks to the following sponsors for helping fund PhoenixPanel's development.
 [Interested in becoming a sponsor?](https://github.com/sponsors/matthewpi)
 
 | Company                                                      | About                                                                                                                                                                                                                                           |
@@ -33,12 +33,12 @@ I would like to extend my sincere thanks to the following sponsors for helping f
 | [**BisectHosting**](https://www.bisecthosting.com/)          | BisectHosting provides Minecraft, Valheim and other server hosting services with the highest reliability and lightning fast support since 2012.                                                                                                 |
 | [**MineStrator**](https://minestrator.com/)                  | Looking for the most highend French hosting company for your minecraft server? More than 24,000 members on our discord trust us. Give us a try!                                                                                                 |
 | [**HostEZ**](https://hostez.io)                              | US & EU Rust & Minecraft Hosting. DDoS Protected bare metal, VPS and colocation with low latency, high uptime and maximum availability. EZ!                                                                                                     |
-| [**Blueprint**](https://blueprint.zip/?pheonixpanel=true)     | Create and install PheonixPanel addons and themes with the growing Blueprint framework - the package-manager for PheonixPanel. Use multiple modifications at once without worrying about conflicts and make use of the large extension ecosystem. |
+| [**Blueprint**](https://blueprint.zip/?pheonixpanel=true)     | Create and install PhoenixPanel addons and themes with the growing Blueprint framework - the package-manager for PhoenixPanel. Use multiple modifications at once without worrying about conflicts and make use of the large extension ecosystem. |
 | [**indifferent broccoli**](https://indifferentbroccoli.com/) | indifferent broccoli is a game server hosting and rental company. With us, you get top-notch computer power for your gaming sessions. We destroy lag, latency, and complexity--letting you focus on the fun stuff.                              |
 
 ### Supported Games
 
-PheonixPanel supports a wide variety of games by utilizing Docker containers to isolate each instance. This gives
+PhoenixPanel supports a wide variety of games by utilizing Docker containers to isolate each instance. This gives
 you the power to run game servers without bloating machines with a host of additional dependencies.
 
 Some of our core supported games include:
@@ -67,6 +67,6 @@ and there are plenty more games available provided by the community. Some of the
 
 ## License
 
-PheonixPanel® Copyright © 2015 - 2022 Dane Everitt and contributors.
+PhoenixPanel® Copyright © 2015 - 2022 Dane Everitt and contributors.
 
 Code released under the [MIT License](./LICENSE.md).

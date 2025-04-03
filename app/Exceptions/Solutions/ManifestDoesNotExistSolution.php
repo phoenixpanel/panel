@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Solutions;
+namespace PhoenixPanel\Exceptions\Solutions;
 
 use Spatie\Ignition\Contracts\Solution;
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ config('app.name', 'PheonixPanel') }}</title>
+        <title>{{ config('app.name', 'PhoenixPanel') }}</title>
 
         @section('meta')
             <meta charset="utf-8">
@@ -22,7 +22,7 @@
         @section('user-data')
             @if(!is_null(Auth::user()))
                 <script>
-                    window.PheonixPanelUser = {!! json_encode(Auth::user()->toVueObject()) !!};
+                    window.PhoenixPanelUser = {!! json_encode(Auth::user()->toVueObject()) !!};
                 </script>
             @endif
             @if(!empty($siteConfiguration))

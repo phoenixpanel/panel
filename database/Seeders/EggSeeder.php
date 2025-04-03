@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use PheonixPanel\Models\Egg;
-use PheonixPanel\Models\Nest;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\Nest;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
-use PheonixPanel\Services\Eggs\Sharing\EggImporterService;
-use PheonixPanel\Services\Eggs\Sharing\EggUpdateImporterService;
+use PhoenixPanel\Services\Eggs\Sharing\EggImporterService;
+use PhoenixPanel\Services\Eggs\Sharing\EggUpdateImporterService;
 
 class EggSeeder extends Seeder
 {

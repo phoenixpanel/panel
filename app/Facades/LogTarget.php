@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Facades;
+namespace PhoenixPanel\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use PheonixPanel\Services\Activity\ActivityLogTargetableService;
+use PhoenixPanel\Services\Activity\ActivityLogTargetableService;
 
 class LogTarget extends Facade
 {

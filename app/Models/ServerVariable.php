@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $variable_value
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property \PheonixPanel\Models\EggVariable $variable
- * @property \PheonixPanel\Models\Server $server
+ * @property \PhoenixPanel\Models\EggVariable $variable
+ * @property \PhoenixPanel\Models\Server $server
  */
 class ServerVariable extends Model
 {

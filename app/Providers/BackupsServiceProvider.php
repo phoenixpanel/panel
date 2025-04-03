@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Providers;
+namespace PhoenixPanel\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use PheonixPanel\Extensions\Backups\BackupManager;
+use PhoenixPanel\Extensions\Backups\BackupManager;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
 class BackupsServiceProvider extends ServiceProvider implements DeferrableProvider

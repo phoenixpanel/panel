@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Facades\Activity;
-use PheonixPanel\Repositories\Wings\DaemonPowerRepository;
-use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
-use PheonixPanel\Http\Requests\Api\Client\Servers\SendPowerRequest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Repositories\Wings\DaemonPowerRepository;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\SendPowerRequest;
 
 class PowerController extends ClientApiController
 {

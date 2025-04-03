@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Repositories\Wings;
+namespace PhoenixPanel\Repositories\Wings;
 
 use GuzzleHttp\Client;
-use PheonixPanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Webmozart\Assert\Assert;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 
 abstract class DaemonRepository

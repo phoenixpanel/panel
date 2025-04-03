@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Services\Eggs\Sharing;
+namespace PhoenixPanel\Services\Eggs\Sharing;
 
-use PheonixPanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
-use PheonixPanel\Models\EggVariable;
+use PhoenixPanel\Models\EggVariable;
 use Illuminate\Database\ConnectionInterface;
-use PheonixPanel\Services\Eggs\EggParserService;
+use PhoenixPanel\Services\Eggs\EggParserService;
 
 class EggUpdateImporterService
 {
@@ -21,7 +21,7 @@ class EggUpdateImporterService
     /**
      * Update an existing Egg using an uploaded JSON file.
      *
-     * @throws \PheonixPanel\Exceptions\Service\InvalidFileUploadException|\Throwable
+     * @throws \PhoenixPanel\Exceptions\Service\InvalidFileUploadException|\Throwable
      */
     public function handle(Egg $egg, UploadedFile $file): Egg
     {

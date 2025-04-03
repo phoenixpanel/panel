@@ -6,7 +6,7 @@
 @endsection
 
 @section('content-header')
-    <h1>Panel Settings<small>Configure PheonixPanel to your liking.</small></h1>
+    <h1>Panel Settings<small>Configure PhoenixPanel to your liking.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
         <li class="active">Settings</li>

@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Remote\Backups;
+namespace PhoenixPanel\Http\Controllers\Api\Remote\Backups;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
-use PheonixPanel\Models\Backup;
+use PhoenixPanel\Models\Backup;
 use Illuminate\Http\JsonResponse;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Extensions\Backups\BackupManager;
-use PheonixPanel\Extensions\Filesystem\S3Filesystem;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Extensions\Backups\BackupManager;
+use PhoenixPanel\Extensions\Filesystem\S3Filesystem;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -33,7 +33,7 @@ class BackupRemoteUploadController extends Controller
     public function __invoke(Request $request, string $backup): JsonResponse
     {
         // Get the node associated with the request.
-        /** @var \PheonixPanel\Models\Node $node */
+        /** @var \PhoenixPanel\Models\Node $node */
         $node = $request->attributes->get('node');
 
         // Get the size query parameter.
@@ -42,14 +42,14 @@ class BackupRemoteUploadController extends Controller
             throw new BadRequestHttpException('A non-empty "size" query parameter must be provided.');
         }
 
-        /** @var \PheonixPanel\Models\Backup $model */
+        /** @var \PhoenixPanel\Models\Backup $model */
         $model = Backup::query()
             ->where('uuid', $backup)
             ->firstOrFail();
 
         // Check that the backup is "owned" by the node making the request. This avoids other nodes
         // from messing with backups that they don't own.
-        /** @var \PheonixPanel\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $model->server;
         if ($server->node_id !== $node->id) {
             throw new HttpForbiddenException('You do not have permission to access that backup.');

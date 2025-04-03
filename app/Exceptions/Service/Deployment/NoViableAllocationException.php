@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Deployment;
+namespace PhoenixPanel\Exceptions\Service\Deployment;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class NoViableAllocationException extends DisplayException
 {

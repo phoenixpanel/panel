@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Contracts\Repository;
+namespace PhoenixPanel\Contracts\Repository;
 
 interface SettingsRepositoryInterface extends RepositoryInterface
 {
     /**
      * Store a new persistent setting in the database.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function set(string $key, string $value = null);
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Services\Users;
+namespace PhoenixPanel\Services\Users;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
-use PheonixPanel\Repositories\Eloquent\RecoveryTokenRepository;
-use PheonixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Repositories\Eloquent\RecoveryTokenRepository;
+use PhoenixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid;
 
 class ToggleTwoFactorService
 {
@@ -33,7 +33,7 @@ class ToggleTwoFactorService
      * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
      * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
      * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
-     * @throws \PheonixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid
+     * @throws \PhoenixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid
      */
     public function handle(User $user, string $token, bool $toggleState = null): array
     {

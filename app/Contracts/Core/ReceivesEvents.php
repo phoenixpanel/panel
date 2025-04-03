@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Contracts\Core;
+namespace PhoenixPanel\Contracts\Core;
 
-use PheonixPanel\Events\Event;
+use PhoenixPanel\Events\Event;
 
 interface ReceivesEvents
 {

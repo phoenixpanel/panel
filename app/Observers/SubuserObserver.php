@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Observers;
+namespace PhoenixPanel\Observers;
 
-use PheonixPanel\Events;
-use PheonixPanel\Models\Subuser;
-use PheonixPanel\Notifications\AddedToServer;
-use PheonixPanel\Notifications\RemovedFromServer;
+use PhoenixPanel\Events;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Notifications\AddedToServer;
+use PhoenixPanel\Notifications\RemovedFromServer;
 
 class SubuserObserver
 {

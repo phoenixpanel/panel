@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Admin\Egg;
+namespace PhoenixPanel\Http\Requests\Admin\Egg;
 
-use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
+use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class EggFormRequest extends AdminFormRequest
 {

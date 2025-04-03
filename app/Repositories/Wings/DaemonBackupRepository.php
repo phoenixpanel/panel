@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Repositories\Wings;
+namespace PhoenixPanel\Repositories\Wings;
 
 use Webmozart\Assert\Assert;
-use PheonixPanel\Models\Backup;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
-use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class DaemonBackupRepository extends DaemonRepository
 {
@@ -26,7 +26,7 @@ class DaemonBackupRepository extends DaemonRepository
     /**
      * Tells the remote Daemon to begin generating a backup for the server.
      *
-     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function backup(Backup $backup): ResponseInterface
     {
@@ -51,7 +51,7 @@ class DaemonBackupRepository extends DaemonRepository
     /**
      * Sends a request to Wings to begin restoring a backup for a server.
      *
-     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function restore(Backup $backup, string $url = null, bool $truncate = false): ResponseInterface
     {
@@ -76,7 +76,7 @@ class DaemonBackupRepository extends DaemonRepository
     /**
      * Deletes a backup from the daemon.
      *
-     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function delete(Backup $backup): ResponseInterface
     {

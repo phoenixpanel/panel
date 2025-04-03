@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Backup;
+namespace PhoenixPanel\Exceptions\Service\Backup;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class TooManyBackupsException extends DisplayException
 {

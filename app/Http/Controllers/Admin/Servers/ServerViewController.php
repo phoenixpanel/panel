@@ -1,22 +1,22 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin\Servers;
+namespace PhoenixPanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use PheonixPanel\Models\Nest;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Exceptions\DisplayException;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Services\Servers\EnvironmentService;
+use PhoenixPanel\Models\Nest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Servers\EnvironmentService;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use PheonixPanel\Repositories\Eloquent\NestRepository;
-use PheonixPanel\Repositories\Eloquent\NodeRepository;
-use PheonixPanel\Repositories\Eloquent\MountRepository;
-use PheonixPanel\Repositories\Eloquent\ServerRepository;
-use PheonixPanel\Traits\Controllers\JavascriptInjection;
-use PheonixPanel\Repositories\Eloquent\LocationRepository;
-use PheonixPanel\Repositories\Eloquent\DatabaseHostRepository;
+use PhoenixPanel\Repositories\Eloquent\NestRepository;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Eloquent\MountRepository;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Traits\Controllers\JavascriptInjection;
+use PhoenixPanel\Repositories\Eloquent\LocationRepository;
+use PhoenixPanel\Repositories\Eloquent\DatabaseHostRepository;
 
 class ServerViewController extends Controller
 {
@@ -70,7 +70,7 @@ class ServerViewController extends Controller
     /**
      * Returns the server startup management page.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function startup(Request $request, Server $server): View
     {
@@ -118,7 +118,7 @@ class ServerViewController extends Controller
      * Returns the base server management page, or an exception if the server
      * is in a state that cannot be recovered from.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function manage(Request $request, Server $server): View
     {

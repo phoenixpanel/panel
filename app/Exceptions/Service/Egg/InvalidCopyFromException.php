@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Egg;
+namespace PhoenixPanel\Exceptions\Service\Egg;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class InvalidCopyFromException extends DisplayException
 {

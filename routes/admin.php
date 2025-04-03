@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use PheonixPanel\Http\Controllers\Admin;
-use PheonixPanel\Http\Middleware\Admin\Servers\ServerInstalled;
+use PhoenixPanel\Http\Controllers\Admin;
+use PhoenixPanel\Http\Middleware\Admin\Servers\ServerInstalled;
 
 Route::get('/', [Admin\BaseController::class, 'index'])->name('admin.index');
 

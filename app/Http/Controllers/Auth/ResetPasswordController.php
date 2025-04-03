@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Auth;
+namespace PhoenixPanel\Http\Controllers\Auth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
@@ -8,11 +8,11 @@ use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\Events\Dispatcher;
-use PheonixPanel\Exceptions\DisplayException;
-use PheonixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use PheonixPanel\Http\Requests\Auth\ResetPasswordRequest;
-use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Http\Requests\Auth\ResetPasswordRequest;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class ResetPasswordController extends Controller
 {
@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller
     /**
      * Reset the given user's password.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      */
     public function __invoke(ResetPasswordRequest $request): JsonResponse
     {
@@ -67,11 +67,11 @@ class ResetPasswordController extends Controller
      * account do not automatically log them in. In those cases, send the user back to the login
      * form with a note telling them their password was changed and to log back in.
      *
-     * @param \Illuminate\Contracts\Auth\CanResetPassword|\PheonixPanel\Models\User $user
+     * @param \Illuminate\Contracts\Auth\CanResetPassword|\PhoenixPanel\Models\User $user
      * @param string $password
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     protected function resetPassword($user, $password)
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware\Api\Client\Server;
+namespace PhoenixPanel\Http\Middleware\Api\Client\Server;
 
 use Illuminate\Http\Request;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use PheonixPanel\Exceptions\Http\Server\ServerStateConflictException;
+use PhoenixPanel\Exceptions\Http\Server\ServerStateConflictException;
 
 class AuthenticateServerAccess
 {
@@ -28,7 +28,7 @@ class AuthenticateServerAccess
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \PheonixPanel\Models\User $user */
+        /** @var \PhoenixPanel\Models\User $user */
         $user = $request->user();
         $server = $request->route()->parameter('server');
 

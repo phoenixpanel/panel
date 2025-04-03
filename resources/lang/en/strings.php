@@ -91,5 +91,5 @@ return [
     'enable' => 'Enable',
     'disable' => 'Disable',
     'save' => 'Save',
-    'copyright' => '&copy; 2015 - :year PheonixPanel Software',
+    'copyright' => '&copy; 2015 - :year PhoenixPanel Software',
 ];

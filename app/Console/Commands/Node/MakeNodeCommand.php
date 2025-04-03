@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\Node;
+namespace PhoenixPanel\Console\Commands\Node;
 
 use Illuminate\Console\Command;
-use PheonixPanel\Services\Nodes\NodeCreationService;
+use PhoenixPanel\Services\Nodes\NodeCreationService;
 
 class MakeNodeCommand extends Command
 {
@@ -38,7 +38,7 @@ class MakeNodeCommand extends Command
     /**
      * Handle the command execution process.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

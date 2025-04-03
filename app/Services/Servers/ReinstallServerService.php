@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Database\ConnectionInterface;
-use PheonixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
 
 class ReinstallServerService
 {

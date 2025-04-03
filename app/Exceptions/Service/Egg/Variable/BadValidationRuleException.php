@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Egg\Variable;
+namespace PhoenixPanel\Exceptions\Service\Egg\Variable;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class BadValidationRuleException extends DisplayException
 {

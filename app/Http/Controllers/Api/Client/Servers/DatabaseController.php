@@ -1,20 +1,20 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\Database;
-use PheonixPanel\Facades\Activity;
-use PheonixPanel\Services\Databases\DatabasePasswordService;
-use PheonixPanel\Transformers\Api\Client\DatabaseTransformer;
-use PheonixPanel\Services\Databases\DatabaseManagementService;
-use PheonixPanel\Services\Databases\DeployServerDatabaseService;
-use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
-use PheonixPanel\Http\Requests\Api\Client\Servers\Databases\GetDatabasesRequest;
-use PheonixPanel\Http\Requests\Api\Client\Servers\Databases\StoreDatabaseRequest;
-use PheonixPanel\Http\Requests\Api\Client\Servers\Databases\DeleteDatabaseRequest;
-use PheonixPanel\Http\Requests\Api\Client\Servers\Databases\RotatePasswordRequest;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Services\Databases\DatabasePasswordService;
+use PhoenixPanel\Transformers\Api\Client\DatabaseTransformer;
+use PhoenixPanel\Services\Databases\DatabaseManagementService;
+use PhoenixPanel\Services\Databases\DeployServerDatabaseService;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Databases\GetDatabasesRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Databases\StoreDatabaseRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Databases\DeleteDatabaseRequest;
+use PhoenixPanel\Http\Requests\Api\Client\Servers\Databases\RotatePasswordRequest;
 
 class DatabaseController extends ClientApiController
 {
@@ -43,8 +43,8 @@ class DatabaseController extends ClientApiController
      * Create a new database for the given server and return it.
      *
      * @throws \Throwable
-     * @throws \PheonixPanel\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \PheonixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws \PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException
+     * @throws \PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
      */
     public function store(StoreDatabaseRequest $request, Server $server): array
     {
@@ -86,7 +86,7 @@ class DatabaseController extends ClientApiController
     /**
      * Removes a database from the server.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function delete(DeleteDatabaseRequest $request, Server $server, Database $database): Response
     {

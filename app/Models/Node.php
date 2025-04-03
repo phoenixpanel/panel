@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Yaml\Yaml;
@@ -34,10 +34,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $daemonBase
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \PheonixPanel\Models\Location $location
- * @property \PheonixPanel\Models\Mount[]|\Illuminate\Database\Eloquent\Collection $mounts
- * @property \PheonixPanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
- * @property \PheonixPanel\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations
+ * @property \PhoenixPanel\Models\Location $location
+ * @property \PhoenixPanel\Models\Mount[]|\Illuminate\Database\Eloquent\Collection $mounts
+ * @property \PhoenixPanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
+ * @property \PhoenixPanel\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations
  */
 class Node extends Model
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Application\Servers\Databases;
+namespace PhoenixPanel\Http\Requests\Api\Application\Servers\Databases;
 
-use PheonixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 
 class ServerDatabaseWriteRequest extends GetServerDatabasesRequest
 {

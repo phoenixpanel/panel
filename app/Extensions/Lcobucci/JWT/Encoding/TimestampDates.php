@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Extensions\Lcobucci\JWT\Encoding;
+namespace PhoenixPanel\Extensions\Lcobucci\JWT\Encoding;
 
 use Lcobucci\JWT\ClaimsFormatter;
 use Lcobucci\JWT\Token\RegisteredClaims;

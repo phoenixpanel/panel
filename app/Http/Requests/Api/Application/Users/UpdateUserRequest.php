@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Application\Users;
+namespace PhoenixPanel\Http\Requests\Api\Application\Users;
 
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 
 class UpdateUserRequest extends StoreUserRequest
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Schedules;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules;
 
-use PheonixPanel\Models\Schedule;
-use PheonixPanel\Models\Permission;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Permission;
 
 class StoreScheduleRequest extends ViewScheduleRequest
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\User;
+namespace PhoenixPanel\Console\Commands\User;
 
 use Illuminate\Console\Command;
-use PheonixPanel\Services\Users\UserCreationService;
+use PhoenixPanel\Services\Users\UserCreationService;
 
 class MakeUserCommand extends Command
 {
@@ -23,7 +23,7 @@ class MakeUserCommand extends Command
      * Handle command request to create a new user.
      *
      * @throws \Exception
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {

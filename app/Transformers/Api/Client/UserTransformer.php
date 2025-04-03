@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Transformers\Api\Client;
+namespace PhoenixPanel\Transformers\Api\Client;
 
 use Illuminate\Support\Str;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 
 class UserTransformer extends BaseClientTransformer
 {

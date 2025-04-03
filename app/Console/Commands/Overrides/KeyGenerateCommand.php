@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\Overrides;
+namespace PhoenixPanel\Console\Commands\Overrides;
 
 use Illuminate\Foundation\Console\KeyGenerateCommand as BaseKeyGenerateCommand;
 

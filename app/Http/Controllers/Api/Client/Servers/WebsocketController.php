@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
+namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\CarbonImmutable;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PheonixPanel\Models\Permission;
-use PheonixPanel\Services\Nodes\NodeJWTService;
-use PheonixPanel\Exceptions\Http\HttpForbiddenException;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PheonixPanel\Services\Servers\GetUserPermissionsService;
-use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Services\Nodes\NodeJWTService;
+use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Services\Servers\GetUserPermissionsService;
+use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
 
 class WebsocketController extends ClientApiController
 {

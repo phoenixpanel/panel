@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\User;
+namespace PhoenixPanel\Console\Commands\User;
 
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
-use PheonixPanel\Services\Users\UserDeletionService;
+use PhoenixPanel\Services\Users\UserDeletionService;
 
 class DeleteUserCommand extends Command
 {

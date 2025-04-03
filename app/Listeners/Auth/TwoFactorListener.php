@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Listeners\Auth;
+namespace PhoenixPanel\Listeners\Auth;
 
-use PheonixPanel\Facades\Activity;
-use PheonixPanel\Events\Auth\ProvidedAuthenticationToken;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Events\Auth\ProvidedAuthenticationToken;
 
 class TwoFactorListener
 {

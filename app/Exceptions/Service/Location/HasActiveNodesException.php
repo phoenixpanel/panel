@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Location;
+namespace PhoenixPanel\Exceptions\Service\Location;
 
 use Illuminate\Http\Response;
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class HasActiveNodesException extends DisplayException
 {

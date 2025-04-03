@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Observers;
+namespace PhoenixPanel\Observers;
 
-use PheonixPanel\Events;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Events;
+use PhoenixPanel\Models\User;
 
 class UserObserver
 {

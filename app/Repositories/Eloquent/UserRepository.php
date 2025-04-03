@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
-use PheonixPanel\Models\User;
-use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserRepository extends EloquentRepository implements UserRepositoryInterface
 {

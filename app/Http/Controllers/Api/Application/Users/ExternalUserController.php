@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Application\Users;
+namespace PhoenixPanel\Http\Controllers\Api\Application\Users;
 
-use PheonixPanel\Models\User;
-use PheonixPanel\Transformers\Api\Application\UserTransformer;
-use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
-use PheonixPanel\Http\Requests\Api\Application\Users\GetExternalUserRequest;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Transformers\Api\Application\UserTransformer;
+use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PhoenixPanel\Http\Requests\Api\Application\Users\GetExternalUserRequest;
 
 class ExternalUserController extends ApplicationApiController
 {

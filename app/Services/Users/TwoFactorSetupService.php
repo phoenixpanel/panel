@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Services\Users;
+namespace PhoenixPanel\Services\Users;
 
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class TwoFactorSetupService
@@ -26,8 +26,8 @@ class TwoFactorSetupService
      * QR code URL. This URL will need to be attached to a QR generating service in
      * order to function.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function handle(User $user): array
     {

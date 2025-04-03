@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace PhoenixPanel\Providers;
 
 use Illuminate\Encryption\EncryptionServiceProvider as BaseEncryptionServiceProvider;
 use Illuminate\Support\Facades\App;

@@ -1,23 +1,23 @@
 <?php
 
-namespace PheonixPanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use PheonixPanel\Models\Egg;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\User;
 use Webmozart\Assert\Assert;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Collection;
-use PheonixPanel\Models\Allocation;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Database\ConnectionInterface;
-use PheonixPanel\Models\Objects\DeploymentObject;
-use PheonixPanel\Repositories\Eloquent\ServerRepository;
-use PheonixPanel\Repositories\Wings\DaemonServerRepository;
-use PheonixPanel\Services\Deployment\FindViableNodesService;
-use PheonixPanel\Repositories\Eloquent\ServerVariableRepository;
-use PheonixPanel\Services\Deployment\AllocationSelectionService;
-use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Models\Objects\DeploymentObject;
+use PhoenixPanel\Repositories\Eloquent\ServerRepository;
+use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PhoenixPanel\Services\Deployment\FindViableNodesService;
+use PhoenixPanel\Repositories\Eloquent\ServerVariableRepository;
+use PhoenixPanel\Services\Deployment\AllocationSelectionService;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ServerCreationService
 {
@@ -43,11 +43,11 @@ class ServerCreationService
      * no node_id the node_is will be picked from the allocation.
      *
      * @throws \Throwable
-     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
      * @throws \Illuminate\Validation\ValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableNodeException
-     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException
      */
     public function handle(array $data, DeploymentObject $deployment = null): Server
     {
@@ -82,7 +82,7 @@ class ServerCreationService
         //
         // If that connection fails out we will attempt to perform a cleanup by just
         // deleting the server itself from the system.
-        /** @var \PheonixPanel\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $this->connection->transaction(function () use ($data, $eggVariableData) {
             // Create the server and assign any additional allocations to it.
             $server = $this->createModel($data);
@@ -109,9 +109,9 @@ class ServerCreationService
     /**
      * Gets an allocation to use for automatic deployment.
      *
-     * @throws \PheonixPanel\Exceptions\DisplayException
-     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableAllocationException
-     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableAllocationException
+     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
      */
     private function configureDeployment(array $data, DeploymentObject $deployment): Allocation
     {
@@ -130,13 +130,13 @@ class ServerCreationService
     /**
      * Store the server in the database and return the model.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     private function createModel(array $data): Server
     {
         $uuid = $this->generateUniqueUuidCombo();
 
-        /** @var \PheonixPanel\Models\Server $model */
+        /** @var \PhoenixPanel\Models\Server $model */
         $model = $this->repository->create([
             'external_id' => Arr::get($data, 'external_id'),
             'uuid' => $uuid,

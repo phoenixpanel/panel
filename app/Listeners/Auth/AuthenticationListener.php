@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Listeners\Auth;
+namespace PhoenixPanel\Listeners\Auth;
 
-use PheonixPanel\Facades\Activity;
+use PhoenixPanel\Facades\Activity;
 use Illuminate\Auth\Events\Failed;
-use PheonixPanel\Events\Auth\DirectLogin;
+use PhoenixPanel\Events\Auth\DirectLogin;
 use Illuminate\Contracts\Events\Dispatcher;
-use PheonixPanel\Extensions\Illuminate\Events\Contracts\SubscribesToEvents;
+use PhoenixPanel\Extensions\Illuminate\Events\Contracts\SubscribesToEvents;
 
 class AuthenticationListener implements SubscribesToEvents
 {

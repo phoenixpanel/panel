@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware;
+namespace PhoenixPanel\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;

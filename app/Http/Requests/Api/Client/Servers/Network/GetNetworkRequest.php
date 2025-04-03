@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Network;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Network;
 
-use PheonixPanel\Models\Permission;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class GetNetworkRequest extends ClientApiRequest
 {

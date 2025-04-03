@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Remote;
+namespace PhoenixPanel\Http\Requests\Api\Remote;
 
 use Illuminate\Foundation\Http\FormRequest;
 

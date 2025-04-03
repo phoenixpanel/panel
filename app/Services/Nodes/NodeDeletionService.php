@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Services\Nodes;
+namespace PhoenixPanel\Services\Nodes;
 
-use PheonixPanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Contracts\Translation\Translator;
-use PheonixPanel\Contracts\Repository\NodeRepositoryInterface;
-use PheonixPanel\Exceptions\Service\HasActiveServersException;
-use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\NodeRepositoryInterface;
+use PhoenixPanel\Exceptions\Service\HasActiveServersException;
+use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class NodeDeletionService
 {
@@ -23,7 +23,7 @@ class NodeDeletionService
     /**
      * Delete a node from the panel if no servers are attached to it.
      *
-     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
      */
     public function handle(int|Node $node): int
     {

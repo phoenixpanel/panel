@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware;
+namespace PhoenixPanel\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

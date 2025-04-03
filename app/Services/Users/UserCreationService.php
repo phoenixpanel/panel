@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Services\Users;
+namespace PhoenixPanel\Services\Users;
 
 use Ramsey\Uuid\Uuid;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Auth\PasswordBroker;
-use PheonixPanel\Notifications\AccountCreated;
-use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PhoenixPanel\Notifications\AccountCreated;
+use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class UserCreationService
 {
@@ -27,7 +27,7 @@ class UserCreationService
      * Create a new user on the system.
      *
      * @throws \Exception
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      */
     public function handle(array $data): User
     {
@@ -41,7 +41,7 @@ class UserCreationService
             $data['password'] = $this->hasher->make(str_random(30));
         }
 
-        /** @var \PheonixPanel\Models\User $user */
+        /** @var \PhoenixPanel\Models\User $user */
         $user = $this->repository->create(array_merge($data, [
             'uuid' => Uuid::uuid4()->toString(),
         ]), true, true);

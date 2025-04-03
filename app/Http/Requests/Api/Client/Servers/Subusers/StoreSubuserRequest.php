@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Subusers;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers;
 
-use PheonixPanel\Models\Permission;
+use PhoenixPanel\Models\Permission;
 
 class StoreSubuserRequest extends SubuserRequest
 {

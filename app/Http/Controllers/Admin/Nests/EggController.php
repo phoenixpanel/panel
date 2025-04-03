@@ -1,19 +1,19 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin\Nests;
+namespace PhoenixPanel\Http\Controllers\Admin\Nests;
 
 use Illuminate\View\View;
-use PheonixPanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Services\Eggs\EggUpdateService;
-use PheonixPanel\Services\Eggs\EggCreationService;
-use PheonixPanel\Services\Eggs\EggDeletionService;
-use PheonixPanel\Http\Requests\Admin\Egg\EggFormRequest;
-use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
-use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Eggs\EggUpdateService;
+use PhoenixPanel\Services\Eggs\EggCreationService;
+use PhoenixPanel\Services\Eggs\EggDeletionService;
+use PhoenixPanel\Http\Requests\Admin\Egg\EggFormRequest;
+use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
+use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
 
 class EggController extends Controller
 {
@@ -34,7 +34,7 @@ class EggController extends Controller
     /**
      * Handle a request to display the Egg creation page.
      *
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function create(): View
     {
@@ -47,8 +47,8 @@ class EggController extends Controller
     /**
      * Handle request to store a new Egg.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
      */
     public function store(EggFormRequest $request): RedirectResponse
     {
@@ -79,9 +79,9 @@ class EggController extends Controller
     /**
      * Handle request to update an Egg.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PheonixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
      */
     public function update(EggFormRequest $request, Egg $egg): RedirectResponse
     {
@@ -97,8 +97,8 @@ class EggController extends Controller
     /**
      * Handle request to destroy an egg.
      *
-     * @throws \PheonixPanel\Exceptions\Service\Egg\HasChildrenException
-     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\HasChildrenException
+     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
      */
     public function destroy(Egg $egg): RedirectResponse
     {

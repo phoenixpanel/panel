@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Models;
+namespace PhoenixPanel\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Query\JoinClause;
@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use PheonixPanel\Exceptions\Http\Server\ServerStateConflictException;
+use PhoenixPanel\Exceptions\Http\Server\ServerStateConflictException;
 
 /**
- * \PheonixPanel\Models\Server.
+ * \PhoenixPanel\Models\Server.
  *
  * @property int $id
  * @property string|null $external_id
@@ -43,29 +43,29 @@ use PheonixPanel\Exceptions\Http\Server\ServerStateConflictException;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $installed_at
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\ActivityLog[] $activity
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\ActivityLog[] $activity
  * @property int|null $activity_count
- * @property \PheonixPanel\Models\Allocation|null $allocation
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Allocation[] $allocations
+ * @property \PhoenixPanel\Models\Allocation|null $allocation
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Allocation[] $allocations
  * @property int|null $allocations_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Backup[] $backups
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Backup[] $backups
  * @property int|null $backups_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Database[] $databases
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Database[] $databases
  * @property int|null $databases_count
- * @property \PheonixPanel\Models\Egg|null $egg
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Mount[] $mounts
+ * @property \PhoenixPanel\Models\Egg|null $egg
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Mount[] $mounts
  * @property int|null $mounts_count
- * @property \PheonixPanel\Models\Nest $nest
- * @property \PheonixPanel\Models\Node $node
+ * @property \PhoenixPanel\Models\Nest $nest
+ * @property \PhoenixPanel\Models\Node $node
  * @property \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property int|null $notifications_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Schedule[] $schedules
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Schedule[] $schedules
  * @property int|null $schedules_count
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Subuser[] $subusers
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Subuser[] $subusers
  * @property int|null $subusers_count
- * @property \PheonixPanel\Models\ServerTransfer|null $transfer
- * @property \PheonixPanel\Models\User $user
- * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\EggVariable[] $variables
+ * @property \PhoenixPanel\Models\ServerTransfer|null $transfer
+ * @property \PhoenixPanel\Models\User $user
+ * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\EggVariable[] $variables
  * @property int|null $variables_count
  *
  * @method static \Database\Factories\ServerFactory factory(...$parameters)
@@ -348,7 +348,7 @@ class Server extends Model
      * exception is raised. This should be called whenever something needs to make
      * sure the server is not in a weird state that should block user access.
      *
-     * @throws \PheonixPanel\Exceptions\Http\Server\ServerStateConflictException
+     * @throws \PhoenixPanel\Exceptions\Http\Server\ServerStateConflictException
      */
     public function validateCurrentState()
     {

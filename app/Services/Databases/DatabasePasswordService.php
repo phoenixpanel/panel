@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Services\Databases;
+namespace PhoenixPanel\Services\Databases;
 
-use PheonixPanel\Models\Database;
-use PheonixPanel\Helpers\Utilities;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Helpers\Utilities;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PheonixPanel\Extensions\DynamicDatabaseConnection;
-use PheonixPanel\Contracts\Repository\DatabaseRepositoryInterface;
+use PhoenixPanel\Extensions\DynamicDatabaseConnection;
+use PhoenixPanel\Contracts\Repository\DatabaseRepositoryInterface;
 
 class DatabasePasswordService
 {

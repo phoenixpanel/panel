@@ -69,14 +69,14 @@
             "app/helpers.php"
         ],
         "psr-4": {
-            "PheonixPanel\\": "app/",
+            "PhoenixPanel\\": "app/",
             "Database\\Factories\\": "database/Factories/",
             "Database\\Seeders\\": "database/Seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PheonixPanel\\Tests\\": "tests/"
+            "PhoenixPanel\\Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Admin;
+namespace PhoenixPanel\Http\Requests\Admin;
 
-use PheonixPanel\Models\DatabaseHost;
+use PhoenixPanel\Models\DatabaseHost;
 use Illuminate\Contracts\Validation\Validator;
 
 class DatabaseHostFormRequest extends AdminFormRequest

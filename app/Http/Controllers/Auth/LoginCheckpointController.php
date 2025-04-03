@@ -1,17 +1,17 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Auth;
+namespace PhoenixPanel\Http\Controllers\Auth;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use PheonixPanel\Models\User;
+use PhoenixPanel\Models\User;
 use Illuminate\Http\JsonResponse;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PheonixPanel\Events\Auth\ProvidedAuthenticationToken;
-use PheonixPanel\Http\Requests\Auth\LoginCheckpointRequest;
+use PhoenixPanel\Events\Auth\ProvidedAuthenticationToken;
+use PhoenixPanel\Http\Requests\Auth\LoginCheckpointRequest;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginCheckpointController extends AbstractLoginController
@@ -56,7 +56,7 @@ class LoginCheckpointController extends AbstractLoginController
         }
 
         try {
-            /** @var \PheonixPanel\Models\User $user */
+            /** @var \PhoenixPanel\Models\User $user */
             $user = User::query()->findOrFail($details['user_id']);
         } catch (ModelNotFoundException) {
             $this->sendFailedLoginResponse($request, null, self::TOKEN_EXPIRED_MESSAGE);

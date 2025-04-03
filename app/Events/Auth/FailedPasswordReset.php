@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Events\Auth;
+namespace PhoenixPanel\Events\Auth;
 
-use PheonixPanel\Events\Event;
+use PhoenixPanel\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
 class FailedPasswordReset extends Event

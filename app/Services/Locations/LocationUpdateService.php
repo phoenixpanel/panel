@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Services\Locations;
+namespace PhoenixPanel\Services\Locations;
 
-use PheonixPanel\Models\Location;
-use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PhoenixPanel\Models\Location;
+use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationUpdateService
 {
@@ -17,8 +17,8 @@ class LocationUpdateService
     /**
      * Update an existing location.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function handle(Location|int $location, array $data): Location
     {

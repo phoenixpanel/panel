@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client;
+namespace PhoenixPanel\Http\Controllers\Api\Client;
 
 use Illuminate\Http\JsonResponse;
-use PheonixPanel\Facades\Activity;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PheonixPanel\Transformers\Api\Client\UserSSHKeyTransformer;
-use PheonixPanel\Http\Requests\Api\Client\Account\StoreSSHKeyRequest;
+use PhoenixPanel\Facades\Activity;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Transformers\Api\Client\UserSSHKeyTransformer;
+use PhoenixPanel\Http\Requests\Api\Client\Account\StoreSSHKeyRequest;
 
 class SSHKeyController extends ClientApiController
 {

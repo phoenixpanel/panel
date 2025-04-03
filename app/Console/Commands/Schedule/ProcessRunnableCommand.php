@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Console\Commands\Schedule;
+namespace PhoenixPanel\Console\Commands\Schedule;
 
 use Exception;
 use Illuminate\Console\Command;
-use PheonixPanel\Models\Schedule;
+use PhoenixPanel\Models\Schedule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
-use PheonixPanel\Services\Schedules\ProcessScheduleService;
+use PhoenixPanel\Services\Schedules\ProcessScheduleService;
 
 class ProcessRunnableCommand extends Command
 {

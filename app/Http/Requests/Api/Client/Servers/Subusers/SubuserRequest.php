@@ -1,13 +1,13 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Subusers;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers;
 
 use Illuminate\Http\Request;
-use PheonixPanel\Models\User;
-use PheonixPanel\Models\Subuser;
-use PheonixPanel\Exceptions\Http\HttpForbiddenException;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PheonixPanel\Services\Servers\GetUserPermissionsService;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Services\Servers\GetUserPermissionsService;
 
 abstract class SubuserRequest extends ClientApiRequest
 {
@@ -52,7 +52,7 @@ abstract class SubuserRequest extends ClientApiRequest
     protected function validatePermissionsCanBeAssigned(array $permissions)
     {
         $user = $this->user();
-        /** @var \PheonixPanel\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $this->route()->parameter('server');
 
         // If we are a root admin or the server owner, no need to perform these checks.
@@ -63,8 +63,8 @@ abstract class SubuserRequest extends ClientApiRequest
         // Otherwise, get the current subuser's permission set, and ensure that the
         // permissions they are trying to assign are not _more_ than the ones they
         // already have.
-        /** @var \PheonixPanel\Models\Subuser|null $subuser */
-        /** @var \PheonixPanel\Services\Servers\GetUserPermissionsService $service */
+        /** @var \PhoenixPanel\Models\Subuser|null $subuser */
+        /** @var \PhoenixPanel\Services\Servers\GetUserPermissionsService $service */
         $service = $this->container->make(GetUserPermissionsService::class);
 
         if (count(array_diff($permissions, $service->handle($server, $user))) > 0) {

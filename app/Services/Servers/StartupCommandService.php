@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 
 class StartupCommandService
 {

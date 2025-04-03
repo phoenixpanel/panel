@@ -1,11 +1,11 @@
 <?php
 
-namespace PheonixPanel\Services\Eggs;
+namespace PhoenixPanel\Services\Eggs;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Services\Servers\ServerConfigurationStructureService;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Services\Servers\ServerConfigurationStructureService;
 
 class EggConfigurationService
 {

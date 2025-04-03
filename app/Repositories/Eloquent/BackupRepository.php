@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Repositories\Eloquent;
+namespace PhoenixPanel\Repositories\Eloquent;
 
 use Carbon\Carbon;
-use PheonixPanel\Models\Backup;
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

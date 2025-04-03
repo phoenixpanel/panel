@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Models\Objects;
+namespace PhoenixPanel\Models\Objects;
 
 class DeploymentObject
 {

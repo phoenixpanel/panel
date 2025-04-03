@@ -1,6 +1,6 @@
 <?php
 
-namespace PheonixPanel\Traits\Controllers;
+namespace PhoenixPanel\Traits\Controllers;
 
 use JavaScript;
 

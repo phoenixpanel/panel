@@ -1,17 +1,17 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin\Settings;
+namespace PhoenixPanel\Http\Controllers\Admin\Settings;
 
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory as ViewFactory;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Traits\Helpers\AvailableLanguages;
-use PheonixPanel\Services\Helpers\SoftwareVersionService;
-use PheonixPanel\Contracts\Repository\SettingsRepositoryInterface;
-use PheonixPanel\Http\Requests\Admin\Settings\BaseSettingsFormRequest;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Traits\Helpers\AvailableLanguages;
+use PhoenixPanel\Services\Helpers\SoftwareVersionService;
+use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
+use PhoenixPanel\Http\Requests\Admin\Settings\BaseSettingsFormRequest;
 
 class IndexController extends Controller
 {
@@ -43,8 +43,8 @@ class IndexController extends Controller
     /**
      * Handle settings update.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(BaseSettingsFormRequest $request): RedirectResponse
     {

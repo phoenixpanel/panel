@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Events\Auth;
+namespace PhoenixPanel\Events\Auth;
 
-use PheonixPanel\Models\User;
-use PheonixPanel\Events\Event;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Events\Event;
 
 class ProvidedAuthenticationToken extends Event
 {

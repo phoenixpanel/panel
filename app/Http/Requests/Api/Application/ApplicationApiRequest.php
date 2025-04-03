@@ -1,15 +1,15 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Application;
+namespace PhoenixPanel\Http\Requests\Api\Application;
 
 use Webmozart\Assert\Assert;
-use PheonixPanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Laravel\Sanctum\TransientToken;
 use Illuminate\Validation\Validator;
 use Illuminate\Database\Eloquent\Model;
-use PheonixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
 use Illuminate\Foundation\Http\FormRequest;
-use PheonixPanel\Exceptions\PheonixPanelException;
+use PhoenixPanel\Exceptions\PhoenixPanelException;
 
 abstract class ApplicationApiRequest extends FormRequest
 {
@@ -29,12 +29,12 @@ abstract class ApplicationApiRequest extends FormRequest
      * Determine if the current user is authorized to perform
      * the requested action against the API.
      *
-     * @throws \PheonixPanel\Exceptions\PheonixPanelException
+     * @throws \PhoenixPanel\Exceptions\PhoenixPanelException
      */
     public function authorize(): bool
     {
         if (is_null($this->resource)) {
-            throw new PheonixPanelException('An ACL resource must be defined on API requests.');
+            throw new PhoenixPanelException('An ACL resource must be defined on API requests.');
         }
 
         $token = $this->user()->currentAccessToken();

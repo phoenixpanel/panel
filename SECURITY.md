@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The following versions of PheonixPanel are receiving active support and maintenance. Any security vulnerabilities discovered must be reproducible in supported versions.
+The following versions of PhoenixPanel are receiving active support and maintenance. Any security vulnerabilities discovered must be reproducible in supported versions.
 
 | Panel  | Daemon       | Supported          |
 |--------|--------------|--------------------|

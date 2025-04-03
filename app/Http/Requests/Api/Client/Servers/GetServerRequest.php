@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers;
 
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class GetServerRequest extends ClientApiRequest
 {

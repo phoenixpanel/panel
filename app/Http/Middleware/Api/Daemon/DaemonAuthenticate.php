@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware\Api\Daemon;
+namespace PhoenixPanel\Http\Middleware\Api\Daemon;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PheonixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
+use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -48,7 +48,7 @@ class DaemonAuthenticate
         }
 
         try {
-            /** @var \PheonixPanel\Models\Node $node */
+            /** @var \PhoenixPanel\Models\Node $node */
             $node = $this->repository->findFirstWhere([
                 'daemon_token_id' => $parts[0],
             ]);

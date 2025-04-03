@@ -1,9 +1,9 @@
 <?php
 
-namespace PheonixPanel\Events\User;
+namespace PhoenixPanel\Events\User;
 
-use PheonixPanel\Models\User;
-use PheonixPanel\Events\Event;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
 class Created extends Event

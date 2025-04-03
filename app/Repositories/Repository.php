@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Repositories;
+namespace PhoenixPanel\Repositories;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Database\Eloquent\Model;
-use PheonixPanel\Contracts\Repository\RepositoryInterface;
+use PhoenixPanel\Contracts\Repository\RepositoryInterface;
 
 abstract class Repository implements RepositoryInterface
 {

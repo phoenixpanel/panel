@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Services\Servers;
+namespace PhoenixPanel\Services\Servers;
 
 use Illuminate\Support\Arr;
-use PheonixPanel\Models\Egg;
-use PheonixPanel\Models\User;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\ServerVariable;
+use PhoenixPanel\Models\Egg;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\ServerVariable;
 use Illuminate\Database\ConnectionInterface;
-use PheonixPanel\Traits\Services\HasUserLevels;
+use PhoenixPanel\Traits\Services\HasUserLevels;
 
 class StartupModificationService
 {
@@ -70,7 +70,7 @@ class StartupModificationService
         $eggId = Arr::get($data, 'egg_id');
 
         if (is_digit($eggId) && $server->egg_id !== (int) $eggId) {
-            /** @var \PheonixPanel\Models\Egg $egg */
+            /** @var \PhoenixPanel\Models\Egg $egg */
             $egg = Egg::query()->findOrFail($data['egg_id']);
 
             $server = $server->forceFill([

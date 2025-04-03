@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Admin\Nests;
+namespace PhoenixPanel\Http\Controllers\Admin\Nests;
 
 use Illuminate\View\View;
-use PheonixPanel\Models\Egg;
+use PhoenixPanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use PheonixPanel\Http\Controllers\Controller;
-use PheonixPanel\Services\Eggs\Scripts\InstallScriptService;
-use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
-use PheonixPanel\Http\Requests\Admin\Egg\EggScriptFormRequest;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Services\Eggs\Scripts\InstallScriptService;
+use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
+use PhoenixPanel\Http\Requests\Admin\Egg\EggScriptFormRequest;
 
 class EggScriptController extends Controller
 {
@@ -51,9 +51,9 @@ class EggScriptController extends Controller
     /**
      * Handle a request to update the installation script for an Egg.
      *
-     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
-     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PheonixPanel\Exceptions\Service\Egg\InvalidCopyFromException
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\InvalidCopyFromException
      */
     public function update(EggScriptFormRequest $request, Egg $egg): RedirectResponse
     {

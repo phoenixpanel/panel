@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use PheonixPanel\Models\Subuser;
-use PheonixPanel\Models\Permission;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Permission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SubuserFactory extends Factory

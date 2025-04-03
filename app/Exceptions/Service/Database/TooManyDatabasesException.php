@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Database;
+namespace PhoenixPanel\Exceptions\Service\Database;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class TooManyDatabasesException extends DisplayException
 {

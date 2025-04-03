@@ -38,8 +38,8 @@ $(document).ready(function () {
             }, function () {
                 $.ajax({
                     type: 'POST',
-                    url: PheonixPanel.meta.saveFile,
-                    headers: { 'X-CSRF-Token': PheonixPanel.meta.csrfToken, },
+                    url: PhoenixPanel.meta.saveFile,
+                    headers: { 'X-CSRF-Token': PhoenixPanel.meta.csrfToken, },
                     data: {
                         file: 'eula.txt',
                         contents: 'eula=true'

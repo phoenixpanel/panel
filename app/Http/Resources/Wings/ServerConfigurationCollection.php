@@ -1,12 +1,12 @@
 <?php
 
-namespace PheonixPanel\Http\Resources\Wings;
+namespace PhoenixPanel\Http\Resources\Wings;
 
-use PheonixPanel\Models\Server;
+use PhoenixPanel\Models\Server;
 use Illuminate\Container\Container;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use PheonixPanel\Services\Eggs\EggConfigurationService;
-use PheonixPanel\Services\Servers\ServerConfigurationStructureService;
+use PhoenixPanel\Services\Eggs\EggConfigurationService;
+use PhoenixPanel\Services\Servers\ServerConfigurationStructureService;
 
 class ServerConfigurationCollection extends ResourceCollection
 {

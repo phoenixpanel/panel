@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Node;
+namespace PhoenixPanel\Exceptions\Service\Node;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class ConfigurationNotPersistedException extends DisplayException
 {

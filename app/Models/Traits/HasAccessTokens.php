@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Models\Traits;
+namespace PhoenixPanel\Models\Traits;
 
 use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
-use PheonixPanel\Models\ApiKey;
+use PhoenixPanel\Models\ApiKey;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use PheonixPanel\Extensions\Laravel\Sanctum\NewAccessToken;
+use PhoenixPanel\Extensions\Laravel\Sanctum\NewAccessToken;
 
 /**
- * @mixin \PheonixPanel\Models\Model
+ * @mixin \PhoenixPanel\Models\Model
  */
 trait HasAccessTokens
 {
@@ -26,7 +26,7 @@ trait HasAccessTokens
 
     public function createToken(?string $memo, ?array $ips): NewAccessToken
     {
-        /** @var \PheonixPanel\Models\ApiKey $token */
+        /** @var \PhoenixPanel\Models\ApiKey $token */
         $token = $this->tokens()->forceCreate([
             'user_id' => $this->id,
             'key_type' => ApiKey::TYPE_ACCOUNT,

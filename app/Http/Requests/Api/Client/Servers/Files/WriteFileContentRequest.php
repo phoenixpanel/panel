@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Client\Servers\Files;
+namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Files;
 
-use PheonixPanel\Models\Permission;
-use PheonixPanel\Contracts\Http\ClientPermissionsRequest;
-use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PhoenixPanel\Models\Permission;
+use PhoenixPanel\Contracts\Http\ClientPermissionsRequest;
+use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class WriteFileContentRequest extends ClientApiRequest implements ClientPermissionsRequest
 {

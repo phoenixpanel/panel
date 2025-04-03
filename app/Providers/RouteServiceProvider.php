@@ -1,15 +1,15 @@
 <?php
 
-namespace PheonixPanel\Providers;
+namespace PhoenixPanel\Providers;
 
 use Illuminate\Http\Request;
-use PheonixPanel\Models\Database;
+use PhoenixPanel\Models\Database;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
-use PheonixPanel\Http\Middleware\TrimStrings;
-use PheonixPanel\Http\Middleware\AdminAuthenticate;
-use PheonixPanel\Http\Middleware\RequireTwoFactorAuthentication;
+use PhoenixPanel\Http\Middleware\TrimStrings;
+use PhoenixPanel\Http\Middleware\AdminAuthenticate;
+use PhoenixPanel\Http\Middleware\RequireTwoFactorAuthentication;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider

@@ -1,8 +1,8 @@
 <?php
 
-namespace PheonixPanel\Exceptions\Service\Allocation;
+namespace PhoenixPanel\Exceptions\Service\Allocation;
 
-use PheonixPanel\Exceptions\DisplayException;
+use PhoenixPanel\Exceptions\DisplayException;
 
 class NoAutoAllocationSpaceAvailableException extends DisplayException
 {

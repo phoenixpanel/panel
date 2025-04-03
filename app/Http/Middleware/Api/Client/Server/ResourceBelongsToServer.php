@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Http\Middleware\Api\Client\Server;
+namespace PhoenixPanel\Http\Middleware\Api\Client\Server;
 
 use Illuminate\Http\Request;
-use PheonixPanel\Models\Task;
-use PheonixPanel\Models\User;
-use PheonixPanel\Models\Backup;
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\Subuser;
-use PheonixPanel\Models\Database;
-use PheonixPanel\Models\Schedule;
-use PheonixPanel\Models\Allocation;
+use PhoenixPanel\Models\Task;
+use PhoenixPanel\Models\User;
+use PhoenixPanel\Models\Backup;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Subuser;
+use PhoenixPanel\Models\Database;
+use PhoenixPanel\Models\Schedule;
+use PhoenixPanel\Models\Allocation;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -31,7 +31,7 @@ class ResourceBelongsToServer
             throw new \InvalidArgumentException('This middleware cannot be used in a context that is missing a server in the parameters.');
         }
 
-        /** @var \PheonixPanel\Models\Server $server */
+        /** @var \PhoenixPanel\Models\Server $server */
         $server = $request->route()->parameter('server');
         $exception = new NotFoundHttpException('The requested resource was not found for this server.');
         foreach ($params as $key => $model) {

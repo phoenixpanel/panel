@@ -1,14 +1,14 @@
 <?php
 
-namespace PheonixPanel\Http\Controllers\Api\Client;
+namespace PhoenixPanel\Http\Controllers\Api\Client;
 
-use PheonixPanel\Models\Server;
-use PheonixPanel\Models\Permission;
+use PhoenixPanel\Models\Server;
+use PhoenixPanel\Models\Permission;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use PheonixPanel\Models\Filters\MultiFieldServerFilter;
-use PheonixPanel\Transformers\Api\Client\ServerTransformer;
-use PheonixPanel\Http\Requests\Api\Client\GetServersRequest;
+use PhoenixPanel\Models\Filters\MultiFieldServerFilter;
+use PhoenixPanel\Transformers\Api\Client\ServerTransformer;
+use PhoenixPanel\Http\Requests\Api\Client\GetServersRequest;
 
 class ClientController extends ClientApiController
 {

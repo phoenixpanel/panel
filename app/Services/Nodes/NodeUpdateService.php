@@ -1,16 +1,16 @@
 <?php
 
-namespace PheonixPanel\Services\Nodes;
+namespace PhoenixPanel\Services\Nodes;
 
 use Illuminate\Support\Str;
-use PheonixPanel\Models\Node;
+use PhoenixPanel\Models\Node;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PheonixPanel\Repositories\Eloquent\NodeRepository;
-use PheonixPanel\Repositories\Wings\DaemonConfigurationRepository;
-use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
-use PheonixPanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
+use PhoenixPanel\Repositories\Eloquent\NodeRepository;
+use PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository;
+use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PhoenixPanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
 
 class NodeUpdateService
 {
@@ -38,7 +38,7 @@ class NodeUpdateService
         }
 
         [$updated, $exception] = $this->connection->transaction(function () use ($data, $node) {
-            /** @var \PheonixPanel\Models\Node $updated */
+            /** @var \PhoenixPanel\Models\Node $updated */
             $updated = $this->repository->withFreshModel()->update($node->id, $data, true, true);
 
             try {

@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Http\Requests\Api\Application\Nodes;
+namespace PhoenixPanel\Http\Requests\Api\Application\Nodes;
 
-use PheonixPanel\Models\Node;
-use PheonixPanel\Services\Acl\Api\AdminAcl;
-use PheonixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PhoenixPanel\Models\Node;
+use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreNodeRequest extends ApplicationApiRequest
 {

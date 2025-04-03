@@ -1,10 +1,10 @@
 <?php
 
-namespace PheonixPanel\Traits\Services;
+namespace PhoenixPanel\Traits\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use PheonixPanel\Exceptions\Service\Egg\Variable\BadValidationRuleException;
+use PhoenixPanel\Exceptions\Service\Egg\Variable\BadValidationRuleException;
 
 trait ValidatesValidationRules
 {
@@ -14,7 +14,7 @@ trait ValidatesValidationRules
      * Validate that the rules being provided are valid for Laravel and can
      * be resolved.
      *
-     * @throws \PheonixPanel\Exceptions\Service\Egg\Variable\BadValidationRuleException
+     * @throws \PhoenixPanel\Exceptions\Service\Egg\Variable\BadValidationRuleException
      */
     public function validateRules(array|string $rules): void
     {

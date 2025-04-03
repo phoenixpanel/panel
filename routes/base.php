@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use PheonixPanel\Http\Controllers\Base;
-use PheonixPanel\Http\Middleware\RequireTwoFactorAuthentication;
+use PhoenixPanel\Http\Controllers\Base;
+use PhoenixPanel\Http\Middleware\RequireTwoFactorAuthentication;
 
 Route::get('/', [Base\IndexController::class, 'index'])->name('index')->fallback();
 Route::get('/account', [Base\IndexController::class, 'index'])
