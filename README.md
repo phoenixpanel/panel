@@ -111,10 +111,6 @@ composer install --no-dev --optimize-autoloader
 cp .env.example .env
 composer update --ignore-platform-req=ext-posix # Update lock file if needed after edits
 php artisan key:generate --force
-
-# Configure environment (.env file) - EDIT THIS FILE MANUALLY
-# Set APP_URL, Database details (DB_PASSWORD), Redis, Mail details etc.
-# Example: nano .env
 ```
 
 ### 4. Setup Panel Configuration
@@ -125,16 +121,16 @@ Run the following commands to set up the database, create an admin user, and con
 # Migrate database and seed core data
 php artisan migrate --seed --force
 
-# Create initial admin user (follow prompts)
-php artisan p:user:make
-
 # Setup core environment settings (follow prompts)
 php artisan p:environment:setup
 
 # Setup database connection details (follow prompts)
 php artisan p:environment:database
 
-# Setup mail environment details (follow prompts)
+# Create initial admin user (follow prompts)
+php artisan p:user:make
+
+# Setup mail environment details (follow prompts - optional)
 php artisan p:environment:mail
 ```
 
