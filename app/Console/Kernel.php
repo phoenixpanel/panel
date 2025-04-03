@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
             $schedule->command(PruneCommand::class, ['--model' => [ActivityLog::class]])->daily();
         }
 
-        if (config('pheonixpanel.telemetry.enabled')) {
+        if (config('phoenixpanel.telemetry.enabled')) {
             $this->registerTelemetry($schedule);
         }
     }

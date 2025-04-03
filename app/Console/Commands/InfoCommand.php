@@ -30,7 +30,7 @@ class InfoCommand extends Command
             ['Panel Version', $this->config->get('app.version')],
             ['Latest Version', $this->versionService->getPanel()],
             ['Up-to-Date', $this->versionService->isLatestPanel() ? 'Yes' : $this->formatText('No', 'bg=red')],
-            ['Unique Identifier', $this->config->get('pheonixpanel.service.author')],
+            ['Unique Identifier', $this->config->get('phoenixpanel.service.author')],
         ], 'compact');
 
         $this->output->title('Application Configuration');
