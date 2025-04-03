@@ -14,3 +14,5 @@ trait PlainJavascriptInjection
         \JavaScript::put($data);
     }
 }
+
+

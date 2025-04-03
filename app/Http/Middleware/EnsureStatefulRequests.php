@@ -24,3 +24,5 @@ class EnsureStatefulRequests extends EnsureFrontendRequestsAreStateful
         return $request->hasCookie(config('session.cookie'));
     }
 }
+
+

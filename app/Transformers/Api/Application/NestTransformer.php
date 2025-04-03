@@ -72,3 +72,5 @@ class NestTransformer extends BaseTransformer
         return $this->collection($model->getRelation('servers'), $this->makeTransformer(ServerTransformer::class), Server::RESOURCE_NAME);
     }
 }
+
+

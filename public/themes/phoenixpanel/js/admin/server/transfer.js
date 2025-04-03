@@ -1,4 +1,4 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('#pNodeId').select2({
         placeholder: 'Select a Node',
     }).change();
@@ -54,3 +54,5 @@ function updateAdditionalAllocations() {
         }
     });
 }
+
+

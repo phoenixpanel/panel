@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+﻿import React, { memo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faBoxOpen,
@@ -195,3 +195,4 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
 };
 
 export default memo(FileDropdownMenu, isEqual);
+

@@ -79,3 +79,5 @@ class DisplayException extends PhoenixPanelException implements HttpExceptionInt
         return $logger->{$this->getErrorLevel()}($this->getPrevious());
     }
 }
+
+

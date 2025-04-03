@@ -286,3 +286,5 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
         return $this->getBuilder()->count();
     }
 }
+
+

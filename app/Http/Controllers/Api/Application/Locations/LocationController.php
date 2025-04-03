@@ -102,3 +102,5 @@ class LocationController extends ApplicationApiController
         return response('', 204);
     }
 }
+
+

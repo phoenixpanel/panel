@@ -27,3 +27,5 @@ abstract class FrontendUserFormRequest extends FormRequest
         );
     }
 }
+
+

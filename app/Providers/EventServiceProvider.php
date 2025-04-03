@@ -41,3 +41,5 @@ class EventServiceProvider extends ServiceProvider
         EggVariable::observe(EggVariableObserver::class);
     }
 }
+
+

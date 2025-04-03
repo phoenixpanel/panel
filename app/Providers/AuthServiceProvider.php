@@ -27,3 +27,5 @@ class AuthServiceProvider extends ServiceProvider
         Sanctum::ignoreMigrations();
     }
 }
+
+

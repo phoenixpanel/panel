@@ -26,3 +26,5 @@ trait JavascriptInjection
         return \JavaScript::put($args);
     }
 }
+
+

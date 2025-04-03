@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 return [
     /*
@@ -104,3 +104,5 @@ return [
         'invalid_password' => 'The password provided was invalid for this account.',
     ],
 ];
+
+

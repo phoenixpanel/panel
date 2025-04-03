@@ -38,3 +38,5 @@ class LocationDeletionService
         return $this->repository->delete($location);
     }
 }
+
+

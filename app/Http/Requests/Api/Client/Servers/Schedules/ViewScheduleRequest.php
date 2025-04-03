@@ -41,3 +41,5 @@ class ViewScheduleRequest extends ClientApiRequest
         return Permission::ACTION_SCHEDULE_READ;
     }
 }
+
+

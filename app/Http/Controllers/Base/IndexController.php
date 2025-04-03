@@ -26,3 +26,5 @@ class IndexController extends Controller
         return $this->view->make('templates/base.core');
     }
 }
+
+

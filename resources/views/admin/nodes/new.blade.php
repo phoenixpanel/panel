@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
     Nodes &rarr; New
@@ -173,3 +173,4 @@
         $('#pLocationId').select2();
     </script>
 @endsection
+

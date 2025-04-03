@@ -61,3 +61,5 @@ return [
         'encrypt_cookies' => PhoenixPanel\Http\Middleware\EncryptCookies::class,
     ],
 ];
+
+

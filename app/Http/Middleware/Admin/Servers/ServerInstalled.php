@@ -29,3 +29,5 @@ class ServerInstalled
         return $next($request);
     }
 }
+
+

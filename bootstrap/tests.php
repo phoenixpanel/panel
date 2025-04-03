@@ -43,3 +43,5 @@ if (!env('SKIP_MIGRATIONS')) {
 } else {
     $output->writeln(PHP_EOL . '<comment>Skipping database migrations...</comment>' . PHP_EOL);
 }
+
+

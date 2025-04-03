@@ -88,3 +88,5 @@ class MailController extends Controller
         return response('', 204);
     }
 }
+
+

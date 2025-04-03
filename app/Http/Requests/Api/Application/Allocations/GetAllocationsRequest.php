@@ -11,3 +11,5 @@ class GetAllocationsRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::READ;
 }
+
+

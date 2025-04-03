@@ -12,3 +12,5 @@ class NewAllocationRequest extends ClientApiRequest
         return Permission::ACTION_ALLOCATION_CREATE;
     }
 }
+
+

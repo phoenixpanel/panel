@@ -53,3 +53,4 @@ class ChangeServicesToUseAMoreUniqueIdentifier extends Migration
         });
     }
 }
+

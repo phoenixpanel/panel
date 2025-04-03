@@ -185,3 +185,5 @@ abstract class Model extends IlluminateModel
         return parent::asDateTime($value)->toImmutable();
     }
 }
+
+

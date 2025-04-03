@@ -16,3 +16,5 @@ class DownloadFileRequest extends ClientApiRequest
         return $this->user()->can('file.read', $this->parameter('server', Server::class));
     }
 }
+
+

@@ -67,3 +67,5 @@ class SubuserRepository extends EloquentRepository implements SubuserRepositoryI
         return $instance;
     }
 }
+
+

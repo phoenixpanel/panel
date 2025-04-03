@@ -12,3 +12,5 @@ class DeleteAllocationRequest extends ClientApiRequest
         return Permission::ACTION_ALLOCATION_DELETE;
     }
 }
+
+

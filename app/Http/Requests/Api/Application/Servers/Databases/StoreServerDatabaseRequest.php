@@ -74,3 +74,5 @@ class StoreServerDatabaseRequest extends ApplicationApiRequest
         return DatabaseManagementService::generateUniqueDatabaseName($this->input('database'), $server->id);
     }
 }
+
+

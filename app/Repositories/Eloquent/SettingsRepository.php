@@ -73,3 +73,5 @@ class SettingsRepository extends EloquentRepository implements SettingsRepositor
         unset(self::$cache[$key], self::$databaseMiss[$key]);
     }
 }
+
+

@@ -67,3 +67,5 @@ class MakeNodeCommand extends Command
         $this->line('Successfully created a new node on the location ' . $data['location_id'] . ' with the name ' . $data['name'] . ' and has an id of ' . $node->id . '.');
     }
 }
+
+

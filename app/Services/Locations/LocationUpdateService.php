@@ -27,3 +27,5 @@ class LocationUpdateService
         return $this->repository->update($location, $data);
     }
 }
+
+

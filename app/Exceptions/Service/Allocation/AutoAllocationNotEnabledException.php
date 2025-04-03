@@ -16,3 +16,5 @@ class AutoAllocationNotEnabledException extends DisplayException
         );
     }
 }
+
+

@@ -104,3 +104,5 @@ class BulkPowerActionCommand extends Command
         return $instance->with('node');
     }
 }
+
+

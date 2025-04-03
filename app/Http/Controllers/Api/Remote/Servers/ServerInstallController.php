@@ -78,3 +78,5 @@ class ServerInstallController extends Controller
         return new JsonResponse([], Response::HTTP_NO_CONTENT);
     }
 }
+
+

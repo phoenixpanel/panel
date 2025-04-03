@@ -193,3 +193,5 @@ class UpgradeCommand extends Command
         return sprintf(self::DEFAULT_URL, $this->option('release') ? 'download/v' . $this->option('release') : 'latest/download');
     }
 }
+
+

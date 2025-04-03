@@ -7,3 +7,5 @@ use PhoenixPanel\Exceptions\DisplayException;
 class ReservedVariableNameException extends DisplayException
 {
 }
+
+

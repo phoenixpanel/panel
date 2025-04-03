@@ -33,3 +33,5 @@ class DatabaseFactory extends Factory
         ];
     }
 }
+
+

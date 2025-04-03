@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 return [
     'email' => 'Email',
@@ -93,3 +93,5 @@ return [
     'save' => 'Save',
     'copyright' => '&copy; 2015 - :year PhoenixPanel Software',
 ];
+
+

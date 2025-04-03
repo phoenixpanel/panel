@@ -26,3 +26,5 @@ Route::group(['prefix' => '/backups'], function () {
     Route::post('/{backup}', [Remote\Backups\BackupStatusController::class, 'index']);
     Route::post('/{backup}/restore', [Remote\Backups\BackupStatusController::class, 'restore']);
 });
+
+

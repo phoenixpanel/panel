@@ -31,3 +31,5 @@ class SubstituteClientBindings extends SubstituteBindings
         return parent::handle($request, $next);
     }
 }
+
+

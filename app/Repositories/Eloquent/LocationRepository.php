@@ -62,3 +62,5 @@ class LocationRepository extends EloquentRepository implements LocationRepositor
         }
     }
 }
+
+

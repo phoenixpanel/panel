@@ -27,3 +27,5 @@ interface ApiKeyRepositoryInterface extends RepositoryInterface
      */
     public function deleteApplicationKey(User $user, string $identifier): int;
 }
+
+

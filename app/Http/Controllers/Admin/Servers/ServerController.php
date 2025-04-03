@@ -36,3 +36,5 @@ class ServerController extends Controller
         return $this->view->make('admin.servers.index', ['servers' => $servers]);
     }
 }
+
+

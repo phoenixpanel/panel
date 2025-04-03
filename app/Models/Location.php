@@ -64,3 +64,5 @@ class Location extends Model
         return $this->hasManyThrough(Server::class, Node::class);
     }
 }
+
+

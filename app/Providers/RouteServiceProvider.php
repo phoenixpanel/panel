@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        // Disable trimming string values when requesting file information — it isn't helpful
+        // Disable trimming string values when requesting file information â€” it isn't helpful
         // and messes up the ability to actually open a directory that ends with a space.
         TrimStrings::skipWhen(function (Request $request) {
             return preg_match(self::FILE_PATH_REGEX, $request->getPathInfo()) === 1;
@@ -108,3 +108,5 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 }
+
+

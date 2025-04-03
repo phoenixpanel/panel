@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
     Administration
@@ -51,3 +51,5 @@
     </div>
 </div>
 @endsection
+
+

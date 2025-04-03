@@ -1,4 +1,4 @@
-# Local Development
+﻿# Local Development
 PhoenixPanel is now powered by React, Typescript, and Tailwindcss using webpack at its core to generate compiled assets.
 Release versions of PhoenixPanel will include pre-compiled, minified, and hashed assets ready-to-go.
 
@@ -61,3 +61,5 @@ be uploaded to your server or CDN for clients to use.
 To run `wings` in development all you need to do is set up the configuration file as normal when adding a new node, and
 then you can build and run a local version of Wings by executing `make debug` in the Wings code directory. This must
 be run on a Linux VM of some sort, you cannot run this locally on macOS or Windows.
+
+

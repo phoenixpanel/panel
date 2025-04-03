@@ -71,3 +71,5 @@ class LocaleController extends Controller
         return $data;
     }
 }
+
+

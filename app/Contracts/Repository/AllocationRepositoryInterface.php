@@ -17,3 +17,5 @@ interface AllocationRepositoryInterface extends RepositoryInterface
      */
     public function getRandomAllocation(array $nodes, array $ports, bool $dedicated = false): ?Allocation;
 }
+
+

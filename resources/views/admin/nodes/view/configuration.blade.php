@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
     {{ $node->name }}: Configuration
@@ -86,3 +86,4 @@
     });
     </script>
 @endsection
+

@@ -29,3 +29,5 @@ class StoreServerDatabaseRequest extends AdminFormRequest
         ];
     }
 }
+
+

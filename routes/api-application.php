@@ -122,3 +122,5 @@ Route::group(['prefix' => '/nests'], function () {
         Route::get('/{egg:id}', [Application\Nests\EggController::class, 'view'])->name('api.application.nests.eggs.view');
     });
 });
+
+

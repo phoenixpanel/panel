@@ -88,3 +88,5 @@ class EggVariableController extends Controller
         return redirect()->route('admin.nests.egg.variables', $egg);
     }
 }
+
+

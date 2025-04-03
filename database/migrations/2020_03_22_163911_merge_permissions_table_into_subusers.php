@@ -127,3 +127,5 @@ class MergePermissionsTableIntoSubusers extends Migration
         });
     }
 }
+
+

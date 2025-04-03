@@ -11,3 +11,5 @@ class DeleteNodeRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::WRITE;
 }
+
+

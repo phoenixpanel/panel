@@ -38,3 +38,5 @@ class MakeLocationCommand extends Command
         ]));
     }
 }
+
+

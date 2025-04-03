@@ -1,4 +1,4 @@
-@section('settings::notice')
+﻿@section('settings::notice')
     @if(config('phoenixpanel.load_environment_only', false))
         <div class="row">
             <div class="col-xs-12">
@@ -9,3 +9,4 @@
         </div>
     @endif
 @endsection
+

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
     Nests
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="alert alert-danger">
-            Eggs are a powerful feature of PhoenixPanel Panel that allow for extreme flexibility and configuration. Please note that while powerful, modifying an egg wrongly can very easily brick your servers and cause more problems. Please avoid editing our default eggs — those provided by <code>support@phoenixpanel.io</code> — unless you are absolutely sure of what you are doing.
+            Eggs are a powerful feature of PhoenixPanel Panel that allow for extreme flexibility and configuration. Please note that while powerful, modifying an egg wrongly can very easily brick your servers and cause more problems. Please avoid editing our default eggs â€” those provided by <code>support@phoenixpanel.io</code> â€” unless you are absolutely sure of what you are doing.
         </div>
     </div>
 </div>
@@ -100,3 +100,5 @@
         });
     </script>
 @endsection
+
+

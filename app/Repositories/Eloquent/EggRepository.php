@@ -84,3 +84,5 @@ class EggRepository extends EloquentRepository implements EggRepositoryInterface
             ->exists();
     }
 }
+
+

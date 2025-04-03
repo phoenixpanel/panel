@@ -11,3 +11,5 @@ class GetUsersRequest extends ApplicationApiRequest
 
     protected int $permission = Acl::READ;
 }
+
+

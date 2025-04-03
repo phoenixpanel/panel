@@ -74,3 +74,5 @@ class ServerObserver
         event(new Events\Server\Updated($server));
     }
 }
+
+

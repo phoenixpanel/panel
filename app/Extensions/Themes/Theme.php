@@ -19,3 +19,5 @@ class Theme
         return '/themes/phoenixpanel/' . ltrim($path, '/');
     }
 }
+
+

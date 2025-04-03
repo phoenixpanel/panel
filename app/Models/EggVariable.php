@@ -93,3 +93,5 @@ class EggVariable extends Model
         return $this->hasMany(ServerVariable::class, 'variable_id');
     }
 }
+
+

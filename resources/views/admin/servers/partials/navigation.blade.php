@@ -1,4 +1,4 @@
-@php
+﻿@php
     /** @var \PhoenixPanel\Models\Server $server */
     $router = app('router');
 @endphp
@@ -38,3 +38,5 @@
         </div>
     </div>
 </div>
+
+

@@ -11,3 +11,5 @@ class Theme extends Facade
         return 'extensions.themes';
     }
 }
+
+

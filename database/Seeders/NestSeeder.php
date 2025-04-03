@@ -106,3 +106,5 @@ class NestSeeder extends Seeder
         }
     }
 }
+
+

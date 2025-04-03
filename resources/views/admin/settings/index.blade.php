@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 @include('partials/admin.settings.nav', ['activeTab' => 'basic'])
 
 @section('title')
@@ -73,3 +73,5 @@
         </div>
     </div>
 @endsection
+
+

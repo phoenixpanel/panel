@@ -24,3 +24,5 @@ class BaseController extends Controller
         return $this->view->make('admin.index', ['version' => $this->version]);
     }
 }
+
+

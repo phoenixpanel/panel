@@ -42,3 +42,5 @@ class TaskRepository extends EloquentRepository implements TaskRepositoryInterfa
             ->first($this->getColumns());
     }
 }
+
+

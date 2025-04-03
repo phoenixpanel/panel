@@ -84,3 +84,5 @@ class Subuser extends Model
         return $this->hasMany(Permission::class);
     }
 }
+
+

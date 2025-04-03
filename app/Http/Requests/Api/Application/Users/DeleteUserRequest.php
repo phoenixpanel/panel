@@ -11,3 +11,5 @@ class DeleteUserRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::WRITE;
 }
+
+

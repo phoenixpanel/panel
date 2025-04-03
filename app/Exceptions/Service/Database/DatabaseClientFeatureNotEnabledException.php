@@ -11,3 +11,5 @@ class DatabaseClientFeatureNotEnabledException extends PhoenixPanelException
         parent::__construct('Client database creation is not enabled in this Panel.');
     }
 }
+
+

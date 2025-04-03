@@ -19,3 +19,5 @@ class UpdateLocationRequest extends StoreLocationRequest
         ])->toArray();
     }
 }
+
+

@@ -15,3 +15,5 @@ Route::get('/locales/locale.json', Base\LocaleController::class)
 
 Route::get('/{react}', [Base\IndexController::class, 'index'])
     ->where('react', '^(?!(\/)?(api|auth|admin|daemon)).+');
+
+

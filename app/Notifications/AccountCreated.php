@@ -45,3 +45,5 @@ class AccountCreated extends Notification implements ShouldQueue
         return $message;
     }
 }
+
+

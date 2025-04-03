@@ -28,3 +28,5 @@ class EggFactory extends Factory
         ];
     }
 }
+
+

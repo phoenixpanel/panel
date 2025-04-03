@@ -44,3 +44,5 @@ class AddMoreUserData extends Migration
         });
     }
 }
+
+

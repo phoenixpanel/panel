@@ -68,3 +68,5 @@ class LocationTransformer extends BaseTransformer
         return $this->collection($location->getRelation('nodes'), $this->makeTransformer(NodeTransformer::class), 'node');
     }
 }
+
+

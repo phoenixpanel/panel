@@ -42,3 +42,5 @@ class RemovedFromServer extends Notification implements ShouldQueue
             ->action('Visit Panel', route('index'));
     }
 }
+
+

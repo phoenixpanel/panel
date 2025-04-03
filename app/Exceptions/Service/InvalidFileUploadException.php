@@ -7,3 +7,5 @@ use PhoenixPanel\Exceptions\DisplayException;
 class InvalidFileUploadException extends DisplayException
 {
 }
+
+

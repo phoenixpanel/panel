@@ -30,3 +30,5 @@ class ServerConfigurationCollection extends ResourceCollection
         })->toArray();
     }
 }
+
+

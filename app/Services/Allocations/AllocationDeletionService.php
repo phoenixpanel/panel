@@ -30,3 +30,5 @@ class AllocationDeletionService
         return $this->repository->delete($allocation->id);
     }
 }
+
+

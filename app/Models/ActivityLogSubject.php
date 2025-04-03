@@ -44,3 +44,5 @@ class ActivityLogSubject extends Pivot
         return $morph;
     }
 }
+
+

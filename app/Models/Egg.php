@@ -297,3 +297,5 @@ class Egg extends Model
         return $this->belongsTo(self::class, 'config_from');
     }
 }
+
+

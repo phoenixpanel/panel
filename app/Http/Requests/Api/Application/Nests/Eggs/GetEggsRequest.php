@@ -11,3 +11,5 @@ class GetEggsRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::READ;
 }
+
+

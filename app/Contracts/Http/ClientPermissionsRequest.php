@@ -11,3 +11,5 @@ interface ClientPermissionsRequest
      */
     public function permission(): string;
 }
+
+

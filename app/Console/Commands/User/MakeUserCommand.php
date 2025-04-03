@@ -49,3 +49,5 @@ class MakeUserCommand extends Command
         ]);
     }
 }
+
+

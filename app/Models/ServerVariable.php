@@ -55,3 +55,5 @@ class ServerVariable extends Model
         return $this->belongsTo(EggVariable::class, 'variable_id');
     }
 }
+
+

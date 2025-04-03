@@ -41,3 +41,5 @@ class DisableTwoFactorCommand extends Command
         $this->info(trans('command/messages.user.2fa_disabled', ['email' => $user->email]));
     }
 }
+
+

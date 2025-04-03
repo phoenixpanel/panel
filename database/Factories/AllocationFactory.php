@@ -34,3 +34,5 @@ class AllocationFactory extends Factory
         return $this->for($server)->for($server->node);
     }
 }
+
+

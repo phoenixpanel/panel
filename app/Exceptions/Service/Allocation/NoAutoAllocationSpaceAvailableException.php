@@ -16,3 +16,5 @@ class NoAutoAllocationSpaceAvailableException extends DisplayException
         );
     }
 }
+
+

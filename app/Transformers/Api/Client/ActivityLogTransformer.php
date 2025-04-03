@@ -116,3 +116,5 @@ class ActivityLogTransformer extends BaseClientTransformer
         return optional($actor)->is($this->request->user()) || $this->request->user()->root_admin;
     }
 }
+
+

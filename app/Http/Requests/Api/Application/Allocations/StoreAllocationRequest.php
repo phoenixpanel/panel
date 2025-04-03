@@ -32,3 +32,5 @@ class StoreAllocationRequest extends ApplicationApiRequest
         ];
     }
 }
+
+

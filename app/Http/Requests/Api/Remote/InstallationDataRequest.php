@@ -19,3 +19,5 @@ class InstallationDataRequest extends FormRequest
         ];
     }
 }
+
+

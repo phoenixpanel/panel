@@ -111,3 +111,5 @@ class SettingsServiceProvider extends ServiceProvider
         return self::$encrypted;
     }
 }
+
+

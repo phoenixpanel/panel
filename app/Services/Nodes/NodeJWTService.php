@@ -88,7 +88,7 @@ class NodeJWTService
         if (!is_null($this->user)) {
             $builder = $builder
                 ->withClaim('user_uuid', $this->user->uuid)
-                // The "user_id" claim is deprecated and should not be referenced — it remains
+                // The "user_id" claim is deprecated and should not be referenced â€” it remains
                 // here solely to ensure older versions of Wings are unaffected when the Panel
                 // is updated.
                 //
@@ -101,3 +101,5 @@ class NodeJWTService
             ->getToken($config->signer(), $config->signingKey());
     }
 }
+
+

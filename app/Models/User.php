@@ -248,7 +248,7 @@ class User extends Model implements
     }
 
     /**
-     * Returns all the activity logs where this user is the subject — not to
+     * Returns all the activity logs where this user is the subject â€” not to
      * be confused by activity logs where this user is the _actor_.
      */
     public function activity(): MorphToMany
@@ -271,3 +271,5 @@ class User extends Model implements
             ->groupBy('servers.id');
     }
 }
+
+

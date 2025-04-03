@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 @include('partials/admin.settings.nav', ['activeTab' => 'mail'])
 
 @section('title')
@@ -200,3 +200,5 @@
         });
     </script>
 @endsection
+
+

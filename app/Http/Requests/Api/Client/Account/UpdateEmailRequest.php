@@ -36,3 +36,5 @@ class UpdateEmailRequest extends ClientApiRequest
         return ['email' => $rules['email']];
     }
 }
+
+

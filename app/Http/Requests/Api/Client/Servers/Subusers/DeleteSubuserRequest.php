@@ -11,3 +11,5 @@ class DeleteSubuserRequest extends SubuserRequest
         return Permission::ACTION_USER_DELETE;
     }
 }
+
+

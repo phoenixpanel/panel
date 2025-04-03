@@ -1,4 +1,4 @@
-const path = require('path');
+﻿const path = require('path');
 const webpack = require('webpack');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -154,3 +154,4 @@ module.exports = {
         },
     },
 };
+

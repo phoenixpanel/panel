@@ -142,3 +142,5 @@ class ServerTransformer extends BaseClientTransformer
         return $this->collection($server->subusers, $this->makeTransformer(SubuserTransformer::class), Subuser::RESOURCE_NAME);
     }
 }
+
+

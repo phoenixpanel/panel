@@ -16,3 +16,5 @@ class UpdateUserRequest extends StoreUserRequest
         return parent::rules(User::getRulesForUpdate($userId));
     }
 }
+
+

@@ -15,3 +15,5 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->app->make('view')->composer('*', AssetComposer::class);
     }
 }
+
+

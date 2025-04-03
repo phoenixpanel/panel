@@ -47,3 +47,5 @@ trait EnvironmentWriterTrait
         file_put_contents($path, $saveContents);
     }
 }
+
+

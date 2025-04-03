@@ -271,3 +271,5 @@ class ServersController extends Controller
         return redirect()->route('admin.servers.view.mounts', $server->id);
     }
 }
+
+

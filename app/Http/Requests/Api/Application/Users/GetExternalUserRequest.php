@@ -11,3 +11,5 @@ class GetExternalUserRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::READ;
 }
+
+

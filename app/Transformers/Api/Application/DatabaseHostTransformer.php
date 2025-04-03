@@ -55,3 +55,5 @@ class DatabaseHostTransformer extends BaseTransformer
         return $this->collection($model->getRelation('databases'), $this->makeTransformer(ServerDatabaseTransformer::class), Database::RESOURCE_NAME);
     }
 }
+
+

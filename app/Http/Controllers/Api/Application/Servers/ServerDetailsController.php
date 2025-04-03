@@ -57,3 +57,5 @@ class ServerDetailsController extends ApplicationApiController
             ->toArray();
     }
 }
+
+

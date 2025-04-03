@@ -13,3 +13,5 @@ class GetDatabasesRequest extends ClientApiRequest implements ClientPermissionsR
         return Permission::ACTION_DATABASE_READ;
     }
 }
+
+

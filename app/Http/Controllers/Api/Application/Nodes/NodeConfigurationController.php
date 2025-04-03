@@ -19,3 +19,5 @@ class NodeConfigurationController extends ApplicationApiController
         return new JsonResponse($node->getConfiguration());
     }
 }
+
+

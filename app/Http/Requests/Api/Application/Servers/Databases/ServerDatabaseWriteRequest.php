@@ -8,3 +8,5 @@ class ServerDatabaseWriteRequest extends GetServerDatabasesRequest
 {
     protected int $permission = AdminAcl::WRITE;
 }
+
+

@@ -7,3 +7,5 @@ use PhoenixPanel\Exceptions\PhoenixPanelException;
 class AllocationDoesNotBelongToServerException extends PhoenixPanelException
 {
 }
+
+

@@ -70,3 +70,5 @@ class VerifyReCaptcha
         return $result->hostname === array_get($url, 'host');
     }
 }
+
+

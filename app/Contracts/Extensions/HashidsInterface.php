@@ -13,3 +13,5 @@ interface HashidsInterface extends VendorHashidsInterface
      */
     public function decodeFirst(string $encoded, string $default = null): mixed;
 }
+
+

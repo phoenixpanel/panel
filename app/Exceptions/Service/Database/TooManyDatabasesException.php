@@ -11,3 +11,5 @@ class TooManyDatabasesException extends DisplayException
         parent::__construct('Operation aborted: creating a new database would put this server over the defined limit.');
     }
 }
+
+

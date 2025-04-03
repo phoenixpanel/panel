@@ -12,3 +12,5 @@ class HasActiveNodesException extends DisplayException
         return Response::HTTP_BAD_REQUEST;
     }
 }
+
+

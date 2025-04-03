@@ -53,3 +53,5 @@ class DeleteLocationCommand extends Command
         $this->line(trans('command/messages.location.deleted'));
     }
 }
+
+

@@ -19,7 +19,7 @@ Route::get('/password', [Auth\LoginController::class, 'index'])->name('auth.forg
 Route::get('/password/reset/{token}', [Auth\LoginController::class, 'index'])->name('auth.reset');
 
 // Apply a throttle to authentication action endpoints, in addition to the
-// recaptcha endpoints to slow down manual attack spammers even more. 🤷‍
+// recaptcha endpoints to slow down manual attack spammers even more. ðŸ¤·â€
 //
 // @see \PhoenixPanel\Providers\RouteServiceProvider
 Route::middleware(['throttle:authentication'])->group(function () {
@@ -48,3 +48,5 @@ Route::post('/logout', [Auth\LoginController::class, 'logout'])
 
 // Catch any other combinations of routes and pass them off to the React component.
 Route::fallback([Auth\LoginController::class, 'index']);
+
+

@@ -22,3 +22,5 @@ class StartupCommandService
         return str_replace($find, $replace, $server->startup);
     }
 }
+
+

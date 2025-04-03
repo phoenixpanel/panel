@@ -64,3 +64,5 @@ class DatabaseTransformer extends BaseClientTransformer
         }, 'database_password');
     }
 }
+
+

@@ -18,3 +18,5 @@ class LocationFormRequest extends AdminFormRequest
         return Location::getRules();
     }
 }
+
+

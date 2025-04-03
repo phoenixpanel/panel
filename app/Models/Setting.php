@@ -25,3 +25,5 @@ class Setting extends Model
         'value' => 'string',
     ];
 }
+
+

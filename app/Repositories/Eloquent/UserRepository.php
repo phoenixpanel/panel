@@ -15,3 +15,5 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         return User::class;
     }
 }
+
+

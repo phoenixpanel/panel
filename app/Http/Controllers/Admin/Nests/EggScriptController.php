@@ -63,3 +63,5 @@ class EggScriptController extends Controller
         return redirect()->route('admin.nests.egg.scripts', $egg);
     }
 }
+
+

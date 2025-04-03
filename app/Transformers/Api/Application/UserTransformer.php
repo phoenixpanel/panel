@@ -59,3 +59,5 @@ class UserTransformer extends BaseTransformer
         return $this->collection($user->getRelation('servers'), $this->makeTransformer(ServerTransformer::class), 'server');
     }
 }
+
+

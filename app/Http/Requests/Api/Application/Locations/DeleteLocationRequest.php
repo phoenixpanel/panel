@@ -11,3 +11,5 @@ class DeleteLocationRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::WRITE;
 }
+
+

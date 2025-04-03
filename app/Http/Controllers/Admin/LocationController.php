@@ -101,3 +101,5 @@ class LocationController extends Controller
         return redirect()->route('admin.locations.view', $location->id);
     }
 }
+
+

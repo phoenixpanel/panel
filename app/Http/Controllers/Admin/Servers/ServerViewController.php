@@ -152,3 +152,5 @@ class ServerViewController extends Controller
         return $this->view->make('admin.servers.view.delete', compact('server'));
     }
 }
+
+

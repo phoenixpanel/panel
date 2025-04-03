@@ -11,3 +11,5 @@ class GetLocationsRequest extends ApplicationApiRequest
 
     protected int $permission = AdminAcl::READ;
 }
+
+

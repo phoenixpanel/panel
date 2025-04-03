@@ -20,3 +20,5 @@ class Hashids extends VendorHashids implements HashidsInterface
         return array_first($result, null, $default);
     }
 }
+
+

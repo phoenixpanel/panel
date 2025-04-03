@@ -26,3 +26,5 @@ class NewUserFormRequest extends AdminFormRequest
         ])->toArray();
     }
 }
+
+

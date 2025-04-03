@@ -93,3 +93,5 @@ class SettingsController extends ClientApiController
         return new JsonResponse([], Response::HTTP_NO_CONTENT);
     }
 }
+
+

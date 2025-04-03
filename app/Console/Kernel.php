@@ -74,3 +74,5 @@ class Kernel extends ConsoleKernel
         $schedule->call(app()->make(TelemetryCollectionService::class))->description('Collect Telemetry')->dailyAt("$hour:$minute");
     }
 }
+
+

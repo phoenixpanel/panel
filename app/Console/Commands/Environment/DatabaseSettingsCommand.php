@@ -111,3 +111,5 @@ class DatabaseSettingsCommand extends Command
         $this->database->connection('_phoenixpanel_command_test')->getPdo();
     }
 }
+
+

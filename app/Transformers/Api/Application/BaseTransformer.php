@@ -60,7 +60,7 @@ abstract class BaseTransformer extends TransformerAbstract
      * to access a different resource. This is used when including other
      * models on a transformation request.
      *
-     * @deprecated — prefer $user->can/cannot methods
+     * @deprecated â€” prefer $user->can/cannot methods
      */
     protected function authorize(string $resource): bool
     {
@@ -112,3 +112,5 @@ abstract class BaseTransformer extends TransformerAbstract
             ->toAtomString();
     }
 }
+
+

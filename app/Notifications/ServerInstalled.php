@@ -58,3 +58,5 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
             ->action('Login and Begin Using', route('index'));
     }
 }
+
+

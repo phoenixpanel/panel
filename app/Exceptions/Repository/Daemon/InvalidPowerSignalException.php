@@ -7,3 +7,5 @@ use PhoenixPanel\Exceptions\Repository\RepositoryException;
 class InvalidPowerSignalException extends RepositoryException
 {
 }
+
+

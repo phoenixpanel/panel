@@ -28,3 +28,5 @@ return [
     */
     'js_namespace' => 'PhoenixPanel',
 ];
+
+

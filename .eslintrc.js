@@ -48,4 +48,25 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
         '@typescript-eslint/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
     },
+    overrides: [
+        {
+            // Apply different rules specifically for JavaScript files
+            files: ['*.js', '*.cjs'], // Include .cjs just in case
+            env: {
+                node: true, // Add node environment for JS files
+                es6: true,
+            },
+            parser: undefined, // Use default ESLint parser for JS
+            parserOptions: {
+                ecmaVersion: 2020, // Allow modern JS syntax
+                sourceType: 'script', // Indicate CommonJS modules
+                project: null, // Don't require tsconfig for JS
+            },
+            rules: {
+                '@typescript-eslint/no-var-requires': 'off', // Allow require() in JS
+                '@typescript-eslint/no-use-before-define': 'off',
+                // Add any other TS-specific rules that should be off for JS
+            },
+        },
+    ],
 };

@@ -56,3 +56,5 @@ class PhoenixPanelSerializer extends ArraySerializer
         return $transformedData;
     }
 }
+
+

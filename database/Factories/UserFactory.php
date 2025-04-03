@@ -48,3 +48,5 @@ class UserFactory extends Factory
         return $this->state(['root_admin' => true]);
     }
 }
+
+

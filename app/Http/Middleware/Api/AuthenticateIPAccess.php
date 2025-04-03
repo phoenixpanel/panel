@@ -46,3 +46,5 @@ class AuthenticateIPAccess
         throw new AccessDeniedHttpException('This IP address (' . $request->ip() . ') does not have permission to access the API using these credentials.');
     }
 }
+
+

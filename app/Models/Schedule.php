@@ -148,3 +148,5 @@ class Schedule extends Model
         return $this->belongsTo(Server::class);
     }
 }
+
+

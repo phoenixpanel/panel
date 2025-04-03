@@ -14,3 +14,5 @@ class TooManyPortsInRangeException extends DisplayException
         parent::__construct(trans('exceptions.allocations.too_many_ports'));
     }
 }
+
+

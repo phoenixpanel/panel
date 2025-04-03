@@ -15,3 +15,5 @@ class HttpForbiddenException extends HttpException
         parent::__construct(Response::HTTP_FORBIDDEN, $message, $previous);
     }
 }
+
+

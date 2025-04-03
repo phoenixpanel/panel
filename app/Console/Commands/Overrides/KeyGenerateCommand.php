@@ -26,3 +26,5 @@ class KeyGenerateCommand extends BaseKeyGenerateCommand
         parent::handle();
     }
 }
+
+

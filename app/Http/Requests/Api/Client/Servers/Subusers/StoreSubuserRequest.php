@@ -20,3 +20,5 @@ class StoreSubuserRequest extends SubuserRequest
         ];
     }
 }
+
+

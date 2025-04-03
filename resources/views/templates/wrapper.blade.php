@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <title>{{ config('app.name', 'PhoenixPanel') }}</title>
@@ -51,3 +51,5 @@
         @show
     </body>
 </html>
+
+

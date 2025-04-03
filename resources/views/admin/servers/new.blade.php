@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
     New Server
@@ -393,3 +393,5 @@
         });
     </script>
 @endsection
+
+

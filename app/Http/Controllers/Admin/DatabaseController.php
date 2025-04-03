@@ -127,3 +127,5 @@ class DatabaseController extends Controller
         return redirect()->route('admin.databases');
     }
 }
+
+

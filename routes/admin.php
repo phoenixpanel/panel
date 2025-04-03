@@ -226,3 +226,5 @@ Route::group(['prefix' => 'nests'], function () {
     Route::delete('/egg/{egg:id}', [Admin\Nests\EggController::class, 'destroy']);
     Route::delete('/egg/{egg:id}/variables/{variable:id}', [Admin\Nests\EggVariableController::class, 'destroy']);
 });
+
+

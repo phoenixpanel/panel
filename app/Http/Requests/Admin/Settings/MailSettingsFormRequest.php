@@ -38,3 +38,5 @@ class MailSettingsFormRequest extends AdminFormRequest
         return $this->only(array_flip($keys));
     }
 }
+
+

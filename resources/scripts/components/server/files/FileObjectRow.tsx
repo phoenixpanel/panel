@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+﻿import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt, faFileArchive, faFileImport, faFolder } from '@fortawesome/free-solid-svg-icons';
 import { encodePathSegments } from '@/helpers';
 import { differenceInHours, format, formatDistanceToNow } from 'date-fns';
@@ -74,3 +74,4 @@ export default memo(FileObjectRow, (prevProps, nextProps) => {
 
     return isEqual(prevFile, nextFile);
 });
+

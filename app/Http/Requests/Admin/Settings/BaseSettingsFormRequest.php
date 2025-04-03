@@ -28,3 +28,5 @@ class BaseSettingsFormRequest extends AdminFormRequest
         ];
     }
 }
+
+

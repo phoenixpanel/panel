@@ -54,3 +54,5 @@ abstract class ClientApiController extends ApplicationApiController
         return $abstract::fromRequest($this->request);
     }
 }
+
+

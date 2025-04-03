@@ -41,3 +41,5 @@ class AddedToServer extends Notification implements ShouldQueue
             ->action('Visit Server', url('/server/' . $this->server->uuidShort));
     }
 }
+
+

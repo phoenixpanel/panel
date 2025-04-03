@@ -46,3 +46,5 @@ class ServerVariableTransformer extends BaseTransformer
         return $this->item($variable->getRelation('variable'), $this->makeTransformer(EggVariableTransformer::class), 'variable');
     }
 }
+
+

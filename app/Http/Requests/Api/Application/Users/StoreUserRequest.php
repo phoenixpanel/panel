@@ -59,3 +59,5 @@ class StoreUserRequest extends ApplicationApiRequest
         ];
     }
 }
+
+

@@ -12,3 +12,5 @@ class ManifestDoesNotExistException extends \Exception implements ProvidesSoluti
         return new Solutions\ManifestDoesNotExistSolution();
     }
 }
+
+

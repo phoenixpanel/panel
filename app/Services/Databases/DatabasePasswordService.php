@@ -47,3 +47,5 @@ class DatabasePasswordService
         return $password;
     }
 }
+
+

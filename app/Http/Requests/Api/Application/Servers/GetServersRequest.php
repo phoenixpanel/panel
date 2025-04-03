@@ -11,3 +11,5 @@ class GetServersRequest extends GetServerRequest
         ];
     }
 }
+
+

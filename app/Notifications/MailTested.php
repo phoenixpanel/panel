@@ -25,3 +25,5 @@ class MailTested extends Notification
             ->line('This is a test of the PhoenixPanel mail system. You\'re good to go!');
     }
 }
+
+

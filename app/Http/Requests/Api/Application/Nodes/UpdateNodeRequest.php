@@ -17,3 +17,5 @@ class UpdateNodeRequest extends StoreNodeRequest
         return parent::rules(Node::getRulesForUpdate($node));
     }
 }
+
+

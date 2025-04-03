@@ -22,3 +22,5 @@ class EggVariableFormRequest extends AdminFormRequest
         ];
     }
 }
+
+

@@ -92,3 +92,5 @@ class ServerTransfer extends Model
         return $this->hasOne(Node::class, 'id', 'new_node');
     }
 }
+
+

@@ -75,3 +75,5 @@ class NestRepository extends EloquentRepository implements NestRepositoryInterfa
         return $instance;
     }
 }
+
+

@@ -49,3 +49,5 @@ class EggInstallController extends Controller
         ]);
     }
 }
+
+

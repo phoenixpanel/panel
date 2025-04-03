@@ -28,3 +28,5 @@ class APILog extends Model
         'authorized' => 'boolean',
     ];
 }
+
+

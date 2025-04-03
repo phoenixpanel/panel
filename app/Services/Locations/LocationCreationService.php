@@ -24,3 +24,5 @@ class LocationCreationService
         return $this->repository->create($data);
     }
 }
+
+

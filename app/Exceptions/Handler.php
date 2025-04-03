@@ -30,7 +30,7 @@ class Handler extends ExceptionHandler
      * resulting in some weird rule names. This string will be parsed out and
      * replaced with 'p_' in the response code.
      */
-    private const PHOENIXPANEL_RULE_STRING = 'phoenixpanel\_rules\_';
+    private const PTERODACTYL_RULE_STRING = 'phoenixpanel\_rules\_';
 
     /**
      * A list of the exception types that should not be reported.
@@ -163,7 +163,7 @@ class Handler extends ExceptionHandler
             foreach ($errors as $key => $error) {
                 $meta = [
                     'source_field' => $field,
-                    'rule' => str_replace(self::PHOENIXPANEL_RULE_STRING, 'p_', Arr::get(
+                    'rule' => str_replace(self::PTERODACTYL_RULE_STRING, 'p_', Arr::get(
                         $codes,
                         str_replace('.', '_', $field) . '.' . $key
                     )),
@@ -281,3 +281,5 @@ class Handler extends ExceptionHandler
         return (new self(app()))->convertExceptionToArray($e);
     }
 }
+
+

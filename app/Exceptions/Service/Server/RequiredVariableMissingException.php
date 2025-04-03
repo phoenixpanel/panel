@@ -7,3 +7,5 @@ use PhoenixPanel\Exceptions\PhoenixPanelException;
 class RequiredVariableMissingException extends PhoenixPanelException
 {
 }
+
+

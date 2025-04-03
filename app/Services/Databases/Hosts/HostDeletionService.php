@@ -33,3 +33,5 @@ class HostDeletionService
         return $this->repository->delete($host);
     }
 }
+
+

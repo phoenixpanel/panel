@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
     List Servers
@@ -87,3 +87,5 @@
         });
     </script>
 @endsection
+
+

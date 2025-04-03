@@ -24,3 +24,5 @@ class UpCommand extends BaseUpCommand
         return parent::handle() ?? 0;
     }
 }
+
+

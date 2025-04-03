@@ -21,3 +21,5 @@ class NewAccessToken extends SanctumAccessToken
         $this->plainTextToken = $plainTextToken;
     }
 }
+
+

@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
 
     var laroute = (function () {
 
@@ -192,4 +192,6 @@
     }
 
 }).call(this);
+
+
 

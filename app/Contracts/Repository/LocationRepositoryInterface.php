@@ -31,3 +31,5 @@ interface LocationRepositoryInterface extends RepositoryInterface
      */
     public function getWithNodeCount(int $id): Location;
 }
+
+

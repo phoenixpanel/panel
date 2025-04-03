@@ -104,3 +104,5 @@ abstract class AbstractLoginController extends Controller
         Event::dispatch(new Failed('auth', $user, $credentials));
     }
 }
+
+

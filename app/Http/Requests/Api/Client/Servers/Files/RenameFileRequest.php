@@ -28,3 +28,5 @@ class RenameFileRequest extends ClientApiRequest implements ClientPermissionsReq
         ];
     }
 }
+
+

@@ -60,3 +60,5 @@ class AdvancedController extends Controller
         return redirect()->route('admin.settings.advanced');
     }
 }
+
+

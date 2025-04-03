@@ -217,3 +217,5 @@ class Permission extends Model
         return Collection::make(self::$permissions);
     }
 }
+
+

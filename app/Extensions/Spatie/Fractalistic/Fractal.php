@@ -43,3 +43,5 @@ class Fractal extends SpatieFractal
         return parent::createData();
     }
 }
+
+

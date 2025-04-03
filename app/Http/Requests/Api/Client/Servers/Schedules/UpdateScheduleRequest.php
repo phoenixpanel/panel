@@ -11,3 +11,5 @@ class UpdateScheduleRequest extends StoreScheduleRequest
         return Permission::ACTION_SCHEDULE_UPDATE;
     }
 }
+
+

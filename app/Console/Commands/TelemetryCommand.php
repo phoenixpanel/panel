@@ -32,3 +32,5 @@ class TelemetryCommand extends Command
         VarDumper::dump($this->telemetryCollectionService->collect());
     }
 }
+
+

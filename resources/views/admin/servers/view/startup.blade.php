@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title')
-    Server — {{ $server->name }}: Startup
+    Server â€” {{ $server->name }}: Startup
 @endsection
 
 @section('content-header')
@@ -190,3 +190,5 @@
     });
     </script>
 @endsection
+
+

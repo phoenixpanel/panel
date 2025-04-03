@@ -24,3 +24,5 @@ class CompressFilesRequest extends ClientApiRequest
         ];
     }
 }
+
+

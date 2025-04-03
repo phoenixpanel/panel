@@ -208,3 +208,5 @@ class ApiKey extends Model
         return $prefix . Str::random(self::IDENTIFIER_LENGTH - strlen($prefix));
     }
 }
+
+

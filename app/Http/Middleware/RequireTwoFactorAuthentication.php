@@ -65,3 +65,5 @@ class RequireTwoFactorAuthentication
         return redirect()->to($this->redirectRoute);
     }
 }
+
+

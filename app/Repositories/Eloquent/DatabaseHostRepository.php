@@ -25,3 +25,5 @@ class DatabaseHostRepository extends EloquentRepository implements DatabaseHostR
         return $this->getBuilder()->withCount('databases')->with('node')->get();
     }
 }
+
+

@@ -40,3 +40,5 @@ class ScheduleRepository extends EloquentRepository implements ScheduleRepositor
         }
     }
 }
+
+

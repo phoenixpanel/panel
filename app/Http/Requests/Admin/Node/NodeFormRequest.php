@@ -23,3 +23,5 @@ class NodeFormRequest extends AdminFormRequest
         return $data;
     }
 }
+
+

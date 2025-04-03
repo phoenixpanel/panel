@@ -21,3 +21,5 @@ class ExternalUserController extends ApplicationApiController
             ->toArray();
     }
 }
+
+

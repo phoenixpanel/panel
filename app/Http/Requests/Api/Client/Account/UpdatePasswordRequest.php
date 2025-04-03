@@ -35,3 +35,5 @@ class UpdatePasswordRequest extends ClientApiRequest
         ];
     }
 }
+
+

@@ -41,3 +41,5 @@ trait AvailableLanguages
         return $this->iso639 = $this->iso639 ?: app()->make(ISO639::class);
     }
 }
+
+

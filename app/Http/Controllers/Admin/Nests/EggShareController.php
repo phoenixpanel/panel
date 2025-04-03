@@ -72,3 +72,5 @@ class EggShareController extends Controller
         return redirect()->route('admin.nests.egg.view', ['egg' => $egg]);
     }
 }
+
+

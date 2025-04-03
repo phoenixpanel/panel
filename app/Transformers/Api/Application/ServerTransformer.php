@@ -235,3 +235,5 @@ class ServerTransformer extends BaseTransformer
         return $this->collection($server->getRelation('databases'), $this->makeTransformer(ServerDatabaseTransformer::class), 'databases');
     }
 }
+
+

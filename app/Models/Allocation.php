@@ -127,3 +127,5 @@ class Allocation extends Model
         return $this->belongsTo(Node::class);
     }
 }
+
+

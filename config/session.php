@@ -197,3 +197,4 @@ return [
 
     'same_site' => env('SESSION_SAMESITE_COOKIE', 'lax'),
 ];
+

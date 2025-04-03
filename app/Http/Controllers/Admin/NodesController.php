@@ -181,3 +181,5 @@ class NodesController extends Controller
         return redirect()->route('admin.nodes');
     }
 }
+
+

@@ -14,3 +14,5 @@ class PortOutOfRangeException extends DisplayException
         parent::__construct(trans('exceptions.allocations.port_out_of_range'));
     }
 }
+
+
