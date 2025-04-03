@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
-use PhoenixPanel\Models\Node;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Node;
+use PheonixPanel\Models\Server;
 use League\Fractal\Resource\Item;
-use PhoenixPanel\Models\Allocation;
+use PheonixPanel\Models\Allocation;
 use League\Fractal\Resource\NullResource;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 class AllocationTransformer extends BaseTransformer
 {
@@ -42,7 +42,7 @@ class AllocationTransformer extends BaseTransformer
     /**
      * Load the node relationship onto a given transformation.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeNode(Allocation $allocation): Item|NullResource
     {
@@ -60,7 +60,7 @@ class AllocationTransformer extends BaseTransformer
     /**
      * Load the server relationship onto a given transformation.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServer(Allocation $allocation): Item|NullResource
     {

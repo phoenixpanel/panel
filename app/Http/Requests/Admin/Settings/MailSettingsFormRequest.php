@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin\Settings;
+namespace PheonixPanel\Http\Requests\Admin\Settings;
 
 use Illuminate\Validation\Rule;
-use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
+use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class MailSettingsFormRequest extends AdminFormRequest
 {

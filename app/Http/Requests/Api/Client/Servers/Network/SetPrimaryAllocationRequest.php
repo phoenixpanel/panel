@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Network;
+namespace PheonixPanel\Http\Requests\Api\Client\Servers\Network;
 
 class SetPrimaryAllocationRequest extends UpdateAllocationRequest
 {

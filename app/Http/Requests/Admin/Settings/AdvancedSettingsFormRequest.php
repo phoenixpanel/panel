@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin\Settings;
+namespace PheonixPanel\Http\Requests\Admin\Settings;
 
-use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
+use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class AdvancedSettingsFormRequest extends AdminFormRequest
 {
@@ -15,21 +15,21 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
             'recaptcha:enabled' => 'required|in:true,false',
             'recaptcha:secret_key' => 'required|string|max:191',
             'recaptcha:website_key' => 'required|string|max:191',
-            'phoenixpanel:guzzle:timeout' => 'required|integer|between:1,60',
-            'phoenixpanel:guzzle:connect_timeout' => 'required|integer|between:1,60',
-            'phoenixpanel:client_features:allocations:enabled' => 'required|in:true,false',
-            'phoenixpanel:client_features:allocations:range_start' => [
+            'pheonixpanel:guzzle:timeout' => 'required|integer|between:1,60',
+            'pheonixpanel:guzzle:connect_timeout' => 'required|integer|between:1,60',
+            'pheonixpanel:client_features:allocations:enabled' => 'required|in:true,false',
+            'pheonixpanel:client_features:allocations:range_start' => [
                 'nullable',
-                'required_if:phoenixpanel:client_features:allocations:enabled,true',
+                'required_if:pheonixpanel:client_features:allocations:enabled,true',
                 'integer',
                 'between:1024,65535',
             ],
-            'phoenixpanel:client_features:allocations:range_end' => [
+            'pheonixpanel:client_features:allocations:range_end' => [
                 'nullable',
-                'required_if:phoenixpanel:client_features:allocations:enabled,true',
+                'required_if:pheonixpanel:client_features:allocations:enabled,true',
                 'integer',
                 'between:1024,65535',
-                'gt:phoenixpanel:client_features:allocations:range_start',
+                'gt:pheonixpanel:client_features:allocations:range_start',
             ],
         ];
     }
@@ -40,11 +40,11 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
             'recaptcha:enabled' => 'reCAPTCHA Enabled',
             'recaptcha:secret_key' => 'reCAPTCHA Secret Key',
             'recaptcha:website_key' => 'reCAPTCHA Website Key',
-            'phoenixpanel:guzzle:timeout' => 'HTTP Request Timeout',
-            'phoenixpanel:guzzle:connect_timeout' => 'HTTP Connection Timeout',
-            'phoenixpanel:client_features:allocations:enabled' => 'Auto Create Allocations Enabled',
-            'phoenixpanel:client_features:allocations:range_start' => 'Starting Port',
-            'phoenixpanel:client_features:allocations:range_end' => 'Ending Port',
+            'pheonixpanel:guzzle:timeout' => 'HTTP Request Timeout',
+            'pheonixpanel:guzzle:connect_timeout' => 'HTTP Connection Timeout',
+            'pheonixpanel:client_features:allocations:enabled' => 'Auto Create Allocations Enabled',
+            'pheonixpanel:client_features:allocations:range_start' => 'Starting Port',
+            'pheonixpanel:client_features:allocations:range_end' => 'Ending Port',
         ];
     }
 }

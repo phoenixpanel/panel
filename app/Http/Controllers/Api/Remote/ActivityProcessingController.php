@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Remote;
+namespace PheonixPanel\Http\Controllers\Api\Remote;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Support\Facades\Log;
-use PhoenixPanel\Models\ActivityLog;
-use PhoenixPanel\Models\ActivityLogSubject;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Http\Requests\Api\Remote\ActivityEventRequest;
+use PheonixPanel\Models\ActivityLog;
+use PheonixPanel\Models\ActivityLogSubject;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Requests\Api\Remote\ActivityEventRequest;
 
 class ActivityProcessingController extends Controller
 {
@@ -19,7 +19,7 @@ class ActivityProcessingController extends Controller
     {
         $tz = Carbon::now()->getTimezone();
 
-        /** @var \PhoenixPanel\Models\Node $node */
+        /** @var \PheonixPanel\Models\Node $node */
         $node = $request->attributes->get('node');
 
         $servers = $node->servers()->whereIn('uuid', $request->servers())->get()->keyBy('uuid');
@@ -27,7 +27,7 @@ class ActivityProcessingController extends Controller
 
         $logs = [];
         foreach ($request->input('data') as $datum) {
-            /** @var \PhoenixPanel\Models\Server|null $server */
+            /** @var \PheonixPanel\Models\Server|null $server */
             $server = $servers->get($datum['server']);
             if (is_null($server) || !Str::startsWith($datum['event'], 'server:')) {
                 continue;

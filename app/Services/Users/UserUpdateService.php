@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Users;
+namespace PheonixPanel\Services\Users;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Contracts\Hashing\Hasher;
-use PhoenixPanel\Traits\Services\HasUserLevels;
+use PheonixPanel\Traits\Services\HasUserLevels;
 
 class UserUpdateService
 {

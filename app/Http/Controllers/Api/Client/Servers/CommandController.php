@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Facades\Activity;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Facades\Activity;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use PhoenixPanel\Repositories\Wings\DaemonCommandRepository;
-use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\SendCommandRequest;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Repositories\Wings\DaemonCommandRepository;
+use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PheonixPanel\Http\Requests\Api\Client\Servers\SendCommandRequest;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class CommandController extends ClientApiController
 {
@@ -26,7 +26,7 @@ class CommandController extends ClientApiController
     /**
      * Send a command to a running server.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function index(SendCommandRequest $request, Server $server): Response
     {

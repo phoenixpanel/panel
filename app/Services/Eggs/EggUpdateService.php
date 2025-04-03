@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs;
+namespace PheonixPanel\Services\Eggs;
 
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
-use PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
+use PheonixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException;
 
 class EggUpdateService
 {
@@ -18,9 +18,9 @@ class EggUpdateService
     /**
      * Update a service option.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
      */
     public function handle(Egg $egg, array $data): void
     {

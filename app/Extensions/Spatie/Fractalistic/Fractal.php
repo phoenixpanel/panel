@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Extensions\Spatie\Fractalistic;
+namespace PheonixPanel\Extensions\Spatie\Fractalistic;
 
 use League\Fractal\Scope;
 use League\Fractal\TransformerAbstract;
 use Spatie\Fractal\Fractal as SpatieFractal;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use PhoenixPanel\Extensions\League\Fractal\Serializers\PhoenixPanelSerializer;
+use PheonixPanel\Extensions\League\Fractal\Serializers\PheonixPanelSerializer;
 
 class Fractal extends SpatieFractal
 {
@@ -21,7 +21,7 @@ class Fractal extends SpatieFractal
     {
         // Set the serializer by default.
         if (is_null($this->serializer)) {
-            $this->serializer = new PhoenixPanelSerializer();
+            $this->serializer = new PheonixPanelSerializer();
         }
 
         // Automatically set the paginator on the response object if the

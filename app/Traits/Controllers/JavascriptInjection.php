@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Traits\Controllers;
+namespace PheonixPanel\Traits\Controllers;
 
 use Illuminate\Http\Request;
 

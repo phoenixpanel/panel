@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin\Settings;
+namespace PheonixPanel\Http\Requests\Admin\Settings;
 
 use Illuminate\Validation\Rule;
-use PhoenixPanel\Traits\Helpers\AvailableLanguages;
-use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
+use PheonixPanel\Traits\Helpers\AvailableLanguages;
+use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class BaseSettingsFormRequest extends AdminFormRequest
 {
@@ -14,7 +14,7 @@ class BaseSettingsFormRequest extends AdminFormRequest
     {
         return [
             'app:name' => 'required|string|max:191',
-            'phoenixpanel:auth:2fa_required' => 'required|integer|in:0,1,2',
+            'pheonixpanel:auth:2fa_required' => 'required|integer|in:0,1,2',
             'app:locale' => ['required', 'string', Rule::in(array_keys($this->getAvailableLanguages()))],
         ];
     }
@@ -23,7 +23,7 @@ class BaseSettingsFormRequest extends AdminFormRequest
     {
         return [
             'app:name' => 'Company Name',
-            'phoenixpanel:auth:2fa_required' => 'Require 2-Factor Authentication',
+            'pheonixpanel:auth:2fa_required' => 'Require 2-Factor Authentication',
             'app:locale' => 'Default Language',
         ];
     }

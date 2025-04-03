@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Carbon\CarbonImmutable $created_at
  * @property \Carbon\CarbonImmutable $updated_at
  * @property \Carbon\CarbonImmutable|null $deleted_at
- * @property \PhoenixPanel\Models\Server $server
- * @property \PhoenixPanel\Models\AuditLog[] $audits
+ * @property \PheonixPanel\Models\Server $server
+ * @property \PheonixPanel\Models\AuditLog[] $audits
  */
 class Backup extends Model
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Container\Container;
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PhoenixPanel\Contracts\Extensions\HashidsInterface;
+use PheonixPanel\Contracts\Extensions\HashidsInterface;
 
 /**
  * @property int $id
@@ -19,8 +19,8 @@ use PhoenixPanel\Contracts\Extensions\HashidsInterface;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $hashid
- * @property \PhoenixPanel\Models\Schedule $schedule
- * @property \PhoenixPanel\Models\Server $server
+ * @property \PheonixPanel\Models\Schedule $schedule
+ * @property \PheonixPanel\Models\Server $server
  */
 class Task extends Model
 {
@@ -33,7 +33,7 @@ class Task extends Model
     public const RESOURCE_NAME = 'schedule_task';
 
     /**
-     * The default actions that can exist for a task in PhoenixPanel.
+     * The default actions that can exist for a task in PheonixPanel.
      */
     public const ACTION_POWER = 'power';
     public const ACTION_COMMAND = 'command';

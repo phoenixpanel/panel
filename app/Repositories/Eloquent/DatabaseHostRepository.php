@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use PhoenixPanel\Models\DatabaseHost;
-use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PheonixPanel\Models\DatabaseHost;
+use PheonixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class DatabaseHostRepository extends EloquentRepository implements DatabaseHostRepositoryInterface
 {

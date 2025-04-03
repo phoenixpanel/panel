@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Events\Auth;
+namespace PheonixPanel\Events\Auth;
 
-use PhoenixPanel\Models\User;
-use PhoenixPanel\Events\Event;
+use PheonixPanel\Models\User;
+use PheonixPanel\Events\Event;
 
 class DirectLogin extends Event
 {

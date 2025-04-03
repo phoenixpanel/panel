@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory

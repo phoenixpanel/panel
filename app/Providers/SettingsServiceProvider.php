@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Providers;
+namespace PheonixPanel\Providers;
 
 use Psr\Log\LoggerInterface as Log;
 use Illuminate\Database\QueryException;
@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
+use PheonixPanel\Contracts\Repository\SettingsRepositoryInterface;
 
 class SettingsServiceProvider extends ServiceProvider
 {
@@ -22,14 +22,14 @@ class SettingsServiceProvider extends ServiceProvider
         'recaptcha:enabled',
         'recaptcha:secret_key',
         'recaptcha:website_key',
-        'phoenixpanel:guzzle:timeout',
-        'phoenixpanel:guzzle:connect_timeout',
-        'phoenixpanel:console:count',
-        'phoenixpanel:console:frequency',
-        'phoenixpanel:auth:2fa_required',
-        'phoenixpanel:client_features:allocations:enabled',
-        'phoenixpanel:client_features:allocations:range_start',
-        'phoenixpanel:client_features:allocations:range_end',
+        'pheonixpanel:guzzle:timeout',
+        'pheonixpanel:guzzle:connect_timeout',
+        'pheonixpanel:console:count',
+        'pheonixpanel:console:frequency',
+        'pheonixpanel:auth:2fa_required',
+        'pheonixpanel:client_features:allocations:enabled',
+        'pheonixpanel:client_features:allocations:range_start',
+        'pheonixpanel:client_features:allocations:range_end',
     ];
 
     /**

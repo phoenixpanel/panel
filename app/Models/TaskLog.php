@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

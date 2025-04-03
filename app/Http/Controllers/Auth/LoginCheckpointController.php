@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Auth;
+namespace PheonixPanel\Http\Controllers\Auth;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Http\JsonResponse;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PhoenixPanel\Events\Auth\ProvidedAuthenticationToken;
-use PhoenixPanel\Http\Requests\Auth\LoginCheckpointRequest;
+use PheonixPanel\Events\Auth\ProvidedAuthenticationToken;
+use PheonixPanel\Http\Requests\Auth\LoginCheckpointRequest;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginCheckpointController extends AbstractLoginController
@@ -56,7 +56,7 @@ class LoginCheckpointController extends AbstractLoginController
         }
 
         try {
-            /** @var \PhoenixPanel\Models\User $user */
+            /** @var \PheonixPanel\Models\User $user */
             $user = User::query()->findOrFail($details['user_id']);
         } catch (ModelNotFoundException) {
             $this->sendFailedLoginResponse($request, null, self::TOKEN_EXPIRED_MESSAGE);
@@ -72,7 +72,7 @@ class LoginCheckpointController extends AbstractLoginController
         } else {
             $decrypted = $this->encrypter->decrypt($user->totp_secret);
 
-            if ($this->google2FA->verifyKey($decrypted, (string) $request->input('authentication_code') ?? '', config('phoenixpanel.auth.2fa.window'))) {
+            if ($this->google2FA->verifyKey($decrypted, (string) $request->input('authentication_code') ?? '', config('pheonixpanel.auth.2fa.window'))) {
                 Event::dispatch(new ProvidedAuthenticationToken($user));
 
                 return $this->sendLoginResponse($user, $request);

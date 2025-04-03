@@ -1,14 +1,14 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin\Servers;
+namespace PheonixPanel\Http\Controllers\Admin\Servers;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Models\Filters\AdminServerFilter;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Models\Filters\AdminServerFilter;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 
 class ServerController extends Controller
@@ -31,7 +31,7 @@ class ServerController extends Controller
                 AllowedFilter::exact('owner_id'),
                 AllowedFilter::custom('*', new AdminServerFilter()),
             ])
-            ->paginate(config()->get('phoenixpanel.paginate.admin.servers'));
+            ->paginate(config()->get('pheonixpanel.paginate.admin.servers'));
 
         return $this->view->make('admin.servers.index', ['servers' => $servers]);
     }

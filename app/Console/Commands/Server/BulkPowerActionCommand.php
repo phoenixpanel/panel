@@ -1,14 +1,14 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Server;
+namespace PheonixPanel\Console\Commands\Server;
 
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Factory as ValidatorFactory;
-use PhoenixPanel\Repositories\Wings\DaemonPowerRepository;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Repositories\Wings\DaemonPowerRepository;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class BulkPowerActionCommand extends Command
 {

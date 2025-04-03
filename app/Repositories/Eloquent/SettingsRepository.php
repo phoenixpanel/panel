@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Setting;
-use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
+use PheonixPanel\Models\Setting;
+use PheonixPanel\Contracts\Repository\SettingsRepositoryInterface;
 
 class SettingsRepository extends EloquentRepository implements SettingsRepositoryInterface
 {
@@ -22,7 +22,7 @@ class SettingsRepository extends EloquentRepository implements SettingsRepositor
     /**
      * Store a new persistent setting in the database.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function set(string $key, string $value = null)
     {

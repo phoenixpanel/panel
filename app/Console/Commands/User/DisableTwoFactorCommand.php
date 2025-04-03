@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\User;
+namespace PheonixPanel\Console\Commands\User;
 
 use Illuminate\Console\Command;
-use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
+use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
 
 class DisableTwoFactorCommand extends Command
 {
@@ -22,8 +22,8 @@ class DisableTwoFactorCommand extends Command
     /**
      * Handle command execution process.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function handle()
     {

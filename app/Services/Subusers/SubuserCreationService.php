@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Services\Subusers;
+namespace PheonixPanel\Services\Subusers;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\Subuser;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\Subuser;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Services\Users\UserCreationService;
-use PhoenixPanel\Repositories\Eloquent\SubuserRepository;
-use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
-use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
-use PhoenixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException;
-use PhoenixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException;
+use PheonixPanel\Services\Users\UserCreationService;
+use PheonixPanel\Repositories\Eloquent\SubuserRepository;
+use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
+use PheonixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException;
+use PheonixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException;
 
 class SubuserCreationService
 {
@@ -31,9 +31,9 @@ class SubuserCreationService
      * If the email address already belongs to a user on the system a new user will not
      * be created.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException
-     * @throws \PhoenixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Service\Subuser\ServerSubuserExistsException
+     * @throws \PheonixPanel\Exceptions\Service\Subuser\UserIsServerOwnerException
      * @throws \Throwable
      */
     public function handle(Server $server, string $email, array $permissions): Subuser

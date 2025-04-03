@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Repository;
+namespace PheonixPanel\Exceptions\Repository;
 
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 
-class RepositoryException extends PhoenixPanelException
+class RepositoryException extends PheonixPanelException
 {
 }

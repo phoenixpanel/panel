@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Solutions;
+namespace PheonixPanel\Exceptions\Solutions;
 
 use Spatie\Ignition\Contracts\Solution;
 
@@ -19,7 +19,7 @@ class ManifestDoesNotExistSolution implements Solution
     public function getDocumentationLinks(): array
     {
         return [
-            'Docs' => 'https://github.com/phoenixpanel/panel/blob/develop/package.json',
+            'Docs' => 'https://github.com/pheonixpanel/panel/blob/develop/package.json',
         ];
     }
 }

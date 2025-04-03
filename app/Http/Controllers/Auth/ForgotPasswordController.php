@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Auth;
+namespace PheonixPanel\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Password;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Events\Auth\FailedPasswordReset;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Events\Auth\FailedPasswordReset;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller

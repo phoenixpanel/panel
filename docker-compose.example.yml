@@ -38,16 +38,16 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - "/srv/phoenixpanel/database:/var/lib/mysql"
+      - "/srv/pheonixpanel/database:/var/lib/mysql"
     environment:
       <<: *db-environment
       MYSQL_DATABASE: "panel"
-      MYSQL_USER: "phoenixpanel"
+      MYSQL_USER: "pheonixpanel"
   cache:
     image: redis:alpine
     restart: always
   panel:
-    image: ghcr.io/phoenixpanel/panel:latest
+    image: ghcr.io/pheonixpanel/panel:latest
     restart: always
     ports:
       - "80:80"
@@ -56,10 +56,10 @@ services:
       - database
       - cache
     volumes:
-      - "/srv/phoenixpanel/var/:/app/var/"
-      - "/srv/phoenixpanel/nginx/:/etc/nginx/http.d/"
-      - "/srv/phoenixpanel/certs/:/etc/letsencrypt/"
-      - "/srv/phoenixpanel/logs/:/app/storage/logs"
+      - "/srv/pheonixpanel/var/:/app/var/"
+      - "/srv/pheonixpanel/nginx/:/etc/nginx/http.d/"
+      - "/srv/pheonixpanel/certs/:/etc/letsencrypt/"
+      - "/srv/pheonixpanel/logs/:/app/storage/logs"
     environment:
       <<: [*panel-environment, *mail-environment]
       DB_PASSWORD: *db-password

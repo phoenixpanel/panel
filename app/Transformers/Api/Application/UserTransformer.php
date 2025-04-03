@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 class UserTransformer extends BaseTransformer
 {
@@ -46,7 +46,7 @@ class UserTransformer extends BaseTransformer
     /**
      * Return the servers associated with this user.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServers(User $user): Collection|NullResource
     {

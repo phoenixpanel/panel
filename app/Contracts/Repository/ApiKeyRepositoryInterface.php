@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Repository;
+namespace PheonixPanel\Contracts\Repository;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Support\Collection;
 
 interface ApiKeyRepositoryInterface extends RepositoryInterface

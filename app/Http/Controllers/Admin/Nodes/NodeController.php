@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin\Nodes;
+namespace PheonixPanel\Http\Controllers\Admin\Nodes;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Spatie\QueryBuilder\QueryBuilder;
-use PhoenixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 
 class NodeController extends Controller

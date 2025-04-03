@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Nests;
+namespace PheonixPanel\Services\Nests;
 
-use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
-use PhoenixPanel\Exceptions\Service\HasActiveServersException;
-use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
+use PheonixPanel\Exceptions\Service\HasActiveServersException;
+use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class NestDeletionService
 {
@@ -20,7 +20,7 @@ class NestDeletionService
     /**
      * Delete a nest from the system only if there are no servers attached to it.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
      */
     public function handle(int $nest): int
     {

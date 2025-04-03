@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Overrides;
+namespace PheonixPanel\Console\Commands\Overrides;
 
-use PhoenixPanel\Console\RequiresDatabaseMigrations;
+use PheonixPanel\Console\RequiresDatabaseMigrations;
 use Illuminate\Database\Console\Seeds\SeedCommand as BaseSeedCommand;
 
 class SeedCommand extends BaseSeedCommand

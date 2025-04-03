@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Model;
+namespace PheonixPanel\Exceptions\Model;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Validation\Validator;
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 use Illuminate\Contracts\Support\MessageProvider;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-class DataValidationException extends PhoenixPanelException implements HttpExceptionInterface, MessageProvider
+class DataValidationException extends PheonixPanelException implements HttpExceptionInterface, MessageProvider
 {
     /**
      * DataValidationException constructor.

@@ -1,5 +1,5 @@
 /**
- * PhoenixPanel - Panel
+ * PheonixPanel - Panel
  * Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -51,45 +51,45 @@
     z-index: -1;
 }
 
-.phoenixpanel-login-box {
+.pheonixpanel-login-box {
     background: rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     padding: 20px;
 }
 
-.phoenixpanel-login-input > input {
+.pheonixpanel-login-input > input {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid #000;
     border-radius: 2px;
     color: #fff;
 }
 
-.phoenixpanel-login-input > .form-control-feedback {
+.pheonixpanel-login-input > .form-control-feedback {
     color: #fff;
 }
 
-.phoenixpanel-login-button--main {
+.pheonixpanel-login-button--main {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid #000;
     border-radius: 2px;
     color: #fff;
 }
 
-.phoenixpanel-login-button--main:hover {
+.pheonixpanel-login-button--main:hover {
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid #000;
     border-radius: 2px;
     color: #fff;
 }
 
-.phoenixpanel-login-button--left {
+.pheonixpanel-login-button--left {
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 2px;
     color: #fff;
 }
 
-.phoenixpanel-login-button--left:hover {
+.pheonixpanel-login-button--left:hover {
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 2px;

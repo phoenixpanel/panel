@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Console;
+namespace PheonixPanel\Console;
 
 use Ramsey\Uuid\Uuid;
-use PhoenixPanel\Models\ActivityLog;
+use PheonixPanel\Models\ActivityLog;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Console\PruneCommand;
-use PhoenixPanel\Repositories\Eloquent\SettingsRepository;
+use PheonixPanel\Repositories\Eloquent\SettingsRepository;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use PhoenixPanel\Services\Telemetry\TelemetryCollectionService;
-use PhoenixPanel\Console\Commands\Schedule\ProcessRunnableCommand;
-use PhoenixPanel\Console\Commands\Maintenance\PruneOrphanedBackupsCommand;
-use PhoenixPanel\Console\Commands\Maintenance\CleanServiceBackupFilesCommand;
+use PheonixPanel\Services\Telemetry\TelemetryCollectionService;
+use PheonixPanel\Console\Commands\Schedule\ProcessRunnableCommand;
+use PheonixPanel\Console\Commands\Maintenance\PruneOrphanedBackupsCommand;
+use PheonixPanel\Console\Commands\Maintenance\CleanServiceBackupFilesCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
             $schedule->command(PruneCommand::class, ['--model' => [ActivityLog::class]])->daily();
         }
 
-        if (config('phoenixpanel.telemetry.enabled')) {
+        if (config('pheonixpanel.telemetry.enabled')) {
             $this->registerTelemetry($schedule);
         }
     }
@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
     /**
      * I wonder what this does.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function registerTelemetry(Schedule $schedule): void

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * PhoenixPanel\Models\Allocation.
+ * PheonixPanel\Models\Allocation.
  *
  * @property int $id
  * @property int $node_id
@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Carbon\Carbon|null $updated_at
  * @property string $alias
  * @property bool $has_alias
- * @property \PhoenixPanel\Models\Server|null $server
- * @property \PhoenixPanel\Models\Node $node
+ * @property \PheonixPanel\Models\Server|null $server
+ * @property \PheonixPanel\Models\Node $node
  * @property string $hashid
  *
  * @method static \Database\Factories\AllocationFactory factory(...$parameters)

@@ -1,14 +1,14 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs;
+namespace PheonixPanel\Services\Eggs;
 
 use Ramsey\Uuid\Uuid;
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException;
+use PheonixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException;
 
-// When a mommy and a daddy phoenixpanel really like each other...
+// When a mommy and a daddy pheonixpanel really like each other...
 class EggCreationService
 {
     /**
@@ -21,8 +21,8 @@ class EggCreationService
     /**
      * Create a new service option and assign it to the given service.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Service\Egg\NoParentConfigurationFoundException
      */
     public function handle(array $data): Egg
     {
@@ -40,7 +40,7 @@ class EggCreationService
 
         return $this->repository->create(array_merge($data, [
             'uuid' => Uuid::uuid4()->toString(),
-            'author' => $this->config->get('phoenixpanel.service.author'),
+            'author' => $this->config->get('pheonixpanel.service.author'),
         ]), true, true);
     }
 }

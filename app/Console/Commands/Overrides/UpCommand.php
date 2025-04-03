@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Overrides;
+namespace PheonixPanel\Console\Commands\Overrides;
 
-use PhoenixPanel\Console\RequiresDatabaseMigrations;
+use PheonixPanel\Console\RequiresDatabaseMigrations;
 use Illuminate\Foundation\Console\UpCommand as BaseUpCommand;
 
 class UpCommand extends BaseUpCommand

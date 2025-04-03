@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs\Sharing;
+namespace PheonixPanel\Services\Eggs\Sharing;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Models\Nest;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Models\Nest;
 use Illuminate\Http\UploadedFile;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\EggVariable;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Services\Eggs\EggParserService;
+use PheonixPanel\Services\Eggs\EggParserService;
 
 class EggImporterService
 {
@@ -20,13 +20,13 @@ class EggImporterService
     /**
      * Take an uploaded JSON file and parse it into a new egg.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\InvalidFileUploadException|\Throwable
+     * @throws \PheonixPanel\Exceptions\Service\InvalidFileUploadException|\Throwable
      */
     public function handle(UploadedFile $file, int $nest): Egg
     {
         $parsed = $this->parser->handle($file);
 
-        /** @var \PhoenixPanel\Models\Nest $nest */
+        /** @var \PheonixPanel\Models\Nest $nest */
         $nest = Nest::query()->with('eggs', 'eggs.variables')->findOrFail($nest);
 
         return $this->connection->transaction(function () use ($nest, $parsed) {

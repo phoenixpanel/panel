@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Arr;
@@ -11,7 +11,7 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use PhoenixPanel\Exceptions\Model\DataValidationException;
+use PheonixPanel\Exceptions\Model\DataValidationException;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
-use PhoenixPanel\Models\User;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\User;
+use PheonixPanel\Models\Server;
 
 class GetUserPermissionsService
 {
@@ -26,7 +26,7 @@ class GetUserPermissionsService
             return $permissions;
         }
 
-        /** @var \PhoenixPanel\Models\Subuser|null $subuserPermissions */
+        /** @var \PheonixPanel\Models\Subuser|null $subuserPermissions */
         $subuserPermissions = $server->subusers()->where('user_id', $user->id)->first();
 
         return $subuserPermissions ? $subuserPermissions->permissions : [];

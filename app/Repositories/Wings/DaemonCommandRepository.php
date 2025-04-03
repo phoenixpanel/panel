@@ -1,19 +1,19 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Wings;
+namespace PheonixPanel\Repositories\Wings;
 
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\TransferException;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class DaemonCommandRepository extends DaemonRepository
 {
     /**
      * Sends a command or multiple commands to a running server instance.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function send(array|string $command): ResponseInterface
     {

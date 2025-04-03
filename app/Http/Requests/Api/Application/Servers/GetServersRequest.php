@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Application\Servers;
+namespace PheonixPanel\Http\Requests\Api\Application\Servers;
 
 class GetServersRequest extends GetServerRequest
 {

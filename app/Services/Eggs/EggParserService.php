@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs;
+namespace PheonixPanel\Services\Eggs;
 
 use Illuminate\Support\Arr;
-use PhoenixPanel\Models\Egg;
+use PheonixPanel\Models\Egg;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
-use PhoenixPanel\Exceptions\Service\InvalidFileUploadException;
+use PheonixPanel\Exceptions\Service\InvalidFileUploadException;
 
 class EggParserService
 {
@@ -14,7 +14,7 @@ class EggParserService
      * Takes an uploaded file and parses out the egg configuration from within.
      *
      * @throws \JsonException
-     * @throws \PhoenixPanel\Exceptions\Service\InvalidFileUploadException
+     * @throws \PheonixPanel\Exceptions\Service\InvalidFileUploadException
      */
     public function handle(UploadedFile $file): array
     {

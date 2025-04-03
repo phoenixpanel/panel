@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Allocation;
+namespace PheonixPanel\Exceptions\Service\Allocation;
 
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 
-class AllocationDoesNotBelongToServerException extends PhoenixPanelException
+class AllocationDoesNotBelongToServerException extends PheonixPanelException
 {
 }

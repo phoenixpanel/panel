@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Traits\Helpers;
+namespace PheonixPanel\Traits\Helpers;
 
 use Matriphe\ISO639\ISO639;
 use Illuminate\Filesystem\Filesystem;

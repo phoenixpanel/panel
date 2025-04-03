@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Application\Servers;
+namespace PheonixPanel\Http\Requests\Api\Application\Servers;
 
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
-use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class GetServerRequest extends ApplicationApiRequest
 {

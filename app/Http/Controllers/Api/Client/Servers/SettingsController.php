@@ -1,18 +1,18 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
 
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
-use PhoenixPanel\Repositories\Eloquent\ServerRepository;
-use PhoenixPanel\Services\Servers\ReinstallServerService;
-use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PheonixPanel\Facades\Activity;
+use PheonixPanel\Repositories\Eloquent\ServerRepository;
+use PheonixPanel\Services\Servers\ReinstallServerService;
+use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Settings\RenameServerRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Settings\SetDockerImageRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Settings\ReinstallServerRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Settings\RenameServerRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Settings\SetDockerImageRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Settings\ReinstallServerRequest;
 
 class SettingsController extends ClientApiController
 {
@@ -29,8 +29,8 @@ class SettingsController extends ClientApiController
     /**
      * Renames a server.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function rename(RenameServerRequest $request, Server $server): JsonResponse
     {

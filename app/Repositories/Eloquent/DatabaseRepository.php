@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Database;
+use PheonixPanel\Models\Database;
 use Illuminate\Support\Collection;
 use Illuminate\Foundation\Application;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use PhoenixPanel\Contracts\Repository\DatabaseRepositoryInterface;
+use PheonixPanel\Contracts\Repository\DatabaseRepositoryInterface;
 
 class DatabaseRepository extends EloquentRepository implements DatabaseRepositoryInterface
 {

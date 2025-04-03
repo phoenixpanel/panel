@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Support\Collection;
-use PhoenixPanel\Contracts\Repository\NodeRepositoryInterface;
+use PheonixPanel\Contracts\Repository\NodeRepositoryInterface;
 
 class NodeRepository extends EloquentRepository implements NodeRepositoryInterface
 {

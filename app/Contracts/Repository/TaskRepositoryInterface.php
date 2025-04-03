@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Repository;
+namespace PheonixPanel\Contracts\Repository;
 
-use PhoenixPanel\Models\Task;
+use PheonixPanel\Models\Task;
 
 interface TaskRepositoryInterface extends RepositoryInterface
 {
     /**
      * Get a task and the server relationship for that task.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getTaskForJobProcess(int $id): Task;
 

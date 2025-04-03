@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Client;
+namespace PheonixPanel\Transformers\Api\Client;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\User;
-use PhoenixPanel\Models\ActivityLog;
+use PheonixPanel\Models\User;
+use PheonixPanel\Models\ActivityLog;
 use Illuminate\Database\Eloquent\Model;
 
 class ActivityLogTransformer extends BaseClientTransformer

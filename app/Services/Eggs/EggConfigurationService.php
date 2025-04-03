@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs;
+namespace PheonixPanel\Services\Eggs;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Services\Servers\ServerConfigurationStructureService;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Services\Servers\ServerConfigurationStructureService;
 
 class EggConfigurationService
 {
@@ -92,7 +92,7 @@ class EggConfigurationService
             // of egg creation/update, but it isn't so this check will at least prevent a
             // 500 error which would crash the entire Wings boot process.
             //
-            // @see https://github.com/phoenixpanel/panel/issues/3055
+            // @see https://github.com/pheonixpanel/panel/issues/3055
             if (!is_object($data) || !isset($data->find)) {
                 continue;
             }

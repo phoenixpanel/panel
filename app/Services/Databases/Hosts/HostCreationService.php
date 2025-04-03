@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Services\Databases\Hosts;
+namespace PheonixPanel\Services\Databases\Hosts;
 
-use PhoenixPanel\Models\DatabaseHost;
+use PheonixPanel\Models\DatabaseHost;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Extensions\DynamicDatabaseConnection;
-use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PheonixPanel\Extensions\DynamicDatabaseConnection;
+use PheonixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class HostCreationService
 {

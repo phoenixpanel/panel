@@ -1,5 +1,5 @@
 @php
-    /** @var \PhoenixPanel\Models\Server $server */
+    /** @var \PheonixPanel\Models\Server $server */
     $router = app('router');
 @endphp
 <div class="row">

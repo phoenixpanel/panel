@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Auth;
+namespace PheonixPanel\Http\Controllers\Auth;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
+use PheonixPanel\Facades\Activity;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -35,7 +35,7 @@ class LoginController extends AbstractLoginController
     /**
      * Handle a login request to the application.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      * @throws \Illuminate\Validation\ValidationException
      */
     public function login(Request $request): JsonResponse
@@ -48,7 +48,7 @@ class LoginController extends AbstractLoginController
         try {
             $username = $request->input('user');
 
-            /** @var \PhoenixPanel\Models\User $user */
+            /** @var \PheonixPanel\Models\User $user */
             $user = User::query()->where($this->getField($username), $username)->firstOrFail();
         } catch (ModelNotFoundException) {
             $this->sendFailedLoginResponse($request);

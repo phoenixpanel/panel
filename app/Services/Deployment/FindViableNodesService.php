@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Services\Deployment;
+namespace PheonixPanel\Services\Deployment;
 
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException;
+use PheonixPanel\Exceptions\Service\Deployment\NoViableNodeException;
 
 class FindViableNodesService
 {
@@ -64,7 +64,7 @@ class FindViableNodesService
      *                       If "null" is provided as the value no pagination will
      *                       be used.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableNodeException
      */
     public function handle(int $perPage = null, int $page = null): LengthAwarePaginator|Collection
     {

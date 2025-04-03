@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin\Settings;
+namespace PheonixPanel\Http\Controllers\Admin\Settings;
 
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory as ViewFactory;
-use PhoenixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
-use PhoenixPanel\Http\Requests\Admin\Settings\AdvancedSettingsFormRequest;
+use PheonixPanel\Contracts\Repository\SettingsRepositoryInterface;
+use PheonixPanel\Http\Requests\Admin\Settings\AdvancedSettingsFormRequest;
 
 class AdvancedController extends Controller
 {
@@ -45,8 +45,8 @@ class AdvancedController extends Controller
     }
 
     /**
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(AdvancedSettingsFormRequest $request): RedirectResponse
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Files;
+namespace PheonixPanel\Http\Requests\Api\Client\Servers\Files;
 
-use PhoenixPanel\Models\Permission;
-use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PheonixPanel\Models\Permission;
+use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class UploadFileRequest extends ClientApiRequest
 {

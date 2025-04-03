@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Middleware\Activity;
+namespace PheonixPanel\Http\Middleware\Activity;
 
 use Illuminate\Http\Request;
-use PhoenixPanel\Facades\LogTarget;
+use PheonixPanel\Facades\LogTarget;
 
 class AccountSubject
 {

@@ -6,7 +6,7 @@
     },
     "exported_at": "2024-05-07T12:55:54+00:00",
     "name": "Sponge (SpongeVanilla)",
-    "author": "support@phoenixpanel.io",
+    "author": "support@pheonixpanel.io",
     "description": "SpongeVanilla is the SpongeAPI implementation for Vanilla Minecraft.",
     "features": [
         "eula",
@@ -14,10 +14,10 @@
         "pid_limit"
     ],
     "docker_images": {
-        "Java 21": "ghcr.io\/phoenixpanel\/yolks:java_21",
-        "Java 16": "ghcr.io\/phoenixpanel\/yolks:java_16",
-        "Java 11": "ghcr.io\/phoenixpanel\/yolks:java_11",
-        "Java 8": "ghcr.io\/phoenixpanel\/yolks:java_8"
+        "Java 21": "ghcr.io\/pheonixpanel\/yolks:java_21",
+        "Java 16": "ghcr.io\/pheonixpanel\/yolks:java_16",
+        "Java 11": "ghcr.io\/pheonixpanel\/yolks:java_11",
+        "Java 8": "ghcr.io\/pheonixpanel\/yolks:java_8"
     },
     "file_denylist": [],
     "startup": "java -Xms128M -XX:MaxRAMPercentage=95.0 -jar {{SERVER_JARFILE}}",
@@ -30,7 +30,7 @@
     "scripts": {
         "installation": {
             "script": "#!\/bin\/ash\r\n# Sponge Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\ncd \/mnt\/server\r\n\r\ncurl -sSL \"https:\/\/repo.spongepowered.org\/maven\/org\/spongepowered\/spongevanilla\/${SPONGE_VERSION}\/spongevanilla-${SPONGE_VERSION}.jar\" -o ${SERVER_JARFILE}",
-            "container": "ghcr.io\/phoenixpanel\/installers:alpine",
+            "container": "ghcr.io\/pheonixpanel\/installers:alpine",
             "entrypoint": "ash"
         }
     },

@@ -1,21 +1,21 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Remote;
+namespace PheonixPanel\Http\Controllers\Api\Remote;
 
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\User;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\User;
+use PheonixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
-use PhoenixPanel\Models\Permission;
+use PheonixPanel\Facades\Activity;
+use PheonixPanel\Models\Permission;
 use phpseclib3\Crypt\PublicKeyLoader;
-use PhoenixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Controllers\Controller;
 use phpseclib3\Exception\NoKeyLoadedException;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
-use PhoenixPanel\Services\Servers\GetUserPermissionsService;
+use PheonixPanel\Exceptions\Http\HttpForbiddenException;
+use PheonixPanel\Services\Servers\GetUserPermissionsService;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use PhoenixPanel\Http\Requests\Api\Remote\SftpAuthenticationFormRequest;
+use PheonixPanel\Http\Requests\Api\Remote\SftpAuthenticationFormRequest;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 
 class SftpAuthenticationController extends Controller

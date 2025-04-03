@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Node;
+namespace PheonixPanel\Console\Commands\Node;
 
 use Illuminate\Console\Command;
-use PhoenixPanel\Services\Nodes\NodeCreationService;
+use PheonixPanel\Services\Nodes\NodeCreationService;
 
 class MakeNodeCommand extends Command
 {
@@ -38,7 +38,7 @@ class MakeNodeCommand extends Command
     /**
      * Handle the command execution process.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function handle()
     {
@@ -61,7 +61,7 @@ class MakeNodeCommand extends Command
         $data['upload_size'] = $this->option('uploadSize') ?? $this->ask('Enter the maximum filesize upload', '100');
         $data['daemonListen'] = $this->option('daemonListeningPort') ?? $this->ask('Enter the wings listening port', '8080');
         $data['daemonSFTP'] = $this->option('daemonSFTPPort') ?? $this->ask('Enter the wings SFTP listening port', '2022');
-        $data['daemonBase'] = $this->option('daemonBase') ?? $this->ask('Enter the base folder', '/var/lib/phoenixpanel/volumes');
+        $data['daemonBase'] = $this->option('daemonBase') ?? $this->ask('Enter the base folder', '/var/lib/pheonixpanel/volumes');
 
         $node = $this->creationService->handle($data);
         $this->line('Successfully created a new node on the location ' . $data['location_id'] . ' with the name ' . $data['name'] . ' and has an id of ' . $node->id . '.');

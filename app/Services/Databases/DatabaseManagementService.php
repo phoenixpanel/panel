@@ -1,18 +1,18 @@
 <?php
 
-namespace PhoenixPanel\Services\Databases;
+namespace PheonixPanel\Services\Databases;
 
 use Exception;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\Database;
-use PhoenixPanel\Helpers\Utilities;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\Database;
+use PheonixPanel\Helpers\Utilities;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Extensions\DynamicDatabaseConnection;
-use PhoenixPanel\Repositories\Eloquent\DatabaseRepository;
-use PhoenixPanel\Exceptions\Repository\DuplicateDatabaseNameException;
-use PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException;
-use PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
+use PheonixPanel\Extensions\DynamicDatabaseConnection;
+use PheonixPanel\Repositories\Eloquent\DatabaseRepository;
+use PheonixPanel\Exceptions\Repository\DuplicateDatabaseNameException;
+use PheonixPanel\Exceptions\Service\Database\TooManyDatabasesException;
+use PheonixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException;
 
 class DatabaseManagementService
 {
@@ -20,7 +20,7 @@ class DatabaseManagementService
      * The regex used to validate that the database name passed through to the function is
      * in the expected format.
      *
-     * @see \PhoenixPanel\Services\Databases\DatabaseManagementService::generateUniqueDatabaseName()
+     * @see \PheonixPanel\Services\Databases\DatabaseManagementService::generateUniqueDatabaseName()
      */
     private const MATCH_NAME_REGEX = '/^(s[\d]+_)(.*)$/';
 
@@ -66,12 +66,12 @@ class DatabaseManagementService
      * Create a new database that is linked to a specific host.
      *
      * @throws \Throwable
-     * @throws \PhoenixPanel\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \PhoenixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws \PheonixPanel\Exceptions\Service\Database\TooManyDatabasesException
+     * @throws \PheonixPanel\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
      */
     public function create(Server $server, array $data): Database
     {
-        if (!config('phoenixpanel.client_features.databases.enabled')) {
+        if (!config('pheonixpanel.client_features.databases.enabled')) {
             throw new DatabaseClientFeatureNotEnabledException();
         }
 
@@ -153,7 +153,7 @@ class DatabaseManagementService
      * have the same name across multiple hosts, for the sake of keeping this logic easy to understand
      * and avoiding user confusion we will ignore the specific host and just look across all hosts.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\DuplicateDatabaseNameException
+     * @throws \PheonixPanel\Exceptions\Repository\DuplicateDatabaseNameException
      * @throws \Throwable
      */
     protected function createModel(array $data): Database

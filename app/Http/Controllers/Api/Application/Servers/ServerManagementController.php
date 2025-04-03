@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Application\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Application\Servers;
 
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Services\Servers\SuspensionService;
-use PhoenixPanel\Services\Servers\ReinstallServerService;
-use PhoenixPanel\Http\Requests\Api\Application\Servers\ServerWriteRequest;
-use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Services\Servers\SuspensionService;
+use PheonixPanel\Services\Servers\ReinstallServerService;
+use PheonixPanel\Http\Requests\Api\Application\Servers\ServerWriteRequest;
+use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class ServerManagementController extends ApplicationApiController
 {
@@ -48,9 +48,9 @@ class ServerManagementController extends ApplicationApiController
     /**
      * Mark a server as needing to be reinstalled.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function reinstall(ServerWriteRequest $request, Server $server): Response
     {

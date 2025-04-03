@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Services\Acl\Api;
+namespace PheonixPanel\Services\Acl\Api;
 
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\ApiKey;
 
 class AdminAcl
 {

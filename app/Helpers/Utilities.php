@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Helpers;
+namespace PheonixPanel\Helpers;
 
 use Carbon\Carbon;
 use Cron\CronExpression;

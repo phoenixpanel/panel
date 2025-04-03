@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client\Account;
+namespace PheonixPanel\Http\Requests\Api\Client\Account;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Hashing\Hasher;
-use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException;
+use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PheonixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException;
 
 class UpdateEmailRequest extends ClientApiRequest
 {
     /**
-     * @throws \PhoenixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException
+     * @throws \PheonixPanel\Exceptions\Http\Base\InvalidPasswordProvidedException
      */
     public function authorize(): bool
     {

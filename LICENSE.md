@@ -1,7 +1,7 @@
 # The MIT License (MIT)
 
 ```
-PhoenixPanel®
+PheonixPanel®
 Copyright © Dane Everitt <dane@daneeveritt.com> and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

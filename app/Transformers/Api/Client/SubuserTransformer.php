@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Client;
+namespace PheonixPanel\Transformers\Api\Client;
 
-use PhoenixPanel\Models\Subuser;
+use PheonixPanel\Models\Subuser;
 
 class SubuserTransformer extends BaseClientTransformer
 {
@@ -17,7 +17,7 @@ class SubuserTransformer extends BaseClientTransformer
     /**
      * Transforms a subuser into a model that can be shown to a front-end user.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function transform(Subuser $model): array
     {

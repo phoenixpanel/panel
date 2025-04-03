@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands;
+namespace PheonixPanel\Console\Commands;
 
 use Illuminate\Console\Command;
-use PhoenixPanel\Services\Helpers\SoftwareVersionService;
+use PheonixPanel\Services\Helpers\SoftwareVersionService;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class InfoCommand extends Command
@@ -30,7 +30,7 @@ class InfoCommand extends Command
             ['Panel Version', $this->config->get('app.version')],
             ['Latest Version', $this->versionService->getPanel()],
             ['Up-to-Date', $this->versionService->isLatestPanel() ? 'Yes' : $this->formatText('No', 'bg=red')],
-            ['Unique Identifier', $this->config->get('phoenixpanel.service.author')],
+            ['Unique Identifier', $this->config->get('pheonixpanel.service.author')],
         ], 'compact');
 
         $this->output->title('Application Configuration');

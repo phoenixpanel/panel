@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Server;
+namespace PheonixPanel\Exceptions\Service\Server;
 
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 
-class RequiredVariableMissingException extends PhoenixPanelException
+class RequiredVariableMissingException extends PheonixPanelException
 {
 }

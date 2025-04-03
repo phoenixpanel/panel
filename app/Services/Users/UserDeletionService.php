@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Services\Users;
+namespace PheonixPanel\Services\Users;
 
-use PhoenixPanel\Models\User;
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Models\User;
+use PheonixPanel\Exceptions\DisplayException;
 use Illuminate\Contracts\Translation\Translator;
-use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class UserDeletionService
 {
@@ -23,7 +23,7 @@ class UserDeletionService
     /**
      * Delete a user from the panel only if they have no servers attached to their account.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function handle(int|User $user): ?bool
     {

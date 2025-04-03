@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\EggVariable;
 
 class EnvironmentService
 {
@@ -44,7 +44,7 @@ class EnvironmentService
         }
 
         // Process variables set in the configuration file.
-        foreach (config('phoenixpanel.environment_variables', []) as $key => $object) {
+        foreach (config('pheonixpanel.environment_variables', []) as $key => $object) {
             $variables->put(
                 $key,
                 is_callable($object) ? call_user_func($object, $server) : object_get($server, $object)

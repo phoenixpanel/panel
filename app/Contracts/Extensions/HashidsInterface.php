@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Extensions;
+namespace PheonixPanel\Contracts\Extensions;
 
 use Hashids\HashidsInterface as VendorHashidsInterface;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Application\Nodes;
+namespace PheonixPanel\Http\Controllers\Api\Application\Nodes;
 
-use PhoenixPanel\Services\Deployment\FindViableNodesService;
-use PhoenixPanel\Transformers\Api\Application\NodeTransformer;
-use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
-use PhoenixPanel\Http\Requests\Api\Application\Nodes\GetDeployableNodesRequest;
+use PheonixPanel\Services\Deployment\FindViableNodesService;
+use PheonixPanel\Transformers\Api\Application\NodeTransformer;
+use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PheonixPanel\Http\Requests\Api\Application\Nodes\GetDeployableNodesRequest;
 
 class NodeDeploymentController extends ApplicationApiController
 {
@@ -22,7 +22,7 @@ class NodeDeploymentController extends ApplicationApiController
      * similarly to the server creation process, but allows you to pass the deployment object
      * to this endpoint and get back a list of all Nodes satisfying the requirements.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\Deployment\NoViableNodeException
+     * @throws \PheonixPanel\Exceptions\Service\Deployment\NoViableNodeException
      */
     public function __invoke(GetDeployableNodesRequest $request): array
     {

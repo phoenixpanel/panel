@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\ApiKey;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use League\Fractal\TransformerAbstract;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 /**
  * @method array transform(Model $model)
@@ -85,13 +85,13 @@ abstract class BaseTransformer extends TransformerAbstract
      * Create a new instance of the transformer and pass along the currently
      * set API key.
      *
-     * @template T of \PhoenixPanel\Transformers\Api\Application\BaseTransformer
+     * @template T of \PheonixPanel\Transformers\Api\Application\BaseTransformer
      *
      * @param class-string<T> $abstract
      *
      * @return T
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      *
      * @noinspection PhpDocSignatureInspection
      */

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin;
+namespace PheonixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\View\Factory as ViewFactory;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Services\Helpers\SoftwareVersionService;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Services\Helpers\SoftwareVersionService;
 
 class BaseController extends Controller
 {

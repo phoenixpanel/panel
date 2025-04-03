@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Providers;
+namespace PheonixPanel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

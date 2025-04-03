@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Traits\Commands;
+namespace PheonixPanel\Traits\Commands;
 
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 
 trait EnvironmentWriterTrait
 {
@@ -23,13 +23,13 @@ trait EnvironmentWriterTrait
     /**
      * Update the .env file for the application using the passed in values.
      *
-     * @throws \PhoenixPanel\Exceptions\PhoenixPanelException
+     * @throws \PheonixPanel\Exceptions\PheonixPanelException
      */
     public function writeToEnvironment(array $values = []): void
     {
         $path = base_path('.env');
         if (!file_exists($path)) {
-            throw new PhoenixPanelException('Cannot locate .env file, was this software installed correctly?');
+            throw new PheonixPanelException('Cannot locate .env file, was this software installed correctly?');
         }
 
         $saveContents = file_get_contents($path);

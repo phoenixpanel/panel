@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs\Scripts;
+namespace PheonixPanel\Services\Eggs\Scripts;
 
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
-use PhoenixPanel\Exceptions\Service\Egg\InvalidCopyFromException;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
+use PheonixPanel\Exceptions\Service\Egg\InvalidCopyFromException;
 
 class InstallScriptService
 {
@@ -18,9 +18,9 @@ class InstallScriptService
     /**
      * Modify the install script for a given Egg.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PhoenixPanel\Exceptions\Service\Egg\InvalidCopyFromException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Service\Egg\InvalidCopyFromException
      */
     public function handle(Egg $egg, array $data): void
     {

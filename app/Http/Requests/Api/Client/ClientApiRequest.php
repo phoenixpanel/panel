@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client;
+namespace PheonixPanel\Http\Requests\Api\Client;
 
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Contracts\Http\ClientPermissionsRequest;
-use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Contracts\Http\ClientPermissionsRequest;
+use PheonixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 /**
- * @method \PhoenixPanel\Models\User user($guard = null)
+ * @method \PheonixPanel\Models\User user($guard = null)
  */
 class ClientApiRequest extends ApplicationApiRequest
 {

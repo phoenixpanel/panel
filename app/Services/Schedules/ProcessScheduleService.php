@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Services\Schedules;
+namespace PheonixPanel\Services\Schedules;
 
 use Exception;
-use PhoenixPanel\Models\Schedule;
+use PheonixPanel\Models\Schedule;
 use Illuminate\Contracts\Bus\Dispatcher;
-use PhoenixPanel\Jobs\Schedule\RunTaskJob;
+use PheonixPanel\Jobs\Schedule\RunTaskJob;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Repositories\Wings\DaemonServerRepository;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class ProcessScheduleService
 {
@@ -27,7 +27,7 @@ class ProcessScheduleService
      */
     public function handle(Schedule $schedule, bool $now = false): void
     {
-        /** @var \PhoenixPanel\Models\Task $task */
+        /** @var \PheonixPanel\Models\Task $task */
         $task = $schedule->tasks()->orderBy('sequence_id')->first();
 
         if (is_null($task)) {
@@ -75,7 +75,7 @@ class ProcessScheduleService
             // When using dispatchNow the RunTaskJob::failed() function is not called automatically
             // so we need to manually trigger it and then continue with the exception throw.
             //
-            // @see https://github.com/phoenixpanel/panel/issues/2550
+            // @see https://github.com/pheonixpanel/panel/issues/2550
             try {
                 $this->dispatcher->dispatchNow($job);
             } catch (\Exception $exception) {

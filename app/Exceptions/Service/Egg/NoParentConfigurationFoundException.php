@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Egg;
+namespace PheonixPanel\Exceptions\Service\Egg;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class NoParentConfigurationFoundException extends DisplayException
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Extensions\Themes;
+namespace PheonixPanel\Extensions\Themes;
 
 class Theme
 {
@@ -16,6 +16,6 @@ class Theme
 
     protected function getUrl($path): string
     {
-        return '/themes/phoenixpanel/' . ltrim($path, '/');
+        return '/themes/pheonixpanel/' . ltrim($path, '/');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Allocation;
+namespace PheonixPanel\Exceptions\Service\Allocation;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class PortOutOfRangeException extends DisplayException
 {

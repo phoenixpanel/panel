@@ -1,14 +1,14 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Client;
+namespace PheonixPanel\Http\Controllers\Api\Client;
 
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PhoenixPanel\Transformers\Api\Client\ApiKeyTransformer;
-use PhoenixPanel\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
+use PheonixPanel\Facades\Activity;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PheonixPanel\Transformers\Api\Client\ApiKeyTransformer;
+use PheonixPanel\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
 
 class ApiKeyController extends ClientApiController
 {
@@ -25,7 +25,7 @@ class ApiKeyController extends ClientApiController
     /**
      * Store a new API key for a user's account.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function store(StoreApiKeyRequest $request): array
     {
@@ -54,7 +54,7 @@ class ApiKeyController extends ClientApiController
      */
     public function delete(ClientApiRequest $request, string $identifier): JsonResponse
     {
-        /** @var \PhoenixPanel\Models\ApiKey $key */
+        /** @var \PheonixPanel\Models\ApiKey $key */
         $key = $request->user()->apiKeys()
             ->where('key_type', ApiKey::TYPE_ACCOUNT)
             ->where('identifier', $identifier)

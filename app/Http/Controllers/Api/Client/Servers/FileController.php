@@ -1,27 +1,27 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
-use PhoenixPanel\Services\Nodes\NodeJWTService;
-use PhoenixPanel\Repositories\Wings\DaemonFileRepository;
-use PhoenixPanel\Transformers\Api\Client\FileObjectTransformer;
-use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\CopyFileRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\PullFileRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\ListFilesRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\ChmodFilesRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\DeleteFileRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\RenameFileRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\CreateFolderRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\CompressFilesRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\DecompressFilesRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\GetFileContentsRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Files\WriteFileContentRequest;
+use PheonixPanel\Facades\Activity;
+use PheonixPanel\Services\Nodes\NodeJWTService;
+use PheonixPanel\Repositories\Wings\DaemonFileRepository;
+use PheonixPanel\Transformers\Api\Client\FileObjectTransformer;
+use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\CopyFileRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\PullFileRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\ListFilesRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\ChmodFilesRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\DeleteFileRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\RenameFileRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\CreateFolderRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\CompressFilesRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\DecompressFilesRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\GetFileContentsRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Files\WriteFileContentRequest;
 
 class FileController extends ClientApiController
 {
@@ -38,7 +38,7 @@ class FileController extends ClientApiController
     /**
      * Returns a listing of files in a given directory.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function directory(ListFilesRequest $request, Server $server): array
     {
@@ -60,7 +60,7 @@ class FileController extends ClientApiController
     {
         $response = $this->fileRepository->setServer($server)->getContent(
             $request->get('file'),
-            config('phoenixpanel.files.max_edit_size')
+            config('pheonixpanel.files.max_edit_size')
         );
 
         Activity::event('server:file.read')->property('file', $request->get('file'))->log();
@@ -102,7 +102,7 @@ class FileController extends ClientApiController
     /**
      * Writes the contents of the specified file to the server.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function write(WriteFileContentRequest $request, Server $server): JsonResponse
     {
@@ -154,7 +154,7 @@ class FileController extends ClientApiController
     /**
      * Copies a file on the server.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function copy(CopyFileRequest $request, Server $server): JsonResponse
     {
@@ -168,7 +168,7 @@ class FileController extends ClientApiController
     }
 
     /**
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function compress(CompressFilesRequest $request, Server $server): array
     {
@@ -188,7 +188,7 @@ class FileController extends ClientApiController
     }
 
     /**
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function decompress(DecompressFilesRequest $request, Server $server): JsonResponse
     {
@@ -210,7 +210,7 @@ class FileController extends ClientApiController
     /**
      * Deletes files or folders for the server in the given root directory.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function delete(DeleteFileRequest $request, Server $server): JsonResponse
     {
@@ -230,7 +230,7 @@ class FileController extends ClientApiController
     /**
      * Updates file permissions for file(s) in the given root directory.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function chmod(ChmodFilesRequest $request, Server $server): JsonResponse
     {

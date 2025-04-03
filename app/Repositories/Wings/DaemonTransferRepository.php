@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Wings;
+namespace PheonixPanel\Repositories\Wings;
 
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Lcobucci\JWT\Token\Plain;
 use GuzzleHttp\Exception\GuzzleException;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class DaemonTransferRepository extends DaemonRepository
 {
     /**
-     * @throws \PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException
      */
     public function notify(Node $targetNode, Plain $token): void
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Node;
+namespace PheonixPanel\Console\Commands\Node;
 
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Console\Command;
 
 class NodeConfigurationCommand extends Command
@@ -17,7 +17,7 @@ class NodeConfigurationCommand extends Command
     {
         $column = ctype_digit((string) $this->argument('node')) ? 'id' : 'uuid';
 
-        /** @var \PhoenixPanel\Models\Node $node */
+        /** @var \PheonixPanel\Models\Node $node */
         $node = Node::query()->where($column, $this->argument('node'))->firstOr(function () {
             $this->error('The selected node does not exist.');
 

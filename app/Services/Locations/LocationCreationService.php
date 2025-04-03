@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Services\Locations;
+namespace PheonixPanel\Services\Locations;
 
-use PhoenixPanel\Models\Location;
-use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PheonixPanel\Models\Location;
+use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationCreationService
 {
@@ -17,7 +17,7 @@ class LocationCreationService
     /**
      * Create a new location.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function handle(array $data): Location
     {

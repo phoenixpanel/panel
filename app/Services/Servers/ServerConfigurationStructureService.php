@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
-use PhoenixPanel\Models\Mount;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Mount;
+use PheonixPanel\Models\Server;
 
 class ServerConfigurationStructureService
 {

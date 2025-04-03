@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Databases\Hosts;
+namespace PheonixPanel\Services\Databases\Hosts;
 
-use PhoenixPanel\Exceptions\Service\HasActiveServersException;
-use PhoenixPanel\Contracts\Repository\DatabaseRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PheonixPanel\Exceptions\Service\HasActiveServersException;
+use PheonixPanel\Contracts\Repository\DatabaseRepositoryInterface;
+use PheonixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class HostDeletionService
 {
@@ -21,7 +21,7 @@ class HostDeletionService
      * Delete a specified host from the Panel if no databases are
      * attached to it.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
      */
     public function handle(int $host): int
     {

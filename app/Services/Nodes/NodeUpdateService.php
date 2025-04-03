@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Services\Nodes;
+namespace PheonixPanel\Services\Nodes;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Repositories\Eloquent\NodeRepository;
-use PhoenixPanel\Repositories\Wings\DaemonConfigurationRepository;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
-use PhoenixPanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
+use PheonixPanel\Repositories\Eloquent\NodeRepository;
+use PheonixPanel\Repositories\Wings\DaemonConfigurationRepository;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Exceptions\Service\Node\ConfigurationNotPersistedException;
 
 class NodeUpdateService
 {
@@ -38,7 +38,7 @@ class NodeUpdateService
         }
 
         [$updated, $exception] = $this->connection->transaction(function () use ($data, $node) {
-            /** @var \PhoenixPanel\Models\Node $updated */
+            /** @var \PheonixPanel\Models\Node $updated */
             $updated = $this->repository->withFreshModel()->update($node->id, $data, true, true);
 
             try {
@@ -50,7 +50,7 @@ class NodeUpdateService
                 // This makes more sense anyways, because only the Panel uses the FQDN for connecting, the
                 // node doesn't actually care about this.
                 //
-                // @see https://github.com/phoenixpanel/panel/issues/1931
+                // @see https://github.com/pheonixpanel/panel/issues/1931
                 $node->fqdn = $updated->fqdn;
 
                 $this->configurationRepository->setNode($node)->update($updated);
@@ -64,7 +64,7 @@ class NodeUpdateService
                 // This avoids issues with proxies such as Cloudflare which will see Wings as offline and then
                 // inject their own response pages, causing this logic to get fucked up.
                 //
-                // @see https://github.com/phoenixpanel/panel/issues/2712
+                // @see https://github.com/pheonixpanel/panel/issues/2712
                 return [$updated, true];
             }
 

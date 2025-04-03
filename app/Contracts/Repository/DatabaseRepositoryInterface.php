@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Repository;
+namespace PheonixPanel\Contracts\Repository;
 
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

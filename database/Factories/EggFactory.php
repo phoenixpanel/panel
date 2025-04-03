@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Ramsey\Uuid\Uuid;
-use PhoenixPanel\Models\Egg;
+use PheonixPanel\Models\Egg;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EggFactory extends Factory

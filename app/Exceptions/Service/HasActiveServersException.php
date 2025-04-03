@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service;
+namespace PheonixPanel\Exceptions\Service;
 
 use Illuminate\Http\Response;
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class HasActiveServersException extends DisplayException
 {

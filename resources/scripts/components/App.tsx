@@ -21,7 +21,7 @@ const AuthenticationRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@
 
 interface ExtendedWindow extends Window {
     SiteConfiguration?: SiteSettings;
-    PhoenixPanelUser?: {
+    PheonixPanelUser?: {
         uuid: string;
         username: string;
         email: string;
@@ -38,17 +38,17 @@ interface ExtendedWindow extends Window {
 setupInterceptors(history);
 
 const App = () => {
-    const { PhoenixPanelUser, SiteConfiguration } = window as ExtendedWindow;
-    if (PhoenixPanelUser && !store.getState().user.data) {
+    const { PheonixPanelUser, SiteConfiguration } = window as ExtendedWindow;
+    if (PheonixPanelUser && !store.getState().user.data) {
         store.getActions().user.setUserData({
-            uuid: PhoenixPanelUser.uuid,
-            username: PhoenixPanelUser.username,
-            email: PhoenixPanelUser.email,
-            language: PhoenixPanelUser.language,
-            rootAdmin: PhoenixPanelUser.root_admin,
-            useTotp: PhoenixPanelUser.use_totp,
-            createdAt: new Date(PhoenixPanelUser.created_at),
-            updatedAt: new Date(PhoenixPanelUser.updated_at),
+            uuid: PheonixPanelUser.uuid,
+            username: PheonixPanelUser.username,
+            email: PheonixPanelUser.email,
+            language: PheonixPanelUser.language,
+            rootAdmin: PheonixPanelUser.root_admin,
+            useTotp: PheonixPanelUser.use_totp,
+            createdAt: new Date(PheonixPanelUser.created_at),
+            updatedAt: new Date(PheonixPanelUser.updated_at),
         });
     }
 

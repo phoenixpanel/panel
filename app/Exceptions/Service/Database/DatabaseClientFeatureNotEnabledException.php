@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Database;
+namespace PheonixPanel\Exceptions\Service\Database;
 
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 
-class DatabaseClientFeatureNotEnabledException extends PhoenixPanelException
+class DatabaseClientFeatureNotEnabledException extends PheonixPanelException
 {
     public function __construct()
     {

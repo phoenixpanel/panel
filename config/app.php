@@ -7,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     | Application Version
     |--------------------------------------------------------------------------
-    | This value is set when creating a PhoenixPanel release. You should not
+    | This value is set when creating a PheonixPanel release. You should not
     | change this value if you are not maintaining your own internal versions.
     */
 
@@ -23,7 +23,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'PhoenixPanel'),
+    'name' => env('APP_NAME', 'PheonixPanel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -173,9 +173,7 @@ return [
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
-        // Use conditional provider to allow key generation without a key set.
-        PhoenixPanel\Providers\ConditionalEncryptionServiceProvider::class,
-        // Illuminate\Encryption\EncryptionServiceProvider::class,
+        App\Providers\CustomEncryptionServiceProvider::class, // Use the custom provider
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
@@ -194,16 +192,16 @@ return [
         /*
          * Application Service Providers...
          */
-        PhoenixPanel\Providers\ActivityLogServiceProvider::class,
-        PhoenixPanel\Providers\AppServiceProvider::class,
-        PhoenixPanel\Providers\AuthServiceProvider::class,
-        PhoenixPanel\Providers\BackupsServiceProvider::class,
-        PhoenixPanel\Providers\BladeServiceProvider::class,
-        PhoenixPanel\Providers\EventServiceProvider::class,
-        PhoenixPanel\Providers\HashidsServiceProvider::class,
-        PhoenixPanel\Providers\RouteServiceProvider::class,
-        PhoenixPanel\Providers\RepositoryServiceProvider::class,
-        PhoenixPanel\Providers\ViewComposerServiceProvider::class,
+        PheonixPanel\Providers\ActivityLogServiceProvider::class,
+        PheonixPanel\Providers\AppServiceProvider::class,
+        PheonixPanel\Providers\AuthServiceProvider::class,
+        PheonixPanel\Providers\BackupsServiceProvider::class,
+        PheonixPanel\Providers\BladeServiceProvider::class,
+        PheonixPanel\Providers\EventServiceProvider::class,
+        PheonixPanel\Providers\HashidsServiceProvider::class,
+        PheonixPanel\Providers\RouteServiceProvider::class,
+        PheonixPanel\Providers\RepositoryServiceProvider::class,
+        PheonixPanel\Providers\ViewComposerServiceProvider::class,
 
         /*
          * Additional Dependencies
@@ -226,11 +224,11 @@ return [
         'Alert' => Prologue\Alerts\Facades\Alert::class,
         'Carbon' => Carbon\Carbon::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
-        'Theme' => PhoenixPanel\Extensions\Facades\Theme::class,
+        'Theme' => PheonixPanel\Extensions\Facades\Theme::class,
 
         // Custom Facades
-        'Activity' => PhoenixPanel\Facades\Activity::class,
-        'LogBatch' => PhoenixPanel\Facades\LogBatch::class,
-        'LogTarget' => PhoenixPanel\Facades\LogTarget::class,
+        'Activity' => PheonixPanel\Facades\Activity::class,
+        'LogBatch' => PheonixPanel\Facades\LogBatch::class,
+        'LogTarget' => PheonixPanel\Facades\LogTarget::class,
     ])->toArray(),
 ];

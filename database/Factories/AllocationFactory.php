@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\Allocation;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\Allocation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AllocationFactory extends Factory

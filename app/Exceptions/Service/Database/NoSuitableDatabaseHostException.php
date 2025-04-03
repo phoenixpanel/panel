@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Database;
+namespace PheonixPanel\Exceptions\Service\Database;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class NoSuitableDatabaseHostException extends DisplayException
 {

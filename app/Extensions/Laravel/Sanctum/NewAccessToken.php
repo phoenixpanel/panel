@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Extensions\Laravel\Sanctum;
+namespace PheonixPanel\Extensions\Laravel\Sanctum;
 
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\ApiKey;
 use Laravel\Sanctum\NewAccessToken as SanctumAccessToken;
 
 /**
- * @property \PhoenixPanel\Models\ApiKey $accessToken
+ * @property \PheonixPanel\Models\ApiKey $accessToken
  */
 class NewAccessToken extends SanctumAccessToken
 {

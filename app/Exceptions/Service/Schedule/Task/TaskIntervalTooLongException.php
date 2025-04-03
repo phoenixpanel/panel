@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Schedule\Task;
+namespace PheonixPanel\Exceptions\Service\Schedule\Task;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class TaskIntervalTooLongException extends DisplayException
 {

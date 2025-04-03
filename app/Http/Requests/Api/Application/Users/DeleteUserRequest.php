@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Application\Users;
+namespace PheonixPanel\Http\Requests\Api\Application\Users;
 
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
-use PhoenixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class DeleteUserRequest extends ApplicationApiRequest
 {

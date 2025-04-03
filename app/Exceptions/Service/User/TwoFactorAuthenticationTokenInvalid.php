@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\User;
+namespace PheonixPanel\Exceptions\Service\User;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class TwoFactorAuthenticationTokenInvalid extends DisplayException
 {

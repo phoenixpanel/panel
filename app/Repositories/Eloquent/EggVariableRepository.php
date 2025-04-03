@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use PhoenixPanel\Models\EggVariable;
-use PhoenixPanel\Contracts\Repository\EggVariableRepositoryInterface;
+use PheonixPanel\Models\EggVariable;
+use PheonixPanel\Contracts\Repository\EggVariableRepositoryInterface;
 
 class EggVariableRepository extends EloquentRepository implements EggVariableRepositoryInterface
 {

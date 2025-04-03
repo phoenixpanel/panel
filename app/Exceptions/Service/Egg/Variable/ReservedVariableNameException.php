@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Egg\Variable;
+namespace PheonixPanel\Exceptions\Service\Egg\Variable;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class ReservedVariableNameException extends DisplayException
 {

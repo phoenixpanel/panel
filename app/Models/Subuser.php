@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array $permissions
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \PhoenixPanel\Models\User $user
- * @property \PhoenixPanel\Models\Server $server
+ * @property \PheonixPanel\Models\User $user
+ * @property \PheonixPanel\Models\Server $server
  */
 class Subuser extends Model
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Extensions;
+namespace PheonixPanel\Extensions;
 
-use PhoenixPanel\Models\DatabaseHost;
+use PheonixPanel\Models\DatabaseHost;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Config\Repository as ConfigRepository;
-use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PheonixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class DynamicDatabaseConnection
 {
@@ -26,7 +26,7 @@ class DynamicDatabaseConnection
     /**
      * Adds a dynamic database connection entry to the runtime config.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function set(string $connection, DatabaseHost|int $host, string $database = 'mysql'): void
     {

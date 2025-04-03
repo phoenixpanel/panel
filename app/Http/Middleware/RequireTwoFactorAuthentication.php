@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Http\Middleware;
+namespace PheonixPanel\Http\Middleware;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Prologue\Alerts\AlertsMessageBag;
-use PhoenixPanel\Exceptions\Http\TwoFactorAuthRequiredException;
+use PheonixPanel\Exceptions\Http\TwoFactorAuthRequiredException;
 
 class RequireTwoFactorAuthentication
 {
@@ -31,11 +31,11 @@ class RequireTwoFactorAuthentication
      * order to perform actions. If so, we check the level at which it is required (all users
      * or just admins) and then check if the user has enabled it for their account.
      *
-     * @throws \PhoenixPanel\Exceptions\Http\TwoFactorAuthRequiredException
+     * @throws \PheonixPanel\Exceptions\Http\TwoFactorAuthRequiredException
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        /** @var \PhoenixPanel\Models\User $user */
+        /** @var \PheonixPanel\Models\User $user */
         $user = $request->user();
         $uri = rtrim($request->getRequestUri(), '/') . '/';
         $current = $request->route()->getName();
@@ -44,7 +44,7 @@ class RequireTwoFactorAuthentication
             return $next($request);
         }
 
-        $level = (int) config('phoenixpanel.auth.2fa_required');
+        $level = (int) config('pheonixpanel.auth.2fa_required');
         // If this setting is not configured, or the user is already using 2FA then we can just
         // send them right through, nothing else needs to be checked.
         //

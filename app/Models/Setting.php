@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 /**
- * PhoenixPanel\Models\Setting.
+ * PheonixPanel\Models\Setting.
  *
  * @property int $id
  * @property string $key

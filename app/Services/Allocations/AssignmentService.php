@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Services\Allocations;
+namespace PheonixPanel\Services\Allocations;
 
 use IPTools\Network;
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
-use PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException;
-use PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException;
-use PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException;
-use PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PheonixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException;
+use PheonixPanel\Exceptions\Service\Allocation\PortOutOfRangeException;
+use PheonixPanel\Exceptions\Service\Allocation\InvalidPortMappingException;
+use PheonixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException;
 
 class AssignmentService
 {
@@ -31,11 +31,11 @@ class AssignmentService
     /**
      * Insert allocations into the database and link them to a specific node.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     public function handle(Node $node, array $data): void
     {

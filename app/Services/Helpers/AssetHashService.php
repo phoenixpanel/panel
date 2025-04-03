@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Services\Helpers;
+namespace PheonixPanel\Services\Helpers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use PhoenixPanel\Exceptions\ManifestDoesNotExistException;
+use PheonixPanel\Exceptions\ManifestDoesNotExistException;
 
 class AssetHashService
 {
@@ -61,7 +61,7 @@ class AssetHashService
             'referrerpolicy' => 'no-referrer',
         ];
 
-        if (config('phoenixpanel.assets.use_hash')) {
+        if (config('pheonixpanel.assets.use_hash')) {
             $attributes['integrity'] = $this->integrity($resource);
         }
 
@@ -83,7 +83,7 @@ class AssetHashService
             'crossorigin' => 'anonymous',
         ];
 
-        if (config('phoenixpanel.assets.use_hash')) {
+        if (config('pheonixpanel.assets.use_hash')) {
             $attributes['integrity'] = $this->integrity($resource);
         }
 

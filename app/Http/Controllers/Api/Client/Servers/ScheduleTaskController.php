@@ -1,23 +1,23 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
 
-use PhoenixPanel\Models\Task;
+use PheonixPanel\Models\Task;
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\Schedule;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\Schedule;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
-use PhoenixPanel\Models\Permission;
+use PheonixPanel\Facades\Activity;
+use PheonixPanel\Models\Permission;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Repositories\Eloquent\TaskRepository;
-use PhoenixPanel\Exceptions\Http\HttpForbiddenException;
-use PhoenixPanel\Transformers\Api\Client\TaskTransformer;
-use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
-use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
-use PhoenixPanel\Exceptions\Service\ServiceLimitExceededException;
+use PheonixPanel\Repositories\Eloquent\TaskRepository;
+use PheonixPanel\Exceptions\Http\HttpForbiddenException;
+use PheonixPanel\Transformers\Api\Client\TaskTransformer;
+use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PheonixPanel\Exceptions\Service\ServiceLimitExceededException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Schedules\StoreTaskRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Schedules\StoreTaskRequest;
 
 class ScheduleTaskController extends ClientApiController
 {
@@ -34,12 +34,12 @@ class ScheduleTaskController extends ClientApiController
     /**
      * Create a new task for a given schedule and store it in the database.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Service\ServiceLimitExceededException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Service\ServiceLimitExceededException
      */
     public function store(StoreTaskRequest $request, Server $server, Schedule $schedule): array
     {
-        $limit = config('phoenixpanel.client_features.schedules.per_schedule_task_limit', 10);
+        $limit = config('pheonixpanel.client_features.schedules.per_schedule_task_limit', 10);
         if ($schedule->tasks()->count() >= $limit) {
             throw new ServiceLimitExceededException("Schedules may not have more than $limit tasks associated with them. Creating this task would put this schedule over the limit.");
         }
@@ -48,10 +48,10 @@ class ScheduleTaskController extends ClientApiController
             throw new HttpForbiddenException("A backup task cannot be created when the server's backup limit is set to 0.");
         }
 
-        /** @var \PhoenixPanel\Models\Task|null $lastTask */
+        /** @var \PheonixPanel\Models\Task|null $lastTask */
         $lastTask = $schedule->tasks()->orderByDesc('sequence_id')->first();
 
-        /** @var \PhoenixPanel\Models\Task $task */
+        /** @var \PheonixPanel\Models\Task $task */
         $task = $this->connection->transaction(function () use ($request, $schedule, $lastTask) {
             $sequenceId = ($lastTask->sequence_id ?? 0) + 1;
             $requestSequenceId = $request->integer('sequence_id', $sequenceId);
@@ -95,8 +95,8 @@ class ScheduleTaskController extends ClientApiController
     /**
      * Updates a given task for a server.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(StoreTaskRequest $request, Server $server, Schedule $schedule, Task $task): array
     {

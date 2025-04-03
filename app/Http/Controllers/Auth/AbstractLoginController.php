@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Auth;
+namespace PheonixPanel\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Event;
-use PhoenixPanel\Events\Auth\DirectLogin;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Http\Controllers\Controller;
+use PheonixPanel\Events\Auth\DirectLogin;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -49,7 +49,7 @@ abstract class AbstractLoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     protected function sendFailedLoginResponse(Request $request, Authenticatable $user = null, string $message = null)
     {

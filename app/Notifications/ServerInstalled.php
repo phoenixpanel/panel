@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Notifications;
+namespace PheonixPanel\Notifications;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Bus\Queueable;
-use PhoenixPanel\Events\Event;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Events\Event;
+use PheonixPanel\Models\Server;
 use Illuminate\Container\Container;
-use PhoenixPanel\Events\Server\Installed;
+use PheonixPanel\Events\Server\Installed;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use PhoenixPanel\Contracts\Core\ReceivesEvents;
+use PheonixPanel\Contracts\Core\ReceivesEvents;
 use Illuminate\Contracts\Notifications\Dispatcher;
 use Illuminate\Notifications\Messages\MailMessage;
 

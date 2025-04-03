@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PhoenixPanel\Contracts\Extensions\HashidsInterface;
+use PheonixPanel\Contracts\Extensions\HashidsInterface;
 
 /**
  * @property int $id
@@ -17,8 +17,8 @@ use PhoenixPanel\Contracts\Extensions\HashidsInterface;
  * @property int $max_connections
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \PhoenixPanel\Models\Server $server
- * @property \PhoenixPanel\Models\DatabaseHost $host
+ * @property \PheonixPanel\Models\Server $server
+ * @property \PheonixPanel\Models\DatabaseHost $host
  */
 class Database extends Model
 {

@@ -1,5 +1,5 @@
 @section('settings::notice')
-    @if(config('phoenixpanel.load_environment_only', false))
+    @if(config('pheonixpanel.load_environment_only', false))
         <div class="row">
             <div class="col-xs-12">
                 <div class="alert alert-danger">

@@ -98,7 +98,7 @@ return [
 
     'attributes' => [],
 
-    // Internal validation logic for PhoenixPanel
+    // Internal validation logic for PheonixPanel
     'internal' => [
         'variable_value' => ':env variable',
         'invalid_password' => 'The password provided was invalid for this account.',

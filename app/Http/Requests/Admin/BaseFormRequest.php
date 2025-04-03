@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin;
+namespace PheonixPanel\Http\Requests\Admin;
 
 class BaseFormRequest extends AdminFormRequest
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Schedule;
+use PheonixPanel\Models\Schedule;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
-use PhoenixPanel\Contracts\Repository\ScheduleRepositoryInterface;
+use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
+use PheonixPanel\Contracts\Repository\ScheduleRepositoryInterface;
 
 class ScheduleRepository extends EloquentRepository implements ScheduleRepositoryInterface
 {
@@ -29,7 +29,7 @@ class ScheduleRepository extends EloquentRepository implements ScheduleRepositor
     /**
      * Return a schedule model with all the associated tasks as a relationship.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getScheduleWithTasks(int $schedule): Schedule
     {

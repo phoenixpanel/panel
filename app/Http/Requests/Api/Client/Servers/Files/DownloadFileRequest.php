@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Files;
+namespace PheonixPanel\Http\Requests\Api\Client\Servers\Files;
 
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class DownloadFileRequest extends ClientApiRequest
 {

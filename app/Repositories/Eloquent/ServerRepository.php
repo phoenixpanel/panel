@@ -1,14 +1,14 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
-use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
+use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class ServerRepository extends EloquentRepository implements ServerRepositoryInterface
 {
@@ -67,7 +67,7 @@ class ServerRepository extends EloquentRepository implements ServerRepositoryInt
     /**
      * Return a server model and all variables associated with the server.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function findWithVariables(int $id): Server
     {
@@ -139,12 +139,12 @@ class ServerRepository extends EloquentRepository implements ServerRepositoryInt
     /**
      * Return a server by UUID.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getByUuid(string $uuid): Server
     {
         try {
-            /** @var \PhoenixPanel\Models\Server $model */
+            /** @var \PheonixPanel\Models\Server $model */
             $model = $this->getBuilder()
                 ->with('nest', 'node')
                 ->where(function (Builder $query) use ($uuid) {

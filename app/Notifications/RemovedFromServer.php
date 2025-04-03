@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Notifications;
+namespace PheonixPanel\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

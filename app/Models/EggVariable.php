@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Carbon\CarbonImmutable $created_at
  * @property \Carbon\CarbonImmutable $updated_at
  * @property bool $required
- * @property \PhoenixPanel\Models\Egg $egg
- * @property \PhoenixPanel\Models\ServerVariable $serverVariable
+ * @property \PheonixPanel\Models\Egg $egg
+ * @property \PheonixPanel\Models\ServerVariable $serverVariable
  *
  * The "server_value" variable is only present on the object if you've loaded this model
  * using the server relationship.

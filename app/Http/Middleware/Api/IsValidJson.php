@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Http\Middleware\Api;
+namespace PheonixPanel\Http\Middleware\Api;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;

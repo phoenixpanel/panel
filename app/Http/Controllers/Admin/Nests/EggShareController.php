@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin\Nests;
+namespace PheonixPanel\Http\Controllers\Admin\Nests;
 
-use PhoenixPanel\Models\Egg;
+use PheonixPanel\Models\Egg;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
-use PhoenixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use PhoenixPanel\Services\Eggs\Sharing\EggExporterService;
-use PhoenixPanel\Services\Eggs\Sharing\EggImporterService;
-use PhoenixPanel\Http\Requests\Admin\Egg\EggImportFormRequest;
-use PhoenixPanel\Services\Eggs\Sharing\EggUpdateImporterService;
+use PheonixPanel\Services\Eggs\Sharing\EggExporterService;
+use PheonixPanel\Services\Eggs\Sharing\EggImporterService;
+use PheonixPanel\Http\Requests\Admin\Egg\EggImportFormRequest;
+use PheonixPanel\Services\Eggs\Sharing\EggUpdateImporterService;
 
 class EggShareController extends Controller
 {
@@ -26,7 +26,7 @@ class EggShareController extends Controller
     }
 
     /**
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function export(Egg $egg): Response
     {
@@ -43,10 +43,10 @@ class EggShareController extends Controller
     /**
      * Import a new service option using an XML file.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PhoenixPanel\Exceptions\Service\Egg\BadJsonFormatException
-     * @throws \PhoenixPanel\Exceptions\Service\InvalidFileUploadException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Service\Egg\BadJsonFormatException
+     * @throws \PheonixPanel\Exceptions\Service\InvalidFileUploadException
      */
     public function import(EggImportFormRequest $request): RedirectResponse
     {
@@ -59,10 +59,10 @@ class EggShareController extends Controller
     /**
      * Update an existing Egg using a new imported file.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PhoenixPanel\Exceptions\Service\Egg\BadJsonFormatException
-     * @throws \PhoenixPanel\Exceptions\Service\InvalidFileUploadException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Service\Egg\BadJsonFormatException
+     * @throws \PheonixPanel\Exceptions\Service\InvalidFileUploadException
      */
     public function update(EggImportFormRequest $request, Egg $egg): RedirectResponse
     {

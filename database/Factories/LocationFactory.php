@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\Location;
+use PheonixPanel\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocationFactory extends Factory

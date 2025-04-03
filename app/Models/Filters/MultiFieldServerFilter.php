@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models\Filters;
+namespace PheonixPanel\Models\Filters;
 
 use Illuminate\Support\Str;
 use Spatie\QueryBuilder\Filters\Filter;

@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Models\EggVariable;
 
 class EggVariableTransformer extends BaseTransformer
 {

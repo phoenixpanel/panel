@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin;
+namespace PheonixPanel\Http\Requests\Admin;
 
-use PhoenixPanel\Models\Mount;
+use PheonixPanel\Models\Mount;
 
 class MountFormRequest extends AdminFormRequest
 {

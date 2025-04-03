@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Models\Nest;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Models\Nest;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
-use PhoenixPanel\Services\Eggs\Sharing\EggImporterService;
-use PhoenixPanel\Services\Eggs\Sharing\EggUpdateImporterService;
+use PheonixPanel\Services\Eggs\Sharing\EggImporterService;
+use PheonixPanel\Services\Eggs\Sharing\EggUpdateImporterService;
 
 class EggSeeder extends Seeder
 {
@@ -44,7 +44,7 @@ class EggSeeder extends Seeder
         foreach (static::$import as $nest) {
             /* @noinspection PhpParamsInspection */
             $this->parseEggFiles(
-                Nest::query()->where('author', 'support@phoenixpanel.io')->where('name', $nest)->firstOrFail()
+                Nest::query()->where('author', 'support@pheonixpanel.io')->where('name', $nest)->firstOrFail()
             );
         }
     }

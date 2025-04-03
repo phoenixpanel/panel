@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Egg;
+use PheonixPanel\Models\Egg;
 use Webmozart\Assert\Assert;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PhoenixPanel\Contracts\Repository\EggRepositoryInterface;
-use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PheonixPanel\Contracts\Repository\EggRepositoryInterface;
+use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
 
 class EggRepository extends EloquentRepository implements EggRepositoryInterface
 {
@@ -22,7 +22,7 @@ class EggRepository extends EloquentRepository implements EggRepositoryInterface
     /**
      * Return an egg with the variables relation attached.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithVariables(int $id): Egg
     {
@@ -46,7 +46,7 @@ class EggRepository extends EloquentRepository implements EggRepositoryInterface
      *
      * @param int|string $value
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithCopyAttributes($value, string $column = 'id'): Egg
     {
@@ -62,7 +62,7 @@ class EggRepository extends EloquentRepository implements EggRepositoryInterface
     /**
      * Return all the data needed to export a service.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithExportAttributes(int $id): Egg
     {

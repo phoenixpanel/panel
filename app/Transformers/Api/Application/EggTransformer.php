@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
 use Illuminate\Support\Arr;
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Models\Nest;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Models\Nest;
+use PheonixPanel\Models\Server;
 use League\Fractal\Resource\Item;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\EggVariable;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 class EggTransformer extends BaseTransformer
 {
@@ -82,7 +82,7 @@ class EggTransformer extends BaseTransformer
     /**
      * Include the Nest relationship for the given Egg in the transformation.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeNest(Egg $model): Item|NullResource
     {
@@ -98,7 +98,7 @@ class EggTransformer extends BaseTransformer
     /**
      * Include the Servers relationship for the given Egg in the transformation.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServers(Egg $model): Collection|NullResource
     {
@@ -158,7 +158,7 @@ class EggTransformer extends BaseTransformer
     /**
      * Include the variables that are defined for this Egg.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeVariables(Egg $model): Collection|NullResource
     {

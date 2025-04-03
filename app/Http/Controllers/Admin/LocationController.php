@@ -1,19 +1,19 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin;
+namespace PheonixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
-use PhoenixPanel\Models\Location;
+use PheonixPanel\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Http\Requests\Admin\LocationFormRequest;
-use PhoenixPanel\Services\Locations\LocationUpdateService;
-use PhoenixPanel\Services\Locations\LocationCreationService;
-use PhoenixPanel\Services\Locations\LocationDeletionService;
-use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Requests\Admin\LocationFormRequest;
+use PheonixPanel\Services\Locations\LocationUpdateService;
+use PheonixPanel\Services\Locations\LocationCreationService;
+use PheonixPanel\Services\Locations\LocationDeletionService;
+use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class LocationController extends Controller
 {
@@ -43,7 +43,7 @@ class LocationController extends Controller
     /**
      * Return the location view page.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function view(int $id): View
     {
@@ -86,7 +86,7 @@ class LocationController extends Controller
      * Delete a location from the system.
      *
      * @throws \Exception
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function delete(Location $location): RedirectResponse
     {

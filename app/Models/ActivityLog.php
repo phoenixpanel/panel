@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
-use PhoenixPanel\Events\ActivityLogged;
+use PheonixPanel\Events\ActivityLogged;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 
 /**
- * \PhoenixPanel\Models\ActivityLog.
+ * \PheonixPanel\Models\ActivityLog.
  *
  * @property int $id
  * @property string|null $batch
@@ -26,9 +26,9 @@ use Illuminate\Database\Eloquent\Model as IlluminateModel;
  * @property \Illuminate\Support\Collection|null $properties
  * @property \Carbon\Carbon $timestamp
  * @property IlluminateModel|\Eloquent $actor
- * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\ActivityLogSubject[] $subjects
+ * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\ActivityLogSubject[] $subjects
  * @property int|null $subjects_count
- * @property \PhoenixPanel\Models\ApiKey|null $apiKey
+ * @property \PheonixPanel\Models\ApiKey|null $apiKey
  *
  * @method static Builder|ActivityLog forActor(\Illuminate\Database\Eloquent\Model $actor)
  * @method static Builder|ActivityLog forEvent(string $action)

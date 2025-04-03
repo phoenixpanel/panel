@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Repository;
+namespace PheonixPanel\Contracts\Repository;
 
-use PhoenixPanel\Models\Allocation;
+use PheonixPanel\Models\Allocation;
 
 interface AllocationRepositoryInterface extends RepositoryInterface
 {

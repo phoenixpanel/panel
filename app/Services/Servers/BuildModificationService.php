@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
 use Illuminate\Support\Arr;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\Allocation;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\Allocation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Repositories\Wings\DaemonServerRepository;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class BuildModificationService
 {
@@ -28,11 +28,11 @@ class BuildModificationService
      * Change the build details for a specified server.
      *
      * @throws \Throwable
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function handle(Server $server, array $data): Server
     {
-        /** @var \PhoenixPanel\Models\Server $server */
+        /** @var \PheonixPanel\Models\Server $server */
         $server = $this->connection->transaction(function () use ($server, $data) {
             $this->processAllocations($server, $data);
 
@@ -77,7 +77,7 @@ class BuildModificationService
     /**
      * Process the allocations being assigned in the data and ensure they are available for a server.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     private function processAllocations(Server $server, array &$data): void
     {

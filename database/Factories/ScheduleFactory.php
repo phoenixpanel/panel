@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use PhoenixPanel\Models\Schedule;
+use PheonixPanel\Models\Schedule;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ScheduleFactory extends Factory

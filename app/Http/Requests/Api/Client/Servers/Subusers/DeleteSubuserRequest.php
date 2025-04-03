@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client\Servers\Subusers;
+namespace PheonixPanel\Http\Requests\Api\Client\Servers\Subusers;
 
-use PhoenixPanel\Models\Permission;
+use PheonixPanel\Models\Permission;
 
 class DeleteSubuserRequest extends SubuserRequest
 {

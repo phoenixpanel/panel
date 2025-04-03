@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Transformer;
+namespace PheonixPanel\Exceptions\Transformer;
 
-use PhoenixPanel\Exceptions\PhoenixPanelException;
+use PheonixPanel\Exceptions\PheonixPanelException;
 
-class InvalidTransformerLevelException extends PhoenixPanelException
+class InvalidTransformerLevelException extends PheonixPanelException
 {
 }

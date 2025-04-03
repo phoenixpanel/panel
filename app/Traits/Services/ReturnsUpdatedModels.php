@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Traits\Services;
+namespace PheonixPanel\Traits\Services;
 
 trait ReturnsUpdatedModels
 {

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\EggVariable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EggVariableFactory extends Factory

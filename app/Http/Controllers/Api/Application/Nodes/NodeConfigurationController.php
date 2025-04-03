@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Application\Nodes;
+namespace PheonixPanel\Http\Controllers\Api\Application\Nodes;
 
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Http\Requests\Api\Application\Nodes\GetNodeRequest;
-use PhoenixPanel\Http\Controllers\Api\Application\ApplicationApiController;
+use PheonixPanel\Http\Requests\Api\Application\Nodes\GetNodeRequest;
+use PheonixPanel\Http\Controllers\Api\Application\ApplicationApiController;
 
 class NodeConfigurationController extends ApplicationApiController
 {

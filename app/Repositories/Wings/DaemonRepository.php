@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Wings;
+namespace PheonixPanel\Repositories\Wings;
 
 use GuzzleHttp\Client;
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 
 abstract class DaemonRepository
@@ -53,8 +53,8 @@ abstract class DaemonRepository
         return new Client([
             'verify' => $this->app->environment('production'),
             'base_uri' => $this->node->getConnectionAddress(),
-            'timeout' => config('phoenixpanel.guzzle.timeout'),
-            'connect_timeout' => config('phoenixpanel.guzzle.connect_timeout'),
+            'timeout' => config('pheonixpanel.guzzle.timeout'),
+            'connect_timeout' => config('pheonixpanel.guzzle.connect_timeout'),
             'headers' => array_merge($headers, [
                 'Authorization' => 'Bearer ' . $this->node->getDecryptedKey(),
                 'Accept' => 'application/json',

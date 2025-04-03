@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
-use PhoenixPanel\Models\Location;
+use PheonixPanel\Models\Location;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 class LocationTransformer extends BaseTransformer
 {
@@ -39,7 +39,7 @@ class LocationTransformer extends BaseTransformer
     /**
      * Return the nodes associated with this location.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServers(Location $location): Collection|NullResource
     {
@@ -55,7 +55,7 @@ class LocationTransformer extends BaseTransformer
     /**
      * Return the nodes associated with this location.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeNodes(Location $location): Collection|NullResource
     {

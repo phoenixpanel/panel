@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $description
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Server[] $servers
- * @property \Illuminate\Database\Eloquent\Collection|\PhoenixPanel\Models\Egg[] $eggs
+ * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Server[] $servers
+ * @property \Illuminate\Database\Eloquent\Collection|\PheonixPanel\Models\Egg[] $eggs
  */
 class Nest extends Model
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\RecoveryToken;
+use PheonixPanel\Models\RecoveryToken;
 
 class RecoveryTokenRepository extends EloquentRepository
 {

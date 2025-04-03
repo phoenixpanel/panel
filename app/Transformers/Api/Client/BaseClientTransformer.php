@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Client;
+namespace PheonixPanel\Transformers\Api\Client;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Transformers\Api\Application\BaseTransformer as BaseApplicationTransformer;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Transformers\Api\Application\BaseTransformer as BaseApplicationTransformer;
 
 abstract class BaseClientTransformer extends BaseApplicationTransformer
 {

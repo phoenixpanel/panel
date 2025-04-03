@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Remote;
+namespace PheonixPanel\Http\Controllers\Api\Remote;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Services\Servers\EnvironmentService;
-use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Services\Servers\EnvironmentService;
+use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
 
 class EggInstallController extends Controller
 {
@@ -21,13 +21,13 @@ class EggInstallController extends Controller
      * Handle request to get script and installation information for a server
      * that is being created on the node.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(Request $request, string $uuid): JsonResponse
     {
         $node = $request->attributes->get('node');
 
-        /** @var \PhoenixPanel\Models\Server $server */
+        /** @var \PheonixPanel\Models\Server $server */
         $server = $this->repository->findFirstWhere([
             ['uuid', '=', $uuid],
             ['node_id', '=', $node->id],

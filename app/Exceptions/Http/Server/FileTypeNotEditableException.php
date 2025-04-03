@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Http\Server;
+namespace PheonixPanel\Exceptions\Http\Server;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class FileTypeNotEditableException extends DisplayException
 {

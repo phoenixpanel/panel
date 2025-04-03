@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Yaml\Yaml;
@@ -34,10 +34,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $daemonBase
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \PhoenixPanel\Models\Location $location
- * @property \PhoenixPanel\Models\Mount[]|\Illuminate\Database\Eloquent\Collection $mounts
- * @property \PhoenixPanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
- * @property \PhoenixPanel\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations
+ * @property \PheonixPanel\Models\Location $location
+ * @property \PheonixPanel\Models\Mount[]|\Illuminate\Database\Eloquent\Collection $mounts
+ * @property \PheonixPanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
+ * @property \PheonixPanel\Models\Allocation[]|\Illuminate\Database\Eloquent\Collection $allocations
  */
 class Node extends Model
 {
@@ -115,7 +115,7 @@ class Node extends Model
         'behind_proxy' => false,
         'memory_overallocate' => 0,
         'disk_overallocate' => 0,
-        'daemonBase' => '/var/lib/phoenixpanel/volumes',
+        'daemonBase' => '/var/lib/pheonixpanel/volumes',
         'daemonSFTP' => 2022,
         'daemonListen' => 8080,
         'maintenance_mode' => false,

@@ -1,30 +1,30 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin;
+namespace PheonixPanel\Http\Controllers\Admin;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Allocation;
+use PheonixPanel\Models\Allocation;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Services\Nodes\NodeUpdateService;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Services\Nodes\NodeUpdateService;
 use Illuminate\Cache\Repository as CacheRepository;
-use PhoenixPanel\Services\Nodes\NodeCreationService;
-use PhoenixPanel\Services\Nodes\NodeDeletionService;
-use PhoenixPanel\Services\Allocations\AssignmentService;
-use PhoenixPanel\Services\Helpers\SoftwareVersionService;
-use PhoenixPanel\Http\Requests\Admin\Node\NodeFormRequest;
-use PhoenixPanel\Contracts\Repository\NodeRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\ServerRepositoryInterface;
-use PhoenixPanel\Http\Requests\Admin\Node\AllocationFormRequest;
-use PhoenixPanel\Services\Allocations\AllocationDeletionService;
-use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\AllocationRepositoryInterface;
-use PhoenixPanel\Http\Requests\Admin\Node\AllocationAliasFormRequest;
+use PheonixPanel\Services\Nodes\NodeCreationService;
+use PheonixPanel\Services\Nodes\NodeDeletionService;
+use PheonixPanel\Services\Allocations\AssignmentService;
+use PheonixPanel\Services\Helpers\SoftwareVersionService;
+use PheonixPanel\Http\Requests\Admin\Node\NodeFormRequest;
+use PheonixPanel\Contracts\Repository\NodeRepositoryInterface;
+use PheonixPanel\Contracts\Repository\ServerRepositoryInterface;
+use PheonixPanel\Http\Requests\Admin\Node\AllocationFormRequest;
+use PheonixPanel\Services\Allocations\AllocationDeletionService;
+use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PheonixPanel\Contracts\Repository\AllocationRepositoryInterface;
+use PheonixPanel\Http\Requests\Admin\Node\AllocationAliasFormRequest;
 
 class NodesController extends Controller
 {
@@ -66,7 +66,7 @@ class NodesController extends Controller
     /**
      * Post controller to create a new node on the system.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function store(NodeFormRequest $request): RedirectResponse
     {
@@ -79,9 +79,9 @@ class NodesController extends Controller
     /**
      * Updates settings for a node.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function updateSettings(NodeFormRequest $request, Node $node): RedirectResponse
     {
@@ -94,7 +94,7 @@ class NodesController extends Controller
     /**
      * Removes a single allocation from a node.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
      */
     public function allocationRemoveSingle(int $node, Allocation $allocation): Response
     {
@@ -106,7 +106,7 @@ class NodesController extends Controller
     /**
      * Removes multiple individual allocations from a node.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\ServerUsingAllocationException
      */
     public function allocationRemoveMultiple(Request $request, int $node): Response
     {
@@ -140,8 +140,8 @@ class NodesController extends Controller
     /**
      * Sets an alias for a specific allocation on a node.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function allocationSetAlias(AllocationAliasFormRequest $request): \Symfony\Component\HttpFoundation\Response
     {
@@ -155,10 +155,10 @@ class NodesController extends Controller
     /**
      * Creates new allocations on a node.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     public function createAllocation(AllocationFormRequest $request, Node $node): RedirectResponse
     {
@@ -171,7 +171,7 @@ class NodesController extends Controller
     /**
      * Deletes a node from the system.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function delete(int|Node $node): RedirectResponse
     {

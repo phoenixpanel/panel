@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\Database;
+use PheonixPanel\Models\Database;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DatabaseFactory extends Factory

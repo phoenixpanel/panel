@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\ServerVariable;
-use PhoenixPanel\Contracts\Repository\ServerVariableRepositoryInterface;
+use PheonixPanel\Models\ServerVariable;
+use PheonixPanel\Contracts\Repository\ServerVariableRepositoryInterface;
 
 class ServerVariableRepository extends EloquentRepository implements ServerVariableRepositoryInterface
 {

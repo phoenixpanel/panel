@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $user_id
  * @property string $token
  * @property \Carbon\CarbonImmutable $created_at
- * @property \PhoenixPanel\Models\User $user
+ * @property \PheonixPanel\Models\User $user
  */
 class RecoveryToken extends Model
 {

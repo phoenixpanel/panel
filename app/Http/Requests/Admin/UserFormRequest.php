@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin;
+namespace PheonixPanel\Http\Requests\Admin;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Support\Collection;
 
 class UserFormRequest extends AdminFormRequest

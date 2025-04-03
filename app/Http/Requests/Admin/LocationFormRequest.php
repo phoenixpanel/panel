@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin;
+namespace PheonixPanel\Http\Requests\Admin;
 
-use PhoenixPanel\Models\Location;
+use PheonixPanel\Models\Location;
 
 class LocationFormRequest extends AdminFormRequest
 {

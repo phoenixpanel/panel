@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Repositories\Wings\DaemonServerRepository;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class SuspensionService

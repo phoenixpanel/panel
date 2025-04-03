@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Http\Connection;
+namespace PheonixPanel\Exceptions\Http\Connection;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Exception\GuzzleException;
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 /**
  * @method \GuzzleHttp\Exception\GuzzleException getPrevious()

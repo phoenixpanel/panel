@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Exceptions;
+namespace PheonixPanel\Exceptions;
 
 class AccountNotFoundException extends \Exception
 {

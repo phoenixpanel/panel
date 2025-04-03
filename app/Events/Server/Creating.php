@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Events\Server;
+namespace PheonixPanel\Events\Server;
 
-use PhoenixPanel\Events\Event;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Events\Event;
+use PheonixPanel\Models\Server;
 use Illuminate\Queue\SerializesModels;
 
 class Creating extends Event

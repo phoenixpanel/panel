@@ -1,14 +1,14 @@
 <?php
 
-namespace PhoenixPanel\Services\Eggs\Variables;
+namespace PheonixPanel\Services\Eggs\Variables;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\EggVariable;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Traits\Services\ValidatesValidationRules;
+use PheonixPanel\Models\EggVariable;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Traits\Services\ValidatesValidationRules;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use PhoenixPanel\Contracts\Repository\EggVariableRepositoryInterface;
-use PhoenixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
+use PheonixPanel\Contracts\Repository\EggVariableRepositoryInterface;
+use PheonixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException;
 
 class VariableUpdateService
 {
@@ -33,10 +33,10 @@ class VariableUpdateService
     /**
      * Update a specific egg variable.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PhoenixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException
+     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Service\Egg\Variable\ReservedVariableNameException
      */
     public function handle(EggVariable $variable, array $data): mixed
     {

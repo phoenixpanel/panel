@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
 use League\Fractal\Resource\Item;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\EggVariable;
 use League\Fractal\Resource\NullResource;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 class ServerVariableTransformer extends BaseTransformer
 {
@@ -33,7 +33,7 @@ class ServerVariableTransformer extends BaseTransformer
     /**
      * Return the parent service variable data.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeParent(EggVariable $variable): Item|NullResource
     {

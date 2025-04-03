@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use Illuminate\Support\Collection;
-use PhoenixPanel\Models\EggVariable;
+use PheonixPanel\Models\EggVariable;
 use Illuminate\Validation\ValidationException;
-use PhoenixPanel\Traits\Services\HasUserLevels;
+use PheonixPanel\Traits\Services\HasUserLevels;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class VariableValidatorService
@@ -34,7 +34,7 @@ class VariableValidatorService
             $query = $query->where('user_editable', true)->where('user_viewable', true);
         }
 
-        /** @var \PhoenixPanel\Models\EggVariable[] $variables */
+        /** @var \PheonixPanel\Models\EggVariable[] $variables */
         $variables = $query->get();
 
         $data = $rules = $customAttributes = [];

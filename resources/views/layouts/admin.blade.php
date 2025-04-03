@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ config('app.name', 'PhoenixPanel') }} - @yield('title')</title>
+        <title>{{ config('app.name', 'PheonixPanel') }} - @yield('title')</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta name="_token" content="{{ csrf_token() }}">
 
@@ -25,7 +25,7 @@
             {!! Theme::css('vendor/adminlte/colors/skin-blue.min.css?t={cache-version}') !!}
             {!! Theme::css('vendor/sweetalert/sweetalert.min.css?t={cache-version}') !!}
             {!! Theme::css('vendor/animate/animate.min.css?t={cache-version}') !!}
-            {!! Theme::css('css/phoenixpanel.css?t={cache-version}') !!}
+            {!! Theme::css('css/pheonixpanel.css?t={cache-version}') !!}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -39,7 +39,7 @@
         <div class="wrapper">
             <header class="main-header">
                 <a href="{{ route('index') }}" class="logo">
-                    <span>{{ config('app.name', 'PhoenixPanel') }}</span>
+                    <span>{{ config('app.name', 'PheonixPanel') }}</span>
                 </a>
                 <nav class="navbar navbar-static-top">
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -159,7 +159,7 @@
                     <strong><i class="fa fa-fw {{ $appIsGit ? 'fa-git-square' : 'fa-code-fork' }}"></i></strong> {{ $appVersion }}<br />
                     <strong><i class="fa fa-fw fa-clock-o"></i></strong> {{ round(microtime(true) - LARAVEL_START, 3) }}s
                 </div>
-                Copyright &copy; 2015 - {{ date('Y') }} <a href="https://phoenixpanel.io/">PhoenixPanel Software</a>.
+                Copyright &copy; 2015 - {{ date('Y') }} <a href="https://pheonixpanel.io/">PheonixPanel Software</a>.
             </footer>
         </div>
         @section('footer-scripts')

@@ -1,21 +1,21 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Client\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Client\Servers;
 
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Facades\Activity;
-use PhoenixPanel\Models\Allocation;
-use PhoenixPanel\Exceptions\DisplayException;
-use PhoenixPanel\Repositories\Eloquent\ServerRepository;
-use PhoenixPanel\Transformers\Api\Client\AllocationTransformer;
-use PhoenixPanel\Http\Controllers\Api\Client\ClientApiController;
-use PhoenixPanel\Services\Allocations\FindAssignableAllocationService;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Network\GetNetworkRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Network\NewAllocationRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Network\DeleteAllocationRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Network\UpdateAllocationRequest;
-use PhoenixPanel\Http\Requests\Api\Client\Servers\Network\SetPrimaryAllocationRequest;
+use PheonixPanel\Facades\Activity;
+use PheonixPanel\Models\Allocation;
+use PheonixPanel\Exceptions\DisplayException;
+use PheonixPanel\Repositories\Eloquent\ServerRepository;
+use PheonixPanel\Transformers\Api\Client\AllocationTransformer;
+use PheonixPanel\Http\Controllers\Api\Client\ClientApiController;
+use PheonixPanel\Services\Allocations\FindAssignableAllocationService;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Network\GetNetworkRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Network\NewAllocationRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Network\DeleteAllocationRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Network\UpdateAllocationRequest;
+use PheonixPanel\Http\Requests\Api\Client\Servers\Network\SetPrimaryAllocationRequest;
 
 class NetworkAllocationController extends ClientApiController
 {
@@ -43,8 +43,8 @@ class NetworkAllocationController extends ClientApiController
     /**
      * Set the primary allocation for a server.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function update(UpdateAllocationRequest $request, Server $server, Allocation $allocation): array
     {
@@ -67,8 +67,8 @@ class NetworkAllocationController extends ClientApiController
     /**
      * Set the primary allocation for a server.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function setPrimary(SetPrimaryAllocationRequest $request, Server $server, Allocation $allocation): array
     {
@@ -88,7 +88,7 @@ class NetworkAllocationController extends ClientApiController
      * Set the notes for the allocation for a server.
      *s.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function store(NewAllocationRequest $request, Server $server): array
     {
@@ -111,7 +111,7 @@ class NetworkAllocationController extends ClientApiController
     /**
      * Delete an allocation from a server.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\DisplayException
      */
     public function delete(DeleteAllocationRequest $request, Server $server, Allocation $allocation): JsonResponse
     {

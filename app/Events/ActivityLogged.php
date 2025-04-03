@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Events;
+namespace PheonixPanel\Events;
 
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\ActivityLog;
+use PheonixPanel\Models\ActivityLog;
 use Illuminate\Database\Eloquent\Model;
 
 class ActivityLogged extends Event

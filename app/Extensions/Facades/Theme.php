@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Extensions\Facades;
+namespace PheonixPanel\Extensions\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

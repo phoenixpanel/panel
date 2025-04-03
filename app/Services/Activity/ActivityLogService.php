@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Services\Activity;
+namespace PheonixPanel\Services\Activity;
 
 use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use PhoenixPanel\Models\ActivityLog;
+use PheonixPanel\Models\ActivityLog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
-use PhoenixPanel\Models\ActivityLogSubject;
+use PheonixPanel\Models\ActivityLogSubject;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 

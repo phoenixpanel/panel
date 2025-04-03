@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Application;
+namespace PheonixPanel\Http\Controllers\Api\Application;
 
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Extensions\Spatie\Fractalistic\Fractal;
-use PhoenixPanel\Transformers\Api\Application\BaseTransformer;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Extensions\Spatie\Fractalistic\Fractal;
+use PheonixPanel\Transformers\Api\Application\BaseTransformer;
 
 abstract class ApplicationApiController extends Controller
 {
@@ -49,7 +49,7 @@ abstract class ApplicationApiController extends Controller
     /**
      * Return an instance of an application transformer.
      *
-     * @template T of \PhoenixPanel\Transformers\Api\Application\BaseTransformer
+     * @template T of \PheonixPanel\Transformers\Api\Application\BaseTransformer
      *
      * @param class-string<T> $abstract
      *

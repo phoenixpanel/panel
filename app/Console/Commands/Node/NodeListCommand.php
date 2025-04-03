@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Node;
+namespace PheonixPanel\Console\Commands\Node;
 
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Console\Command;
 
 class NodeListCommand extends Command

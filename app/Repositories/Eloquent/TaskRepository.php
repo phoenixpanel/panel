@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\Task;
+use PheonixPanel\Models\Task;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use PhoenixPanel\Contracts\Repository\TaskRepositoryInterface;
-use PhoenixPanel\Exceptions\Repository\RecordNotFoundException;
+use PheonixPanel\Contracts\Repository\TaskRepositoryInterface;
+use PheonixPanel\Exceptions\Repository\RecordNotFoundException;
 
 class TaskRepository extends EloquentRepository implements TaskRepositoryInterface
 {
@@ -20,7 +20,7 @@ class TaskRepository extends EloquentRepository implements TaskRepositoryInterfa
     /**
      * Get a task and the server relationship for that task.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getTaskForJobProcess(int $id): Task
     {

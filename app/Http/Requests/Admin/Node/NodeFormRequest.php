@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Admin\Node;
+namespace PheonixPanel\Http\Requests\Admin\Node;
 
-use PhoenixPanel\Rules\Fqdn;
-use PhoenixPanel\Models\Node;
-use PhoenixPanel\Http\Requests\Admin\AdminFormRequest;
+use PheonixPanel\Rules\Fqdn;
+use PheonixPanel\Models\Node;
+use PheonixPanel\Http\Requests\Admin\AdminFormRequest;
 
 class NodeFormRequest extends AdminFormRequest
 {

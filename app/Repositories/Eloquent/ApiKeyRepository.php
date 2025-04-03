@@ -1,11 +1,11 @@
 <?php
 
-namespace PhoenixPanel\Repositories\Eloquent;
+namespace PheonixPanel\Repositories\Eloquent;
 
-use PhoenixPanel\Models\User;
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\User;
+use PheonixPanel\Models\ApiKey;
 use Illuminate\Support\Collection;
-use PhoenixPanel\Contracts\Repository\ApiKeyRepositoryInterface;
+use PheonixPanel\Contracts\Repository\ApiKeyRepositoryInterface;
 
 class ApiKeyRepository extends EloquentRepository implements ApiKeyRepositoryInterface
 {

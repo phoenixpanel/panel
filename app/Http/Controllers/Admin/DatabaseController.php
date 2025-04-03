@@ -1,21 +1,21 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin;
+namespace PheonixPanel\Http\Controllers\Admin;
 
 use Exception;
 use Illuminate\View\View;
-use PhoenixPanel\Models\DatabaseHost;
+use PheonixPanel\Models\DatabaseHost;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Services\Databases\Hosts\HostUpdateService;
-use PhoenixPanel\Http\Requests\Admin\DatabaseHostFormRequest;
-use PhoenixPanel\Services\Databases\Hosts\HostCreationService;
-use PhoenixPanel\Services\Databases\Hosts\HostDeletionService;
-use PhoenixPanel\Contracts\Repository\DatabaseRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Services\Databases\Hosts\HostUpdateService;
+use PheonixPanel\Http\Requests\Admin\DatabaseHostFormRequest;
+use PheonixPanel\Services\Databases\Hosts\HostCreationService;
+use PheonixPanel\Services\Databases\Hosts\HostDeletionService;
+use PheonixPanel\Contracts\Repository\DatabaseRepositoryInterface;
+use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PheonixPanel\Contracts\Repository\DatabaseHostRepositoryInterface;
 
 class DatabaseController extends Controller
 {
@@ -48,7 +48,7 @@ class DatabaseController extends Controller
     /**
      * Display database host to user.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function view(int $host): View
     {
@@ -117,7 +117,7 @@ class DatabaseController extends Controller
     /**
      * Handle request to delete a database host.
      *
-     * @throws \PhoenixPanel\Exceptions\Service\HasActiveServersException
+     * @throws \PheonixPanel\Exceptions\Service\HasActiveServersException
      */
     public function delete(int $host): RedirectResponse
     {

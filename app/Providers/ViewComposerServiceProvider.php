@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Providers;
+namespace PheonixPanel\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use PhoenixPanel\Http\ViewComposers\AssetComposer;
+use PheonixPanel\Http\ViewComposers\AssetComposer;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {

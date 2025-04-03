@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Application\Servers;
+namespace PheonixPanel\Http\Requests\Api\Application\Servers;
 
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Support\Collection;
 
 class UpdateServerBuildConfigurationRequest extends ServerWriteRequest
@@ -29,7 +29,7 @@ class UpdateServerBuildConfigurationRequest extends ServerWriteRequest
             // Legacy rules to maintain backwards compatable API support without requiring
             // a major version bump.
             //
-            // @see https://github.com/phoenixpanel/panel/issues/1500
+            // @see https://github.com/pheonixpanel/panel/issues/1500
             'memory' => $this->requiredToOptional('memory', $rules['memory']),
             'swap' => $this->requiredToOptional('swap', $rules['swap']),
             'io' => $this->requiredToOptional('io', $rules['io']),
@@ -95,7 +95,7 @@ class UpdateServerBuildConfigurationRequest extends ServerWriteRequest
      * compatability with the old API endpoint while also supporting a more correct API
      * call.
      *
-     * @see https://github.com/phoenixpanel/panel/issues/1500
+     * @see https://github.com/pheonixpanel/panel/issues/1500
      */
     protected function requiredToOptional(string $field, array $rules, bool $limits = false): array
     {

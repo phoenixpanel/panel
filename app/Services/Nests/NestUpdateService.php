@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Services\Nests;
+namespace PheonixPanel\Services\Nests;
 
-use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
+use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
 
 class NestUpdateService
 {
@@ -16,8 +16,8 @@ class NestUpdateService
     /**
      * Update a nest and prevent changing the author once it is set.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function handle(int $nest, array $data): void
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Client;
+namespace PheonixPanel\Transformers\Api\Client;
 
-use PhoenixPanel\Models\UserSSHKey;
+use PheonixPanel\Models\UserSSHKey;
 
 class UserSSHKeyTransformer extends BaseClientTransformer
 {

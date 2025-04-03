@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Helper;
+namespace PheonixPanel\Exceptions\Service\Helper;
 
 class CdnVersionFetchingException extends \Exception
 {

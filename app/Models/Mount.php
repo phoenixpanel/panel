@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Models;
+namespace PheonixPanel\Models;
 
 use Illuminate\Validation\Rules\NotIn;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $target
  * @property bool $read_only
  * @property bool $user_mountable
- * @property \PhoenixPanel\Models\Egg[]|\Illuminate\Database\Eloquent\Collection $eggs
- * @property \PhoenixPanel\Models\Node[]|\Illuminate\Database\Eloquent\Collection $nodes
- * @property \PhoenixPanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
+ * @property \PheonixPanel\Models\Egg[]|\Illuminate\Database\Eloquent\Collection $eggs
+ * @property \PheonixPanel\Models\Node[]|\Illuminate\Database\Eloquent\Collection $nodes
+ * @property \PheonixPanel\Models\Server[]|\Illuminate\Database\Eloquent\Collection $servers
  */
 class Mount extends Model
 {
@@ -80,8 +80,8 @@ class Mount extends Model
      * Blacklisted source paths.
      */
     public static $invalidSourcePaths = [
-        '/etc/phoenixpanel',
-        '/var/lib/phoenixpanel/volumes',
+        '/etc/pheonixpanel',
+        '/var/lib/pheonixpanel/volumes',
         '/srv/daemon-data',
     ];
 

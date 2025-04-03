@@ -127,7 +127,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'phoenixpanel'), '_') . '_session'
+        Str::slug(env('APP_NAME', 'pheonixpanel'), '_') . '_session'
     ),
 
     /*

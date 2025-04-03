@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Services\Api;
+namespace PheonixPanel\Services\Api;
 
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\ApiKey;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Contracts\Repository\ApiKeyRepositoryInterface;
+use PheonixPanel\Contracts\Repository\ApiKeyRepositoryInterface;
 
 class KeyCreationService
 {
@@ -33,7 +33,7 @@ class KeyCreationService
      * This will automatically generate an identifier and an encrypted token that are
      * stored in the database.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function handle(array $data, array $permissions = []): ApiKey
     {

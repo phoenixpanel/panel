@@ -40,7 +40,7 @@ const FileObjectRow = ({ file }: { file: FileObject }) => (
         key={file.name}
         onContextMenu={(e) => {
             e.preventDefault();
-            window.dispatchEvent(new CustomEvent(`phoenixpanel:files:ctx:${file.key}`, { detail: e.clientX }));
+            window.dispatchEvent(new CustomEvent(`pheonixpanel:files:ctx:${file.key}`, { detail: e.clientX }));
         }}
     >
         <SelectFileCheckbox name={file.name} />

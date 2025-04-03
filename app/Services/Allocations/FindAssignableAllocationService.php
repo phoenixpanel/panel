@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Services\Allocations;
+namespace PheonixPanel\Services\Allocations;
 
 use Webmozart\Assert\Assert;
-use PhoenixPanel\Models\Server;
-use PhoenixPanel\Models\Allocation;
-use PhoenixPanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
-use PhoenixPanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
+use PheonixPanel\Models\Server;
+use PheonixPanel\Models\Allocation;
+use PheonixPanel\Exceptions\Service\Allocation\AutoAllocationNotEnabledException;
+use PheonixPanel\Exceptions\Service\Allocation\NoAutoAllocationSpaceAvailableException;
 
 class FindAssignableAllocationService
 {
@@ -22,22 +22,22 @@ class FindAssignableAllocationService
      * no allocation can be found, a new one will be created with a random port between the defined
      * range from the configuration.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     public function handle(Server $server): Allocation
     {
-        if (!config('phoenixpanel.client_features.allocations.enabled')) {
+        if (!config('pheonixpanel.client_features.allocations.enabled')) {
             throw new AutoAllocationNotEnabledException();
         }
 
         // Attempt to find a given available allocation for a server. If one cannot be found
         // we will fall back to attempting to create a new allocation that can be used for the
         // server.
-        /** @var \PhoenixPanel\Models\Allocation|null $allocation */
+        /** @var \PheonixPanel\Models\Allocation|null $allocation */
         $allocation = $server->node->allocations()
             ->where('ip', $server->allocation->ip)
             ->whereNull('server_id')
@@ -56,16 +56,16 @@ class FindAssignableAllocationService
      * in the settings. If there are no matches in that range, or something is wrong with the
      * range information provided an exception will be raised.
      *
-     * @throws \PhoenixPanel\Exceptions\DisplayException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \PhoenixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws \PheonixPanel\Exceptions\DisplayException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\CidrOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\InvalidPortMappingException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\PortOutOfRangeException
+     * @throws \PheonixPanel\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
     protected function createNewAllocation(Server $server): Allocation
     {
-        $start = config('phoenixpanel.client_features.allocations.range_start', null);
-        $end = config('phoenixpanel.client_features.allocations.range_end', null);
+        $start = config('pheonixpanel.client_features.allocations.range_start', null);
+        $end = config('pheonixpanel.client_features.allocations.range_end', null);
 
         if (!$start || !$end) {
             throw new NoAutoAllocationSpaceAvailableException();
@@ -100,7 +100,7 @@ class FindAssignableAllocationService
             'allocation_ports' => [$port],
         ]);
 
-        /** @var \PhoenixPanel\Models\Allocation $allocation */
+        /** @var \PheonixPanel\Models\Allocation $allocation */
         $allocation = $server->node->allocations()
             ->where('ip', $server->allocation->ip)
             ->where('port', $port)

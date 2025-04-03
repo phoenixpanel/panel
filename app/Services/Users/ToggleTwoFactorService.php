@@ -1,16 +1,16 @@
 <?php
 
-namespace PhoenixPanel\Services\Users;
+namespace PheonixPanel\Services\Users;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\User;
+use PheonixPanel\Models\User;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Contracts\Repository\UserRepositoryInterface;
-use PhoenixPanel\Repositories\Eloquent\RecoveryTokenRepository;
-use PhoenixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid;
+use PheonixPanel\Contracts\Repository\UserRepositoryInterface;
+use PheonixPanel\Repositories\Eloquent\RecoveryTokenRepository;
+use PheonixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid;
 
 class ToggleTwoFactorService
 {
@@ -33,13 +33,13 @@ class ToggleTwoFactorService
      * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
      * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
      * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
-     * @throws \PhoenixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid
+     * @throws \PheonixPanel\Exceptions\Service\User\TwoFactorAuthenticationTokenInvalid
      */
     public function handle(User $user, string $token, bool $toggleState = null): array
     {
         $secret = $this->encrypter->decrypt($user->totp_secret);
 
-        $isValidToken = $this->google2FA->verifyKey($secret, $token, config()->get('phoenixpanel.auth.2fa.window'));
+        $isValidToken = $this->google2FA->verifyKey($secret, $token, config()->get('pheonixpanel.auth.2fa.window'));
 
         if (!$isValidToken) {
             throw new TwoFactorAuthenticationTokenInvalid();

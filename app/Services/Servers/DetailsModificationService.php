@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Services\Servers;
+namespace PheonixPanel\Services\Servers;
 
 use Illuminate\Support\Arr;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Database\ConnectionInterface;
-use PhoenixPanel\Traits\Services\ReturnsUpdatedModels;
-use PhoenixPanel\Repositories\Wings\DaemonServerRepository;
-use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
+use PheonixPanel\Traits\Services\ReturnsUpdatedModels;
+use PheonixPanel\Repositories\Wings\DaemonServerRepository;
+use PheonixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 
 class DetailsModificationService
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Events;
+namespace PheonixPanel\Events;
 
 abstract class Event
 {

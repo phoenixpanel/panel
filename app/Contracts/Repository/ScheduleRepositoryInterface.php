@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Repository;
+namespace PheonixPanel\Contracts\Repository;
 
-use PhoenixPanel\Models\Schedule;
+use PheonixPanel\Models\Schedule;
 use Illuminate\Support\Collection;
 
 interface ScheduleRepositoryInterface extends RepositoryInterface
@@ -15,7 +15,7 @@ interface ScheduleRepositoryInterface extends RepositoryInterface
     /**
      * Return a schedule model with all the associated tasks as a relationship.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getScheduleWithTasks(int $schedule): Schedule;
 }

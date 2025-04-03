@@ -1,10 +1,10 @@
 <?php
 
-namespace PhoenixPanel\Extensions\League\Fractal\Serializers;
+namespace PheonixPanel\Extensions\League\Fractal\Serializers;
 
 use League\Fractal\Serializer\ArraySerializer;
 
-class PhoenixPanelSerializer extends ArraySerializer
+class PheonixPanelSerializer extends ArraySerializer
 {
     /**
      * Serialize an item.

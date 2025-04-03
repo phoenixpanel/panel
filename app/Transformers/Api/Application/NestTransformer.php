@@ -1,13 +1,13 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Application;
+namespace PheonixPanel\Transformers\Api\Application;
 
-use PhoenixPanel\Models\Egg;
-use PhoenixPanel\Models\Nest;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Egg;
+use PheonixPanel\Models\Nest;
+use PheonixPanel\Models\Server;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\NullResource;
-use PhoenixPanel\Services\Acl\Api\AdminAcl;
+use PheonixPanel\Services\Acl\Api\AdminAcl;
 
 class NestTransformer extends BaseTransformer
 {
@@ -43,7 +43,7 @@ class NestTransformer extends BaseTransformer
     /**
      * Include the Eggs relationship on the given Nest model transformation.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeEggs(Nest $model): Collection|NullResource
     {
@@ -59,7 +59,7 @@ class NestTransformer extends BaseTransformer
     /**
      * Include the servers relationship on the given Nest model.
      *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
+     * @throws \PheonixPanel\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeServers(Nest $model): Collection|NullResource
     {

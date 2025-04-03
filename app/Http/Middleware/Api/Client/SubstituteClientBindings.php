@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Http\Middleware\Api\Client;
+namespace PheonixPanel\Http\Middleware\Api\Client;
 
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 
 class SubstituteClientBindings extends SubstituteBindings
@@ -19,7 +19,7 @@ class SubstituteClientBindings extends SubstituteBindings
         });
 
         $this->router->bind('user', function ($value, $route) {
-            /** @var \PhoenixPanel\Models\Subuser $match */
+            /** @var \PheonixPanel\Models\Subuser $match */
             $match = $route->parameter('server')
                 ->subusers()
                 ->whereRelation('user', 'uuid', '=', $value)

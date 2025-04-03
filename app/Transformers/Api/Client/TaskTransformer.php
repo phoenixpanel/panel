@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Transformers\Api\Client;
+namespace PheonixPanel\Transformers\Api\Client;
 
-use PhoenixPanel\Models\Task;
+use PheonixPanel\Models\Task;
 
 class TaskTransformer extends BaseClientTransformer
 {

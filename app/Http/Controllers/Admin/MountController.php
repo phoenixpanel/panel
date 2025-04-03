@@ -1,22 +1,22 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin;
+namespace PheonixPanel\Http\Controllers\Admin;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\Nest;
+use PheonixPanel\Models\Nest;
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Mount;
-use PhoenixPanel\Models\Location;
+use PheonixPanel\Models\Mount;
+use PheonixPanel\Models\Location;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\View\Factory as ViewFactory;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Http\Requests\Admin\MountFormRequest;
-use PhoenixPanel\Repositories\Eloquent\MountRepository;
-use PhoenixPanel\Contracts\Repository\NestRepositoryInterface;
-use PhoenixPanel\Contracts\Repository\LocationRepositoryInterface;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Requests\Admin\MountFormRequest;
+use PheonixPanel\Repositories\Eloquent\MountRepository;
+use PheonixPanel\Contracts\Repository\NestRepositoryInterface;
+use PheonixPanel\Contracts\Repository\LocationRepositoryInterface;
 
 class MountController extends Controller
 {
@@ -45,7 +45,7 @@ class MountController extends Controller
     /**
      * Return the mount view page.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function view(string $id): View
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests;
+namespace PheonixPanel\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

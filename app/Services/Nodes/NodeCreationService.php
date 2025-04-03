@@ -1,12 +1,12 @@
 <?php
 
-namespace PhoenixPanel\Services\Nodes;
+namespace PheonixPanel\Services\Nodes;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
-use PhoenixPanel\Models\Node;
+use PheonixPanel\Models\Node;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Contracts\Repository\NodeRepositoryInterface;
+use PheonixPanel\Contracts\Repository\NodeRepositoryInterface;
 
 class NodeCreationService
 {
@@ -20,7 +20,7 @@ class NodeCreationService
     /**
      * Create a new node on the panel.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function handle(array $data): Node
     {

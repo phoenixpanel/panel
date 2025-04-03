@@ -20,7 +20,7 @@ return [
     |
     | Each panel installation is assigned a unique UUID to identify the
     | author of custom services, and make upgrades easier by identifying
-    | standard PhoenixPanel shipped services.
+    | standard PheonixPanel shipped services.
     */
 
     'service' => [
@@ -92,7 +92,7 @@ return [
 
     'cdn' => [
         'cache_time' => 60,
-        'url' => 'https://cdn.phoenixpanel.io/releases/latest.json',
+        'url' => 'https://cdn.pheonixpanel.io/releases/latest.json',
     ],
 
     /*
@@ -183,7 +183,7 @@ return [
     | Telemetry Settings
     |--------------------------------------------------------------------------
     |
-    | This section controls the telemetry sent by PhoenixPanel.
+    | This section controls the telemetry sent by PheonixPanel.
     */
 
     'telemetry' => [

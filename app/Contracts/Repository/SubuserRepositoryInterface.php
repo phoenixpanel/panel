@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Contracts\Repository;
+namespace PheonixPanel\Contracts\Repository;
 
-use PhoenixPanel\Models\Subuser;
+use PheonixPanel\Models\Subuser;
 
 interface SubuserRepositoryInterface extends RepositoryInterface
 {
@@ -19,7 +19,7 @@ interface SubuserRepositoryInterface extends RepositoryInterface
     /**
      * Return a subuser and associated permissions given a user_id and server_id.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function getWithPermissionsUsingUserAndServer(int $user, int $server): Subuser;
 }

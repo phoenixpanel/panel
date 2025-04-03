@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Environment;
+namespace PheonixPanel\Console\Commands\Environment;
 
 use Illuminate\Console\Command;
-use PhoenixPanel\Traits\Commands\EnvironmentWriterTrait;
+use PheonixPanel\Traits\Commands\EnvironmentWriterTrait;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class EmailSettingsCommand extends Command
@@ -36,7 +36,7 @@ class EmailSettingsCommand extends Command
     /**
      * Handle command execution.
      *
-     * @throws \PhoenixPanel\Exceptions\PhoenixPanelException
+     * @throws \PheonixPanel\Exceptions\PheonixPanelException
      */
     public function handle()
     {

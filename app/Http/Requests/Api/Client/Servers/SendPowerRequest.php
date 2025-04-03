@@ -1,9 +1,9 @@
 <?php
 
-namespace PhoenixPanel\Http\Requests\Api\Client\Servers;
+namespace PheonixPanel\Http\Requests\Api\Client\Servers;
 
-use PhoenixPanel\Models\Permission;
-use PhoenixPanel\Http\Requests\Api\Client\ClientApiRequest;
+use PheonixPanel\Models\Permission;
+use PheonixPanel\Http\Requests\Api\Client\ClientApiRequest;
 
 class SendPowerRequest extends ClientApiRequest
 {

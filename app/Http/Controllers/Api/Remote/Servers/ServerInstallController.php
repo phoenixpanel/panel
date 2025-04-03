@@ -1,17 +1,17 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Api\Remote\Servers;
+namespace PheonixPanel\Http\Controllers\Api\Remote\Servers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use PhoenixPanel\Models\Server;
+use PheonixPanel\Models\Server;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Repositories\Eloquent\ServerRepository;
-use PhoenixPanel\Events\Server\Installed as ServerInstalled;
+use PheonixPanel\Http\Controllers\Controller;
+use PheonixPanel\Repositories\Eloquent\ServerRepository;
+use PheonixPanel\Events\Server\Installed as ServerInstalled;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
-use PhoenixPanel\Http\Requests\Api\Remote\InstallationDataRequest;
+use PheonixPanel\Http\Requests\Api\Remote\InstallationDataRequest;
 
 class ServerInstallController extends Controller
 {
@@ -25,7 +25,7 @@ class ServerInstallController extends Controller
     /**
      * Returns installation information for a server.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
      */
     public function index(Request $request, string $uuid): JsonResponse
     {
@@ -42,8 +42,8 @@ class ServerInstallController extends Controller
     /**
      * Updates the installation state of a server.
      *
-     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Repository\RecordNotFoundException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function store(InstallationDataRequest $request, string $uuid): JsonResponse
     {
@@ -69,9 +69,9 @@ class ServerInstallController extends Controller
         // If the server successfully installed, fire installed event.
         // This logic allows individually disabling install and reinstall notifications separately.
         $isInitialInstall = is_null($server->installed_at);
-        if ($isInitialInstall && config()->get('phoenixpanel.email.send_install_notification', true)) {
+        if ($isInitialInstall && config()->get('pheonixpanel.email.send_install_notification', true)) {
             $this->eventDispatcher->dispatch(new ServerInstalled($server));
-        } elseif (!$isInitialInstall && config()->get('phoenixpanel.email.send_reinstall_notification', true)) {
+        } elseif (!$isInitialInstall && config()->get('pheonixpanel.email.send_reinstall_notification', true)) {
             $this->eventDispatcher->dispatch(new ServerInstalled($server));
         }
 

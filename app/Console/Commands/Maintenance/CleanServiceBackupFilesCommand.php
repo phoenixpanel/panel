@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands\Maintenance;
+namespace PheonixPanel\Console\Commands\Maintenance;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;

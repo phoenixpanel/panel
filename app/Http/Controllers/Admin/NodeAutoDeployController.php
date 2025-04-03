@@ -1,15 +1,15 @@
 <?php
 
-namespace PhoenixPanel\Http\Controllers\Admin;
+namespace PheonixPanel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use PhoenixPanel\Models\Node;
-use PhoenixPanel\Models\ApiKey;
+use PheonixPanel\Models\Node;
+use PheonixPanel\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use PhoenixPanel\Http\Controllers\Controller;
+use PheonixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Encryption\Encrypter;
-use PhoenixPanel\Services\Api\KeyCreationService;
-use PhoenixPanel\Repositories\Eloquent\ApiKeyRepository;
+use PheonixPanel\Services\Api\KeyCreationService;
+use PheonixPanel\Repositories\Eloquent\ApiKeyRepository;
 
 class NodeAutoDeployController extends Controller
 {
@@ -27,11 +27,11 @@ class NodeAutoDeployController extends Controller
      * Generates a new API key for the logged-in user with only permission to read
      * nodes, and returns that as the deployment key for a node.
      *
-     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PheonixPanel\Exceptions\Model\DataValidationException
      */
     public function __invoke(Request $request, Node $node): JsonResponse
     {
-        /** @var \PhoenixPanel\Models\ApiKey|null $key */
+        /** @var \PheonixPanel\Models\ApiKey|null $key */
         $key = $this->repository->getApplicationKeys($request->user())
             ->filter(function (ApiKey $key) {
                 foreach ($key->getAttributes() as $permission => $value) {

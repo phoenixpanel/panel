@@ -116,7 +116,7 @@
     $(document).ready(function () {
         $('#pEggId').select2({placeholder: 'Select a Nest Egg'}).on('change', function () {
             var selectedEgg = _.isNull($(this).val()) ? $(this).find('option').first().val() : $(this).val();
-            var parentChain = _.get(PhoenixPanel.nests, $("#pNestId").val());
+            var parentChain = _.get(PheonixPanel.nests, $("#pNestId").val());
             var objectChain = _.get(parentChain, 'eggs.' + selectedEgg);
 
             const images = _.get(objectChain, 'docker_images', [])
@@ -126,7 +126,7 @@
                 let opt = document.createElement('option');
                 opt.value = images[keys[i]];
                 opt.innerText = keys[i] + " (" + images[keys[i]] + ")";
-                if (objectChain.id === parseInt(PhoenixPanel.server.egg_id) && PhoenixPanel.server.image == opt.value) {
+                if (objectChain.id === parseInt(PheonixPanel.server.egg_id) && PheonixPanel.server.image == opt.value) {
                     opt.selected = true
                 }
                 $('#pDockerImage').append(opt);
@@ -135,9 +135,9 @@
                 $('#pDockerImageCustom').val('');
             })
 
-            if (objectChain.id === parseInt(PhoenixPanel.server.egg_id)) {
-                if ($('#pDockerImage').val() != PhoenixPanel.server.image) {
-                    $('#pDockerImageCustom').val(PhoenixPanel.server.image);
+            if (objectChain.id === parseInt(PheonixPanel.server.egg_id)) {
+                if ($('#pDockerImage').val() != PheonixPanel.server.image) {
+                    $('#pDockerImageCustom').val(PheonixPanel.server.image);
                 }
             }
 
@@ -149,7 +149,7 @@
 
             $('#appendVariablesTo').html('');
             $.each(_.get(objectChain, 'variables', []), function (i, item) {
-                var setValue = _.get(PhoenixPanel.server_variables, item.env_variable, item.default_value);
+                var setValue = _.get(PheonixPanel.server_variables, item.env_variable, item.default_value);
                 var isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
                 var dataAppend = ' \
                     <div class="col-xs-12"> \
@@ -173,7 +173,7 @@
 
         $('#pNestId').select2({placeholder: 'Select a Nest'}).on('change', function () {
             $('#pEggId').html('').select2({
-                data: $.map(_.get(PhoenixPanel.nests, $(this).val() + '.eggs', []), function (item) {
+                data: $.map(_.get(PheonixPanel.nests, $(this).val() + '.eggs', []), function (item) {
                     return {
                         id: item.id,
                         text: item.name,
@@ -181,8 +181,8 @@
                 }),
             });
 
-            if (_.isObject(_.get(PhoenixPanel.nests, $(this).val() + '.eggs.' + PhoenixPanel.server.egg_id))) {
-                $('#pEggId').val(PhoenixPanel.server.egg_id);
+            if (_.isObject(_.get(PheonixPanel.nests, $(this).val() + '.eggs.' + PheonixPanel.server.egg_id))) {
+                $('#pEggId').val(PheonixPanel.server.egg_id);
             }
 
             $('#pEggId').change();

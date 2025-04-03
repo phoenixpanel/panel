@@ -1,8 +1,8 @@
 <?php
 
-namespace PhoenixPanel\Exceptions\Service\Subuser;
+namespace PheonixPanel\Exceptions\Service\Subuser;
 
-use PhoenixPanel\Exceptions\DisplayException;
+use PheonixPanel\Exceptions\DisplayException;
 
 class UserIsServerOwnerException extends DisplayException
 {
