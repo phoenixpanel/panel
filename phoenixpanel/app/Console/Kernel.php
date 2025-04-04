@@ -44,9 +44,9 @@ class Kernel extends ConsoleKernel
             $schedule->command(PruneCommand::class, ['--model' => [ActivityLog::class]])->daily();
         }
 
-        if (config('phoenixpanel.telemetry.enabled')) {
-            $this->registerTelemetry($schedule);
-        }
+        // if (config('phoenixpanel.telemetry.enabled')) {
+        //     $this->registerTelemetry($schedule);
+        // }
     }
 
     /**
@@ -55,24 +55,24 @@ class Kernel extends ConsoleKernel
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    private function registerTelemetry(Schedule $schedule): void
-    {
-        $settingsRepository = app()->make(SettingsRepository::class);
-
-        $uuid = $settingsRepository->get('app:telemetry:uuid');
-        if (is_null($uuid)) {
-            $uuid = Uuid::uuid4()->toString();
-            $settingsRepository->set('app:telemetry:uuid', $uuid);
-        }
-
-        // Calculate a fixed time to run the data push at, this will be the same time every day.
-        $time = hexdec(str_replace('-', '', substr($uuid, 27))) % 1440;
-        $hour = floor($time / 60);
-        $minute = $time % 60;
-
-        // Run the telemetry collector.
-        $schedule->call(app()->make(TelemetryCollectionService::class))->description('Collect Telemetry')->dailyAt("$hour:$minute");
-    }
+    // private function registerTelemetry(Schedule $schedule): void
+    // {
+    //     $settingsRepository = app()->make(SettingsRepository::class);
+    //
+    //     $uuid = $settingsRepository->get('app:telemetry:uuid');
+    //     if (is_null($uuid)) {
+    //         $uuid = Uuid::uuid4()->toString();
+    //         $settingsRepository->set('app:telemetry:uuid', $uuid);
+    //     }
+    //
+    //     // Calculate a fixed time to run the data push at, this will be the same time every day.
+    //     $time = hexdec(str_replace('-', '', substr($uuid, 27))) % 1440;
+    //     $hour = floor($time / 60);
+    //     $minute = $time % 60;
+    //
+    //     // Run the telemetry collector.
+    //     $schedule->call(app()->make(TelemetryCollectionService::class))->description('Collect Telemetry')->dailyAt("$hour:$minute");
+    // }
 }
 
 

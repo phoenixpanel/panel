@@ -35,6 +35,9 @@ class TelemetryCollectionService
      */
     public function __invoke(): void
     {
+        // Telemetry explicitly disabled.
+        return;
+
         try {
             $data = $this->collect();
         } catch (Exception) {

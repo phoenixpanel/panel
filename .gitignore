@@ -65,7 +65,6 @@ npm-debug.log
 yarn-error.log
 
 # Webpack/Build Manifests (Often generated)
-public/assets/manifest.json
 
 # Test & Coverage Reports
 coverage.xml

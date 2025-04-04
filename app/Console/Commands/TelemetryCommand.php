@@ -27,9 +27,10 @@ class TelemetryCommand extends Command
      */
     public function handle()
     {
-        $this->output->info('Collecting telemetry data, this may take a while...');
-
-        VarDumper::dump($this->telemetryCollectionService->collect());
+        $this->output->warning('Telemetry collection is disabled in the application configuration.');
+        $this->output->info('No data will be collected or sent.');
+        // $this->output->info('Collecting telemetry data, this may take a while...');
+        // VarDumper::dump($this->telemetryCollectionService->collect());
     }
 }
 
