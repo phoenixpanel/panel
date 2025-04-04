@@ -1,0 +1,598 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# --- Configuration ---
+GITHUB_REPO="phoenixpanel/panel"
+RELEASE_TAG="latest"
+INSTALL_DIR="/var/www/phoenixpanel"
+PHP_VERSION="8.3"
+NODE_VERSION="16"
+
+# --- Colors ---
+RESET='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+
+# --- Helper Functions ---
+print_info() {
+    echo -e "${BLUE}[INFO]${RESET} $1"
+}
+
+print_success() {
+    echo -e "${GREEN}[SUCCESS]${RESET} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${RESET} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${RESET} $1" >&2
+}
+
+# Function to generate a random password
+generate_password() {
+    openssl rand -base64 16
+}
+
+# Function to prompt the user for input
+prompt_user() {
+    local prompt_message=$1
+    local user_input
+    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input
+    echo "$user_input"
+}
+
+# Function to prompt yes/no
+prompt_yes_no() {
+    local prompt_message=$1
+    local default=${2:-y} # Default to yes if not specified
+    local answer
+
+    while true; do
+        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer
+        answer=${answer:-$default} # Use default if empty
+        case $answer in
+            [Yy]* ) return 0;; # Yes
+            [Nn]* ) return 1;; # No
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+# --- Root Check ---
+if [[ $EUID -ne 0 ]]; then
+   print_error "This script must be run as root or with sudo."
+   exit 1
+fi
+
+print_info "Starting Phoenix Panel installation script..."
+
+# --- Distribution Detection ---
+OS=""
+VERSION_ID=""
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+    VERSION_ID=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    OS=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
+    VERSION_ID=$(lsb_release -sr)
+else
+    print_error "Cannot detect Linux distribution."
+    exit 1
+fi
+
+print_info "Detected Distribution: ${OS} ${VERSION_ID}"
+
+# --- Dependency Installation ---
+print_info "Installing required system dependencies..."
+
+install_debian_based_deps() {
+    apt-get update -y
+    # Essential build tools and utilities
+    apt-get install -y software-properties-common curl wget git unzip zip tar gnupg apt-transport-https lsb-release ca-certificates
+    # PHP Repo
+    print_info "Adding PHP repository (ppa:ondrej/php)..."
+    add-apt-repository ppa:ondrej/php -y
+    apt-get update -y
+    # PHP and extensions
+    print_info "Installing PHP ${PHP_VERSION} and extensions..."
+    apt-get install -y php${PHP_VERSION} php${PHP_VERSION}-cli php${PHP_VERSION}-gd php${PHP_VERSION}-mysql php${PHP_VERSION}-pdo php${PHP_VERSION}-mbstring php${PHP_VERSION}-tokenizer php${PHP_VERSION}-bcmath php${PHP_VERSION}-xml php${PHP_VERSION}-fpm php${PHP_VERSION}-curl php${PHP_VERSION}-zip php${PHP_VERSION}-intl php${PHP_VERSION}-redis php${PHP_VERSION}-opcache
+    # MySQL Server
+    if ! command -v mysql &> /dev/null; then
+        print_info "Installing MySQL Server..."
+        apt-get install -y mysql-server
+    else
+        print_info "MySQL Server already installed."
+    fi
+    # Nginx (if chosen later)
+    # Certbot (if chosen later)
+}
+
+install_rhel_based_deps() {
+    dnf update -y
+    # Essential build tools and utilities
+    dnf install -y epel-release curl wget git unzip zip tar gnupg2 policycoreutils-python-utils
+    # REMI Repo for PHP
+    print_info "Adding REMI repository for PHP..."
+    dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %{rhel}).rpm
+    dnf module reset php -y
+    dnf module enable php:remi-${PHP_VERSION} -y
+    # PHP and extensions
+    print_info "Installing PHP ${PHP_VERSION} and extensions..."
+    dnf install -y php php-cli php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    # MySQL Server
+    if ! command -v mysql &> /dev/null; then
+        print_info "Installing MySQL Server..."
+        dnf install -y mysql-server
+        systemctl enable --now mysqld
+    else
+        print_info "MySQL Server already installed."
+    fi
+    # Nginx (if chosen later)
+    # Certbot (if chosen later)
+}
+
+case "$OS" in
+    ubuntu|debian)
+        install_debian_based_deps
+        WEBSERVER_USER="www-data"
+        ;;
+    centos|rhel|rocky|almalinux)
+        install_rhel_based_deps
+        WEBSERVER_USER="nginx" # Assuming Nginx will be used
+        ;;
+    *)
+        print_error "Unsupported distribution: $OS"
+        exit 1
+        ;;
+esac
+
+print_success "System dependencies installed."
+
+# --- Install Composer ---
+print_info "Installing Composer..."
+if ! command -v composer &> /dev/null; then
+    EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+    if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
+        print_error "Composer installer signature mismatch. Aborting."
+        rm composer-setup.php
+        exit 1
+    fi
+
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    rm composer-setup.php
+    print_success "Composer installed successfully."
+else
+    print_info "Composer already installed."
+fi
+
+# --- Install NVM, Node.js, Yarn ---
+print_info "Installing NVM, Node.js ${NODE_VERSION}, and Yarn..."
+export NVM_DIR="$HOME/.nvm"
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # Load NVM bash_completion
+else
+    print_info "NVM already installed."
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
+fi
+
+# Check if correct Node version is installed
+CURRENT_NODE_VERSION=$(nvm current)
+if [[ "$CURRENT_NODE_VERSION" != "v${NODE_VERSION}"* ]]; then
+    print_info "Installing Node.js v${NODE_VERSION}..."
+    nvm install ${NODE_VERSION}
+    nvm use ${NODE_VERSION}
+    nvm alias default ${NODE_VERSION}
+else
+    print_info "Node.js v${NODE_VERSION} already installed and active."
+fi
+
+# Install Yarn
+if ! command -v yarn &> /dev/null; then
+    print_info "Installing Yarn..."
+    npm install -g yarn
+    print_success "Yarn installed successfully."
+else
+    print_info "Yarn already installed."
+fi
+
+# --- MySQL Setup ---
+print_info "Configuring MySQL Database..."
+DB_DATABASE="phoenixpanel"
+DB_USERNAME="phoenixpanel"
+DB_PASSWORD=""
+
+if prompt_yes_no "Generate a random password for the MySQL user '${DB_USERNAME}'?"; then
+    DB_PASSWORD=$(generate_password)
+    print_info "Generated MySQL Password: ${YELLOW}${DB_PASSWORD}${RESET} (Please save this!)"
+else
+    while [[ -z "$DB_PASSWORD" ]]; do
+        DB_PASSWORD=$(prompt_user "Enter the desired password for MySQL user '${DB_USERNAME}': ")
+        if [[ -z "$DB_PASSWORD" ]]; then
+            print_warning "Password cannot be empty."
+        fi
+    done
+fi
+
+# Secure MySQL installation if needed (basic example)
+# mysql_secure_installation # Consider running this interactively or automating parts if possible
+
+print_info "Creating MySQL database and user..."
+# Use root credentials if needed, or prompt if password is set
+# This assumes root has no password or uses socket authentication initially
+MYSQL_COMMAND="mysql"
+# Add logic here to handle MySQL root password if it's already set
+
+# Check if database exists
+DB_EXISTS=$( $MYSQL_COMMAND -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${DB_DATABASE}'" | grep ${DB_DATABASE} )
+if [ -z "$DB_EXISTS" ]; then
+    $MYSQL_COMMAND -e "CREATE DATABASE ${DB_DATABASE};"
+    print_info "Database '${DB_DATABASE}' created."
+else
+    print_info "Database '${DB_DATABASE}' already exists."
+fi
+
+# Check if user exists
+USER_EXISTS=$( $MYSQL_COMMAND -e "SELECT User FROM mysql.user WHERE User = '${DB_USERNAME}'" | grep ${DB_USERNAME} )
+if [ -z "$USER_EXISTS" ]; then
+    $MYSQL_COMMAND -e "CREATE USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+    print_info "User '${DB_USERNAME}' created."
+else
+    print_info "User '${DB_USERNAME}' already exists. Updating password and grants."
+    # Update password just in case it changed
+    $MYSQL_COMMAND -e "ALTER USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+fi
+
+$MYSQL_COMMAND -e "GRANT ALL PRIVILEGES ON ${DB_DATABASE}.* TO '${DB_USERNAME}'@'localhost';"
+$MYSQL_COMMAND -e "FLUSH PRIVILEGES;"
+
+print_success "MySQL database and user configured."
+
+# --- Download Phoenix Panel ---
+print_info "Downloading Phoenix Panel (${RELEASE_TAG}) from ${GITHUB_REPO}..."
+mkdir -p /var/www
+if [ -d "$INSTALL_DIR" ]; then
+    print_warning "Directory ${INSTALL_DIR} already exists. Skipping download."
+    # Optionally add logic to backup/remove existing dir
+else
+    # Find the asset URL for the tar.gz file
+    API_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/${RELEASE_TAG}"
+    DOWNLOAD_URL=$(curl -s $API_URL | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
+
+    if [ -z "$DOWNLOAD_URL" ]; then
+        print_error "Could not find release asset URL for tag '${RELEASE_TAG}'. Trying 'latest' tag."
+        API_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/latest"
+        DOWNLOAD_URL=$(curl -s $API_URL | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
+        if [ -z "$DOWNLOAD_URL" ]; then
+            print_error "Could not find release asset URL for 'latest' tag either. Aborting."
+            exit 1
+        fi
+        print_info "Using download URL for latest release: ${DOWNLOAD_URL}"
+    fi
+
+    print_info "Downloading from ${DOWNLOAD_URL}..."
+    wget -q -O panel.tar.gz "$DOWNLOAD_URL"
+    print_info "Extracting files to ${INSTALL_DIR}..."
+    tar -xzf panel.tar.gz -C /var/www
+    mv /var/www/panel-* "$INSTALL_DIR" # Adjust based on actual extracted folder name if needed
+    rm panel.tar.gz
+    print_success "Phoenix Panel downloaded and extracted."
+fi
+
+cd "$INSTALL_DIR"
+
+# --- Set Permissions ---
+print_info "Setting file permissions..."
+# Set ownership to the webserver user and group
+chown -R ${WEBSERVER_USER}:${WEBSERVER_USER} "${INSTALL_DIR}"
+# Set correct permissions for storage and bootstrap/cache
+chmod -R 755 "${INSTALL_DIR}/storage" "${INSTALL_DIR}/bootstrap/cache"
+print_success "File permissions set."
+
+# --- Install Dependencies (Composer & Yarn) ---
+print_info "Installing Composer dependencies..."
+# Run composer as the webserver user to avoid permission issues
+sudo -u ${WEBSERVER_USER} composer install --no-dev --optimize-autoloader
+print_success "Composer dependencies installed."
+
+print_info "Installing Yarn dependencies and building assets..."
+# Ensure NVM is available for the webserver user or run as root if simpler
+# Running as root might be easier here, but check ownership after
+yarn install --frozen-lockfile
+yarn build:production
+# Re-apply ownership just in case yarn/node created files as root
+chown -R ${WEBSERVER_USER}:${WEBSERVER_USER} "${INSTALL_DIR}"
+print_success "Yarn dependencies installed and assets built."
+
+# --- Configure .env ---
+print_info "Configuring environment file (.env)..."
+if [ ! -f ".env" ]; then
+    print_info "Copying .env.example to .env..."
+    sudo -u ${WEBSERVER_USER} cp .env.example .env
+else
+    print_info ".env file already exists."
+fi
+
+# Generate App Key
+print_info "Generating application key..."
+sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+
+# Prompt for .env values
+APP_URL=$(prompt_user "Enter the Panel URL (e.g., http://panel.example.com): ")
+# Basic validation
+while [[ -z "$APP_URL" ]]; do
+    print_warning "Panel URL cannot be empty."
+    APP_URL=$(prompt_user "Enter the Panel URL (e.g., http://panel.example.com): ")
+done
+
+# Update .env file using sed (be careful with special characters in passwords/values)
+print_info "Updating .env with configuration..."
+sudo -u ${WEBSERVER_USER} sed -i "s|^APP_URL=.*|APP_URL=${APP_URL}|" .env
+sudo -u ${WEBSERVER_USER} sed -i "s|^DB_HOST=.*|DB_HOST=127.0.0.1|" .env
+sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PORT=.*|DB_PORT=3306|" .env
+sudo -u ${WEBSERVER_USER} sed -i "s|^DB_DATABASE=.*|DB_DATABASE=${DB_DATABASE}|" .env
+sudo -u ${WEBSERVER_USER} sed -i "s|^DB_USERNAME=.*|DB_USERNAME=${DB_USERNAME}|" .env
+# Escape password for sed
+DB_PASSWORD_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g')
+sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=${DB_PASSWORD_ESCAPED}|" .env
+
+# Add prompts for other important settings like Mail, Redis if needed
+# Example:
+# MAIL_MAILER=$(prompt_user "Enter Mail Driver (e.g., smtp, mailgun, log): ")
+# sudo -u ${WEBSERVER_USER} sed -i "s|^MAIL_MAILER=.*|MAIL_MAILER=${MAIL_MAILER}|" .env
+# ... add more prompts for MAIL_HOST, MAIL_PORT, etc.
+
+print_success ".env file configured."
+
+# --- Database Migration & Seeding ---
+print_info "Running database migrations and seeding..."
+sudo -u ${WEBSERVER_USER} php artisan migrate --seed --force
+print_success "Database migrated and seeded."
+
+# --- Create Administrator Account ---
+if prompt_yes_no "Create an administrator account now?"; then
+    ADMIN_EMAIL=""
+    ADMIN_USERNAME=""
+    ADMIN_FIRST_NAME=""
+    ADMIN_LAST_NAME=""
+    ADMIN_PASSWORD=""
+
+    while [[ -z "$ADMIN_EMAIL" ]]; do
+        ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
+    done
+    while [[ -z "$ADMIN_USERNAME" ]]; do
+        ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
+    done
+    while [[ -z "$ADMIN_FIRST_NAME" ]]; do
+        ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
+    done
+    while [[ -z "$ADMIN_LAST_NAME" ]]; do
+        ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
+    done
+
+    if prompt_yes_no "Generate a random password for the administrator?"; then
+        ADMIN_PASSWORD=$(generate_password)
+        print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
+    else
+        while [[ -z "$ADMIN_PASSWORD" ]]; do
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
+            echo
+            local confirm_password
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
+            echo
+            if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then
+                print_warning "Passwords do not match. Please try again."
+                ADMIN_PASSWORD=""
+            elif [[ -z "$ADMIN_PASSWORD" ]]; then
+                 print_warning "Password cannot be empty."
+            fi
+        done
+    fi
+
+    print_info "Creating administrator account..."
+    sudo -u ${WEBSERVER_USER} php artisan p:user:make --email="$ADMIN_EMAIL" --username="$ADMIN_USERNAME" --name-first="$ADMIN_FIRST_NAME" --name-last="$ADMIN_LAST_NAME" --password="$ADMIN_PASSWORD" --admin=1
+    print_success "Administrator account created."
+    print_info "Username: ${ADMIN_USERNAME}"
+    print_info "Password: ${YELLOW}${ADMIN_PASSWORD}${RESET}"
+fi
+
+# --- Nginx Setup (Optional) ---
+if prompt_yes_no "Setup Nginx web server automatically?"; then
+    print_info "Setting up Nginx..."
+    NGINX_CONFIG_PATH="/etc/nginx/sites-available/phoenixpanel.conf"
+    NGINX_SYMLINK_PATH="/etc/nginx/sites-enabled/phoenixpanel.conf"
+
+    # Install Nginx if not already installed
+    if ! command -v nginx &> /dev/null; then
+        print_info "Installing Nginx..."
+        case "$OS" in
+            ubuntu|debian) apt-get install -y nginx ;;
+            centos|rhel|rocky|almalinux) dnf install -y nginx ;;
+        esac
+        systemctl enable --now nginx
+    else
+        print_info "Nginx already installed."
+    fi
+
+    # Ask for domain name (used for server_name and potentially SSL)
+    NGINX_DOMAIN=$(prompt_user "Enter the domain/subdomain for the panel (e.g., panel.example.com or IP address): ")
+    while [[ -z "$NGINX_DOMAIN" ]]; do
+        print_warning "Domain/IP cannot be empty."
+        NGINX_DOMAIN=$(prompt_user "Enter the domain/subdomain for the panel (e.g., panel.example.com or IP address): ")
+    done
+
+    USE_SSL=false
+    if [[ "$NGINX_DOMAIN" != *"."* ]]; then
+         print_warning "SSL cannot be configured for an IP address. Proceeding without SSL."
+    elif prompt_yes_no "Configure SSL using Let's Encrypt (Certbot)?"; then
+        USE_SSL=true
+        print_info "Setting up SSL..."
+        # Install Certbot
+        if ! command -v certbot &> /dev/null; then
+            print_info "Installing Certbot..."
+            case "$OS" in
+                ubuntu|debian) apt-get install -y certbot python3-certbot-nginx ;;
+                centos|rhel|rocky|almalinux) dnf install -y certbot python3-certbot-nginx ;;
+            esac
+        else
+            print_info "Certbot already installed."
+        fi
+        # Stop Nginx temporarily for standalone challenge if needed, or use webroot
+        # Using Nginx plugin is generally preferred
+        print_info "Attempting to obtain SSL certificate for ${NGINX_DOMAIN}..."
+        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$ADMIN_EMAIL" --redirect # Use admin email if available, else prompt
+        print_success "SSL certificate obtained and Nginx configured for SSL."
+    fi
+
+    # Create Nginx configuration if SSL wasn't automatically configured by Certbot or if SSL was declined
+    if [ "$USE_SSL" = false ] || ! grep -q "ssl_certificate" "$NGINX_CONFIG_PATH"; then
+        print_info "Creating Nginx configuration file..."
+        cat > "$NGINX_CONFIG_PATH" <<EOF
+server {
+    listen 80;
+    server_name ${NGINX_DOMAIN};
+    root ${INSTALL_DIR}/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+    add_header X-XSS-Protection "1; mode=block";
+
+    index index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files \$uri \$uri/ /index.php?\$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    access_log off; # Or set path: /var/log/nginx/phoenixpanel.app-access.log;
+    error_log  /var/log/nginx/phoenixpanel.app-error.log error;
+
+    # Block access to sensitive files
+    location ~ /\.ht {
+        deny all;
+    }
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php/php${PHP_VERSION}-fpm.sock; # Adjust path if needed (e.g., /run/php-fpm/www.sock on RHEL)
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param PATH_INFO \$fastcgi_path_info;
+        fastcgi_read_timeout 300; # Increase timeout for longer operations
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+    }
+}
+EOF
+        # Symlink if not already done by Certbot
+        if [ ! -L "$NGINX_SYMLINK_PATH" ]; then
+             ln -s "$NGINX_CONFIG_PATH" "$NGINX_SYMLINK_PATH"
+        fi
+        print_success "Nginx configuration created at ${NGINX_CONFIG_PATH}"
+    fi
+
+    # Adjust PHP-FPM socket path for RHEL-based systems in Nginx config if needed
+    if [[ "$OS" == "centos" || "$OS" == "rhel" || "$OS" == "rocky" || "$OS" == "almalinux" ]]; then
+        FPM_SOCK_PATH="/run/php-fpm/www.sock" # Default path for RHEL-based systems with php-fpm
+        # Check if the default sock exists, otherwise try the versioned one
+        if [ ! -S "$FPM_SOCK_PATH" ]; then
+             FPM_SOCK_PATH="/var/run/php/php${PHP_VERSION}-fpm.sock" # Fallback or alternative path
+        fi
+        sed -i "s|unix:/var/run/php/php.*-fpm.sock;|unix:${FPM_SOCK_PATH};|" "$NGINX_CONFIG_PATH"
+        print_info "Adjusted PHP-FPM socket path for RHEL-based system in Nginx config."
+        # Ensure PHP-FPM is running and enabled
+        systemctl enable --now php-fpm
+    fi
+
+    # SELinux permissions for RHEL-based systems
+    if [[ "$OS" == "centos" || "$OS" == "rhel" || "$OS" == "rocky" || "$OS" == "almalinux" ]] && command -v semanage &> /dev/null; then
+        print_info "Configuring SELinux permissions for Nginx..."
+        semanage fcontext -a -t httpd_sys_rw_content_t "${INSTALL_DIR}/storage(/.*)?"
+        restorecon -R "${INSTALL_DIR}/storage"
+        semanage fcontext -a -t httpd_sys_rw_content_t "${INSTALL_DIR}/bootstrap/cache(/.*)?"
+        restorecon -R "${INSTALL_DIR}/bootstrap/cache"
+        # Allow network connections if needed (e.g., for database, redis)
+        setsebool -P httpd_can_network_connect 1
+        setsebool -P httpd_can_network_connect_db 1
+        print_success "SELinux permissions configured."
+    fi
+
+    # Test Nginx configuration
+    print_info "Testing Nginx configuration..."
+    nginx -t
+    # Reload Nginx
+    print_info "Reloading Nginx service..."
+    systemctl reload nginx
+
+    # --- Firewall Configuration ---
+    print_info "Configuring firewall..."
+    HTTP_PORT=80
+    HTTPS_PORT=443
+
+    if command -v ufw &> /dev/null; then
+        ufw allow $HTTP_PORT/tcp
+        if [ "$USE_SSL" = true ]; then
+            ufw allow $HTTPS_PORT/tcp
+        fi
+        # ufw enable # Uncomment if ufw is not already enabled
+        ufw reload
+        print_success "UFW firewall configured."
+    elif command -v firewall-cmd &> /dev/null; then
+        firewall-cmd --permanent --add-service=http
+        if [ "$USE_SSL" = true ]; then
+            firewall-cmd --permanent --add-service=https
+        fi
+        firewall-cmd --reload
+        print_success "Firewalld configured."
+    else
+        print_warning "Could not detect ufw or firewalld. Please configure your firewall manually to allow ports ${HTTP_PORT} (HTTP) and ${HTTPS_PORT} (HTTPS if SSL is enabled)."
+    fi
+
+    print_success "Nginx setup complete."
+    print_info "You should now be able to access the panel at: ${CYAN}${APP_URL}${RESET}"
+
+else
+    print_info "Skipping Nginx setup. You will need to configure a web server manually."
+fi
+
+# --- Final Steps ---
+# Add cronjob for Laravel scheduler
+print_info "Adding cronjob for scheduled tasks..."
+CRON_JOB="* * * * * php ${INSTALL_DIR}/artisan schedule:run >> /dev/null 2>&1"
+# Add check to prevent duplicate cron jobs
+(crontab -l 2>/dev/null | grep -v "schedule:run" ; echo "$CRON_JOB") | crontab -
+print_success "Cronjob added."
+
+# Add queue worker service (optional but recommended)
+# Consider adding instructions or optionally setting up systemd for queue:work
+
+print_success "Phoenix Panel installation completed!"
+print_info "Please review the output above for any generated passwords or important information."
+if [ ! -z "$DB_PASSWORD" ]; then
+    print_info "MySQL User: ${CYAN}${DB_USERNAME}${RESET}, Password: ${YELLOW}${DB_PASSWORD}${RESET}"
+fi
+if [ ! -z "$ADMIN_PASSWORD" ]; then
+    print_info "Admin User: ${CYAN}${ADMIN_USERNAME}${RESET}, Password: ${YELLOW}${ADMIN_PASSWORD}${RESET}"
+fi
+if [ "$NGINX_DOMAIN" ]; then
+    print_info "Panel URL: ${CYAN}${APP_URL}${RESET}"
+fi
+
+exit 0
