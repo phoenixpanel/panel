@@ -96,7 +96,7 @@ print_info "Installing required system dependencies..."
 install_debian_based_deps() {
     apt-get update -y
     # Essential build tools and utilities
-    apt-get install -y software-properties-common curl wget git unzip zip tar gnupg apt-transport-https lsb-release ca-certificates
+    apt-get install -y software-properties-common curl wget git unzip zip tar gnupg apt-transport-https lsb-release ca-certificates jq
     # PHP Repo
     print_info "Adding PHP repository (ppa:ondrej/php)..."
     add-apt-repository ppa:ondrej/php -y
@@ -229,34 +229,77 @@ fi
 # Secure MySQL installation if needed (basic example)
 # mysql_secure_installation # Consider running this interactively or automating parts if possible
 
-print_info "Creating MySQL database and user..."
-# Use root credentials if needed, or prompt if password is set
-# This assumes root has no password or uses socket authentication initially
-MYSQL_COMMAND="mysql"
-# Add logic here to handle MySQL root password if it's already set
+# --- MySQL Root Password Handling ---
+print_info "Checking MySQL root access..."
+MYSQL_ROOT_PASSWORD=""
+MYSQL_COMMAND_BASE="mysql" # Base command
 
-# Check if database exists
-DB_EXISTS=$( $MYSQL_COMMAND -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${DB_DATABASE}'" | grep ${DB_DATABASE} )
-if [ -z "$DB_EXISTS" ]; then
-    $MYSQL_COMMAND -e "CREATE DATABASE ${DB_DATABASE};"
-    print_info "Database '${DB_DATABASE}' created."
+# Try connecting without password first
+if ! $MYSQL_COMMAND_BASE -e "SELECT 1;" > /dev/null 2>&1; then
+    print_warning "Could not connect to MySQL as root without a password."
+    while true; do
+        read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD
+        echo # Newline after password input
+
+        if [[ -z "$MYSQL_ROOT_PASSWORD" ]]; then
+            print_error "MySQL root password is required to proceed with database setup. Aborting."
+            exit 1
+        fi
+
+        # Test connection with the provided password
+        if $MYSQL_COMMAND_BASE -uroot -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1;" > /dev/null 2>&1; then
+            print_success "MySQL root connection successful."
+            MYSQL_COMMAND="${MYSQL_COMMAND_BASE} -uroot -p'${MYSQL_ROOT_PASSWORD}'" # Use quotes for safety
+            break
+        else
+            print_warning "Incorrect MySQL root password. Please try again."
+        fi
+    done
 else
-    print_info "Database '${DB_DATABASE}' already exists."
+    print_info "MySQL root access successful without password."
+    MYSQL_COMMAND="${MYSQL_COMMAND_BASE}" # No password needed
 fi
 
-# Check if user exists
-USER_EXISTS=$( $MYSQL_COMMAND -e "SELECT User FROM mysql.user WHERE User = '${DB_USERNAME}'" | grep ${DB_USERNAME} )
-if [ -z "$USER_EXISTS" ]; then
-    $MYSQL_COMMAND -e "CREATE USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
-    print_info "User '${DB_USERNAME}' created."
-else
-    print_info "User '${DB_USERNAME}' already exists. Updating password and grants."
-    # Update password just in case it changed
-    $MYSQL_COMMAND -e "ALTER USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+# --- Database and User Creation ---
+print_info "Checking for existing database/user..."
+# Check if database exists by querying and checking if the output is non-empty
+DB_QUERY_OUTPUT=$( $MYSQL_COMMAND -sN -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${DB_DATABASE}';" )
+if [[ $? -ne 0 ]]; then print_error "Failed to query database existence."; exit 1; fi
+DB_EXISTS=""
+if [[ -n "$DB_QUERY_OUTPUT" ]]; then DB_EXISTS="true"; fi
+
+# Check if user exists by querying and checking if the output is non-empty
+USER_QUERY_OUTPUT=$( $MYSQL_COMMAND -sN -e "SELECT User FROM mysql.user WHERE User = '${DB_USERNAME}' AND Host = 'localhost';" )
+if [[ $? -ne 0 ]]; then print_error "Failed to query user existence."; exit 1; fi
+USER_EXISTS=""
+if [[ -n "$USER_QUERY_OUTPUT" ]]; then USER_EXISTS="true"; fi
+
+# If either exists, prompt for confirmation before deleting
+if [ -n "$DB_EXISTS" ] || [ -n "$USER_EXISTS" ]; then
+    print_warning "Database '${DB_DATABASE}' and/or user '${DB_USERNAME}'@'localhost' already exist."
+    if prompt_yes_no "Proceeding will DELETE the existing database and/or user. Continue?"; then
+        print_info "Deleting existing database and/or user..."
+        $MYSQL_COMMAND -e "DROP DATABASE IF EXISTS \`${DB_DATABASE}\`;" || { print_error "Failed to drop database '${DB_DATABASE}'."; exit 1; }
+        $MYSQL_COMMAND -e "DROP USER IF EXISTS '${DB_USERNAME}'@'localhost';" || { print_error "Failed to drop user '${DB_USERNAME}'@'localhost'."; exit 1; }
+        $MYSQL_COMMAND -e "FLUSH PRIVILEGES;" || { print_error "Failed to flush privileges after dropping."; exit 1; }
+        print_info "Existing database/user deleted."
+    else
+        print_error "User chose not to overwrite existing database/user. Aborting installation."
+        exit 1
+    fi
 fi
 
-$MYSQL_COMMAND -e "GRANT ALL PRIVILEGES ON ${DB_DATABASE}.* TO '${DB_USERNAME}'@'localhost';"
-$MYSQL_COMMAND -e "FLUSH PRIVILEGES;"
+# Escape password for MySQL commands (needs to be done *before* CREATE USER)
+DB_PASSWORD_MYSQL_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g' -e "s/'/\\'/g") # Escape \, &, and '
+
+# Create database and user
+print_info "Creating database '${DB_DATABASE}'..."
+$MYSQL_COMMAND -e "CREATE DATABASE \`${DB_DATABASE}\`;" || { print_error "Failed to create database '${DB_DATABASE}'."; exit 1; }
+print_info "Creating user '${DB_USERNAME}'@'localhost'..."
+$MYSQL_COMMAND -e "CREATE USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD_MYSQL_ESCAPED}';" || { print_error "Failed to create user '${DB_USERNAME}'. Check MySQL logs for details."; exit 1; }
+print_info "Granting privileges..."
+$MYSQL_COMMAND -e "GRANT ALL PRIVILEGES ON \`${DB_DATABASE}\`.* TO '${DB_USERNAME}'@'localhost';" || { print_error "Failed to grant privileges."; exit 1; }
+$MYSQL_COMMAND -e "FLUSH PRIVILEGES;" || { print_error "Failed to flush privileges after granting."; exit 1; }
 
 print_success "MySQL database and user configured."
 
@@ -267,27 +310,46 @@ if [ -d "$INSTALL_DIR" ]; then
     print_warning "Directory ${INSTALL_DIR} already exists. Skipping download."
     # Optionally add logic to backup/remove existing dir
 else
-    # Find the asset URL for the tar.gz file
+    # Fetch release information using GitHub API
     API_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/${RELEASE_TAG}"
-    DOWNLOAD_URL=$(curl -s $API_URL | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
-
-    if [ -z "$DOWNLOAD_URL" ]; then
-        print_error "Could not find release asset URL for tag '${RELEASE_TAG}'. Trying 'latest' tag."
+    RELEASE_INFO=$(curl -s "$API_URL")
+    if [[ $? -ne 0 ]] || [[ -z "$RELEASE_INFO" ]]; then
+        print_error "Failed to fetch release info from ${API_URL}. Trying 'latest' tag."
         API_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/latest"
-        DOWNLOAD_URL=$(curl -s $API_URL | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
-        if [ -z "$DOWNLOAD_URL" ]; then
-            print_error "Could not find release asset URL for 'latest' tag either. Aborting."
+        RELEASE_INFO=$(curl -s "$API_URL")
+        if [[ $? -ne 0 ]] || [[ -z "$RELEASE_INFO" ]]; then
+            print_error "Failed to fetch release info for 'latest' tag either. Aborting."
             exit 1
         fi
-        print_info "Using download URL for latest release: ${DOWNLOAD_URL}"
+        print_info "Using release info from 'latest' tag."
+    fi
+
+    # Try to find a .tar.gz asset URL using jq
+    DOWNLOAD_URL=$(echo "$RELEASE_INFO" | jq -r '.assets[] | select(.name | endswith(".tar.gz")) | .browser_download_url' | head -n 1)
+
+    # If no .tar.gz asset found, fall back to the tarball_url
+    if [ -z "$DOWNLOAD_URL" ]; then
+        print_warning "No .tar.gz asset found in release assets. Falling back to source code tarball."
+        DOWNLOAD_URL=$(echo "$RELEASE_INFO" | jq -r '.tarball_url')
+        if [ -z "$DOWNLOAD_URL" ] || [ "$DOWNLOAD_URL" == "null" ]; then
+             print_error "Could not find a suitable download URL (asset or tarball). Aborting."
+             exit 1
+        fi
     fi
 
     print_info "Downloading from ${DOWNLOAD_URL}..."
-    wget -q -O panel.tar.gz "$DOWNLOAD_URL"
+    # Use wget with --content-disposition if it's the tarball_url, as GitHub API redirects
+    # Need to handle potential filename differences
+    wget --content-disposition -q -O panel-download.tar.gz "$DOWNLOAD_URL"
+    if [[ $? -ne 0 ]]; then print_error "Download failed from ${DOWNLOAD_URL}."; exit 1; fi
+
     print_info "Extracting files to ${INSTALL_DIR}..."
-    tar -xzf panel.tar.gz -C /var/www
-    mv /var/www/panel-* "$INSTALL_DIR" # Adjust based on actual extracted folder name if needed
-    rm panel.tar.gz
+    # Create the target directory first
+    mkdir -p "$INSTALL_DIR"
+    # Extract and strip the top-level directory (GitHub tarballs often have one)
+    tar -xzf panel-download.tar.gz --strip-components=1 -C "$INSTALL_DIR"
+    if [[ $? -ne 0 ]]; then print_error "Extraction failed. Check panel-download.tar.gz."; exit 1; fi
+    rm panel-download.tar.gz
     print_success "Phoenix Panel downloaded and extracted."
 fi
 
