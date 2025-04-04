@@ -3,12 +3,6 @@
 /vendor
 /venv
 
-# Build Output
-/public/build
-/public/hot
-/dist
-/build
-
 # Logs
 *.log
 npm-debug.log*
