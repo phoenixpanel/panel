@@ -388,8 +388,23 @@ else
 fi
 
 # Generate App Key
-print_info "Generating application key..."
-sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+# Check if APP_KEY is already set in .env before generating
+EXISTING_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2-)
+
+if [ -n "$EXISTING_KEY" ] && [ "$EXISTING_KEY" != "null" ] && [ "$EXISTING_KEY" != "" ]; then
+    print_warning "An application key already exists in the .env file."
+    # Use the script's prompt function for confirmation
+    if prompt_yes_no "Overwrite the existing application key? (WARNING: This can corrupt encrypted data)"; then
+        print_info "Generating new application key (overwriting existing)..."
+        sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+    else
+        print_info "Skipping application key generation (existing key kept)."
+    fi
+else
+    # No existing key or key is empty/null, generate one normally
+    print_info "Generating application key..."
+    sudo -u ${WEBSERVER_USER} php artisan key:generate
+fi
 
 # Prompt for .env values
 APP_URL=$(prompt_user "Enter the Panel URL (e.g., http://panel.example.com): ")
