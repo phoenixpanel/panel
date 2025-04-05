@@ -440,25 +440,45 @@ sudo -u ${WEBSERVER_USER} php artisan migrate --seed --force
 print_success "Database migrated and seeded."
 
 # --- Create Administrator Account ---
-if prompt_yes_no "Create an administrator account now?"; then
+# If non-interactive, assume yes. Otherwise, ask.
+if ! [ -t 0 ] || prompt_yes_no "Create an administrator account now?"; then
+    if ! [ -t 0 ]; then
+        print_info "Non-interactive mode detected. Creating default administrator account."
+    fi
     ADMIN_EMAIL=""
     ADMIN_USERNAME=""
     ADMIN_FIRST_NAME=""
     ADMIN_LAST_NAME=""
     ADMIN_PASSWORD=""
 
-    while [[ -z "$ADMIN_EMAIL" ]]; do
-        ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
-    done
-    while [[ -z "$ADMIN_USERNAME" ]]; do
-        ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
-    done
-    while [[ -z "$ADMIN_FIRST_NAME" ]]; do
-        ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
-    done
-    while [[ -z "$ADMIN_LAST_NAME" ]]; do
-        ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
-    done
+    if [ -t 0 ]; then # Only prompt interactively
+        while [[ -z "$ADMIN_EMAIL" ]]; do
+            ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
+        done
+    else
+        ADMIN_EMAIL="admin@localhost" # Default for non-interactive
+    fi
+    if [ -t 0 ]; then # Only prompt interactively
+        while [[ -z "$ADMIN_USERNAME" ]]; do
+            ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
+        done
+    else
+        ADMIN_USERNAME="admin" # Default for non-interactive
+    fi
+    if [ -t 0 ]; then # Only prompt interactively
+        while [[ -z "$ADMIN_FIRST_NAME" ]]; do
+            ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
+        done
+    else
+        ADMIN_FIRST_NAME="Admin" # Default for non-interactive
+    fi
+    if [ -t 0 ]; then # Only prompt interactively
+        while [[ -z "$ADMIN_LAST_NAME" ]]; do
+            ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
+        done
+    else
+        ADMIN_LAST_NAME="User" # Default for non-interactive
+    fi
 
     # If non-interactive, always generate. Otherwise, ask.
     # Check if stdin is NOT a tty (non-interactive) OR if the user
