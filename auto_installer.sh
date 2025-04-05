@@ -440,63 +440,88 @@ sudo -u ${WEBSERVER_USER} php artisan migrate --seed --force
 print_success "Database migrated and seeded."
 
 # --- Create Administrator Account ---
-# If non-interactive, assume yes. Otherwise, ask.
-if ! [ -t 0 ] || prompt_yes_no "Create an administrator account now?"; then
-    if ! [ -t 0 ]; then
-        print_info "Non-interactive mode detected. Creating default administrator account."
-    fi
+# Default to 'yes' for non-interactive, otherwise prompt.
+CREATE_ADMIN_DEFAULT="y"
+if ! [ -t 0 ]; then
+    print_info "Non-interactive mode detected. Assuming 'yes' for administrator account creation."
+    CREATE_ADMIN_ANSWER=0 # 0 means yes in prompt_yes_no return code
+else
+    prompt_yes_no "Create an administrator account now?" "$CREATE_ADMIN_DEFAULT"
+    CREATE_ADMIN_ANSWER=$?
+fi
+
+if [ $CREATE_ADMIN_ANSWER -eq 0 ]; then # If yes (or assumed yes)
     ADMIN_EMAIL=""
     ADMIN_USERNAME=""
     ADMIN_FIRST_NAME=""
     ADMIN_LAST_NAME=""
     ADMIN_PASSWORD=""
 
-    if [ -t 0 ]; then # Only prompt interactively
+    # Prompt for details only if interactive
+    if [ -t 0 ]; then
         while [[ -z "$ADMIN_EMAIL" ]]; do
             ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
         done
     else
         ADMIN_EMAIL="admin@localhost" # Default for non-interactive
+        print_info "Using default email: ${ADMIN_EMAIL}"
     fi
-    if [ -t 0 ]; then # Only prompt interactively
+    if [ -t 0 ]; then
         while [[ -z "$ADMIN_USERNAME" ]]; do
             ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
         done
     else
-        ADMIN_USERNAME="admin" # Default for non-interactive
+         ADMIN_USERNAME="admin" # Default for non-interactive
+         print_info "Using default username: ${ADMIN_USERNAME}"
     fi
-    if [ -t 0 ]; then # Only prompt interactively
+    if [ -t 0 ]; then
         while [[ -z "$ADMIN_FIRST_NAME" ]]; do
             ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
         done
     else
         ADMIN_FIRST_NAME="Admin" # Default for non-interactive
+        print_info "Using default first name: ${ADMIN_FIRST_NAME}"
     fi
-    if [ -t 0 ]; then # Only prompt interactively
+    if [ -t 0 ]; then
         while [[ -z "$ADMIN_LAST_NAME" ]]; do
             ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
         done
     else
         ADMIN_LAST_NAME="User" # Default for non-interactive
+        print_info "Using default last name: ${ADMIN_LAST_NAME}"
     fi
 
-    # If non-interactive, always generate. Otherwise, ask.
-    # Check if stdin is NOT a tty (non-interactive) OR if the user
-    # interactively chooses yes when prompted.
-    if ! [ -t 0 ] || prompt_yes_no "Generate a random password for the administrator?"; then
+    # Default to 'yes' for random password non-interactively, otherwise prompt.
+    GENERATE_RANDOM_PASS_DEFAULT="y"
+    if ! [ -t 0 ]; then
+        print_info "Non-interactive mode detected. Generating random password."
+        GENERATE_RANDOM_PASS_ANSWER=0 # 0 means yes
+    else
+        prompt_yes_no "Generate a random password for the administrator?" "$GENERATE_RANDOM_PASS_DEFAULT"
+        GENERATE_RANDOM_PASS_ANSWER=$?
+    fi
+
+    if [ $GENERATE_RANDOM_PASS_ANSWER -eq 0 ]; then # If yes (or assumed yes)
         ADMIN_PASSWORD=$(generate_password)
         print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
-    else
-        while [[ -z "$ADMIN_PASSWORD" ]]; do
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
+    else # Prompt for password interactively
+        while true; do # Loop until valid password or generated
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password (leave empty to generate): ")" ADMIN_PASSWORD
             echo
+            if [[ -z "$ADMIN_PASSWORD" ]]; then
+                print_info "Empty password entered. Generating a random password..."
+                ADMIN_PASSWORD=$(generate_password)
+                print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
+                break # Exit loop after generating
+            fi
+
             read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
             echo
-            if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then
+            if [[ "$ADMIN_PASSWORD" == "$confirm_password" ]]; then
+                break # Passwords match, exit loop
+            else
                 print_warning "Passwords do not match. Please try again."
-                ADMIN_PASSWORD=""
-            elif [[ -z "$ADMIN_PASSWORD" ]]; then
-                 print_warning "Password cannot be empty."
+                ADMIN_PASSWORD="" # Reset password to retry loop
             fi
         done
     fi
