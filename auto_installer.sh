@@ -460,7 +460,10 @@ if prompt_yes_no "Create an administrator account now?"; then
         ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
     done
 
-    if prompt_yes_no "Generate a random password for the administrator?"; then
+    # If non-interactive, always generate. Otherwise, ask.
+    # Check if stdin is NOT a tty (non-interactive) OR if the user
+    # interactively chooses yes when prompted.
+    if ! [ -t 0 ] || prompt_yes_no "Generate a random password for the administrator?"; then
         ADMIN_PASSWORD=$(generate_password)
         print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
     else
