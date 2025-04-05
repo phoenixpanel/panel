@@ -396,7 +396,7 @@ if [ -n "$EXISTING_KEY" ] && [ "$EXISTING_KEY" != "null" ] && [ "$EXISTING_KEY" 
     # Use the script's prompt function for confirmation
     if prompt_yes_no "Overwrite the existing application key? (WARNING: This can corrupt encrypted data)"; then
         print_info "Generating new application key (overwriting existing)..."
-        sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+        sudo -u ${WEBSERVER_USER} php artisan key:generate
     else
         print_info "Skipping application key generation (existing key kept)."
     fi
