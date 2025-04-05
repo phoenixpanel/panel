@@ -466,7 +466,6 @@ if prompt_yes_no "Create an administrator account now?"; then
         while [[ -z "$ADMIN_PASSWORD" ]]; do
             read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
             echo
-            confirm_password
             read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
             echo
             if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then

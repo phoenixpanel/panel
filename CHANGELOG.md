@@ -432,7 +432,7 @@ _This release should not be used, please use `1.6.5`. It has been pulled from ou
 ### Added
 * Adds SSL/TLS options for MySQL and Redis in line with most recent Laravel updates.
 * New users created for server MySQL instances will now have the correct permissions for creating foreign keys on tables.
-* Adds new automatic popup feature to allow users to quickly update their Minecraft servers to the latest JavaÂ® eggs as necessary if unsupported versions are detected.
+* Adds new automatic popup feature to allow users to quickly update their Minecraft servers to the latest Java® eggs as necessary if unsupported versions are detected.
 
 ### Removed
 * Removes legacy `userInteraction` key from eggs which was unused.

@@ -195,4 +195,3 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
 };
 
 export default memo(FileDropdownMenu, isEqual);
-

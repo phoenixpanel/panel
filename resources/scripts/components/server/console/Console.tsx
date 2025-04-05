@@ -28,7 +28,7 @@ const theme = {
     yellow: '#FAED70',
     blue: '#396FE2',
     magenta: '#BB80B3',
-    cyan: '#2DDAFD',
+    cyan: '#E25822', // Phoenix primary color
     white: '#d0d0d0',
     brightBlack: 'rgba(255, 255, 255, 0.2)',
     brightRed: '#FF5370',
@@ -226,4 +226,3 @@ export default () => {
         </div>
     );
 };
-

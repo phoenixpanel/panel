@@ -3,8 +3,17 @@ import { createGlobalStyle } from 'styled-components/macro';
 
 export default createGlobalStyle`
     body {
-        ${tw`font-sans bg-neutral-800 text-neutral-200`};
+        ${tw`font-sans bg-neutral-900 text-neutral-100`};
         letter-spacing: 0.015em;
+    }
+
+    /* Add phoenix theme gradients for specific elements */
+    .phoenix-gradient {
+        background: linear-gradient(135deg, #E25822, #FF9500);
+    }
+    
+    .phoenix-gradient-subtle {
+        background: linear-gradient(135deg, rgba(226, 88, 34, 0.2), rgba(255, 149, 0, 0.2));
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -13,6 +22,11 @@ export default createGlobalStyle`
 
     p {
         ${tw`text-neutral-200 leading-snug font-sans`};
+    }
+    
+    a {
+        ${tw`text-phoenix-600 hover:text-phoenix-500`};
+        transition: color 0.2s ease;
     }
 
     form {
@@ -45,7 +59,7 @@ export default createGlobalStyle`
         border-right-width: 4px;
         border-left-width: 4px;
         -webkit-border-radius: 9px 4px;
-        -webkit-box-shadow: inset 0 0 0 1px hsl(211, 10%, 53%), inset 0 0 0 4px hsl(209deg 18% 30%);
+        -webkit-box-shadow: inset 0 0 0 1px theme('colors.phoenix.600'), inset 0 0 0 4px theme('colors.neutral.700');
     }
 
     ::-webkit-scrollbar-track-piece {

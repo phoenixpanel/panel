@@ -74,4 +74,3 @@ export default memo(FileObjectRow, (prevProps, nextProps) => {
 
     return isEqual(prevFile, nextFile);
 });
-
