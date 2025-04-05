@@ -290,7 +290,7 @@ if [ -n "$DB_EXISTS" ] || [ -n "$USER_EXISTS" ]; then
 fi
 
 # Escape password for MySQL commands (needs to be done *before* CREATE USER)
-DB_PASSWORD_MYSQL_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g' -e "s/'/\\'/g") # Escape \, &, and '
+DB_PASSWORD_MYSQL_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/\\/\\\\/g' -e "s/'/\\'/g") # Escape \ and ' for MySQL string
 
 # Create database and user
 print_info "Creating database '${DB_DATABASE}'..."
@@ -422,8 +422,9 @@ sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PORT=.*|DB_PORT=3306|" .env
 sudo -u ${WEBSERVER_USER} sed -i "s|^DB_DATABASE=.*|DB_DATABASE=${DB_DATABASE}|" .env
 sudo -u ${WEBSERVER_USER} sed -i "s|^DB_USERNAME=.*|DB_USERNAME=${DB_USERNAME}|" .env
 # Escape password for sed
-DB_PASSWORD_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g')
-sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=${DB_PASSWORD_ESCAPED}|" .env
+# Escape password for sed - handle backslash, ampersand, and the delimiter (#)
+DB_PASSWORD_SED_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\#&\\]/\\&/g')
+sudo -u ${WEBSERVER_USER} sed -i "s#^DB_PASSWORD=.*#DB_PASSWORD=${DB_PASSWORD_SED_ESCAPED}#" .env
 
 # Add prompts for other important settings like Mail, Redis if needed
 # Example:
@@ -528,7 +529,15 @@ if prompt_yes_no "Setup Nginx web server automatically?"; then
         # Stop Nginx temporarily for standalone challenge if needed, or use webroot
         # Using Nginx plugin is generally preferred
         print_info "Attempting to obtain SSL certificate for ${NGINX_DOMAIN}..."
-        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$ADMIN_EMAIL" --redirect # Use admin email if available, else prompt
+        CERTBOT_EMAIL="$ADMIN_EMAIL" # Use admin email by default
+        if [ -z "$CERTBOT_EMAIL" ]; then
+            CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
+            while [[ -z "$CERTBOT_EMAIL" ]]; do
+                print_warning "Email address cannot be empty."
+                CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
+            done
+        fi
+        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
         print_success "SSL certificate obtained and Nginx configured for SSL."
     fi
 
