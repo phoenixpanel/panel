@@ -44,7 +44,8 @@ generate_password() {
 prompt_user() {
     local prompt_message=$1
     local user_input
-    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input
+    # Read directly from the terminal, even if stdin is piped
+    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input < /dev/tty
     echo "$user_input"
 }
 
@@ -55,7 +56,8 @@ prompt_yes_no() {
     local answer
 
     while true; do
-        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer
+        # Read directly from the terminal
+        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer < /dev/tty
         answer=${answer:-$default} # Use default if empty
         case $answer in
             [Yy]* ) return 0;; # Yes
@@ -238,7 +240,7 @@ MYSQL_COMMAND_BASE="mysql" # Base command
 if ! $MYSQL_COMMAND_BASE -e "SELECT 1;" > /dev/null 2>&1; then
     print_warning "Could not connect to MySQL as root without a password."
     while true; do
-        read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD
+        read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD < /dev/tty
         echo # Newline after password input
 
         if [[ -z "$MYSQL_ROOT_PASSWORD" ]]; then
@@ -440,73 +442,35 @@ sudo -u ${WEBSERVER_USER} php artisan migrate --seed --force
 print_success "Database migrated and seeded."
 
 # --- Create Administrator Account ---
-# Default to 'yes' for non-interactive, otherwise prompt.
-CREATE_ADMIN_DEFAULT="y"
-if ! [ -t 0 ]; then
-    print_info "Non-interactive mode detected. Assuming 'yes' for administrator account creation."
-    CREATE_ADMIN_ANSWER=0 # 0 means yes in prompt_yes_no return code
-else
-    prompt_yes_no "Create an administrator account now?" "$CREATE_ADMIN_DEFAULT"
-    CREATE_ADMIN_ANSWER=$?
-fi
-
-if [ $CREATE_ADMIN_ANSWER -eq 0 ]; then # If yes (or assumed yes)
+# Always prompt, reading from /dev/tty via helper function
+if prompt_yes_no "Create an administrator account now?"; then
     ADMIN_EMAIL=""
     ADMIN_USERNAME=""
     ADMIN_FIRST_NAME=""
     ADMIN_LAST_NAME=""
     ADMIN_PASSWORD=""
 
-    # Prompt for details only if interactive
-    if [ -t 0 ]; then
-        while [[ -z "$ADMIN_EMAIL" ]]; do
-            ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
-        done
-    else
-        ADMIN_EMAIL="admin@localhost" # Default for non-interactive
-        print_info "Using default email: ${ADMIN_EMAIL}"
-    fi
-    if [ -t 0 ]; then
-        while [[ -z "$ADMIN_USERNAME" ]]; do
-            ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
-        done
-    else
-         ADMIN_USERNAME="admin" # Default for non-interactive
-         print_info "Using default username: ${ADMIN_USERNAME}"
-    fi
-    if [ -t 0 ]; then
-        while [[ -z "$ADMIN_FIRST_NAME" ]]; do
-            ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
-        done
-    else
-        ADMIN_FIRST_NAME="Admin" # Default for non-interactive
-        print_info "Using default first name: ${ADMIN_FIRST_NAME}"
-    fi
-    if [ -t 0 ]; then
-        while [[ -z "$ADMIN_LAST_NAME" ]]; do
-            ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
-        done
-    else
-        ADMIN_LAST_NAME="User" # Default for non-interactive
-        print_info "Using default last name: ${ADMIN_LAST_NAME}"
-    fi
+    # Always prompt for details using prompt_user (which reads from /dev/tty)
+    while [[ -z "$ADMIN_EMAIL" ]]; do
+        ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
+    done
+    while [[ -z "$ADMIN_USERNAME" ]]; do
+        ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
+    done
+    while [[ -z "$ADMIN_FIRST_NAME" ]]; do
+        ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
+    done
+    while [[ -z "$ADMIN_LAST_NAME" ]]; do
+        ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
+    done
 
-    # Default to 'yes' for random password non-interactively, otherwise prompt.
-    GENERATE_RANDOM_PASS_DEFAULT="y"
-    if ! [ -t 0 ]; then
-        print_info "Non-interactive mode detected. Generating random password."
-        GENERATE_RANDOM_PASS_ANSWER=0 # 0 means yes
-    else
-        prompt_yes_no "Generate a random password for the administrator?" "$GENERATE_RANDOM_PASS_DEFAULT"
-        GENERATE_RANDOM_PASS_ANSWER=$?
-    fi
-
-    if [ $GENERATE_RANDOM_PASS_ANSWER -eq 0 ]; then # If yes (or assumed yes)
+    # Always prompt for password choice using prompt_yes_no (reads from /dev/tty)
+    if prompt_yes_no "Generate a random password for the administrator?"; then
         ADMIN_PASSWORD=$(generate_password)
         print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
-    else # Prompt for password interactively
+    else # Prompt for password interactively, reading from /dev/tty
         while true; do # Loop until valid password or generated
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password (leave empty to generate): ")" ADMIN_PASSWORD
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password (leave empty to generate): ")" ADMIN_PASSWORD < /dev/tty
             echo
             if [[ -z "$ADMIN_PASSWORD" ]]; then
                 print_info "Empty password entered. Generating a random password..."
@@ -515,7 +479,7 @@ if [ $CREATE_ADMIN_ANSWER -eq 0 ]; then # If yes (or assumed yes)
                 break # Exit loop after generating
             fi
 
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password < /dev/tty
             echo
             if [[ "$ADMIN_PASSWORD" == "$confirm_password" ]]; then
                 break # Passwords match, exit loop
