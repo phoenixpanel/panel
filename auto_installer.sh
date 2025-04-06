@@ -368,7 +368,7 @@ print_success "File permissions set."
 # --- Install Dependencies (Composer & Yarn) ---
 print_info "Installing Composer dependencies..."
 # Run composer as the webserver user to avoid permission issues
-sudo -u ${WEBSERVER_USER} composer install --no-dev --optimize-autoloader
+sudo -u ${WEBSERVER_USER} /usr/local/bin/composer install --no-dev --optimize-autoloader
 print_success "Composer dependencies installed."
 
 print_info "Installing Yarn dependencies and building assets..."
