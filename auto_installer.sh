@@ -126,9 +126,12 @@ install_rhel_based_deps() {
     dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %{rhel}).rpm
     dnf module reset php -y
     dnf module enable php:remi-${PHP_VERSION} -y
-    # PHP and extensions
+    # Redis, PHP and extensions
     print_info "Installing PHP ${PHP_VERSION} and extensions..."
-    dnf install -y php php-cli php-process php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    dnf install -y redis php php-cli php-process php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    # Start redis
+    sudo systemctl enable redis
+    sudo systemctl start redis
     # MySQL Server
     if ! command -v mysql &> /dev/null; then
         print_info "Installing MySQL Server..."
