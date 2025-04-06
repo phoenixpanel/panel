@@ -554,7 +554,6 @@ if prompt_yes_no "Setup Nginx web server automatically?"; then
         fi
         systemctl stop nginx
         certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
-        systemctl start nginx
         print_success "SSL certificate obtained and Nginx configured for SSL."
     fi
 
