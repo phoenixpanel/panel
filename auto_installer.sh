@@ -128,7 +128,7 @@ install_rhel_based_deps() {
     dnf module enable php:remi-${PHP_VERSION} -y
     # PHP and extensions
     print_info "Installing PHP ${PHP_VERSION} and extensions..."
-    dnf install -y php php-cli php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    dnf install -y php php-cli php-process php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
     # MySQL Server
     if ! command -v mysql &> /dev/null; then
         print_info "Installing MySQL Server..."
