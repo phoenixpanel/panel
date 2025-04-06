@@ -552,7 +552,7 @@ if prompt_yes_no "Setup Nginx web server automatically?"; then
                 CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
             done
         fi
-        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
+        certbot certonly --standalone -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
         print_success "SSL certificate obtained and Nginx configured for SSL."
     fi
 
