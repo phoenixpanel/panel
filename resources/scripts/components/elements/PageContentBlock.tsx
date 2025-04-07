@@ -30,7 +30,7 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
                             rel={'noopener nofollow noreferrer'}
                             href={'https://phoenixpanel.io'}
                             target={'_blank'}
-                            css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
+                            css={tw`no-underline text-phoenix-600 hover:text-phoenix-500`}
                         >
                             PhoenixPanel&reg;
                         </a>
@@ -43,5 +43,3 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
 };
 
 export default PageContentBlock;
-
-

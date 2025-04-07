@@ -1,16 +1,31 @@
 const colors = require('tailwindcss/colors');
 
+// Dark theme color palette
 const gray = {
-    50: 'hsl(216, 33%, 97%)',
-    100: 'hsl(214, 15%, 91%)',
-    200: 'hsl(210, 16%, 82%)',
-    300: 'hsl(211, 13%, 65%)',
-    400: 'hsl(211, 10%, 53%)',
-    500: 'hsl(211, 12%, 43%)',
-    600: 'hsl(209, 14%, 37%)',
-    700: 'hsl(209, 18%, 30%)',
-    800: 'hsl(209, 20%, 25%)',
-    900: 'hsl(210, 24%, 16%)',
+    50: '#e5e7eb',   // Off-white (lighter text/highlights)
+    100: '#d1d5db',  // Light grey (base text)
+    200: '#c5ccd6',
+    300: '#aab3bf',
+    400: '#8b95a1',
+    500: '#6a747e',
+    600: '#4f5861',
+    700: '#3b4148',  // Darker grey (secondary elements/borders)
+    800: '#2a2f33',  // Very dark grey (secondary elements/borders)
+    900: '#23272a',  // Near-black (primary background)
+};
+
+// Phoenix color palette
+const phoenix = {
+    50: '#fff3e0',   // Lightest orange
+    100: '#ffe0b2',  // Very light orange
+    200: '#ffcc80',  // Light orange
+    300: '#ffb74d',  // Medium-light orange
+    400: '#ffa726',  // Medium orange
+    500: '#ff9500',  // Phoenix secondary (bright orange-yellow)
+    600: '#e25822',  // Phoenix primary (deep orange-red)
+    700: '#d84315',  // Dark orange-red
+    800: '#bf360c',  // Very dark orange-red
+    900: '#8B2500',  // Phoenix dark (darkest red-brown)
 };
 
 module.exports = {
@@ -23,14 +38,27 @@ module.exports = {
                 header: ['"IBM Plex Sans"', '"Roboto"', 'system-ui', 'sans-serif'],
             },
             colors: {
-                black: '#131a20',
+                black: gray[900], // Use the darkest gray as black
                 // "primary" and "neutral" are deprecated, prefer the use of "blue" and "gray"
                 // in new code.
-                primary: colors.blue,
+                primary: { ...phoenix }, // Use the phoenix palette as primary
                 gray: gray,
-                neutral: gray,
-                cyan: colors.cyan,
-            },
+                neutral: gray, // Use the gray palette for neutral
+                phoenix: phoenix, // Add phoenix color palette
+                // Replace cyan with phoenix colors for consistency
+                cyan: {
+                    50: '#fff3e0',   // Lightest orange
+                    100: '#ffe0b2',  // Very light orange
+                    200: '#ffcc80',  // Light orange
+                    300: '#ffb74d',  // Medium-light orange
+                    400: '#ffa726',  // Medium orange
+                    500: '#ff9500',  // Phoenix secondary (bright orange-yellow)
+                    600: '#e25822',  // Phoenix primary (deep orange-red)
+                    700: '#d84315',  // Dark orange-red
+                    800: '#bf360c',  // Very dark orange-red
+                    900: '#8B2500',  // Phoenix dark (darkest red-brown)
+                },
+            }, // Correct closing brace for colors object
             fontSize: {
                 '2xs': '0.625rem',
             },
@@ -38,7 +66,7 @@ module.exports = {
                 250: '250ms',
             },
             borderColor: theme => ({
-                default: theme('colors.neutral.400', 'currentColor'),
+                default: theme('colors.neutral.700', 'currentColor'), // Use a darker border color
             }),
         },
     },
