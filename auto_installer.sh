@@ -44,7 +44,8 @@ generate_password() {
 prompt_user() {
     local prompt_message=$1
     local user_input
-    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input
+    # Read directly from the terminal, even if stdin is piped
+    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input < /dev/tty
     echo "$user_input"
 }
 
@@ -55,7 +56,8 @@ prompt_yes_no() {
     local answer
 
     while true; do
-        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer
+        # Read directly from the terminal
+        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer < /dev/tty
         answer=${answer:-$default} # Use default if empty
         case $answer in
             [Yy]* ) return 0;; # Yes
@@ -96,7 +98,7 @@ print_info "Installing required system dependencies..."
 install_debian_based_deps() {
     apt-get update -y
     # Essential build tools and utilities
-    apt-get install -y software-properties-common curl wget git unzip zip tar gnupg apt-transport-https lsb-release ca-certificates
+    apt-get install -y software-properties-common curl wget git unzip zip tar gnupg apt-transport-https lsb-release ca-certificates jq
     # PHP Repo
     print_info "Adding PHP repository (ppa:ondrej/php)..."
     add-apt-repository ppa:ondrej/php -y
@@ -124,9 +126,12 @@ install_rhel_based_deps() {
     dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %{rhel}).rpm
     dnf module reset php -y
     dnf module enable php:remi-${PHP_VERSION} -y
-    # PHP and extensions
+    # Redis, PHP and extensions
     print_info "Installing PHP ${PHP_VERSION} and extensions..."
-    dnf install -y php php-cli php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    dnf install -y redis php php-cli php-process php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    # Start redis
+    sudo systemctl enable redis
+    sudo systemctl start redis
     # MySQL Server
     if ! command -v mysql &> /dev/null; then
         print_info "Installing MySQL Server..."
@@ -229,34 +234,77 @@ fi
 # Secure MySQL installation if needed (basic example)
 # mysql_secure_installation # Consider running this interactively or automating parts if possible
 
-print_info "Creating MySQL database and user..."
-# Use root credentials if needed, or prompt if password is set
-# This assumes root has no password or uses socket authentication initially
-MYSQL_COMMAND="mysql"
-# Add logic here to handle MySQL root password if it's already set
+# --- MySQL Root Password Handling ---
+print_info "Checking MySQL root access..."
+MYSQL_ROOT_PASSWORD=""
+MYSQL_COMMAND_BASE="mysql" # Base command
 
-# Check if database exists
-DB_EXISTS=$( $MYSQL_COMMAND -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${DB_DATABASE}'" | grep ${DB_DATABASE} )
-if [ -z "$DB_EXISTS" ]; then
-    $MYSQL_COMMAND -e "CREATE DATABASE ${DB_DATABASE};"
-    print_info "Database '${DB_DATABASE}' created."
+# Try connecting without password first
+if ! $MYSQL_COMMAND_BASE -e "SELECT 1;" > /dev/null 2>&1; then
+    print_warning "Could not connect to MySQL as root without a password."
+    while true; do
+        read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD < /dev/tty
+        echo # Newline after password input
+
+        if [[ -z "$MYSQL_ROOT_PASSWORD" ]]; then
+            print_error "MySQL root password is required to proceed with database setup. Aborting."
+            exit 1
+        fi
+
+        # Test connection with the provided password
+        if $MYSQL_COMMAND_BASE -uroot -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1;" > /dev/null 2>&1; then
+            print_success "MySQL root connection successful."
+            MYSQL_COMMAND="${MYSQL_COMMAND_BASE} -uroot -p'${MYSQL_ROOT_PASSWORD}'" # Use quotes for safety
+            break
+        else
+            print_warning "Incorrect MySQL root password. Please try again."
+        fi
+    done
 else
-    print_info "Database '${DB_DATABASE}' already exists."
+    print_info "MySQL root access successful without password."
+    MYSQL_COMMAND="${MYSQL_COMMAND_BASE}" # No password needed
 fi
 
-# Check if user exists
-USER_EXISTS=$( $MYSQL_COMMAND -e "SELECT User FROM mysql.user WHERE User = '${DB_USERNAME}'" | grep ${DB_USERNAME} )
-if [ -z "$USER_EXISTS" ]; then
-    $MYSQL_COMMAND -e "CREATE USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
-    print_info "User '${DB_USERNAME}' created."
-else
-    print_info "User '${DB_USERNAME}' already exists. Updating password and grants."
-    # Update password just in case it changed
-    $MYSQL_COMMAND -e "ALTER USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+# --- Database and User Creation ---
+print_info "Checking for existing database/user..."
+# Check if database exists by querying and checking if the output is non-empty
+DB_QUERY_OUTPUT=$( $MYSQL_COMMAND -sN -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${DB_DATABASE}';" )
+if [[ $? -ne 0 ]]; then print_error "Failed to query database existence."; exit 1; fi
+DB_EXISTS=""
+if [[ -n "$DB_QUERY_OUTPUT" ]]; then DB_EXISTS="true"; fi
+
+# Check if user exists by querying and checking if the output is non-empty
+USER_QUERY_OUTPUT=$( $MYSQL_COMMAND -sN -e "SELECT User FROM mysql.user WHERE User = '${DB_USERNAME}' AND Host = 'localhost';" )
+if [[ $? -ne 0 ]]; then print_error "Failed to query user existence."; exit 1; fi
+USER_EXISTS=""
+if [[ -n "$USER_QUERY_OUTPUT" ]]; then USER_EXISTS="true"; fi
+
+# If either exists, prompt for confirmation before deleting
+if [ -n "$DB_EXISTS" ] || [ -n "$USER_EXISTS" ]; then
+    print_warning "Database '${DB_DATABASE}' and/or user '${DB_USERNAME}'@'localhost' already exist."
+    if prompt_yes_no "Proceeding will DELETE the existing database and/or user. Continue?"; then
+        print_info "Deleting existing database and/or user..."
+        $MYSQL_COMMAND -e "DROP DATABASE IF EXISTS \`${DB_DATABASE}\`;" || { print_error "Failed to drop database '${DB_DATABASE}'."; exit 1; }
+        $MYSQL_COMMAND -e "DROP USER IF EXISTS '${DB_USERNAME}'@'localhost';" || { print_error "Failed to drop user '${DB_USERNAME}'@'localhost'."; exit 1; }
+        $MYSQL_COMMAND -e "FLUSH PRIVILEGES;" || { print_error "Failed to flush privileges after dropping."; exit 1; }
+        print_info "Existing database/user deleted."
+    else
+        print_error "User chose not to overwrite existing database/user. Aborting installation."
+        exit 1
+    fi
 fi
 
-$MYSQL_COMMAND -e "GRANT ALL PRIVILEGES ON ${DB_DATABASE}.* TO '${DB_USERNAME}'@'localhost';"
-$MYSQL_COMMAND -e "FLUSH PRIVILEGES;"
+# Escape password for MySQL commands (needs to be done *before* CREATE USER)
+DB_PASSWORD_MYSQL_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/\\/\\\\/g' -e "s/'/\\'/g") # Escape \ and ' for MySQL string
+
+# Create database and user
+print_info "Creating database '${DB_DATABASE}'..."
+$MYSQL_COMMAND -e "CREATE DATABASE \`${DB_DATABASE}\`;" || { print_error "Failed to create database '${DB_DATABASE}'."; exit 1; }
+print_info "Creating user '${DB_USERNAME}'@'localhost'..."
+$MYSQL_COMMAND -e "CREATE USER '${DB_USERNAME}'@'localhost' IDENTIFIED BY '${DB_PASSWORD_MYSQL_ESCAPED}';" || { print_error "Failed to create user '${DB_USERNAME}'. Check MySQL logs for details."; exit 1; }
+print_info "Granting privileges..."
+$MYSQL_COMMAND -e "GRANT ALL PRIVILEGES ON \`${DB_DATABASE}\`.* TO '${DB_USERNAME}'@'localhost';" || { print_error "Failed to grant privileges."; exit 1; }
+$MYSQL_COMMAND -e "FLUSH PRIVILEGES;" || { print_error "Failed to flush privileges after granting."; exit 1; }
 
 print_success "MySQL database and user configured."
 
@@ -267,27 +315,46 @@ if [ -d "$INSTALL_DIR" ]; then
     print_warning "Directory ${INSTALL_DIR} already exists. Skipping download."
     # Optionally add logic to backup/remove existing dir
 else
-    # Find the asset URL for the tar.gz file
+    # Fetch release information using GitHub API
     API_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/${RELEASE_TAG}"
-    DOWNLOAD_URL=$(curl -s $API_URL | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
-
-    if [ -z "$DOWNLOAD_URL" ]; then
-        print_error "Could not find release asset URL for tag '${RELEASE_TAG}'. Trying 'latest' tag."
+    RELEASE_INFO=$(curl -s "$API_URL")
+    if [[ $? -ne 0 ]] || [[ -z "$RELEASE_INFO" ]]; then
+        print_error "Failed to fetch release info from ${API_URL}. Trying 'latest' tag."
         API_URL="https://api.github.com/repos/${GITHUB_REPO}/releases/latest"
-        DOWNLOAD_URL=$(curl -s $API_URL | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
-        if [ -z "$DOWNLOAD_URL" ]; then
-            print_error "Could not find release asset URL for 'latest' tag either. Aborting."
+        RELEASE_INFO=$(curl -s "$API_URL")
+        if [[ $? -ne 0 ]] || [[ -z "$RELEASE_INFO" ]]; then
+            print_error "Failed to fetch release info for 'latest' tag either. Aborting."
             exit 1
         fi
-        print_info "Using download URL for latest release: ${DOWNLOAD_URL}"
+        print_info "Using release info from 'latest' tag."
+    fi
+
+    # Try to find a .tar.gz asset URL using jq
+    DOWNLOAD_URL=$(echo "$RELEASE_INFO" | jq -r '.assets[] | select(.name | endswith(".tar.gz")) | .browser_download_url' | head -n 1)
+
+    # If no .tar.gz asset found, fall back to the tarball_url
+    if [ -z "$DOWNLOAD_URL" ]; then
+        print_warning "No .tar.gz asset found in release assets. Falling back to source code tarball."
+        DOWNLOAD_URL=$(echo "$RELEASE_INFO" | jq -r '.tarball_url')
+        if [ -z "$DOWNLOAD_URL" ] || [ "$DOWNLOAD_URL" == "null" ]; then
+             print_error "Could not find a suitable download URL (asset or tarball). Aborting."
+             exit 1
+        fi
     fi
 
     print_info "Downloading from ${DOWNLOAD_URL}..."
-    wget -q -O panel.tar.gz "$DOWNLOAD_URL"
+    # Use wget with --content-disposition if it's the tarball_url, as GitHub API redirects
+    # Need to handle potential filename differences
+    wget --content-disposition -q -O panel-download.tar.gz "$DOWNLOAD_URL"
+    if [[ $? -ne 0 ]]; then print_error "Download failed from ${DOWNLOAD_URL}."; exit 1; fi
+
     print_info "Extracting files to ${INSTALL_DIR}..."
-    tar -xzf panel.tar.gz -C /var/www
-    mv /var/www/panel-* "$INSTALL_DIR" # Adjust based on actual extracted folder name if needed
-    rm panel.tar.gz
+    # Create the target directory first
+    mkdir -p "$INSTALL_DIR"
+    # Extract and strip the top-level directory (GitHub tarballs often have one)
+    tar -xzf panel-download.tar.gz --strip-components=1 -C "$INSTALL_DIR"
+    if [[ $? -ne 0 ]]; then print_error "Extraction failed. Check panel-download.tar.gz."; exit 1; fi
+    rm panel-download.tar.gz
     print_success "Phoenix Panel downloaded and extracted."
 fi
 
@@ -304,7 +371,7 @@ print_success "File permissions set."
 # --- Install Dependencies (Composer & Yarn) ---
 print_info "Installing Composer dependencies..."
 # Run composer as the webserver user to avoid permission issues
-sudo -u ${WEBSERVER_USER} composer install --no-dev --optimize-autoloader
+sudo -u ${WEBSERVER_USER} /usr/local/bin/composer install --no-dev --optimize-autoloader
 print_success "Composer dependencies installed."
 
 print_info "Installing Yarn dependencies and building assets..."
@@ -326,8 +393,23 @@ else
 fi
 
 # Generate App Key
-print_info "Generating application key..."
-sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+# Check if APP_KEY is already set in .env before generating
+EXISTING_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2-)
+
+if [ -n "$EXISTING_KEY" ] && [ "$EXISTING_KEY" != "null" ] && [ "$EXISTING_KEY" != "" ]; then
+    print_warning "An application key already exists in the .env file."
+    # Use the script's prompt function for confirmation
+    if prompt_yes_no "Overwrite the existing application key? (WARNING: This can corrupt encrypted data)"; then
+        print_info "Generating new application key (overwriting existing)..."
+        sudo -u ${WEBSERVER_USER} php artisan key:generate --no-interaction
+    else
+        print_info "Skipping application key generation (existing key kept)."
+    fi
+else
+    # No existing key or key is empty/null, generate one normally
+    print_info "Generating application key..."
+    sudo -u ${WEBSERVER_USER} php artisan key:generate --no-interaction
+fi
 
 # Prompt for .env values
 APP_URL=$(prompt_user "Enter the Panel URL (e.g., http://panel.example.com): ")
@@ -345,8 +427,9 @@ sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PORT=.*|DB_PORT=3306|" .env
 sudo -u ${WEBSERVER_USER} sed -i "s|^DB_DATABASE=.*|DB_DATABASE=${DB_DATABASE}|" .env
 sudo -u ${WEBSERVER_USER} sed -i "s|^DB_USERNAME=.*|DB_USERNAME=${DB_USERNAME}|" .env
 # Escape password for sed
-DB_PASSWORD_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g')
-sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=${DB_PASSWORD_ESCAPED}|" .env
+# Escape password for sed - handle backslash, ampersand, and the delimiter (#)
+DB_PASSWORD_SED_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\#&\\]/\\&/g')
+sudo -u ${WEBSERVER_USER} sed -i "s#^DB_PASSWORD=.*#DB_PASSWORD=${DB_PASSWORD_SED_ESCAPED}#" .env
 
 # Add prompts for other important settings like Mail, Redis if needed
 # Example:
@@ -362,6 +445,7 @@ sudo -u ${WEBSERVER_USER} php artisan migrate --seed --force
 print_success "Database migrated and seeded."
 
 # --- Create Administrator Account ---
+# Always prompt, reading from /dev/tty via helper function
 if prompt_yes_no "Create an administrator account now?"; then
     ADMIN_EMAIL=""
     ADMIN_USERNAME=""
@@ -369,6 +453,7 @@ if prompt_yes_no "Create an administrator account now?"; then
     ADMIN_LAST_NAME=""
     ADMIN_PASSWORD=""
 
+    # Always prompt for details using prompt_user (which reads from /dev/tty)
     while [[ -z "$ADMIN_EMAIL" ]]; do
         ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
     done
@@ -382,21 +467,28 @@ if prompt_yes_no "Create an administrator account now?"; then
         ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
     done
 
+    # Always prompt for password choice using prompt_yes_no (reads from /dev/tty)
     if prompt_yes_no "Generate a random password for the administrator?"; then
         ADMIN_PASSWORD=$(generate_password)
         print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
-    else
-        while [[ -z "$ADMIN_PASSWORD" ]]; do
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
+    else # Prompt for password interactively, reading from /dev/tty
+        while true; do # Loop until valid password or generated
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password (leave empty to generate): ")" ADMIN_PASSWORD < /dev/tty
             echo
-            local confirm_password
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
+            if [[ -z "$ADMIN_PASSWORD" ]]; then
+                print_info "Empty password entered. Generating a random password..."
+                ADMIN_PASSWORD=$(generate_password)
+                print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
+                break # Exit loop after generating
+            fi
+
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password < /dev/tty
             echo
-            if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then
+            if [[ "$ADMIN_PASSWORD" == "$confirm_password" ]]; then
+                break # Passwords match, exit loop
+            else
                 print_warning "Passwords do not match. Please try again."
-                ADMIN_PASSWORD=""
-            elif [[ -z "$ADMIN_PASSWORD" ]]; then
-                 print_warning "Password cannot be empty."
+                ADMIN_PASSWORD="" # Reset password to retry loop
             fi
         done
     fi
@@ -452,7 +544,16 @@ if prompt_yes_no "Setup Nginx web server automatically?"; then
         # Stop Nginx temporarily for standalone challenge if needed, or use webroot
         # Using Nginx plugin is generally preferred
         print_info "Attempting to obtain SSL certificate for ${NGINX_DOMAIN}..."
-        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$ADMIN_EMAIL" --redirect # Use admin email if available, else prompt
+        CERTBOT_EMAIL="$ADMIN_EMAIL" # Use admin email by default
+        if [ -z "$CERTBOT_EMAIL" ]; then
+            CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
+            while [[ -z "$CERTBOT_EMAIL" ]]; do
+                print_warning "Email address cannot be empty."
+                CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
+            done
+        fi
+        systemctl stop nginx
+        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
         print_success "SSL certificate obtained and Nginx configured for SSL."
     fi
 

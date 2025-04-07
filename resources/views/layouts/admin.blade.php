@@ -14,7 +14,7 @@
         <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#bc6e3c">
         <link rel="shortcut icon" href="/favicons/favicon.ico">
         <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-        <meta name="theme-color" content="#0e4688">
+        <meta name="theme-color" content="#FF5722"> <!-- Updated Phoenix primary color -->
 
         @include('layouts.scripts')
 
@@ -22,10 +22,11 @@
             {!! Theme::css('vendor/select2/select2.min.css?t={cache-version}') !!}
             {!! Theme::css('vendor/bootstrap/bootstrap.min.css?t={cache-version}') !!}
             {!! Theme::css('vendor/adminlte/admin.min.css?t={cache-version}') !!}
-            {!! Theme::css('vendor/adminlte/colors/skin-blue.min.css?t={cache-version}') !!}
+            {!! Theme::css('vendor/adminlte/colors/skin-phoenix.min.css?t={cache-version}') !!}
             {!! Theme::css('vendor/sweetalert/sweetalert.min.css?t={cache-version}') !!}
             {!! Theme::css('vendor/animate/animate.min.css?t={cache-version}') !!}
             {!! Theme::css('css/phoenixpanel.css?t={cache-version}') !!}
+            {!! Theme::css('css/particles.css?t={cache-version}') !!}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -35,7 +36,7 @@
             <![endif]-->
         @show
     </head>
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-blue fixed sidebar-mini"> <!-- Keep skin-blue class for compatibility -->
         <div class="wrapper">
             <header class="main-header">
                 <a href="{{ route('index') }}" class="logo">
@@ -174,6 +175,7 @@
             {!! Theme::js('vendor/bootstrap-notify/bootstrap-notify.min.js?t={cache-version}') !!}
             {!! Theme::js('vendor/select2/select2.full.min.js?t={cache-version}') !!}
             {!! Theme::js('js/admin/functions.js?t={cache-version}') !!}
+            {!! Theme::js('js/particles-config.js?t={cache-version}') !!}
             <script src="/js/autocomplete.js" type="application/javascript"></script>
 
             @if(Auth::user()->root_admin)
@@ -186,8 +188,8 @@
                             title: 'Do you want to log out?',
                             type: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#d9534f',
-                            cancelButtonColor: '#d33',
+                            confirmButtonColor: '#FF5722', /* Updated Phoenix primary */
+                            cancelButtonColor: '#7A1F00', /* Updated Phoenix dark */
                             confirmButtonText: 'Log out'
                         }, function () {
                              $.ajax({

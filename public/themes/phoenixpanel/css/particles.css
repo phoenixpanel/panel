@@ -1,0 +1,126 @@
+/* Phoenix Panel Particle Effects */
+
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ember particle styling */
+.ember-particle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 87, 34, 0.9) 0%, rgba(255, 87, 34, 0) 70%);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 0 10px 2px rgba(255, 87, 34, 0.5);
+    animation: float-up var(--duration, 3s) ease-out forwards;
+}
+
+.ember-particle.small {
+    width: 6px;
+    height: 6px;
+}
+
+.ember-particle.medium {
+    width: 10px;
+    height: 10px;
+}
+
+.ember-particle.large {
+    width: 16px;
+    height: 16px;
+}
+
+/* Particle colors */
+.ember-particle.orange {
+    background: radial-gradient(circle, rgba(255, 87, 34, 0.9) 0%, rgba(255, 87, 34, 0) 70%);
+    box-shadow: 0 0 10px 2px rgba(255, 87, 34, 0.5);
+}
+
+.ember-particle.yellow {
+    background: radial-gradient(circle, rgba(255, 171, 0, 0.9) 0%, rgba(255, 171, 0, 0) 70%);
+    box-shadow: 0 0 10px 2px rgba(255, 171, 0, 0.5);
+}
+
+.ember-particle.red {
+    background: radial-gradient(circle, rgba(255, 61, 0, 0.9) 0%, rgba(255, 61, 0, 0) 70%);
+    box-shadow: 0 0 10px 2px rgba(255, 61, 0, 0.5);
+}
+
+/* Floating animation */
+@keyframes float-up {
+    0% {
+        transform: translateY(0) translateX(0) scale(0.2);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--max-opacity, 0.8);
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(calc(var(--travel-distance, -100px))) 
+                   translateX(calc(var(--drift, 20px))) 
+                   scale(var(--end-scale, 0.5));
+        opacity: 0;
+    }
+}
+
+/* Glow pulse animation for static elements */
+.phoenix-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 87, 34, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 87, 34, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 87, 34, 0.3);
+    }
+}
+
+/* Login page specific styling */
+.login-page .particles-container {
+    z-index: 0;
+}
+
+.login-page .phoenixpanel-login-box {
+    position: relative;
+    z-index: 2;
+}
+
+/* Add subtle glow to important UI elements */
+.box-primary, 
+.nav-tabs-custom > .nav-tabs > li.active,
+.btn-primary,
+.label-primary {
+    position: relative;
+}
+
+.box-primary::after, 
+.nav-tabs-custom > .nav-tabs > li.active::after,
+.btn-primary::after,
+.label-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: inherit;
+    animation: glow-pulse 4s ease-in-out infinite;
+    opacity: 0.5;
+}

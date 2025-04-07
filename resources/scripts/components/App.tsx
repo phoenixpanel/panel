@@ -93,5 +93,3 @@ const App = () => {
 };
 
 export default hot(App);
-
-
