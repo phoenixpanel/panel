@@ -60,7 +60,9 @@
             </div>
         @endif
         @section('scripts')
-            {!! $asset->js('main.js') !!}
+            @if(isset($asset))
+                {!! $asset->js('main.js') !!}
+            @endif
         @show
     </body>
 </html>
