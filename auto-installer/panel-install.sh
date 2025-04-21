@@ -105,13 +105,29 @@ install_app_dependencies() {
     sudo -u ${WEBSERVER_USER} composer install --no-dev --optimize-autoloader
     print_success "Composer dependencies installed."
     
-    print_info "Installing Yarn dependencies and building assets..."
-    # Ensure NVM is available for the webserver user or run as root if simpler
-    yarn install --frozen-lockfile
-    yarn build:production
+    print_info "Installing frontend dependencies and building assets..."
+    
+    # Check if Yarn is available
+    if command -v yarn &> /dev/null; then
+        print_info "Using Yarn to install dependencies..."
+        yarn install --frozen-lockfile
+        yarn build:production
+    else
+        # Fallback to npm if yarn is not available
+        print_warning "Yarn not found, falling back to npm..."
+        if command -v npm &> /dev/null; then
+            npm install
+            npm run build:production
+        else
+            print_warning "Neither Yarn nor npm is available. Skipping frontend build."
+            print_warning "The panel may not function correctly without frontend assets."
+            print_warning "Please install Node.js and Yarn manually and run 'yarn install && yarn build:production'."
+        fi
+    fi
+    
     # Re-apply ownership just in case yarn/node created files as root
     chown -R ${WEBSERVER_USER}:${WEBSERVER_USER} "${INSTALL_DIR}"
-    print_success "Yarn dependencies installed and assets built."
+    print_success "Frontend dependencies installed and assets built."
 }
 
 # --- Configure Environment ---
@@ -130,19 +146,38 @@ configure_env() {
     # Check if APP_KEY is already set in .env before generating
     EXISTING_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2-)
     
-    if [ -n "$EXISTING_KEY" ] && [ "$EXISTING_KEY" != "null" ] && [ "$EXISTING_KEY" != "" ]; then
-        print_warning "An application key already exists in the .env file."
-        # Use the script's prompt function for confirmation
-        if prompt_yes_no "Overwrite the existing application key? (WARNING: This can corrupt encrypted data)"; then
-            print_info "Generating new application key (overwriting existing)..."
-            sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        # In non-interactive mode, always generate a new key
+        print_info "Generating application key in non-interactive mode..."
+        sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+        
+        # Verify key was generated
+        NEW_KEY=$(grep '^APP_KEY=' .env | cut -d '=' -f2-)
+        if [ -z "$NEW_KEY" ] || [ "$NEW_KEY" = "null" ]; then
+            print_error "Failed to generate application key. Generating manually..."
+            # Generate a random key manually
+            RANDOM_KEY=$(openssl rand -base64 32)
+            sed -i "s/^APP_KEY=.*/APP_KEY=base64:${RANDOM_KEY}/" .env
+            print_info "Manual key generation completed."
         else
-            print_info "Skipping application key generation (existing key kept)."
+            print_success "Application key generated successfully."
         fi
     else
-        # No existing key or key is empty/null, generate one normally
-        print_info "Generating application key..."
-        sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+        # Interactive mode
+        if [ -n "$EXISTING_KEY" ] && [ "$EXISTING_KEY" != "null" ] && [ "$EXISTING_KEY" != "" ]; then
+            print_warning "An application key already exists in the .env file."
+            # Use the script's prompt function for confirmation
+            if prompt_yes_no "Overwrite the existing application key? (WARNING: This can corrupt encrypted data)"; then
+                print_info "Generating new application key (overwriting existing)..."
+                sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+            else
+                print_info "Skipping application key generation (existing key kept)."
+            fi
+        else
+            # No existing key or key is empty/null, generate one normally
+            print_info "Generating application key..."
+            sudo -u ${WEBSERVER_USER} php artisan key:generate --force
+        fi
     fi
     
     # Set APP_URL based on domain or IP choice

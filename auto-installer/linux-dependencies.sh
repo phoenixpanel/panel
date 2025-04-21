@@ -113,37 +113,47 @@ install_composer() {
 
 # --- Install Node.js and Yarn ---
 install_node_and_yarn() {
-    print_info "Installing NVM, Node.js ${NODE_VERSION}, and Yarn..."
+    print_info "Installing Node.js ${NODE_VERSION} and Yarn..."
     
-    # Install NVM
-    export NVM_DIR="$HOME/.nvm"
-    if [ ! -s "$NVM_DIR/nvm.sh" ]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # Load NVM bash_completion
+    # Install Node.js directly (without NVM)
+    case "$OS" in
+        ubuntu|debian)
+            print_info "Installing Node.js via apt..."
+            curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -
+            apt-get install -y nodejs
+            ;;
+        centos|rhel|rocky|almalinux)
+            print_info "Installing Node.js via dnf..."
+            curl -fsSL https://rpm.nodesource.com/setup_${NODE_VERSION}.x | bash -
+            dnf install -y nodejs
+            ;;
+    esac
+    
+    # Verify Node.js installation
+    if command -v node &> /dev/null; then
+        NODE_INSTALLED_VERSION=$(node -v)
+        print_success "Node.js ${NODE_INSTALLED_VERSION} installed successfully."
     else
-        print_info "NVM already installed."
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
+        print_error "Failed to install Node.js. Please install it manually."
+        exit 1
     fi
-
-    # Install Node.js
-    CURRENT_NODE_VERSION=$(nvm current 2>/dev/null || echo "none")
-    if [[ "$CURRENT_NODE_VERSION" != "v${NODE_VERSION}"* ]]; then
-        print_info "Installing Node.js v${NODE_VERSION}..."
-        nvm install ${NODE_VERSION}
-        nvm use ${NODE_VERSION}
-        nvm alias default ${NODE_VERSION}
-    else
-        print_info "Node.js v${NODE_VERSION} already installed and active."
-    fi
-
+    
     # Install Yarn
-    if ! command -v yarn &> /dev/null; then
-        print_info "Installing Yarn..."
-        npm install -g yarn
-        print_success "Yarn installed successfully."
+    print_info "Installing Yarn via npm..."
+    npm install -g yarn
+    
+    # Verify Yarn installation
+    if command -v yarn &> /dev/null; then
+        YARN_VERSION=$(yarn --version)
+        print_success "Yarn ${YARN_VERSION} installed successfully."
+        
+        # Make sure yarn is in PATH
+        print_info "Adding yarn to PATH..."
+        export PATH="$(npm bin -g):$PATH"
+        echo "export PATH=\"$(npm bin -g):\$PATH\"" >> /tmp/phoenixpanel_install_vars
     else
-        print_info "Yarn already installed."
+        print_error "Failed to install Yarn. Please install it manually."
+        exit 1
     fi
 }
 
