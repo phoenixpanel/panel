@@ -32,8 +32,14 @@ class AssetHashService
     public function url(string $resource): string
     {
         $file = last(explode('/', $resource));
-        $data = Arr::get($this->manifest(), $file) ?? $file;
-
+        $manifest = $this->manifest();
+        
+        // If manifest is empty or doesn't contain the file, return the original resource
+        if (empty($manifest) || !isset($manifest[$file])) {
+            return $resource;
+        }
+        
+        $data = Arr::get($manifest, $file) ?? $file;
         return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
     }
 
@@ -43,8 +49,14 @@ class AssetHashService
     public function integrity(string $resource): string
     {
         $file = last(explode('/', $resource));
-        $data = array_get($this->manifest(), $file, $file);
-
+        $manifest = $this->manifest();
+        
+        // If manifest is empty or doesn't contain the file, return empty string
+        if (empty($manifest) || !isset($manifest[$file])) {
+            return '';
+        }
+        
+        $data = array_get($manifest, $file, $file);
         return Arr::get($data, 'integrity') ?? '';
     }
 
@@ -101,18 +113,23 @@ class AssetHashService
     protected function manifest(): array
     {
         if (static::$manifest === null) {
-            self::$manifest = json_decode(
-                $this->filesystem->get(self::MANIFEST_PATH),
-                true
-            );
+            try {
+                self::$manifest = json_decode(
+                    $this->filesystem->get(self::MANIFEST_PATH),
+                    true
+                );
+            } catch (\Exception $e) {
+                // If we can't read the manifest file, use an empty array in production
+                // or throw an exception in development
+                if (app()->environment('production')) {
+                    self::$manifest = [];
+                } else {
+                    throw new ManifestDoesNotExistException();
+                }
+            }
         }
 
-        $manifest = static::$manifest;
-        if ($manifest === null) {
-            throw new ManifestDoesNotExistException();
-        }
-
-        return $manifest;
+        return static::$manifest ?? [];
     }
 }
 
