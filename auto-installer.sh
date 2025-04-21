@@ -40,13 +40,7 @@ main() {
     TEMP_DIR=$(mktemp -d)
     print_info "Created temporary directory: $TEMP_DIR"
     
-    # Download the auto installer
-    print_info "Downloading auto installer..."
-    curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/main/auto-installer/auto_install.sh -o "$TEMP_DIR/auto_install.sh"
-    chmod +x "$TEMP_DIR/auto_install.sh"
-    
-    # Run the auto installer with default values for non-interactive mode
-    print_info "Running auto installer in non-interactive mode..."
+    # Set default values for non-interactive mode
     export PHOENIXPANEL_NONINTERACTIVE=true
     export PHOENIXPANEL_DOMAIN="panel.example.com"
     export PHOENIXPANEL_IP="127.0.0.1"
@@ -62,8 +56,23 @@ main() {
     print_info "Admin Username: ${CYAN}${PHOENIXPANEL_ADMIN_USERNAME}${RESET}"
     print_info "Admin Password: ${YELLOW}${PHOENIXPANEL_ADMIN_PASSWORD}${RESET} (Please save this!)"
     
-    # Run the installer
-    "$TEMP_DIR/auto_install.sh"
+    # Download the auto installer
+    print_info "Downloading auto installer..."
+    curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/main/auto-installer/auto_install.sh -o "$TEMP_DIR/auto_install.sh"
+    chmod +x "$TEMP_DIR/auto_install.sh"
+    
+    # Run the auto installer in non-interactive mode
+    print_info "Running auto installer in non-interactive mode..."
+    
+    # Run the installer with environment variables explicitly passed
+    env PHOENIXPANEL_NONINTERACTIVE=true \
+        PHOENIXPANEL_DOMAIN="$PHOENIXPANEL_DOMAIN" \
+        PHOENIXPANEL_IP="$PHOENIXPANEL_IP" \
+        PHOENIXPANEL_USE_DOMAIN="$PHOENIXPANEL_USE_DOMAIN" \
+        PHOENIXPANEL_ADMIN_EMAIL="$PHOENIXPANEL_ADMIN_EMAIL" \
+        PHOENIXPANEL_ADMIN_USERNAME="$PHOENIXPANEL_ADMIN_USERNAME" \
+        PHOENIXPANEL_ADMIN_PASSWORD="$PHOENIXPANEL_ADMIN_PASSWORD" \
+        "$TEMP_DIR/auto_install.sh"
     
     # Clean up
     rm -rf "$TEMP_DIR"
