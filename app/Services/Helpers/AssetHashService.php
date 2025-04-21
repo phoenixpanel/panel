@@ -101,15 +101,27 @@ class AssetHashService
     protected function manifest(): array
     {
         if (static::$manifest === null) {
-            self::$manifest = json_decode(
-                $this->filesystem->get(self::MANIFEST_PATH),
-                true
-            );
+            try {
+                if ($this->filesystem->exists(self::MANIFEST_PATH)) {
+                    self::$manifest = json_decode(
+                        $this->filesystem->get(self::MANIFEST_PATH),
+                        true
+                    );
+                } else {
+                    // Return an empty array if the manifest doesn't exist
+                    // This prevents errors when the assets haven't been built yet
+                    return [];
+                }
+            } catch (\Exception $exception) {
+                // Return an empty array on any file reading error
+                return [];
+            }
         }
 
         $manifest = static::$manifest;
         if ($manifest === null) {
-            throw new ManifestDoesNotExistException();
+            // Return an empty array instead of throwing an exception
+            return [];
         }
 
         return $manifest;
