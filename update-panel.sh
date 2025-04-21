@@ -98,7 +98,7 @@ cd $PANEL_DIR || error "Failed to create panel directory"
 # Download latest version from GitHub
 display "Downloading latest version from GitHub..."
 if [ "$PANEL_NAME" == "pterodactyl" ]; then
-    GITHUB_URL="https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz"
+    GITHUB_URL="https://github.com/phoenixpanel/panel/releases/latest/download/panel.tar.gz"
 else
     GITHUB_URL="https://github.com/phoenixpanel/panel/releases/latest/download/panel.tar.gz"
 fi
