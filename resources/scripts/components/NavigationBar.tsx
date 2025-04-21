@@ -111,10 +111,10 @@ export default () => {
                             <FontAwesomeIcon icon={faSignOutAlt} />
                         </button>
                     </Tooltip>
-                    <Tooltip placement={'bottom'} content={'Send Logs to Hastebin'}>
+                    <Tooltip placement={'bottom'} content={'Send Logs to Protectcord'}>
                         <button onClick={async () => {
                             try {
-                                const response = await fetch('https://logs.protectcord.com/documents', {
+                                const response = await fetch('https://logs.hastebin.com/documents', {
                                     method: 'POST',
                                     body: consoleOutput,
                                 });
@@ -122,11 +122,11 @@ export default () => {
                                 if (data && data.key) {
                                     alert(`Logs uploaded to https://logs.protectcord.com/${data.key}`);
                                 } else {
-                                    alert('Failed to upload logs to Hastebin: Invalid response');
+                                    alert('Failed to upload logs to Protectcord: Invalid response');
                                 }
                             } catch (error: any) {
                                 console.error('Error uploading logs:', error);
-                                alert('Failed to upload logs to Hastebin: ' + (error as Error).message);
+                                alert('Failed to upload logs to Protectcord: ' + (error as Error).message);
                             } finally {
                                 consoleOutput = ''; // Clear console output
                             }
