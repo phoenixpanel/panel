@@ -5,7 +5,6 @@ namespace PhoenixPanel\Services\Helpers;
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use PhoenixPanel\Exceptions\ManifestDoesNotExistException;
 
 class AssetHashService
 {
@@ -14,9 +13,15 @@ class AssetHashService
      */
     public const MANIFEST_PATH = './assets/manifest.json';
 
+    /**
+     * @var \Illuminate\Contracts\Filesystem\Filesystem
+     */
     private Filesystem $filesystem;
 
-    protected static mixed $manifest = null;
+    /**
+     * @var array|null
+     */
+    protected static ?array $manifest = null;
 
     /**
      * AssetHashService constructor.
@@ -31,21 +36,14 @@ class AssetHashService
      */
     public function url(string $resource): string
     {
-        try {
-            $file = last(explode('/', $resource));
-            $manifest = $this->manifest();
-            
-            // If manifest is empty, just return the original resource
-            if (empty($manifest)) {
-                return $resource;
-            }
-            
-            $data = Arr::get($manifest, $file) ?? $file;
-            return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
-        } catch (\Exception $e) {
-            // On any error, return the original resource
+        $file = last(explode('/', $resource));
+        $manifest = $this->getManifest();
+        
+        if (!isset($manifest[$file])) {
             return $resource;
         }
+        
+        return str_replace($file, $manifest[$file]['src'] ?? $file, $resource);
     }
 
     /**
@@ -53,21 +51,14 @@ class AssetHashService
      */
     public function integrity(string $resource): string
     {
-        try {
-            $file = last(explode('/', $resource));
-            $manifest = $this->manifest();
-            
-            // If manifest is empty, return empty string
-            if (empty($manifest)) {
-                return '';
-            }
-            
-            $data = array_get($manifest, $file, $file);
-            return Arr::get($data, 'integrity') ?? '';
-        } catch (\Exception $e) {
-            // On any error, return empty string
+        $file = last(explode('/', $resource));
+        $manifest = $this->getManifest();
+        
+        if (!isset($manifest[$file])) {
             return '';
         }
+        
+        return $manifest[$file]['integrity'] ?? '';
     }
 
     /**
@@ -120,34 +111,31 @@ class AssetHashService
     /**
      * Get the asset manifest and store it in the cache for quicker lookups.
      */
-    protected function manifest(): array
+    protected function getManifest(): array
     {
-        if (static::$manifest === null) {
-            try {
-                if ($this->filesystem->exists(self::MANIFEST_PATH)) {
-                    self::$manifest = json_decode(
-                        $this->filesystem->get(self::MANIFEST_PATH),
-                        true
-                    );
-                } else {
-                    // Return an empty array if the manifest doesn't exist
-                    // This prevents errors when the assets haven't been built yet
-                    return [];
-                }
-            } catch (\Exception $exception) {
-                // Return an empty array on any file reading error
-                return [];
+        if (static::$manifest !== null) {
+            return static::$manifest;
+        }
+        
+        try {
+            if (!$this->filesystem->exists(self::MANIFEST_PATH)) {
+                return static::$manifest = [];
             }
+            
+            $contents = $this->filesystem->get(self::MANIFEST_PATH);
+            if (empty($contents)) {
+                return static::$manifest = [];
+            }
+            
+            $decoded = json_decode($contents, true);
+            if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
+                return static::$manifest = [];
+            }
+            
+            return static::$manifest = $decoded;
+        } catch (\Exception $exception) {
+            return static::$manifest = [];
         }
-
-        $manifest = static::$manifest;
-        if ($manifest === null) {
-            // Return an empty array instead of throwing an exception
-            return [];
-        }
-
-        return $manifest;
     }
 }
-
 

@@ -56,17 +56,49 @@ The exception and solution classes were updated to remove dependencies on the Sp
 2. Updated `ManifestDoesNotExistSolution` to be a standard class without external dependencies
 3. Maintained the same functionality but with native PHP implementations
 
-### Deployment Instructions
-To fully resolve this issue:
+### Issue 4: Asset Manifest File Error
+An error occurred in the AssetHashService when the manifest file doesn't exist:
+```
+(View: /var/www/pterodactyl/resources/views/templates/wrapper.blade.php)
+```
 
-1. Deploy the new migration file to your server
-2. Run the migration command:
+#### Solution
+The AssetHashService was completely rewritten to match Pterodactyl's implementation:
+1. Simplified the code structure to be more robust and maintainable
+2. Removed all exception throwing in favor of graceful fallbacks
+3. Implemented a more reliable manifest loading mechanism with multiple validation checks
+4. Returns the original resource URL if the manifest is missing or invalid
+5. Returns an empty integrity string if the manifest is missing or invalid
+6. Simplified the ManifestDoesNotExistException and ManifestDoesNotExistSolution classes
+7. This allows the application to continue functioning even when assets haven't been built
+
+### Deployment Instructions
+To fully resolve all issues:
+
+1. Deploy the following updated files to your server:
+   - `database/migrations/2025_04_21_053000_add_missing_columns_to_ad_settings_table.php` (new file)
+   - `app/Http/Controllers/Admin/Settings/AdManagerController.php` (updated)
+   - `app/Http/Middleware/InjectAdsMiddleware.php` (updated)
+   - `app/Exceptions/ManifestDoesNotExistException.php` (updated)
+   - `app/Exceptions/Solutions/ManifestDoesNotExistSolution.php` (updated)
+   - `app/Services/Helpers/AssetHashService.php` (updated)
+
+2. Run the migration command to add the missing columns:
    ```
    php artisan migrate
    ```
-3. Deploy the updated controller
 
-After these steps, the Ad Manager should function correctly with all features available.
+3. Clear the application cache:
+   ```
+   php artisan cache:clear
+   php artisan config:clear
+   php artisan view:clear
+   ```
+
+4. Restart the web server (if needed):
+   ```
+   systemctl restart nginx  # or apache2, depending on your setup
+   ```
 
 ## Usage
 1. Navigate to Admin > Settings > Ad Manager
