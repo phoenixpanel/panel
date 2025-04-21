@@ -31,10 +31,21 @@ class AssetHashService
      */
     public function url(string $resource): string
     {
-        $file = last(explode('/', $resource));
-        $data = Arr::get($this->manifest(), $file) ?? $file;
-
-        return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
+        try {
+            $file = last(explode('/', $resource));
+            $manifest = $this->manifest();
+            
+            // If manifest is empty, just return the original resource
+            if (empty($manifest)) {
+                return $resource;
+            }
+            
+            $data = Arr::get($manifest, $file) ?? $file;
+            return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
+        } catch (\Exception $e) {
+            // On any error, return the original resource
+            return $resource;
+        }
     }
 
     /**
@@ -42,10 +53,21 @@ class AssetHashService
      */
     public function integrity(string $resource): string
     {
-        $file = last(explode('/', $resource));
-        $data = array_get($this->manifest(), $file, $file);
-
-        return Arr::get($data, 'integrity') ?? '';
+        try {
+            $file = last(explode('/', $resource));
+            $manifest = $this->manifest();
+            
+            // If manifest is empty, return empty string
+            if (empty($manifest)) {
+                return '';
+            }
+            
+            $data = array_get($manifest, $file, $file);
+            return Arr::get($data, 'integrity') ?? '';
+        } catch (\Exception $e) {
+            // On any error, return empty string
+            return '';
+        }
     }
 
     /**
