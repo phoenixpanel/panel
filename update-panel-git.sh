@@ -140,6 +140,14 @@ if [ $? -ne 0 ]; then
     warning "Database migration failed. You may need to run migrations manually."
 fi
 
+# Doing yarn stuff
+
+yarn
+
+# building panel with yarn
+
+yarn build:production
+
 # Set permissions
 display "Setting correct permissions..."
 chown -R www-data:www-data $PANEL_DIR/*
