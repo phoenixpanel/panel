@@ -81,7 +81,10 @@ class AdServiceProvider extends ServiceProvider
 
         $cssLink = '<link rel="stylesheet" href="/css/ads.css">';
         $adContainer = '<div class="ad-container ' . $containerClass . '">' . $adSettings->$adType . '</div>';
+
+        // Pass ad code to frontend via global variables
+        $jsCode = '<script>window.' . str_replace('_ad_code', 'AdHtml', $adType) . ' = \'' . $adContainer . '\';</script>';
         
-        return $cssLink . $adContainer;
+        return $cssLink . $adContainer . $jsCode;
     }
 }
