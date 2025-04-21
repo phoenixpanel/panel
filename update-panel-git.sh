@@ -143,6 +143,8 @@ fi
 # Doing yarn stuff
 
 yarn
+yarn install
+yarn add strip-ansi
 
 # building panel with yarn
 
