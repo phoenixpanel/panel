@@ -202,6 +202,7 @@ return [
         PhoenixPanel\Providers\RouteServiceProvider::class,
         PhoenixPanel\Providers\RepositoryServiceProvider::class,
         PhoenixPanel\Providers\ViewComposerServiceProvider::class,
+        PhoenixPanel\Providers\AdServiceProvider::class,
 
         /*
          * Additional Dependencies

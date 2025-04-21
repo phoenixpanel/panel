@@ -2,49 +2,36 @@
 
 namespace PhoenixPanel\Models;
 
-/**
- * @property int $id
- * @property bool $enabled
- * @property string|null $top_ad_code
- * @property string|null $bottom_ad_code
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- */
+use Illuminate\Database\Eloquent\Model;
+
 class AdSetting extends Model
 {
     /**
      * The table associated with the model.
+     *
+     * @var string
      */
     protected $table = 'ad_settings';
 
     /**
      * The attributes that are mass assignable.
+     *
+     * @var array
      */
     protected $fillable = [
         'enabled',
-        'top_ad_code',
-        'bottom_ad_code',
+        'header_ad_code',
         'sidebar_ad_code',
-        'server_list_ad_code',
-        'dashboard_ad_code',
+        'footer_ad_code',
+        'content_ad_code',
     ];
 
     /**
-     * Cast values to correct type.
+     * The attributes that should be cast.
+     *
+     * @var array
      */
     protected $casts = [
         'enabled' => 'boolean',
     ];
-
-    /**
-     * Get the current ad settings.
-     */
-    public static function getSettings(): self
-    {
-        return self::first() ?? self::create([
-            'enabled' => false,
-            'top_ad_code' => '',
-            'bottom_ad_code' => '',
-        ]);
-    }
 }

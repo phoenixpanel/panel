@@ -59,6 +59,9 @@ export default () => {
                         {name}
                     </Link>
                 </div>
+                
+                {/* Sidebar Ad Space */}
+                <div dangerouslySetInnerHTML={{ __html: window.sidebarAdHtml || '' }} />
                 <RightNavigation className={'flex h-full items-center justify-center'}>
                     <SearchContainer />
                     <Tooltip placement={'bottom'} content={'Dashboard'}>
