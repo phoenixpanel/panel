@@ -227,16 +227,4 @@ Route::group(['prefix' => 'nests'], function () {
     Route::delete('/egg/{egg:id}/variables/{variable:id}', [Admin\Nests\EggVariableController::class, 'destroy']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| Ad Settings Controller Routes
-|--------------------------------------------------------------------------
-|
-| Endpoint: /admin/ads
-|
-*/
-Route::group(['prefix' => 'ads'], function () {
-    Route::get('/', [Admin\AdSettingsController::class, 'index'])->name('admin.ads');
-    Route::post('/', [Admin\AdSettingsController::class, 'update'])->name('admin.ads.update');
-});
 

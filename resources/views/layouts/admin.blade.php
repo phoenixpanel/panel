@@ -28,7 +28,6 @@
             {!! Theme::css('css/phoenixpanel.css?t={cache-version}') !!}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-            <link rel="stylesheet" href="/css/ads.css">
 
             <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -86,11 +85,6 @@
                                 <i class="fa fa-gamepad"></i> <span>Application API</span>
                             </a>
                         </li>
-                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.ads') ?: 'active' }}">
-                            <a href="{{ route('admin.ads')}}">
-                                <i class="fa fa-bullhorn"></i> <span>Ad Settings</span>
-                            </a>
-                        </li>
                         <li class="header">MANAGEMENT</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
                             <a href="{{ route('admin.databases') }}">
@@ -130,22 +124,11 @@
                         </li>
                     </ul>
                 </section>
-                
-                @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->sidebar_ad_code))
-                    <div class="ad-container ad-container-sidebar" id="admin-sidebar-ad-container">
-                        {!! $adSettings->sidebar_ad_code !!}
-                    </div>
-                @endif
             </aside>
             <div class="content-wrapper">
                 <section class="content-header">
                     @yield('content-header')
                 </section>
-                @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->top_ad_code))
-                    <div class="ad-container ad-container-top" id="admin-top-ad-container">
-                        {!! $adSettings->top_ad_code !!}
-                    </div>
-                @endif
                 <section class="content">
                     <div class="row">
                         <div class="col-xs-12">
@@ -170,12 +153,6 @@
                     </div>
                     @yield('content')
                 </section>
-                
-                @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->bottom_ad_code))
-                    <div class="ad-container ad-container-bottom" id="admin-bottom-ad-container">
-                        {!! $adSettings->bottom_ad_code !!}
-                    </div>
-                @endif
             </div>
             <footer class="main-footer">
                 <div class="pull-right small text-gray" style="margin-right:10px;margin-top:-7px;">
@@ -198,7 +175,6 @@
             {!! Theme::js('vendor/select2/select2.full.min.js?t={cache-version}') !!}
             {!! Theme::js('js/admin/functions.js?t={cache-version}') !!}
             <script src="/js/autocomplete.js" type="application/javascript"></script>
-            <script src="/js/ads-helper.js" type="application/javascript"></script>
 
             @if(Auth::user()->root_admin)
                 <script>
