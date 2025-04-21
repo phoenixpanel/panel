@@ -223,6 +223,14 @@ configure_env() {
     
     # Create a temporary file with answers
     SETUP_ANSWERS="${TEMP_DIR}/setup_answers.txt"
+    
+    # Set egg author email - use admin email if available, otherwise use a default
+    if [ -n "$PHOENIXPANEL_ADMIN_EMAIL" ]; then
+        EGG_AUTHOR_EMAIL="$PHOENIXPANEL_ADMIN_EMAIL"
+    else
+        EGG_AUTHOR_EMAIL="admin@example.com"
+    fi
+    
     cat > "$SETUP_ANSWERS" <<EOF
 ${APP_URL}
 ${TIMEZONE}
@@ -240,6 +248,7 @@ mailtrap.io
 tls
 no-reply@${DOMAIN:-example.com}
 PhoenixPanel
+${EGG_AUTHOR_EMAIL}
 EOF
     
     # Run the environment setup command with the answers
