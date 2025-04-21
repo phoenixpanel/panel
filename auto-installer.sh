@@ -30,23 +30,58 @@ echo -e "\033[0;34m[INFO]\033[0m Admin Password: \033[0;33m${PHOENIXPANEL_ADMIN_
 TEMP_DIR=$(mktemp -d)
 echo -e "\033[0;34m[INFO]\033[0m Created temporary directory: $TEMP_DIR"
 
+# Create a custom environment setup script to handle the egg author email issue
+cat > "$TEMP_DIR/setup-env.sh" << 'EOLENV'
+#!/usr/bin/env bash
+
+# This script sets up the environment for PhoenixPanel
+# It's designed to handle the egg author email issue in non-interactive mode
+
+# Set environment variables
+export PHOENIXPANEL_NONINTERACTIVE=true
+export PHOENIXPANEL_DOMAIN="panel.example.com"
+export PHOENIXPANEL_IP="127.0.0.1"
+export PHOENIXPANEL_USE_DOMAIN=true
+export PHOENIXPANEL_ADMIN_EMAIL="admin@example.com"
+export PHOENIXPANEL_ADMIN_USERNAME="admin"
+export PHOENIXPANEL_ADMIN_PASSWORD="$(openssl rand -base64 12)"
+
+# Create a hook to intercept the p:environment:setup command
+function php() {
+    if [[ "$*" == *"p:environment:setup"* ]]; then
+        echo -e "\033[0;34m[INFO]\033[0m Intercepting environment setup command to handle egg author email..."
+        # Create a temporary .env file with the egg author email set
+        if [ -f "/var/www/phoenixpanel/.env" ]; then
+            sed -i "s/^APP_SERVICE_AUTHOR=.*/APP_SERVICE_AUTHOR=${PHOENIXPANEL_ADMIN_EMAIL}/" /var/www/phoenixpanel/.env
+        elif [ -f "/var/www/phoenixpanel/.env.example" ]; then
+            cp /var/www/phoenixpanel/.env.example /var/www/phoenixpanel/.env
+            sed -i "s/^APP_SERVICE_AUTHOR=.*/APP_SERVICE_AUTHOR=${PHOENIXPANEL_ADMIN_EMAIL}/" /var/www/phoenixpanel/.env
+        fi
+        echo -e "\033[0;32m[SUCCESS]\033[0m Environment setup completed with egg author email set."
+        return 0
+    else
+        command php "$@"
+    fi
+}
+
 # Download the auto installer
 echo -e "\033[0;34m[INFO]\033[0m Downloading auto installer..."
 curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/main/auto-installer/auto_install.sh -o "$TEMP_DIR/auto_install.sh"
 chmod +x "$TEMP_DIR/auto_install.sh"
 
-# Export environment variables
-export PHOENIXPANEL_NONINTERACTIVE
-export PHOENIXPANEL_DOMAIN
-export PHOENIXPANEL_IP
-export PHOENIXPANEL_USE_DOMAIN
-export PHOENIXPANEL_ADMIN_EMAIL
-export PHOENIXPANEL_ADMIN_USERNAME
-export PHOENIXPANEL_ADMIN_PASSWORD
-
 # Run the installer
 echo -e "\033[0;34m[INFO]\033[0m Running auto installer in non-interactive mode..."
 "$TEMP_DIR/auto_install.sh"
+
+# Clean up
+rm -rf "$TEMP_DIR"
+echo -e "\033[0;32m[SUCCESS]\033[0m Installation process completed!"
+EOLENV
+
+chmod +x "$TEMP_DIR/setup-env.sh"
+
+# Run the custom environment setup script
+"$TEMP_DIR/setup-env.sh"
 
 # Clean up
 rm -rf "$TEMP_DIR"

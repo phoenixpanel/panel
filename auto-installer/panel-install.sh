@@ -252,6 +252,18 @@ ${EGG_AUTHOR_EMAIL}
 EOF
     
     # Run the environment setup command with the answers
+    # First, set a default egg author email in the .env file directly
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        print_info "Setting egg author email directly in .env file..."
+        if [ -n "$PHOENIXPANEL_ADMIN_EMAIL" ]; then
+            EGG_AUTHOR_EMAIL="$PHOENIXPANEL_ADMIN_EMAIL"
+        else
+            EGG_AUTHOR_EMAIL="admin@example.com"
+        fi
+        sudo -u ${WEBSERVER_USER} sed -i "s/^APP_SERVICE_AUTHOR=.*/APP_SERVICE_AUTHOR=${EGG_AUTHOR_EMAIL}/" .env
+    fi
+    
+    # Now run the environment setup
     sudo -u ${WEBSERVER_USER} php artisan p:environment:setup < "$SETUP_ANSWERS"
     
     # Run the database setup command
