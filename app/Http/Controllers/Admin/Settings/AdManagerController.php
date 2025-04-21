@@ -52,8 +52,23 @@ class AdManagerController extends Controller
             $adSettings = new AdSetting();
         }
         
-        $adSettings->fill($validated);
-        $adSettings->save();
+        // Only update columns that exist in the database
+        try {
+            // Check if the table has the required columns
+            $columns = \Schema::getColumnListing('ad_settings');
+            $filteredData = array_intersect_key($validated, array_flip($columns));
+            
+            $adSettings->fill($filteredData);
+            $adSettings->save();
+        } catch (\Exception $e) {
+            // Fallback to just updating the enabled status if other columns don't exist
+            if (isset($validated['enabled'])) {
+                $adSettings->enabled = $validated['enabled'];
+                $adSettings->save();
+            }
+            
+            $this->alert->warning('Some ad settings could not be saved. Please run the database migrations.')->flash();
+        }
 
         $this->alert->success('Ad settings have been updated successfully.')->flash();
 
