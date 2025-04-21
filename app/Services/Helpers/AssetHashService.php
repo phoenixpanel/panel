@@ -31,16 +31,28 @@ class AssetHashService
      */
     public function url(string $resource): string
     {
-        $file = last(explode('/', $resource));
-        $manifest = $this->manifest();
-        
-        // If manifest is empty or doesn't contain the file, return the original resource
-        if (empty($manifest) || !isset($manifest[$file])) {
+        // If the resource already starts with a slash or http, it's already a valid URL
+        if (starts_with($resource, '/') || starts_with($resource, 'http')) {
             return $resource;
         }
         
+        $file = last(explode('/', $resource));
+        $manifest = $this->manifest();
+        
+        // If manifest is empty or doesn't contain the file, prepend a slash to make it a valid URL
+        if (empty($manifest) || !isset($manifest[$file])) {
+            return '/' . $resource;
+        }
+        
         $data = Arr::get($manifest, $file) ?? $file;
-        return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
+        $result = str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
+        
+        // Ensure the result starts with a slash
+        if (!starts_with($result, '/') && !starts_with($result, 'http')) {
+            $result = '/' . $result;
+        }
+        
+        return $result;
     }
 
     /**
@@ -73,8 +85,12 @@ class AssetHashService
             'referrerpolicy' => 'no-referrer',
         ];
 
+        // Only add integrity if we have a valid hash and it's enabled in config
         if (config('phoenixpanel.assets.use_hash')) {
-            $attributes['integrity'] = $this->integrity($resource);
+            $integrity = $this->integrity($resource);
+            if (!empty($integrity)) {
+                $attributes['integrity'] = $integrity;
+            }
         }
 
         $output = '<link';
@@ -95,8 +111,12 @@ class AssetHashService
             'crossorigin' => 'anonymous',
         ];
 
+        // Only add integrity if we have a valid hash and it's enabled in config
         if (config('phoenixpanel.assets.use_hash')) {
-            $attributes['integrity'] = $this->integrity($resource);
+            $integrity = $this->integrity($resource);
+            if (!empty($integrity)) {
+                $attributes['integrity'] = $integrity;
+            }
         }
 
         $output = '<script';
@@ -114,17 +134,30 @@ class AssetHashService
     {
         if (static::$manifest === null) {
             try {
-                self::$manifest = json_decode(
-                    $this->filesystem->get(self::MANIFEST_PATH),
-                    true
-                );
-            } catch (\Exception $e) {
-                // If we can't read the manifest file, use an empty array in production
-                // or throw an exception in development
-                if (app()->environment('production')) {
-                    self::$manifest = [];
+                if ($this->filesystem->exists(self::MANIFEST_PATH)) {
+                    $content = $this->filesystem->get(self::MANIFEST_PATH);
+                    self::$manifest = json_decode($content, true) ?? [];
+                    
+                    // If json_decode returns null (invalid JSON), use an empty array
+                    if (self::$manifest === null) {
+                        self::$manifest = [];
+                    }
                 } else {
-                    throw new ManifestDoesNotExistException();
+                    // File doesn't exist
+                    self::$manifest = [];
+                    
+                    // Only throw in development
+                    if (!app()->environment('production')) {
+                        throw new ManifestDoesNotExistException();
+                    }
+                }
+            } catch (\Exception $e) {
+                // Catch any other exceptions
+                self::$manifest = [];
+                
+                // Only throw in development
+                if (!app()->environment('production') && !($e instanceof ManifestDoesNotExistException)) {
+                    throw $e;
                 }
             }
         }
