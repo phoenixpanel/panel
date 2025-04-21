@@ -24,6 +24,9 @@ class AdSetting extends Model
         'enabled',
         'top_ad_code',
         'bottom_ad_code',
+        'sidebar_ad_code',
+        'server_list_ad_code',
+        'dashboard_ad_code',
     ];
 
     /**

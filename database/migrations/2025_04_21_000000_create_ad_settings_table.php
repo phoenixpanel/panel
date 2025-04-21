@@ -16,6 +16,9 @@ return new class extends Migration
             $table->boolean('enabled')->default(false);
             $table->text('top_ad_code')->nullable();
             $table->text('bottom_ad_code')->nullable();
+            $table->text('sidebar_ad_code')->nullable();
+            $table->text('server_list_ad_code')->nullable();
+            $table->text('dashboard_ad_code')->nullable();
             $table->timestamps();
         });
 
@@ -24,6 +27,9 @@ return new class extends Migration
             'enabled' => false,
             'top_ad_code' => '',
             'bottom_ad_code' => '',
+            'sidebar_ad_code' => '',
+            'server_list_ad_code' => '',
+            'dashboard_ad_code' => '',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

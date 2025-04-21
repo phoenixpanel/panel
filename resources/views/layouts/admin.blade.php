@@ -130,21 +130,23 @@
                         </li>
                     </ul>
                 </section>
+                
+                @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->sidebar_ad_code))
+                    <div class="ad-container ad-container-sidebar" id="admin-sidebar-ad-container">
+                        {!! $adSettings->sidebar_ad_code !!}
+                    </div>
+                @endif
             </aside>
             <div class="content-wrapper">
                 <section class="content-header">
                     @yield('content-header')
                 </section>
+                @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->top_ad_code))
+                    <div class="ad-container ad-container-top" id="admin-top-ad-container">
+                        {!! $adSettings->top_ad_code !!}
+                    </div>
+                @endif
                 <section class="content">
-                    @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->top_ad_code))
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="ad-container ad-container-top">
-                                    {!! $adSettings->top_ad_code !!}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-xs-12">
                             @if (count($errors) > 0)
@@ -167,17 +169,13 @@
                         </div>
                     </div>
                     @yield('content')
-                    
-                    @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->bottom_ad_code))
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="ad-container ad-container-bottom">
-                                    {!! $adSettings->bottom_ad_code !!}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </section>
+                
+                @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->bottom_ad_code))
+                    <div class="ad-container ad-container-bottom" id="admin-bottom-ad-container">
+                        {!! $adSettings->bottom_ad_code !!}
+                    </div>
+                @endif
             </div>
             <footer class="main-footer">
                 <div class="pull-right small text-gray" style="margin-right:10px;margin-top:-7px;">
@@ -200,6 +198,7 @@
             {!! Theme::js('vendor/select2/select2.full.min.js?t={cache-version}') !!}
             {!! Theme::js('js/admin/functions.js?t={cache-version}') !!}
             <script src="/js/autocomplete.js" type="application/javascript"></script>
+            <script src="/js/ads-helper.js" type="application/javascript"></script>
 
             @if(Auth::user()->root_admin)
                 <script>

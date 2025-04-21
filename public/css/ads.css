@@ -1,31 +1,86 @@
 .ad-container {
     width: 100%;
     text-align: center;
-    overflow: hidden;
-    padding: 10px 0;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
+    overflow: visible;
+    padding: 15px 0;
+    min-height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(248, 249, 250, 0.5);
+    border-top: 1px solid rgba(233, 236, 239, 0.5);
+    border-bottom: 1px solid rgba(233, 236, 239, 0.5);
 }
 
 .ad-container-top {
-    margin-bottom: 15px;
+    margin: 0 0 15px 0;
 }
 
 .ad-container-bottom {
-    margin-top: 15px;
-    border-top: 1px solid #e9ecef;
-    border-bottom: none;
+    margin: 15px 0 0 0;
+}
+
+.ad-container-sidebar {
+    margin: 15px 0;
+    padding: 10px;
+    min-height: 250px;
+    flex-direction: column;
+}
+
+.ad-container-server-list {
+    margin: 20px 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.ad-container-dashboard {
+    margin: 15px 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 /* Admin panel specific styles */
 .skin-blue .ad-container {
-    background-color: #f4f5f7;
-    border-color: #d2d6de;
+    background-color: rgba(244, 245, 247, 0.5);
+    border-color: rgba(210, 214, 222, 0.5);
+}
+
+/* Sidebar specific styles */
+.main-sidebar .ad-container {
+    background-color: rgba(34, 45, 50, 0.5);
+    border-color: rgba(34, 45, 50, 0.8);
+}
+
+/* Content wrapper specific styles */
+.content-wrapper .ad-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Make sure ads are responsive */
-.ad-container img, 
+.ad-container img,
 .ad-container iframe {
     max-width: 100%;
-    height: auto;
+}
+
+/* Fix for ad scripts that inject iframes */
+.ad-container iframe {
+    border: 0;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ensure scripts have space to render their content */
+.ad-container > script + * {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ad-container {
+        padding: 10px 0;
+    }
 }

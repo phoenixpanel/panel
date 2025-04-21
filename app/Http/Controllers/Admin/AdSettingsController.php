@@ -45,6 +45,9 @@ class AdSettingsController extends Controller
             'enabled' => 'boolean',
             'top_ad_code' => 'nullable|string',
             'bottom_ad_code' => 'nullable|string',
+            'sidebar_ad_code' => 'nullable|string',
+            'server_list_ad_code' => 'nullable|string',
+            'dashboard_ad_code' => 'nullable|string',
         ]);
 
         $settings->update($data);
