@@ -2,9 +2,7 @@
 
 namespace PhoenixPanel\Exceptions\Solutions;
 
-use Spatie\Ignition\Contracts\Solution;
-
-class ManifestDoesNotExistSolution implements Solution
+class ManifestDoesNotExistSolution
 {
     public function getSolutionTitle(): string
     {

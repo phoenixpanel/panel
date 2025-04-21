@@ -101,18 +101,23 @@ class AssetHashService
     protected function manifest(): array
     {
         if (static::$manifest === null) {
-            self::$manifest = json_decode(
-                $this->filesystem->get(self::MANIFEST_PATH),
-                true
-            );
+            try {
+                if ($this->filesystem->exists(self::MANIFEST_PATH)) {
+                    self::$manifest = json_decode(
+                        $this->filesystem->get(self::MANIFEST_PATH),
+                        true
+                    );
+                } else {
+                    // File doesn't exist
+                    self::$manifest = [];
+                }
+            } catch (\Exception $e) {
+                // Catch any exceptions
+                self::$manifest = [];
+            }
         }
 
-        $manifest = static::$manifest;
-        if ($manifest === null) {
-            throw new ManifestDoesNotExistException();
-        }
-
-        return $manifest;
+        return static::$manifest ?? [];
     }
 }
 

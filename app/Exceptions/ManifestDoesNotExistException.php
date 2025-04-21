@@ -2,14 +2,11 @@
 
 namespace PhoenixPanel\Exceptions;
 
-use Spatie\Ignition\Contracts\Solution;
-use Spatie\Ignition\Contracts\ProvidesSolution;
-
-class ManifestDoesNotExistException extends \Exception implements ProvidesSolution
+class ManifestDoesNotExistException extends \Exception
 {
-    public function getSolution(): Solution
+    public function getSolution()
     {
-        return new Solutions\ManifestDoesNotExistSolution();
+        return null;
     }
 }
 
