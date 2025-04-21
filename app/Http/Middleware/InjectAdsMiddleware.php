@@ -52,9 +52,12 @@ class InjectAdsMiddleware
      */
     private function isHtmlResponse($response)
     {
-        return $response && method_exists($response, 'getContent') && 
-               method_exists($response, 'header') && 
-               strpos($response->header('Content-Type'), 'text/html') !== false;
+        if (!$response || !method_exists($response, 'getContent') || !method_exists($response, 'headers')) {
+            return false;
+        }
+        
+        $headers = $response->headers->get('Content-Type');
+        return $headers && strpos($headers, 'text/html') !== false;
     }
 
     /**

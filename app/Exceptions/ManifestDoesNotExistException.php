@@ -2,15 +2,22 @@
 
 namespace PhoenixPanel\Exceptions;
 
-use Spatie\Ignition\Contracts\Solution;
-use Spatie\Ignition\Contracts\ProvidesSolution;
-
-class ManifestDoesNotExistException extends \Exception implements ProvidesSolution
+class ManifestDoesNotExistException extends \Exception
 {
-    public function getSolution(): Solution
+    /**
+     * Get the solution for the exception.
+     *
+     * @return array
+     */
+    public function getSolution()
     {
-        return new Solutions\ManifestDoesNotExistSolution();
+        return [
+            'title' => 'Asset manifest file not found',
+            'description' => 'The asset manifest file does not exist. This usually happens when assets have not been compiled. Try running "yarn build" or "npm run build" to generate the required assets.',
+            'links' => [
+                'Documentation' => 'https://pterodactyl.io/panel/troubleshooting.html#assets-not-loading',
+            ],
+        ];
     }
 }
-
 

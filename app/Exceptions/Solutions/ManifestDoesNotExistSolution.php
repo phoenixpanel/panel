@@ -2,26 +2,38 @@
 
 namespace PhoenixPanel\Exceptions\Solutions;
 
-use Spatie\Ignition\Contracts\Solution;
-
-class ManifestDoesNotExistSolution implements Solution
+class ManifestDoesNotExistSolution
 {
-    public function getSolutionTitle(): string
+    /**
+     * Get the solution title.
+     *
+     * @return string
+     */
+    public function getSolutionTitle()
     {
         return "The manifest.json file hasn't been generated yet";
     }
 
-    public function getSolutionDescription(): string
+    /**
+     * Get the solution description.
+     *
+     * @return string
+     */
+    public function getSolutionDescription()
     {
         return 'Run yarn run build:production to build the frontend first.';
     }
 
-    public function getDocumentationLinks(): array
+    /**
+     * Get documentation links.
+     *
+     * @return array
+     */
+    public function getDocumentationLinks()
     {
         return [
             'Docs' => 'https://github.com/phoenixpanel/panel/blob/develop/package.json',
         ];
     }
 }
-
 
