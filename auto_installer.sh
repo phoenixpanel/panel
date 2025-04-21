@@ -126,9 +126,12 @@ install_rhel_based_deps() {
     dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %{rhel}).rpm
     dnf module reset php -y
     dnf module enable php:remi-${PHP_VERSION} -y
-    # PHP and extensions
+    # Redis, PHP and extensions
     print_info "Installing PHP ${PHP_VERSION} and extensions..."
-    dnf install -y php php-cli php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    dnf install -y redis php php-cli php-process php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
+    # Start redis
+    sudo systemctl enable redis
+    sudo systemctl start redis
     # MySQL Server
     if ! command -v mysql &> /dev/null; then
         print_info "Installing MySQL Server..."
@@ -368,7 +371,7 @@ print_success "File permissions set."
 # --- Install Dependencies (Composer & Yarn) ---
 print_info "Installing Composer dependencies..."
 # Run composer as the webserver user to avoid permission issues
-sudo -u ${WEBSERVER_USER} composer install --no-dev --optimize-autoloader
+sudo -u ${WEBSERVER_USER} /usr/local/bin/composer install --no-dev --optimize-autoloader
 print_success "Composer dependencies installed."
 
 print_info "Installing Yarn dependencies and building assets..."
@@ -549,6 +552,7 @@ if prompt_yes_no "Setup Nginx web server automatically?"; then
                 CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
             done
         fi
+        systemctl stop nginx
         certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
         print_success "SSL certificate obtained and Nginx configured for SSL."
     fi
