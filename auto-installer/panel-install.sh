@@ -146,28 +146,45 @@ configure_env() {
     fi
     
     # Set APP_URL based on domain or IP choice
-    if [ "$USE_DOMAIN" = true ]; then
-        APP_URL="http://${DOMAIN}"
-        # If we're going to set up SSL later, use https
-        if prompt_yes_no "Will you be setting up SSL/HTTPS for this domain?"; then
-            APP_URL="https://${DOMAIN}"
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        # Non-interactive mode
+        if [ "$PHOENIXPANEL_USE_DOMAIN" = true ]; then
+            if [ "$USE_SSL" = true ]; then
+                APP_URL="https://${DOMAIN}"
+            else
+                APP_URL="http://${DOMAIN}"
+            fi
+        else
+            APP_URL="http://${IP_ADDRESS}"
         fi
+        
+        # Use default timezone in non-interactive mode
+        TIMEZONE="UTC"
     else
-        APP_URL="http://${IP_ADDRESS}"
+        # Interactive mode
+        if [ "$USE_DOMAIN" = true ]; then
+            APP_URL="http://${DOMAIN}"
+            # If we're going to set up SSL later, use https
+            if prompt_yes_no "Will you be setting up SSL/HTTPS for this domain?"; then
+                APP_URL="https://${DOMAIN}"
+            fi
+        else
+            APP_URL="http://${IP_ADDRESS}"
+        fi
+        
+        # Prompt for timezone
+        TIMEZONE=$(prompt_user "Enter your timezone (default: UTC)")
+        TIMEZONE=${TIMEZONE:-UTC}
     fi
     
     print_info "Using Panel URL: ${APP_URL}"
+    print_info "Using Timezone: ${TIMEZONE}"
     
     # Create a temporary directory for answer files if it doesn't exist
     TEMP_DIR=$(mktemp -d)
     
     # Run the environment setup command
     print_info "Running environment setup..."
-    
-    # Prepare answers for p:environment:setup
-    # Format: app url, timezone, cache driver, session driver, queue driver, redis host, redis password, redis port, mail driver, mail host, mail port, mail username, mail password, mail encryption, mail from address, mail from name
-    TIMEZONE=$(prompt_user "Enter your timezone (default: UTC)")
-    TIMEZONE=${TIMEZONE:-UTC}
     
     # Create a temporary file with answers
     SETUP_ANSWERS="${TEMP_DIR}/setup_answers.txt"

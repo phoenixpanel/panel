@@ -116,25 +116,50 @@ initial_setup() {
     echo "PHP_VERSION=$PHP_VERSION" >> "$CONFIG_FILE"
     echo "NODE_VERSION=$NODE_VERSION" >> "$CONFIG_FILE"
     
-    # Ask if using domain or IP
-    USE_DOMAIN=false
-    if prompt_yes_no "Will you be using a domain name for this installation? (If no, an IP address will be used)"; then
-        USE_DOMAIN=true
-        DOMAIN=$(prompt_user "Enter your domain name (e.g., panel.example.com)")
-        while [[ -z "$DOMAIN" ]]; do
-            print_warning "Domain cannot be empty."
-            DOMAIN=$(prompt_user "Enter your domain name (e.g., panel.example.com)")
-        done
-        echo "USE_DOMAIN=true" >> "$CONFIG_FILE"
-        echo "DOMAIN=$DOMAIN" >> "$CONFIG_FILE"
+    # Check if running in non-interactive mode
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        print_info "Running in non-interactive mode with default values."
+        
+        # Use environment variables for domain/IP
+        if [ "$PHOENIXPANEL_USE_DOMAIN" = true ]; then
+            USE_DOMAIN=true
+            DOMAIN="$PHOENIXPANEL_DOMAIN"
+            echo "USE_DOMAIN=true" >> "$CONFIG_FILE"
+            echo "DOMAIN=$DOMAIN" >> "$CONFIG_FILE"
+            print_info "Using domain: $DOMAIN"
+        else
+            USE_DOMAIN=false
+            IP_ADDRESS="$PHOENIXPANEL_IP"
+            echo "USE_DOMAIN=false" >> "$CONFIG_FILE"
+            echo "IP_ADDRESS=$IP_ADDRESS" >> "$CONFIG_FILE"
+            print_info "Using IP address: $IP_ADDRESS"
+        fi
+        
+        # Save admin credentials for later use
+        echo "ADMIN_EMAIL=$PHOENIXPANEL_ADMIN_EMAIL" >> "$CONFIG_FILE"
+        echo "ADMIN_USERNAME=$PHOENIXPANEL_ADMIN_USERNAME" >> "$CONFIG_FILE"
+        echo "ADMIN_PASSWORD=$PHOENIXPANEL_ADMIN_PASSWORD" >> "$CONFIG_FILE"
     else
-        IP_ADDRESS=$(prompt_user "Enter the server IP address")
-        while [[ -z "$IP_ADDRESS" ]]; do
-            print_warning "IP address cannot be empty."
+        # Interactive mode - ask for domain or IP
+        USE_DOMAIN=false
+        if prompt_yes_no "Will you be using a domain name for this installation? (If no, an IP address will be used)"; then
+            USE_DOMAIN=true
+            DOMAIN=$(prompt_user "Enter your domain name (e.g., panel.example.com)")
+            while [[ -z "$DOMAIN" ]]; do
+                print_warning "Domain cannot be empty."
+                DOMAIN=$(prompt_user "Enter your domain name (e.g., panel.example.com)")
+            done
+            echo "USE_DOMAIN=true" >> "$CONFIG_FILE"
+            echo "DOMAIN=$DOMAIN" >> "$CONFIG_FILE"
+        else
             IP_ADDRESS=$(prompt_user "Enter the server IP address")
-        done
-        echo "USE_DOMAIN=false" >> "$CONFIG_FILE"
-        echo "IP_ADDRESS=$IP_ADDRESS" >> "$CONFIG_FILE"
+            while [[ -z "$IP_ADDRESS" ]]; do
+                print_warning "IP address cannot be empty."
+                IP_ADDRESS=$(prompt_user "Enter the server IP address")
+            done
+            echo "USE_DOMAIN=false" >> "$CONFIG_FILE"
+            echo "IP_ADDRESS=$IP_ADDRESS" >> "$CONFIG_FILE"
+        fi
     fi
     
     print_success "Initial setup completed."

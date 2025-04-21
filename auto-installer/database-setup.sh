@@ -68,16 +68,26 @@ setup_mysql() {
     DB_USERNAME="phoenixpanel"
     DB_PASSWORD=""
     
-    if prompt_yes_no "Generate a random password for the MySQL user '${DB_USERNAME}'?"; then
+    # Check if running in non-interactive mode
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        print_info "Running in non-interactive mode with default values."
+        
+        # Generate a random password for MySQL
         DB_PASSWORD=$(generate_password)
         print_info "Generated MySQL Password: ${YELLOW}${DB_PASSWORD}${RESET} (Please save this!)"
     else
-        while [[ -z "$DB_PASSWORD" ]]; do
-            DB_PASSWORD=$(prompt_user "Enter the desired password for MySQL user '${DB_USERNAME}': ")
-            if [[ -z "$DB_PASSWORD" ]]; then
-                print_warning "Password cannot be empty."
-            fi
-        done
+        # Interactive mode
+        if prompt_yes_no "Generate a random password for the MySQL user '${DB_USERNAME}'?"; then
+            DB_PASSWORD=$(generate_password)
+            print_info "Generated MySQL Password: ${YELLOW}${DB_PASSWORD}${RESET} (Please save this!)"
+        else
+            while [[ -z "$DB_PASSWORD" ]]; do
+                DB_PASSWORD=$(prompt_user "Enter the desired password for MySQL user '${DB_USERNAME}': ")
+                if [[ -z "$DB_PASSWORD" ]]; then
+                    print_warning "Password cannot be empty."
+                fi
+            done
+        fi
     fi
     
     # MySQL Root Password Handling
@@ -88,24 +98,42 @@ setup_mysql() {
     # Try connecting without password first
     if ! $MYSQL_COMMAND_BASE -e "SELECT 1;" > /dev/null 2>&1; then
         print_warning "Could not connect to MySQL as root without a password."
-        while true; do
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD
-            echo # Newline after password input
+        
+        # Check if running in non-interactive mode
+        if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+            print_info "Non-interactive mode: Using empty MySQL root password."
+            print_warning "This may fail if MySQL requires a password. Consider running in interactive mode."
             
-            if [[ -z "$MYSQL_ROOT_PASSWORD" ]]; then
-                print_error "MySQL root password is required to proceed with database setup. Aborting."
+            # Try with empty password in non-interactive mode
+            MYSQL_COMMAND="${MYSQL_COMMAND_BASE} -uroot -p''" # Empty password
+            
+            # Test connection
+            if ! $MYSQL_COMMAND -e "SELECT 1;" > /dev/null 2>&1; then
+                print_error "Cannot connect to MySQL with empty password in non-interactive mode. Aborting."
+                print_error "Please run the installer in interactive mode or ensure MySQL allows root access without password."
                 exit 1
             fi
-            
-            # Test connection with the provided password
-            if $MYSQL_COMMAND_BASE -uroot -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1;" > /dev/null 2>&1; then
-                print_success "MySQL root connection successful."
-                MYSQL_COMMAND="${MYSQL_COMMAND_BASE} -uroot -p'${MYSQL_ROOT_PASSWORD}'" # Use quotes for safety
-                break
-            else
-                print_warning "Incorrect MySQL root password. Please try again."
-            fi
-        done
+        else
+            # Interactive mode - prompt for password
+            while true; do
+                read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD
+                echo # Newline after password input
+                
+                if [[ -z "$MYSQL_ROOT_PASSWORD" ]]; then
+                    print_error "MySQL root password is required to proceed with database setup. Aborting."
+                    exit 1
+                fi
+                
+                # Test connection with the provided password
+                if $MYSQL_COMMAND_BASE -uroot -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1;" > /dev/null 2>&1; then
+                    print_success "MySQL root connection successful."
+                    MYSQL_COMMAND="${MYSQL_COMMAND_BASE} -uroot -p'${MYSQL_ROOT_PASSWORD}'" # Use quotes for safety
+                    break
+                else
+                    print_warning "Incorrect MySQL root password. Please try again."
+                fi
+            done
+        fi
     else
         print_info "MySQL root access successful without password."
         MYSQL_COMMAND="${MYSQL_COMMAND_BASE}" # No password needed

@@ -71,8 +71,16 @@ main() {
     print_info "Downloading modular Linux installer..."
     curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/main/auto-installer/install.sh -o "$TEMP_DIR/install.sh"
     chmod +x "$TEMP_DIR/install.sh"
-    print_info "Running modular Linux installer..."
-    "$TEMP_DIR/install.sh"
+    
+    # Check if running in non-interactive mode
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        print_info "Running installer in non-interactive mode..."
+        # Pass through all environment variables
+        "$TEMP_DIR/install.sh"
+    else
+        print_info "Running installer in interactive mode..."
+        "$TEMP_DIR/install.sh"
+    fi
     
     # Clean up
     rm -rf "$TEMP_DIR"

@@ -65,43 +65,64 @@ prompt_yes_no() {
 create_admin() {
     cd "$INSTALL_DIR"
     
-    if prompt_yes_no "Create an administrator account now?"; then
-        ADMIN_EMAIL=""
-        ADMIN_USERNAME=""
-        ADMIN_FIRST_NAME=""
-        ADMIN_LAST_NAME=""
-        ADMIN_PASSWORD=""
+    # Check if running in non-interactive mode
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        print_info "Creating administrator account with default values..."
         
-        while [[ -z "$ADMIN_EMAIL" ]]; do
-            ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
-        done
-        while [[ -z "$ADMIN_USERNAME" ]]; do
-            ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
-        done
-        while [[ -z "$ADMIN_FIRST_NAME" ]]; do
-            ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
-        done
-        while [[ -z "$ADMIN_LAST_NAME" ]]; do
-            ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
-        done
+        # Use environment variables for admin account
+        ADMIN_EMAIL="$PHOENIXPANEL_ADMIN_EMAIL"
+        ADMIN_USERNAME="$PHOENIXPANEL_ADMIN_USERNAME"
+        ADMIN_FIRST_NAME="Admin"
+        ADMIN_LAST_NAME="User"
+        ADMIN_PASSWORD="$PHOENIXPANEL_ADMIN_PASSWORD"
         
-        if prompt_yes_no "Generate a random password for the administrator?"; then
-            ADMIN_PASSWORD=$(generate_password)
-            print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
-        else
-            while [[ -z "$ADMIN_PASSWORD" ]]; do
-                read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
-                echo
-                read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
-                echo
-                if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then
-                    print_warning "Passwords do not match. Please try again."
-                    ADMIN_PASSWORD=""
-                elif [[ -z "$ADMIN_PASSWORD" ]]; then
-                    print_warning "Password cannot be empty."
-                fi
+        print_info "Using admin email: $ADMIN_EMAIL"
+        print_info "Using admin username: $ADMIN_USERNAME"
+        print_info "Using admin password: ${YELLOW}${ADMIN_PASSWORD}${RESET}"
+    else
+        # Interactive mode
+        if prompt_yes_no "Create an administrator account now?"; then
+            ADMIN_EMAIL=""
+            ADMIN_USERNAME=""
+            ADMIN_FIRST_NAME=""
+            ADMIN_LAST_NAME=""
+            ADMIN_PASSWORD=""
+            
+            while [[ -z "$ADMIN_EMAIL" ]]; do
+                ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
             done
+            while [[ -z "$ADMIN_USERNAME" ]]; do
+                ADMIN_USERNAME=$(prompt_user "Enter administrator username: ")
+            done
+            while [[ -z "$ADMIN_FIRST_NAME" ]]; do
+                ADMIN_FIRST_NAME=$(prompt_user "Enter administrator first name: ")
+            done
+            while [[ -z "$ADMIN_LAST_NAME" ]]; do
+                ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
+            done
+            
+            if prompt_yes_no "Generate a random password for the administrator?"; then
+                ADMIN_PASSWORD=$(generate_password)
+                print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
+            else
+                while [[ -z "$ADMIN_PASSWORD" ]]; do
+                    read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
+                    echo
+                    read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
+                    echo
+                    if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then
+                        print_warning "Passwords do not match. Please try again."
+                        ADMIN_PASSWORD=""
+                    elif [[ -z "$ADMIN_PASSWORD" ]]; then
+                        print_warning "Password cannot be empty."
+                    fi
+                done
+            fi
+        else
+            print_info "Skipping administrator account creation."
+            return
         fi
+    fi
         
         print_info "Creating administrator account..."
         sudo -u ${WEBSERVER_USER} php artisan p:user:make --email="$ADMIN_EMAIL" --username="$ADMIN_USERNAME" --name-first="$ADMIN_FIRST_NAME" --name-last="$ADMIN_LAST_NAME" --password="$ADMIN_PASSWORD" --admin=1

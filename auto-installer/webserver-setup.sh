@@ -74,18 +74,42 @@ setup_nginx_linux() {
         print_info "Nginx already installed."
     fi
     
-    # Ask for domain name (used for server_name and potentially SSL)
-    NGINX_DOMAIN=$(prompt_user "Enter the domain/subdomain for the panel (e.g., panel.example.com or IP address): ")
-    while [[ -z "$NGINX_DOMAIN" ]]; do
-        print_warning "Domain/IP cannot be empty."
+    # Check if running in non-interactive mode
+    if [ "$PHOENIXPANEL_NONINTERACTIVE" = true ]; then
+        print_info "Running in non-interactive mode with default values."
+        
+        # Use environment variables for domain/IP
+        if [ "$PHOENIXPANEL_USE_DOMAIN" = true ]; then
+            NGINX_DOMAIN="$PHOENIXPANEL_DOMAIN"
+            print_info "Using domain: $NGINX_DOMAIN"
+            
+            # Default to no SSL in non-interactive mode
+            USE_SSL=false
+            print_info "SSL configuration skipped in non-interactive mode."
+        else
+            NGINX_DOMAIN="$PHOENIXPANEL_IP"
+            print_info "Using IP address: $NGINX_DOMAIN"
+            USE_SSL=false
+        fi
+    else
+        # Interactive mode - ask for domain name
         NGINX_DOMAIN=$(prompt_user "Enter the domain/subdomain for the panel (e.g., panel.example.com or IP address): ")
-    done
+        while [[ -z "$NGINX_DOMAIN" ]]; do
+            print_warning "Domain/IP cannot be empty."
+            NGINX_DOMAIN=$(prompt_user "Enter the domain/subdomain for the panel (e.g., panel.example.com or IP address): ")
+        done
+        
+        USE_SSL=false
+        if [[ "$NGINX_DOMAIN" != *"."* ]]; then
+            print_warning "SSL cannot be configured for an IP address. Proceeding without SSL."
+        elif prompt_yes_no "Configure SSL using Let's Encrypt (Certbot)?"; then
+            USE_SSL=true
+        fi
+    fi
     
-    USE_SSL=false
-    if [[ "$NGINX_DOMAIN" != *"."* ]]; then
-        print_warning "SSL cannot be configured for an IP address. Proceeding without SSL."
-    elif prompt_yes_no "Configure SSL using Let's Encrypt (Certbot)?"; then
-        USE_SSL=true
+    # If SSL is enabled
+    if [ "$USE_SSL" = true ]; then
+        print_info "Setting up SSL..."
         print_info "Setting up SSL..."
         # Install Certbot
         if ! command -v certbot &> /dev/null; then
