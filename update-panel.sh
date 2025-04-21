@@ -97,17 +97,31 @@ cd $PANEL_DIR || error "Failed to create panel directory"
 
 # Download latest version from GitHub
 display "Downloading latest version from GitHub..."
-if [ "$PANEL_NAME" == "pterodactyl" ]; then
-    GITHUB_URL="https://github.com/phoenixpanel/panel/releases/latest/download/panel.tar.gz"
-else
-    GITHUB_URL="https://github.com/phoenixpanel/panel/releases/latest/download/panel.tar.gz"
+
+# Check if git is installed
+if ! command -v git &> /dev/null; then
+    error "Git is not installed. Please install git and try again."
 fi
 
-curl -L $GITHUB_URL | tar -xzv
-if [ $? -ne 0 ]; then
-    error "Failed to download and extract panel files"
+# Clone the repository using git
+if [ "$PANEL_NAME" == "pterodactyl" ]; then
+    git clone https://github.com/phoenixpanel/panel.git temp
+    if [ $? -ne 0 ]; then
+        error "Failed to clone the repository"
+    fi
+else
+    git clone https://github.com/phoenixpanel/panel.git temp
+    if [ $? -ne 0 ]; then
+        error "Failed to clone the repository"
+    fi
 fi
-display "Downloaded and extracted panel files"
+
+# Move all files from the temp directory to the panel directory
+shopt -s dotglob
+mv temp/* .
+rm -rf temp
+
+display "Downloaded panel files successfully"
 
 # Restore .env file from backup
 display "Restoring .env file from backup..."
