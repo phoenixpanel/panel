@@ -114,7 +114,7 @@ export default () => {
                     <Tooltip placement={'bottom'} content={'Send Logs to Protectcord'}>
                         <button onClick={async () => {
                             try {
-                                const response = await fetch('https://logs.hastebin.com/documents', {
+                                const response = await fetch('https://logs.protectcord.com/documents', {
                                     method: 'POST',
                                     body: consoleOutput,
                                 });
