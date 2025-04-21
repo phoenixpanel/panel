@@ -5,6 +5,7 @@ namespace PhoenixPanel\Services\Helpers;
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use PhoenixPanel\Exceptions\ManifestDoesNotExistException;
 
 class AssetHashService
 {
@@ -13,15 +14,9 @@ class AssetHashService
      */
     public const MANIFEST_PATH = './assets/manifest.json';
 
-    /**
-     * @var \Illuminate\Contracts\Filesystem\Filesystem
-     */
     private Filesystem $filesystem;
 
-    /**
-     * @var array|null
-     */
-    protected static ?array $manifest = null;
+    protected static mixed $manifest = null;
 
     /**
      * AssetHashService constructor.
@@ -37,13 +32,9 @@ class AssetHashService
     public function url(string $resource): string
     {
         $file = last(explode('/', $resource));
-        $manifest = $this->getManifest();
-        
-        if (!isset($manifest[$file])) {
-            return $resource;
-        }
-        
-        return str_replace($file, $manifest[$file]['src'] ?? $file, $resource);
+        $data = Arr::get($this->manifest(), $file) ?? $file;
+
+        return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
     }
 
     /**
@@ -52,13 +43,9 @@ class AssetHashService
     public function integrity(string $resource): string
     {
         $file = last(explode('/', $resource));
-        $manifest = $this->getManifest();
-        
-        if (!isset($manifest[$file])) {
-            return '';
-        }
-        
-        return $manifest[$file]['integrity'] ?? '';
+        $data = array_get($this->manifest(), $file, $file);
+
+        return Arr::get($data, 'integrity') ?? '';
     }
 
     /**
@@ -111,31 +98,22 @@ class AssetHashService
     /**
      * Get the asset manifest and store it in the cache for quicker lookups.
      */
-    protected function getManifest(): array
+    protected function manifest(): array
     {
-        if (static::$manifest !== null) {
-            return static::$manifest;
+        if (static::$manifest === null) {
+            self::$manifest = json_decode(
+                $this->filesystem->get(self::MANIFEST_PATH),
+                true
+            );
         }
-        
-        try {
-            if (!$this->filesystem->exists(self::MANIFEST_PATH)) {
-                return static::$manifest = [];
-            }
-            
-            $contents = $this->filesystem->get(self::MANIFEST_PATH);
-            if (empty($contents)) {
-                return static::$manifest = [];
-            }
-            
-            $decoded = json_decode($contents, true);
-            if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
-                return static::$manifest = [];
-            }
-            
-            return static::$manifest = $decoded;
-        } catch (\Exception $exception) {
-            return static::$manifest = [];
+
+        $manifest = static::$manifest;
+        if ($manifest === null) {
+            throw new ManifestDoesNotExistException();
         }
+
+        return $manifest;
     }
 }
+
 
