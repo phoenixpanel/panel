@@ -1,0 +1,31 @@
+.ad-container {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.ad-container-top {
+    margin-bottom: 15px;
+}
+
+.ad-container-bottom {
+    margin-top: 15px;
+    border-top: 1px solid #e9ecef;
+    border-bottom: none;
+}
+
+/* Admin panel specific styles */
+.skin-blue .ad-container {
+    background-color: #f4f5f7;
+    border-color: #d2d6de;
+}
+
+/* Make sure ads are responsive */
+.ad-container img, 
+.ad-container iframe {
+    max-width: 100%;
+    height: auto;
+}

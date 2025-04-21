@@ -28,6 +28,7 @@
             {!! Theme::css('css/phoenixpanel.css?t={cache-version}') !!}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+            <link rel="stylesheet" href="/css/ads.css">
 
             <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -85,6 +86,11 @@
                                 <i class="fa fa-gamepad"></i> <span>Application API</span>
                             </a>
                         </li>
+                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.ads') ?: 'active' }}">
+                            <a href="{{ route('admin.ads')}}">
+                                <i class="fa fa-bullhorn"></i> <span>Ad Settings</span>
+                            </a>
+                        </li>
                         <li class="header">MANAGEMENT</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
                             <a href="{{ route('admin.databases') }}">
@@ -130,6 +136,15 @@
                     @yield('content-header')
                 </section>
                 <section class="content">
+                    @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->top_ad_code))
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="ad-container ad-container-top">
+                                    {!! $adSettings->top_ad_code !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-xs-12">
                             @if (count($errors) > 0)
@@ -152,6 +167,16 @@
                         </div>
                     </div>
                     @yield('content')
+                    
+                    @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->bottom_ad_code))
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="ad-container ad-container-bottom">
+                                    {!! $adSettings->bottom_ad_code !!}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </section>
             </div>
             <footer class="main-footer">
