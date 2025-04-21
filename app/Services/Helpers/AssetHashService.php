@@ -31,28 +31,10 @@ class AssetHashService
      */
     public function url(string $resource): string
     {
-        // If the resource already starts with a slash or http, it's already a valid URL
-        if (starts_with($resource, '/') || starts_with($resource, 'http')) {
-            return $resource;
-        }
-        
         $file = last(explode('/', $resource));
-        $manifest = $this->manifest();
-        
-        // If manifest is empty or doesn't contain the file, prepend a slash to make it a valid URL
-        if (empty($manifest) || !isset($manifest[$file])) {
-            return '/' . $resource;
-        }
-        
-        $data = Arr::get($manifest, $file) ?? $file;
-        $result = str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
-        
-        // Ensure the result starts with a slash
-        if (!starts_with($result, '/') && !starts_with($result, 'http')) {
-            $result = '/' . $result;
-        }
-        
-        return $result;
+        $data = Arr::get($this->manifest(), $file) ?? $file;
+
+        return str_replace($file, Arr::get($data, 'src') ?? $file, $resource);
     }
 
     /**
@@ -61,14 +43,8 @@ class AssetHashService
     public function integrity(string $resource): string
     {
         $file = last(explode('/', $resource));
-        $manifest = $this->manifest();
-        
-        // If manifest is empty or doesn't contain the file, return empty string
-        if (empty($manifest) || !isset($manifest[$file])) {
-            return '';
-        }
-        
-        $data = array_get($manifest, $file, $file);
+        $data = array_get($this->manifest(), $file, $file);
+
         return Arr::get($data, 'integrity') ?? '';
     }
 
@@ -85,12 +61,8 @@ class AssetHashService
             'referrerpolicy' => 'no-referrer',
         ];
 
-        // Only add integrity if we have a valid hash and it's enabled in config
         if (config('phoenixpanel.assets.use_hash')) {
-            $integrity = $this->integrity($resource);
-            if (!empty($integrity)) {
-                $attributes['integrity'] = $integrity;
-            }
+            $attributes['integrity'] = $this->integrity($resource);
         }
 
         $output = '<link';
@@ -111,12 +83,8 @@ class AssetHashService
             'crossorigin' => 'anonymous',
         ];
 
-        // Only add integrity if we have a valid hash and it's enabled in config
         if (config('phoenixpanel.assets.use_hash')) {
-            $integrity = $this->integrity($resource);
-            if (!empty($integrity)) {
-                $attributes['integrity'] = $integrity;
-            }
+            $attributes['integrity'] = $this->integrity($resource);
         }
 
         $output = '<script';
@@ -134,35 +102,17 @@ class AssetHashService
     {
         if (static::$manifest === null) {
             try {
-                if ($this->filesystem->exists(self::MANIFEST_PATH)) {
-                    $content = $this->filesystem->get(self::MANIFEST_PATH);
-                    self::$manifest = json_decode($content, true) ?? [];
-                    
-                    // If json_decode returns null (invalid JSON), use an empty array
-                    if (self::$manifest === null) {
-                        self::$manifest = [];
-                    }
-                } else {
-                    // File doesn't exist
-                    self::$manifest = [];
-                    
-                    // Only throw in development
-                    if (!app()->environment('production')) {
-                        throw new ManifestDoesNotExistException();
-                    }
-                }
+                self::$manifest = json_decode(
+                    $this->filesystem->get(self::MANIFEST_PATH),
+                    true
+                ) ?? [];
             } catch (\Exception $e) {
-                // Catch any other exceptions
+                // If we can't read the manifest file, use an empty array
                 self::$manifest = [];
-                
-                // Only throw in development
-                if (!app()->environment('production') && !($e instanceof ManifestDoesNotExistException)) {
-                    throw $e;
-                }
             }
         }
 
-        return static::$manifest ?? [];
+        return static::$manifest;
     }
 }
 
