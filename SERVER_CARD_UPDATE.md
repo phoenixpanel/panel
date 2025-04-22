@@ -74,7 +74,7 @@ graph TD
     J --> K[Compress images to reduce file size];
     K --> L[Generate thumbnails];
     L --> M[Storage];
-    M --> N[Determine storage location (local or cloud)];
+    M --> N["Determine storage location (local or cloud)"];
     N --> O[Implement storage logic];
     O --> P{API Changes};
     P --> Q[Modify API endpoints for egg creation/update];
