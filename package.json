@@ -14,6 +14,7 @@
         "@preact/signals-react": "^1.2.1",
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/line-clamp": "^0.4.0",
+        "antd": "^5.24.9",
         "axios": "^0.27.2",
         "boring-avatars": "^1.7.0",
         "chart.js": "^3.8.0",
@@ -156,4 +157,3 @@
         }
     }
 }
-

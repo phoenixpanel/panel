@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEthernet, faHdd, faMemory, faMicrochip, faServer } from '@fortawesome/free-solid-svg-icons';
+import { faEthernet, faHdd, faMemory, faMicrochip, faServer, faClock } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Server } from '@/api/server/getServer';
 import getServerResourceUsage, { ServerPowerState, ServerStats } from '@/api/server/getServerResourceUsage';
@@ -11,12 +11,15 @@ import Spinner from '@/components/elements/Spinner';
 import styled from 'styled-components/macro';
 import isEqual from 'react-fast-compare';
 
+import { Col, Divider, Row, Tag } from 'antd';
+
 // Determines if the current value is in an alarm threshold so we can show it in red rather
 // than the more faded default style.
 const isAlarmState = (current: number, limit: number): boolean => limit > 0 && current / (limit * 1024 * 1024) >= 0.9;
 
 const Icon = memo(
     styled(FontAwesomeIcon)<{ $alarm: boolean }>`
+        transform: rotate(10deg);
         ${(props) => (props.$alarm ? tw`text-red-400` : tw`text-neutral-500`)};
     `,
     isEqual
@@ -27,24 +30,8 @@ const IconDescription = styled.p<{ $alarm: boolean }>`
     ${(props) => (props.$alarm ? tw`text-white` : tw`text-neutral-400`)};
 `;
 
-const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | undefined }>`
-    ${tw`grid grid-cols-12 gap-4 relative`};
-
-    & .status-bar {
-        ${tw`w-2 bg-red-500 absolute right-0 z-20 rounded-full m-1 opacity-50 transition-all duration-150`};
-        height: calc(100% - 0.5rem);
-
-        ${({ $status }) =>
-            !$status || $status === 'offline'
-                ? tw`bg-red-500`
-                : $status === 'running'
-                ? tw`bg-green-500`
-                : tw`bg-yellow-500`};
-    }
-
-    &:hover .status-bar {
-        ${tw`opacity-75`};
-    }
+const ServerRowContainer = styled(GreyRowBox)`
+    ${tw`grid grid-cols-12 relative`};
 `;
 
 type Timer = ReturnType<typeof setInterval>;
@@ -52,12 +39,16 @@ type Timer = ReturnType<typeof setInterval>;
 export default ({ server, className }: { server: Server; className?: string }) => {
     const interval = useRef<Timer>(null) as React.MutableRefObject<Timer>;
     const [isSuspended, setIsSuspended] = useState(server.status === 'suspended');
-    const [stats, setStats] = useState<ServerStats | null>(null);
+    const [stats, setStats] = useState<ServerStats & { receivedAt?: number } | null>(null);
 
-    const getStats = () =>
-        getServerResourceUsage(server.uuid)
-            .then((data) => setStats(data))
+    const getStats = () => {
+        return getServerResourceUsage(server.uuid)
+            .then((data) => {
+                // Add timestamp when stats were received
+                setStats({ ...data, receivedAt: Date.now() });
+            })
             .catch((error) => console.error(error));
+    };
 
     useEffect(() => {
         setIsSuspended(stats?.isSuspended || server.status === 'suspended');
@@ -69,7 +60,7 @@ export default ({ server, className }: { server: Server; className?: string }) =
         if (isSuspended) return;
 
         getStats().then(() => {
-            interval.current = setInterval(() => getStats(), 30000);
+            interval.current = setInterval(() => getStats(), 10000);
         });
 
         return () => {
@@ -88,44 +79,40 @@ export default ({ server, className }: { server: Server; className?: string }) =
     const memoryLimit = server.limits.memory !== 0 ? bytesToString(mbToBytes(server.limits.memory)) : 'Unlimited';
     const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : 'Unlimited';
 
+    const statusColorClass = isSuspended
+        ? 'bg-status-100' // Suspended
+        : server.isTransferring
+        ? 'bg-status-200' // Transferring
+        : stats?.status === 'running'
+        ? 'bg-status-50' // Online
+        : stats?.status === 'offline'
+        ? 'bg-status-100' // Offline
+        : 'bg-status-300'; // Starting Up or other states
+
     return (
-        <StatusIndicatorBox as={Link} to={`/server/${server.id}`} className={className} $status={stats?.status}>
-            <div css={tw`flex items-center col-span-12 sm:col-span-5 lg:col-span-6`}>
-                <div className={'icon mr-4'}>
-                    <FontAwesomeIcon icon={faServer} />
-                </div>
+        <ServerRowContainer as={Link} to={`/server/${server.id}`} className={className}>
+            <div css={tw`flex items-center col-span-12 sm:col-span-4 lg:col-span-3`}>
+                { (stats?.status && stats?.status === 'running') }
+                <span css={tw`relative flex w-3 h-3 mr-[1rem]`}>
+                    <span css={tw`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75`} className={statusColorClass}></span>
+                    <span css={tw`relative inline-flex w-3 h-3 rounded-full`} className={statusColorClass}></span>
+                </span>
                 <div>
                     <p css={tw`text-lg break-words`}>{server.name}</p>
-                    {!!server.description && (
-                        <p css={tw`text-sm text-neutral-300 break-words line-clamp-2`}>{server.description}</p>
-                    )}
                 </div>
             </div>
-            <div css={tw`flex-1 ml-4 lg:block lg:col-span-2 hidden`}>
-                <div css={tw`flex justify-center`}>
-                    <FontAwesomeIcon icon={faEthernet} css={tw`text-neutral-500`} />
-                    <p css={tw`text-sm text-neutral-400 ml-2`}>
-                        {server.allocations
-                            .filter((alloc) => alloc.isDefault)
-                            .map((allocation) => (
-                                <React.Fragment key={allocation.ip + allocation.port.toString()}>
-                                    {allocation.alias || ip(allocation.ip)}:{allocation.port}
-                                </React.Fragment>
-                            ))}
-                    </p>
-                </div>
-            </div>
-            <div css={tw`hidden col-span-7 lg:col-span-4 sm:flex items-baseline justify-center`}>
+
+            <div css={tw`hidden col-span-7 lg:col-start-4 lg:col-span-4 sm:flex items-baseline lg:-ml-4`}>
                 {!stats || isSuspended ? (
                     isSuspended ? (
                         <div css={tw`flex-1 text-center`}>
-                            <span css={tw`bg-red-500 rounded px-2 py-1 text-red-100 text-xs`}>
+                            <Tag className={`${statusColorClass} border-none`} css={tw`text-xs uppercase`}>
                                 {server.status === 'suspended' ? 'Suspended' : 'Connection Error'}
-                            </span>
+                            </Tag>
                         </div>
                     ) : server.isTransferring || server.status ? (
                         <div css={tw`flex-1 text-center`}>
-                            <span css={tw`bg-neutral-500 rounded px-2 py-1 text-neutral-100 text-xs`}>
+                            <Tag className={`${statusColorClass} border-none`} css={tw`text-xs uppercase`}>
                                 {server.isTransferring
                                     ? 'Transferring'
                                     : server.status === 'installing'
@@ -133,44 +120,106 @@ export default ({ server, className }: { server: Server; className?: string }) =
                                     : server.status === 'restoring_backup'
                                     ? 'Restoring Backup'
                                     : 'Unavailable'}
-                            </span>
+                            </Tag>
                         </div>
                     ) : (
                         <Spinner size={'small'} />
                     )
                 ) : (
-                    <React.Fragment>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon icon={faMicrochip} $alarm={alarms.cpu} />
-                                <IconDescription $alarm={alarms.cpu}>
-                                    {stats.cpuUsagePercent.toFixed(2)} %
-                                </IconDescription>
-                            </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {cpuLimit}</p>
-                        </div>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
+                    <div css={tw`flex flex-col space-y-2`}>
+                        <div css={tw`flex items-center`}>
+                            <div css={tw`w-6 flex justify-center`}>
                                 <Icon icon={faMemory} $alarm={alarms.memory} />
-                                <IconDescription $alarm={alarms.memory}>
-                                    {bytesToString(stats.memoryUsageInBytes)}
-                                </IconDescription>
                             </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {memoryLimit}</p>
+                            <IconDescription $alarm={alarms.memory}>
+                                {bytesToString(stats.memoryUsageInBytes)} / {memoryLimit}
+                            </IconDescription>
                         </div>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
+                        <div css={tw`flex items-center`}>
+                            <div css={tw`w-6 flex justify-center`}>
+                                <Icon icon={faMicrochip} $alarm={alarms.cpu} />
+                            </div>
+                            <IconDescription $alarm={alarms.cpu}>
+                                {stats.cpuUsagePercent.toFixed(2)} % / {cpuLimit}
+                            </IconDescription>
+                        </div>
+                        <div css={tw`flex items-center`}>
+                            <div css={tw`w-6 flex justify-center`}>
                                 <Icon icon={faHdd} $alarm={alarms.disk} />
-                                <IconDescription $alarm={alarms.disk}>
-                                    {bytesToString(stats.diskUsageInBytes)}
-                                </IconDescription>
                             </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {diskLimit}</p>
+                            <IconDescription $alarm={alarms.disk}>
+                                {bytesToString(stats.diskUsageInBytes)} / {diskLimit}
+                            </IconDescription>
                         </div>
-                    </React.Fragment>
+                    </div>
                 )}
             </div>
-            <div className={'status-bar'} />
-        </StatusIndicatorBox>
+
+            <div css={tw`flex-1 ml-4 lg:block lg:col-span-2 hidden`}>
+                <div css={tw`flex items-center`}>
+                    <FontAwesomeIcon icon={faClock} css={tw`text-neutral-500`} />
+                    <p css={tw`text-sm text-neutral-400 ml-2`}>
+                        {stats && stats.status !== 'offline' ? (
+                            <LiveUptime uptime={stats.uptime/1000} receivedAt={stats.receivedAt} />
+                        ) : (
+                            '0w 0d 0m 0s'
+                        )}
+                    </p>
+                </div>
+            </div>
+        </ServerRowContainer>
+    );
+};
+
+const LiveUptime = ({ uptime, receivedAt }: { uptime: number; receivedAt?: number }) => {
+    const [currentUptime, setCurrentUptime] = React.useState(Math.floor(uptime));
+
+    React.useEffect(() => {
+        const updateUptime = () => {
+            if (receivedAt) {
+                const elapsedSinceReceived = Math.floor((Date.now() - receivedAt) / 1000);
+                setCurrentUptime(Math.floor(uptime) + elapsedSinceReceived);
+            } else {
+                setCurrentUptime(Math.floor(uptime));
+            }
+        };
+
+        updateUptime();
+        const interval = setInterval(updateUptime, 1000);
+
+        return () => clearInterval(interval);
+    }, [uptime, receivedAt]);
+
+    const totalSeconds = currentUptime;
+
+    const days = Math.floor(totalSeconds / (24 * 60 * 60));
+    const hours = Math.floor((Math.floor(totalSeconds / 60 / 60)) % 24);
+    const remainder = Math.floor(totalSeconds - hours * 60 * 60);
+    const minutes = Math.floor((remainder / 60) % 60);
+    const seconds = remainder % 60;
+
+    const weeks = Math.floor(days / 7);
+    const daysRemainder = days % 7;
+
+    if (weeks > 0) {
+        return (
+            <>
+                {weeks}w {daysRemainder}d {hours}h {minutes}m {seconds}s
+            </>
+        );
+    }
+
+    if (days > 0) {
+        return (
+            <>
+                {days}d {hours}h {minutes}m {seconds}s
+            </>
+        );
+    }
+
+    return (
+        <>
+            {hours}h {minutes}m {seconds}s
+        </>
     );
 };

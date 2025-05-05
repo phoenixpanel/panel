@@ -9,6 +9,7 @@ const gray = {
     400: '#8b95a1',
     500: '#6a747e',
     600: '#4f5861',
+    650: '#272727', // Darkish grey (ServerRow BG)
     700: '#3b4148',  // Darker grey (secondary elements/borders)
     800: '#2a2f33',  // Very dark grey (secondary elements/borders)
     900: '#23272a',  // Near-black (primary background)
@@ -28,6 +29,14 @@ const phoenix = {
     900: '#8B2500',  // Phoenix dark (darkest red-brown)
 };
 
+// Phoenix Status Colors
+const status = {
+    50: '#3C9E33', // Online
+    100: '#DC3545', // Offline
+    200: '#9747FF', // Transferring
+    300: '#FD7E14', // Starting Up
+}
+
 module.exports = {
     content: [
         './resources/scripts/**/*.{js,ts,tsx}',
@@ -45,6 +54,7 @@ module.exports = {
                 gray: gray,
                 neutral: gray, // Use the gray palette for neutral
                 phoenix: phoenix, // Add phoenix color palette
+                status: status, // Add status color palette
                 // Replace cyan with phoenix colors for consistency
                 cyan: {
                     50: '#fff3e0',   // Lightest orange
