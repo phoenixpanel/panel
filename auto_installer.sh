@@ -44,8 +44,7 @@ generate_password() {
 prompt_user() {
     local prompt_message=$1
     local user_input
-    # Read directly from the terminal, even if stdin is piped
-    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input < /dev/tty
+    read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message}")" user_input
     echo "$user_input"
 }
 
@@ -56,8 +55,7 @@ prompt_yes_no() {
     local answer
 
     while true; do
-        # Read directly from the terminal
-        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer < /dev/tty
+        read -p "$(echo -e "${CYAN}[PROMPT]${RESET} ${prompt_message} [y/N]: ")" answer
         answer=${answer:-$default} # Use default if empty
         case $answer in
             [Yy]* ) return 0;; # Yes
@@ -126,12 +124,9 @@ install_rhel_based_deps() {
     dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %{rhel}).rpm
     dnf module reset php -y
     dnf module enable php:remi-${PHP_VERSION} -y
-    # Redis, PHP and extensions
+    # PHP and extensions
     print_info "Installing PHP ${PHP_VERSION} and extensions..."
-    dnf install -y redis php php-cli php-process php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
-    # Start redis
-    sudo systemctl enable redis
-    sudo systemctl start redis
+    dnf install -y php php-cli php-gd php-mysqlnd php-pdo php-mbstring php-tokenizer php-bcmath php-xml php-fpm php-curl php-zip php-intl php-redis php-opcache
     # MySQL Server
     if ! command -v mysql &> /dev/null; then
         print_info "Installing MySQL Server..."
@@ -243,7 +238,7 @@ MYSQL_COMMAND_BASE="mysql" # Base command
 if ! $MYSQL_COMMAND_BASE -e "SELECT 1;" > /dev/null 2>&1; then
     print_warning "Could not connect to MySQL as root without a password."
     while true; do
-        read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD < /dev/tty
+        read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter MySQL root password (leave blank to skip): ")" MYSQL_ROOT_PASSWORD
         echo # Newline after password input
 
         if [[ -z "$MYSQL_ROOT_PASSWORD" ]]; then
@@ -295,7 +290,7 @@ if [ -n "$DB_EXISTS" ] || [ -n "$USER_EXISTS" ]; then
 fi
 
 # Escape password for MySQL commands (needs to be done *before* CREATE USER)
-DB_PASSWORD_MYSQL_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/\\/\\\\/g' -e "s/'/\\'/g") # Escape \ and ' for MySQL string
+DB_PASSWORD_MYSQL_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g' -e "s/'/\\'/g") # Escape \, &, and '
 
 # Create database and user
 print_info "Creating database '${DB_DATABASE}'..."
@@ -371,7 +366,7 @@ print_success "File permissions set."
 # --- Install Dependencies (Composer & Yarn) ---
 print_info "Installing Composer dependencies..."
 # Run composer as the webserver user to avoid permission issues
-sudo -u ${WEBSERVER_USER} /usr/local/bin/composer install --no-dev --optimize-autoloader
+sudo -u ${WEBSERVER_USER} composer install --no-dev --optimize-autoloader
 print_success "Composer dependencies installed."
 
 print_info "Installing Yarn dependencies and building assets..."
@@ -427,9 +422,8 @@ sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PORT=.*|DB_PORT=3306|" .env
 sudo -u ${WEBSERVER_USER} sed -i "s|^DB_DATABASE=.*|DB_DATABASE=${DB_DATABASE}|" .env
 sudo -u ${WEBSERVER_USER} sed -i "s|^DB_USERNAME=.*|DB_USERNAME=${DB_USERNAME}|" .env
 # Escape password for sed
-# Escape password for sed - handle backslash, ampersand, and the delimiter (#)
-DB_PASSWORD_SED_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\#&\\]/\\&/g')
-sudo -u ${WEBSERVER_USER} sed -i "s#^DB_PASSWORD=.*#DB_PASSWORD=${DB_PASSWORD_SED_ESCAPED}#" .env
+DB_PASSWORD_ESCAPED=$(printf '%s\n' "$DB_PASSWORD" | sed -e 's/[\/&]/\\&/g')
+sudo -u ${WEBSERVER_USER} sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=${DB_PASSWORD_ESCAPED}|" .env
 
 # Add prompts for other important settings like Mail, Redis if needed
 # Example:
@@ -445,7 +439,6 @@ sudo -u ${WEBSERVER_USER} php artisan migrate --seed --force
 print_success "Database migrated and seeded."
 
 # --- Create Administrator Account ---
-# Always prompt, reading from /dev/tty via helper function
 if prompt_yes_no "Create an administrator account now?"; then
     ADMIN_EMAIL=""
     ADMIN_USERNAME=""
@@ -453,7 +446,6 @@ if prompt_yes_no "Create an administrator account now?"; then
     ADMIN_LAST_NAME=""
     ADMIN_PASSWORD=""
 
-    # Always prompt for details using prompt_user (which reads from /dev/tty)
     while [[ -z "$ADMIN_EMAIL" ]]; do
         ADMIN_EMAIL=$(prompt_user "Enter administrator email address: ")
     done
@@ -467,28 +459,20 @@ if prompt_yes_no "Create an administrator account now?"; then
         ADMIN_LAST_NAME=$(prompt_user "Enter administrator last name: ")
     done
 
-    # Always prompt for password choice using prompt_yes_no (reads from /dev/tty)
     if prompt_yes_no "Generate a random password for the administrator?"; then
         ADMIN_PASSWORD=$(generate_password)
         print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
-    else # Prompt for password interactively, reading from /dev/tty
-        while true; do # Loop until valid password or generated
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password (leave empty to generate): ")" ADMIN_PASSWORD < /dev/tty
+    else
+        while [[ -z "$ADMIN_PASSWORD" ]]; do
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Enter administrator password: ")" ADMIN_PASSWORD
             echo
-            if [[ -z "$ADMIN_PASSWORD" ]]; then
-                print_info "Empty password entered. Generating a random password..."
-                ADMIN_PASSWORD=$(generate_password)
-                print_info "Generated Admin Password: ${YELLOW}${ADMIN_PASSWORD}${RESET} (Please save this!)"
-                break # Exit loop after generating
-            fi
-
-            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password < /dev/tty
+            read -s -p "$(echo -e "${CYAN}[PROMPT]${RESET} Confirm administrator password: ")" confirm_password
             echo
-            if [[ "$ADMIN_PASSWORD" == "$confirm_password" ]]; then
-                break # Passwords match, exit loop
-            else
+            if [[ "$ADMIN_PASSWORD" != "$confirm_password" ]]; then
                 print_warning "Passwords do not match. Please try again."
-                ADMIN_PASSWORD="" # Reset password to retry loop
+                ADMIN_PASSWORD=""
+            elif [[ -z "$ADMIN_PASSWORD" ]]; then
+                 print_warning "Password cannot be empty."
             fi
         done
     fi
@@ -544,16 +528,7 @@ if prompt_yes_no "Setup Nginx web server automatically?"; then
         # Stop Nginx temporarily for standalone challenge if needed, or use webroot
         # Using Nginx plugin is generally preferred
         print_info "Attempting to obtain SSL certificate for ${NGINX_DOMAIN}..."
-        CERTBOT_EMAIL="$ADMIN_EMAIL" # Use admin email by default
-        if [ -z "$CERTBOT_EMAIL" ]; then
-            CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
-            while [[ -z "$CERTBOT_EMAIL" ]]; do
-                print_warning "Email address cannot be empty."
-                CERTBOT_EMAIL=$(prompt_user "Enter an email address for Let's Encrypt alerts: ")
-            done
-        fi
-        systemctl stop nginx
-        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$CERTBOT_EMAIL" --redirect
+        certbot --nginx -d "$NGINX_DOMAIN" --non-interactive --agree-tos -m "$ADMIN_EMAIL" --redirect # Use admin email if available, else prompt
         print_success "SSL certificate obtained and Nginx configured for SSL."
     fi
 

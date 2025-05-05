@@ -37,35 +37,17 @@
         </style>
 
         @yield('assets')
-        <link rel="stylesheet" href="/css/ads.css">
 
         @include('layouts.scripts')
     </head>
     <body class="{{ $css['body'] ?? 'bg-neutral-50' }}">
         @section('content')
             @yield('above-container')
-            
-            @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->top_ad_code))
-                <div class="ad-container ad-container-top" id="top-ad-container">
-                    {!! $adSettings->top_ad_code !!}
-                </div>
-            @endif
-            
             @yield('container')
-            
-            @if(isset($adSettings) && $adSettings->enabled && !empty($adSettings->bottom_ad_code))
-                <div class="ad-container ad-container-bottom" id="bottom-ad-container">
-                    {!! $adSettings->bottom_ad_code !!}
-                </div>
-            @endif
-            
             @yield('below-container')
         @show
         @section('scripts')
-            @if(isset($asset))
-                {!! $asset->js('main.js') !!}
-            @endif
-            <script src="/js/ads-helper.js" type="application/javascript"></script>
+            {!! $asset->js('main.js') !!}
         @show
     </body>
 </html>

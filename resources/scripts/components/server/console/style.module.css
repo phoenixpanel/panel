@@ -35,6 +35,7 @@
 
         & #terminal {
             @apply h-full;
+            color: #00ff99 !important;
 
             &::-webkit-scrollbar-track {
                 @apply w-2;

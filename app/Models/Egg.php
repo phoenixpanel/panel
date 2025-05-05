@@ -97,6 +97,7 @@ class Egg extends Model
         'script_entry',
         'script_container',
         'copy_script_from',
+        'image_data',
     ];
 
     /**
@@ -111,6 +112,7 @@ class Egg extends Model
         'features' => 'array',
         'docker_images' => 'array',
         'file_denylist' => 'array',
+        'image_data' => 'array',
     ];
 
     public static array $validationRules = [

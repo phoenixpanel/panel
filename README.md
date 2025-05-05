@@ -25,4 +25,4 @@ Stop settling for less. Make game servers a first class citizen on your platform
 ## Installation
 
 Use our auto installer via executing:
-```curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/auto_installer.sh | bash```
+```curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/main/auto_install.sh | bash```
