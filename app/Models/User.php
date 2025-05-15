@@ -19,6 +19,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use PhoenixPanel\Notifications\SendPasswordReset as ResetPasswordNotification;
+use Illuminate\Support\Str;
 
 /**
  * PhoenixPanel\Models\User.
@@ -154,10 +155,24 @@ class User extends Model implements
     ];
 
     /**
+     * The "booting" method of the model.
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function (User $user) {
+            if (empty($user->uuid)) {
+                $user->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
+    /**
      * Rules verifying that the data being stored matches the expectations of the database.
      */
     public static array $validationRules = [
-        'uuid' => 'required|string|size:36|unique:users,uuid',
+        'uuid' => 'sometimes|string|size:36|unique:users,uuid',
         'email' => 'required|email|between:1,191|unique:users,email',
         'external_id' => 'sometimes|nullable|string|max:191|unique:users,external_id',
         'username' => 'required|between:1,191|unique:users,username',

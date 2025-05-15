@@ -33,14 +33,20 @@ class AdvancedController extends Controller
     {
         $showRecaptchaWarning = false;
         if (
-            $this->config->get('recaptcha._shipped_secret_key') === $this->config->get('recaptcha.secret_key')
-            || $this->config->get('recaptcha._shipped_website_key') === $this->config->get('recaptcha.website_key')
+            $this->config->get('recaptcha._shipped_secret_key') === $this->config->get('phoenixpanel.captcha.google.secret_key')
+            || $this->config->get('recaptcha._shipped_website_key') === $this->config->get('phoenixpanel.captcha.google.website_key')
         ) {
             $showRecaptchaWarning = true;
         }
 
         return $this->view->make('admin.settings.advanced', [
             'showRecaptchaWarning' => $showRecaptchaWarning,
+            'captcha_provider' => $this->settings->get('phoenixpanel:captcha:provider', config('phoenixpanel.captcha.provider')),
+            'captcha_enabled' => $this->settings->get('phoenixpanel:captcha:enabled', config('phoenixpanel.captcha.enabled')),
+            'cloudflare_site_key' => $this->settings->get('phoenixpanel:captcha:cloudflare:site_key', config('phoenixpanel.captcha.cloudflare.site_key')),
+            'cloudflare_secret_key' => $this->settings->get('phoenixpanel:captcha:cloudflare:secret_key', config('phoenixpanel.captcha.cloudflare.secret_key')),
+            'google_site_key' => $this->settings->get('phoenixpanel:captcha:google:site_key', config('phoenixpanel.captcha.google.site_key')),
+            'google_secret_key' => $this->settings->get('phoenixpanel:captcha:google:secret_key', config('phoenixpanel.captcha.google.secret_key')),
         ]);
     }
 

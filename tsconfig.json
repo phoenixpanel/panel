@@ -17,7 +17,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "importsNotUsedAsValues": "preserve",
     "paths": {
       "@/*": [
         "./resources/scripts/*"
@@ -34,9 +33,6 @@
         "name": "typescript-plugin-tw-template"
       }
     ],
-    "typeRoots": [
-      "node_modules/@types"
-    ]
   },
   "include": [
     "./resources/scripts/**/*"

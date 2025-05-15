@@ -52,6 +52,7 @@ class EggParserService
             'script_install' => Arr::get($parsed, 'scripts.installation.script'),
             'script_entry' => Arr::get($parsed, 'scripts.installation.entrypoint'),
             'script_container' => Arr::get($parsed, 'scripts.installation.container'),
+            'image_data' => Arr::get($parsed, 'image_data'),
         ]);
     }
 

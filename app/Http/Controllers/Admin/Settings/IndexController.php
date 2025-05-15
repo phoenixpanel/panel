@@ -37,6 +37,7 @@ class IndexController extends Controller
         return $this->view->make('admin.settings.index', [
             'version' => $this->versionService,
             'languages' => $this->getAvailableLanguages(true),
+            'registration_enabled' => $this->settings->get('phoenixpanel:registration_enabled', config('phoenixpanel.registration_enabled')),
         ]);
     }
 

@@ -11,42 +11,38 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
      */
     public function rules(): array
     {
-        return [
-            'recaptcha:enabled' => 'required|in:true,false',
-            'recaptcha:secret_key' => 'required|string|max:191',
-            'recaptcha:website_key' => 'required|string|max:191',
-            'phoenixpanel:guzzle:timeout' => 'required|integer|between:1,60',
-            'phoenixpanel:guzzle:connect_timeout' => 'required|integer|between:1,60',
-            'phoenixpanel:client_features:allocations:enabled' => 'required|in:true,false',
-            'phoenixpanel:client_features:allocations:range_start' => [
-                'nullable',
-                'required_if:phoenixpanel:client_features:allocations:enabled,true',
-                'integer',
-                'between:1024,65535',
-            ],
-            'phoenixpanel:client_features:allocations:range_end' => [
-                'nullable',
-                'required_if:phoenixpanel:client_features:allocations:enabled,true',
-                'integer',
-                'between:1024,65535',
-                'gt:phoenixpanel:client_features:allocations:range_start',
-            ],
-        ];
+        $rules = [];
+        
+        $rules['phoenixpanel:captcha:provider'] = ['required', 'string', 'in:google,cloudflare'];
+        $rules['phoenixpanel:captcha:enabled'] = ['sometimes', 'integer', 'in:0,1'];
+
+        $rules['phoenixpanel:captcha:cloudflare:site_key'][] = 'required_if:phoenixpanel:captcha:provider,cloudflare';
+        $rules['phoenixpanel:captcha:cloudflare:secret_key'][] = 'required_if:phoenixpanel:captcha:provider,cloudflare';
+        $rules['phoenixpanel:captcha:google:site_key'][] = 'required_if:phoenixpanel:captcha:provider,google';
+        $rules['phoenixpanel:captcha:google:secret_key'][] = 'required_if:phoenixpanel:captcha:provider,google';
+        $rules['phoenixpanel:guzzle:timeout'] = ['required', 'integer', 'min:0'];
+        $rules['phoenixpanel:guzzle:connect_timeout'] = ['required', 'integer', 'min:0'];
+        $rules['phoenixpanel:client_features:allocations:range_start'] = ['required', 'integer', 'min:1024', 'max:65535'];
+        $rules['phoenixpanel:client_features:allocations:range_end'] = ['required', 'integer', 'min:1024', 'max:65535', 'gte:phoenixpanel:client_features:allocations:range_start'];
+
+        return $rules;
     }
 
     public function attributes(): array
     {
         return [
-            'recaptcha:enabled' => 'reCAPTCHA Enabled',
-            'recaptcha:secret_key' => 'reCAPTCHA Secret Key',
-            'recaptcha:website_key' => 'reCAPTCHA Website Key',
             'phoenixpanel:guzzle:timeout' => 'HTTP Request Timeout',
             'phoenixpanel:guzzle:connect_timeout' => 'HTTP Connection Timeout',
             'phoenixpanel:client_features:allocations:enabled' => 'Auto Create Allocations Enabled',
             'phoenixpanel:client_features:allocations:range_start' => 'Starting Port',
             'phoenixpanel:client_features:allocations:range_end' => 'Ending Port',
+
+            'phoenixpanel:captcha:provider' => 'Captcha Provider',
+            'phoenixpanel:captcha:enabled' => 'Captcha Toggle',
+            'phoenixpanel:captcha:cloudflare:site_key' => 'Cloudflare Site Key',
+            'phoenixpanel:captcha:cloudflare:secret_key' => 'Cloudflare Secret Key',
+            'phoenixpanel:captcha:google:site_key' => 'Google Site Key',
+            'phoenixpanel:captcha:google:secret_key' => 'Google Secret Key',
         ];
     }
 }
-
-

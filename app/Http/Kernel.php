@@ -98,6 +98,7 @@ class Kernel extends HttpKernel
         'can' => Authorize::class,
         'bindings' => SubstituteBindings::class,
         'recaptcha' => VerifyReCaptcha::class,
+        'check.registration' => \PhoenixPanel\Http\Middleware\CheckRegistrationEnabled::class,
         'node.maintenance' => MaintenanceMiddleware::class,
     ];
 }

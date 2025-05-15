@@ -24,36 +24,52 @@ class VerifyReCaptcha
      */
     public function handle(Request $request, \Closure $next): mixed
     {
-        if (!$this->config->get('recaptcha.enabled')) {
+        if (!$this->config->get('phoenixpanel.captcha.enabled')) {
             return $next($request);
         }
 
-        if ($request->filled('g-recaptcha-response')) {
+        $captchaProvider = $this->config->get('phoenixpanel.captcha.provider');
+
+        if ($captchaProvider === 'google') {
+            $responseKey = 'g-recaptcha-response';
+            $secretKey = $this->config->get('phoenixpanel.captcha.google.secret_key');
+        } elseif ($captchaProvider === 'cloudflare') {
+            $responseKey = 'cf-turnstile-response';
+            $secretKey = $this->config->get('phoenixpanel.captcha.cloudflare.secret_key');
+        } else {
+            throw new \Exception('Invalid captcha provider specified.');
+        }
+
+        if (empty($secretKey)) {
+            return $next($request);
+        }
+
+        if ($request->filled($responseKey)) {
             $client = new Client();
-            $res = $client->post($this->config->get('recaptcha.domain'), [
+            $res = $client->post($this->config->get('phoenixpanel.captcha.domain'), [
                 'form_params' => [
-                    'secret' => $this->config->get('recaptcha.secret_key'),
-                    'response' => $request->input('g-recaptcha-response'),
+                    'secret' => $secretKey,
+                    'response' => $request->input($responseKey),
                 ],
             ]);
 
             if ($res->getStatusCode() === 200) {
                 $result = json_decode($res->getBody());
 
-                if ($result->success && (!$this->config->get('recaptcha.verify_domain') || $this->isResponseVerified($result, $request))) {
+                if ($result->success) {
                     return $next($request);
                 }
             }
+        } else {
+            $this->dispatcher->dispatch(
+                new FailedCaptcha(
+                    $request->ip(),
+                    $request->getHost()
+                )
+            );
+
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Failed to validate CAPTCHA data.');
         }
-
-        $this->dispatcher->dispatch(
-            new FailedCaptcha(
-                $request->ip(),
-                !empty($result) ? ($result->hostname ?? null) : null
-            )
-        );
-
-        throw new HttpException(Response::HTTP_BAD_REQUEST, 'Failed to validate reCAPTCHA data.');
     }
 
     /**
@@ -61,7 +77,7 @@ class VerifyReCaptcha
      */
     private function isResponseVerified(\stdClass $result, Request $request): bool
     {
-        if (!$this->config->get('recaptcha.verify_domain')) {
+        if (!$this->config->get('phoenixpanel.captcha.verify_domain')) {
             return false;
         }
 
@@ -70,5 +86,3 @@ class VerifyReCaptcha
         return $result->hostname === array_get($url, 'host');
     }
 }
-
-

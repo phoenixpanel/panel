@@ -72,6 +72,11 @@ class ServerTransformer extends BaseClientTransformer
             // This field is deprecated, please use "status".
             'is_installing' => !$server->isInstalled(),
             'is_transferring' => !is_null($server->transfer),
+            'egg' => [
+                'uuid' => $server->egg->uuid ?? null,
+                'name' => $server->egg->name ?? null,
+                'image_data' => $server->egg->image_data ?? null,
+            ],
         ];
     }
 
@@ -116,16 +121,6 @@ class ServerTransformer extends BaseClientTransformer
             $this->makeTransformer(EggVariableTransformer::class),
             EggVariable::RESOURCE_NAME
         );
-    }
-
-    /**
-     * Returns the egg associated with this server.
-     *
-     * @throws \PhoenixPanel\Exceptions\Transformer\InvalidTransformerLevelException
-     */
-    public function includeEgg(Server $server): Item
-    {
-        return $this->item($server->egg, $this->makeTransformer(EggTransformer::class), Egg::RESOURCE_NAME);
     }
 
     /**

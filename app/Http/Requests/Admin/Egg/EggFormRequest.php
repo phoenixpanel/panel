@@ -20,6 +20,10 @@ class EggFormRequest extends AdminFormRequest
             'config_startup' => 'required_without:config_from|nullable|json',
             'config_logs' => 'required_without:config_from|nullable|json',
             'config_files' => 'required_without:config_from|nullable|json',
+            'image_data' => 'nullable|array',
+            'image_data.image_enabled' => 'nullable|boolean',
+            'image_data.image_type' => 'required_if:image_data.image_enabled,true|nullable|string|in:url',
+            'image_data.image_value' => 'required_if:image_data.image_enabled,true|nullable|string|max:512',
         ];
 
         if ($this->method() === 'POST') {
@@ -42,7 +46,27 @@ class EggFormRequest extends AdminFormRequest
 
         return array_merge($data, [
             'force_outgoing_ip' => array_get($data, 'force_outgoing_ip', false),
+            'image_data' => $this->processImageData(array_get($data, 'image_data')),
         ]);
+    }
+
+    protected function processImageData($imageData): array
+    {
+        $enabled = filter_var(array_get($imageData, 'image_enabled'), FILTER_VALIDATE_BOOLEAN);
+
+        if ($enabled) {
+            return [
+                'image_enabled' => true,
+                'image_type' => 'url', // Only 'url' is supported for now
+                'image_value' => array_get($imageData, 'image_value', ''),
+            ];
+        }
+
+        return [
+            'image_enabled' => false,
+            'image_type' => '',
+            'image_value' => '',
+        ];
     }
 }
 

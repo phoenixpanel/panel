@@ -9,7 +9,7 @@ export const usePermissions = (action: string | string[]): boolean[] => {
             return Array(Array.isArray(action) ? action.length : 1).fill(true);
         }
 
-        return (Array.isArray(action) ? action : [action]).map(
+        const permissionsCheck = (Array.isArray(action) ? action : [action]).map(
             (permission) =>
                 // Allows checking for any permission matching a name, for example files.*
                 // will return if the user has any permission under the file.XYZ namespace.
@@ -18,5 +18,7 @@ export const usePermissions = (action: string | string[]): boolean[] => {
                 // Otherwise just check if the entire permission exists in the array or not.
                 userPermissions.indexOf(permission) >= 0
         );
+
+        return permissionsCheck;
     }, [action, userPermissions]);
 };

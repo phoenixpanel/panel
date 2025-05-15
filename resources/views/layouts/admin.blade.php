@@ -35,7 +35,7 @@
             <![endif]-->
         @show
     </head>
-    <body class="hold-transition skin-blue fixed sidebar-mini"> <!-- Keep skin-blue class for compatibility -->
+    <body class="hold-transition skin-blue sidebar-mini"> <!-- Keep skin-blue class for compatibility -->
         <div class="wrapper">
             <header class="main-header">
                 <a href="{{ route('index') }}" class="logo">

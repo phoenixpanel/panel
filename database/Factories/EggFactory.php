@@ -25,6 +25,11 @@ class EggFactory extends Factory
             'name' => $this->faker->name,
             'description' => implode(' ', $this->faker->sentences()),
             'startup' => 'java -jar test.jar',
+            'image_data' => [
+                'image_enabled' => false,
+                'image_type' => '',
+                'image_value' => '',
+            ],
         ];
     }
 }

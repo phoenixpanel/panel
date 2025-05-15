@@ -63,6 +63,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label class="control-label">Registration System Enabled</label>
+                                <div>
+                                    <input type="checkbox" name="phoenixpanel:registration_enabled" value="1" @if(old('phoenixpanel:registration_enabled', config('phoenixpanel.registration_enabled'))) checked @endif />
+                                    <p class="text-muted"><small>When disabled, users will not be able to register new accounts on the panel.</small></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="box-footer">
                         {!! csrf_field() !!}
