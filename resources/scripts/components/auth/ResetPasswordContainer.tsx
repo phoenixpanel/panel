@@ -6,8 +6,8 @@ import { httpErrorToHuman } from '@/api/http';
 import LoginFormContainer from '@/components/auth/LoginFormContainer';
 import { Actions, useStoreActions } from 'easy-peasy';
 import { ApplicationStore } from '@/state';
-import { Formik, FormikHelpers } from 'formik';
-import { object, ref, string } from 'yup';
+import { Formik, FormikHelpers, FormikProps } from 'formik';
+import { object, string } from 'yup';
 import Field from '@/components/elements/Field';
 import Input from '@/components/elements/Input';
 import tw from 'twin.macro';
@@ -16,6 +16,12 @@ import Button from '@/components/elements/Button';
 interface Values {
     password: string;
     passwordConfirmation: string;
+}
+
+interface TestContext {
+    parent: {
+        password: string;
+    };
 }
 
 export default ({ match, location }: RouteComponentProps<{ token: string }>) => {
@@ -32,8 +38,7 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
         clearFlashes();
         performPasswordReset(email, { token: match.params.token, password, passwordConfirmation })
             .then(() => {
-                // @ts-expect-error this is valid
-                window.location = '/';
+                window.location.href = '/';
             })
             .catch((error) => {
                 console.error(error);
@@ -56,11 +61,12 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                     .min(8, 'Your new password should be at least 8 characters in length.'),
                 passwordConfirmation: string()
                     .required('Your new password does not match.')
-                    // @ts-expect-error this is valid
-                    .oneOf([ref('password'), null], 'Your new password does not match.'),
+                    .test('passwords-match', 'Your new password does not match.', function(this: TestContext, value: string | undefined) {
+                        return this.parent.password === value;
+                    }),
             })}
         >
-            {({ isSubmitting }) => (
+            {({ isSubmitting }: FormikProps<Values>) => (
                 <LoginFormContainer title={'Reset Password'} css={tw`w-full flex`}>
                     <div>
                         <label>Email</label>

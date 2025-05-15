@@ -77,4 +77,16 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-corner {
         background: transparent;
     }
+
+    /* Override Ant Design Form Item Label Padding */
+    & {
+      :where(.css-18afz5u).ant-form-vertical .ant-form-item:not(.ant-form-item-horizontal) .ant-form-item-label,
+      :where(.css-18afz5u).ant-form-vertical .ant-form-item:not(.ant-form-item-horizontal) .ant-col-24.ant-form-item-label,
+      :where(.css-18afz5u).ant-form-vertical .ant-form-item:not(.ant-form-item-horizontal) .ant-col-xl-24.ant-form-item-label {
+        padding: 0 !important;
+        margin: 0;
+        white-space: initial;
+        text-align: start;
+      }
+    }
 `;

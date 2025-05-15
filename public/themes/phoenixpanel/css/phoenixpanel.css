@@ -70,6 +70,10 @@
  */
 @import 'checkbox.css';
 
+.pt-8 {
+    padding-top: 0rem !important;
+}
+
 .login-page {
     background: var(--bg-login);
 }
@@ -704,6 +708,7 @@ label.control-label > span.field-optional:before {
 
 body {
     color: var(--text-primary);
+    background-color: var(--bg-primary);
 }
 
 .fixed .main-header {
@@ -1139,5 +1144,4 @@ a.text-primary:focus {
     background-color: var(--bg-tertiary);
     border-color: var(--border-color);
 }
-
 

@@ -11,6 +11,18 @@ export interface Allocation {
     isDefault: boolean;
 }
 
+export interface EggImageData {
+    image_enabled: boolean;
+    image_type: string;
+    image_value: string;
+}
+
+export interface Egg {
+    uuid: string;
+    name: string;
+    image_data?: EggImageData;
+}
+
 export interface Server {
     id: string;
     internalId: number | string;
@@ -43,45 +55,63 @@ export interface Server {
     isTransferring: boolean;
     variables: ServerEggVariable[];
     allocations: Allocation[];
+    egg: Egg;
 }
 
-export const rawDataToServerObject = ({ attributes: data }: FractalResponseData): Server => ({
-    id: data.identifier,
-    internalId: data.internal_id,
-    uuid: data.uuid,
-    name: data.name,
-    node: data.node,
-    isNodeUnderMaintenance: data.is_node_under_maintenance,
-    status: data.status,
-    invocation: data.invocation,
-    dockerImage: data.docker_image,
-    sftpDetails: {
-        ip: data.sftp_details.ip,
-        port: data.sftp_details.port,
-    },
-    description: data.description ? (data.description.length > 0 ? data.description : null) : null,
-    limits: { ...data.limits },
-    eggFeatures: data.egg_features || [],
-    featureLimits: { ...data.feature_limits },
-    isTransferring: data.is_transferring,
-    variables: ((data.relationships?.variables as FractalResponseList | undefined)?.data || []).map(
-        rawDataToServerEggVariable
-    ),
-    allocations: ((data.relationships?.allocations as FractalResponseList | undefined)?.data || []).map(
-        rawDataToServerAllocation
-    ),
-});
+// Accept the FractalResponseData object which contains attributes
+export const rawDataToServerObject = ({ attributes }: FractalResponseData): Server => {
+    // Access relationships and egg from *within* attributes, based on logs
+    const relationships = attributes.relationships;
+    const eggData = attributes.egg;
+
+    return {
+        id: attributes.identifier,
+        internalId: attributes.internal_id,
+        uuid: attributes.uuid,
+        name: attributes.name,
+        node: attributes.node,
+        isNodeUnderMaintenance: attributes.is_node_under_maintenance,
+        status: attributes.status,
+        invocation: attributes.invocation,
+        dockerImage: attributes.docker_image,
+        sftpDetails: {
+            ip: attributes.sftp_details.ip,
+            port: attributes.sftp_details.port,
+        },
+        description: attributes.description ? (attributes.description.length > 0 ? attributes.description : null) : null,
+        limits: { ...attributes.limits },
+        eggFeatures: attributes.egg_features || [],
+        featureLimits: { ...attributes.feature_limits },
+        isTransferring: attributes.is_transferring,
+        // Map variables and allocations from relationships
+        variables: ((relationships?.variables as FractalResponseList | undefined)?.data || []).map(
+            rawDataToServerEggVariable
+        ),
+        allocations: ((relationships?.allocations as FractalResponseList | undefined)?.data || []).map(
+            rawDataToServerAllocation
+        ),
+        // Map egg data from the nested eggData object
+        egg: eggData ? {
+            uuid: eggData.uuid,
+            name: eggData.name,
+            image_data: eggData.image_data,
+        } as Egg : { uuid: '', name: '' }, // Fallback
+    };
+};
 
 export default (uuid: string): Promise<[Server, string[]]> => {
     return new Promise((resolve, reject) => {
+        // Revert the .then() structure for single server fetch as it might differ
         http.get(`/api/client/servers/${uuid}`)
-            .then(({ data }) =>
+            .then(({ data }) => {
                 resolve([
-                    rawDataToServerObject(data),
+                    rawDataToServerObject(data), // Pass the FractalResponseData object
                     // eslint-disable-next-line camelcase
+                    // Access meta from within attributes as well, consistent with logs
+                    // Access meta directly from data
                     data.meta?.is_server_owner ? ['*'] : data.meta?.user_permissions || [],
-                ])
-            )
+                ]);
+            })
             .catch(reject);
-    });
+        });
 };

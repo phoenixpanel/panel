@@ -49,6 +49,9 @@
     <div class="col-xs-6 col-sm-3 text-center">
         <a href="{{ $version->getDonations() }}"><button class="btn btn-success" style="width:100%;"><i class="fa fa-fw fa-money"></i> Support the Project</button></a>
     </div>
+    <div class="col-xs-6 col-sm-3 text-center">
+        <a href="https://market.phoenixpanel.io"><button class="btn btn-success" style="width:100%;"><i class="fa fa-fw fa-store"></i> Get Addons</button></a>
+    </div>
 </div>
 @endsection
 

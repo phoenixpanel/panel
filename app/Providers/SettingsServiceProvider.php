@@ -19,14 +19,19 @@ class SettingsServiceProvider extends ServiceProvider
     protected array $keys = [
         'app:name',
         'app:locale',
-        'recaptcha:enabled',
-        'recaptcha:secret_key',
-        'recaptcha:website_key',
+        'phoenixpanel:captcha:provider',
+        'phoenixpanel:captcha:enabled',
+        'phoenixpanel:captcha:cloudflare:site_key',
+        'phoenixpanel:captcha:cloudflare:secret_key',
+        'phoenixpanel:captcha:google:site_key',
+        'phoenixpanel:captcha:google:secret_key',
         'phoenixpanel:guzzle:timeout',
         'phoenixpanel:guzzle:connect_timeout',
         'phoenixpanel:console:count',
         'phoenixpanel:console:frequency',
         'phoenixpanel:auth:2fa_required',
+        'phoenixpanel:registration_enabled',
+        'phoenixpanel:registration',
         'phoenixpanel:client_features:allocations:enabled',
         'phoenixpanel:client_features:allocations:range_start',
         'phoenixpanel:client_features:allocations:range_end',
@@ -77,6 +82,11 @@ class SettingsServiceProvider extends ServiceProvider
 
         foreach ($this->keys as $key) {
             $value = array_get($values, 'settings::' . $key, $config->get(str_replace(':', '.', $key)));
+            // Explicitly cast registration_enabled to integer
+            if ($key === 'phoenixpanel:registration_enabled') {
+                $value = (int) $value;
+            }
+
             if (in_array($key, self::$encrypted)) {
                 try {
                     $value = $encrypter->decrypt($value);
@@ -100,6 +110,11 @@ class SettingsServiceProvider extends ServiceProvider
                 case 'null':
                 case '(null)':
                     $value = null;
+            }
+
+            // Explicitly cast registration_enabled to integer after other conversions
+            if ($key === 'phoenixpanel:registration_enabled') {
+                $value = (int) $value;
             }
 
             $config->set(str_replace(':', '.', $key), $value);

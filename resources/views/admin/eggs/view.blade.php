@@ -109,6 +109,27 @@
                                 <textarea id="pDescription" name="description" class="form-control" rows="8">{{ $egg->description }}</textarea>
                                 <p class="text-muted small">A description of this Egg that will be displayed throughout the Panel as needed.</p>
                             </div>
+                            @php
+                                $currentImageData = (array) ($egg->image_data ?? ['image_enabled' => false, 'image_type' => 'url', 'image_value' => '']);
+                                if (!empty($currentImageData['image_enabled']) && empty($currentImageData['image_type'])) {
+                                    $currentImageData['image_type'] = 'url';
+                                }
+                            @endphp
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary no-margin-bottom">
+                                    <input type="checkbox" name="image_data[image_enabled]" id="pEggImageEnabled" value="1" {{ $currentImageData['image_enabled'] ? 'checked' : '' }}>
+                                    <label for="pEggImageEnabled" class="strong">Enable Egg Image</label>
+                                </div>
+                                <p class="text-muted small">Enable a custom image for this Egg.</p>
+                            </div>
+                            <div id="eggImageFieldsContainer" style="{{ !$currentImageData['image_enabled'] ? 'display: none;' : '' }}">
+                                <input type="hidden" name="image_data[image_type]" value="url" id="pEggImageType">
+                                <div class="form-group">
+                                    <label for="pEggImageValue" class="control-label">Custom Image URL</label>
+                                    <input type="text" name="image_data[image_value]" id="pEggImageValue" class="form-control" value="{{ $currentImageData['image_value'] }}" placeholder="Enter Custom Image URL" maxlength="512">
+                                    <p class="text-muted small">Provide a direct URL to an image for this Egg.</p>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="pStartup" class="control-label">Startup Command <span class="field-required"></span></label>
                                 <textarea id="pStartup" name="startup" class="form-control" rows="8">{{ $egg->startup }}</textarea>
@@ -201,6 +222,19 @@
 
             $(this).val(prepend + '    ' + append);
         }
+    });
+
+    function toggleEggImageFields() {
+        if ($('#pEggImageEnabled').is(':checked')) {
+            $('#eggImageFieldsContainer').slideDown();
+        } else {
+            $('#eggImageFieldsContainer').slideUp();
+        }
+    }
+    toggleEggImageFields(); // Set initial state
+
+    $('#pEggImageEnabled').on('change', function() {
+        toggleEggImageFields();
     });
     </script>
 @endsection

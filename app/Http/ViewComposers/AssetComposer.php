@@ -23,9 +23,10 @@ class AssetComposer
         $view->with('siteConfiguration', [
             'name' => config('app.name') ?? 'PhoenixPanel',
             'locale' => config('app.locale') ?? 'en',
-            'recaptcha' => [
-                'enabled' => config('recaptcha.enabled', false),
-                'siteKey' => config('recaptcha.website_key') ?? '',
+            'captcha' => [
+                'enabled' => config('phoenixpanel.captcha.enabled') ?? false,
+                'provider' => config('phoenixpanel.captcha.provider') ?? '',
+                'siteKey' => config('phoenixpanel.captcha.google.site_key') ? config('phoenixpanel.captcha.cloudflare.site_key') : '',
             ],
         ]);
     }
