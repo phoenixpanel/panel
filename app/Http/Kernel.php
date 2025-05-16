@@ -11,7 +11,6 @@ use Illuminate\Session\Middleware\StartSession;
 use PhoenixPanel\Http\Middleware\EncryptCookies;
 use PhoenixPanel\Http\Middleware\Api\IsValidJson;
 use PhoenixPanel\Http\Middleware\VerifyCsrfToken;
-use PhoenixPanel\Http\Middleware\VerifyReCaptcha;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use PhoenixPanel\Http\Middleware\LanguageMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -34,6 +33,9 @@ use PhoenixPanel\Http\Middleware\Api\Client\SubstituteClientBindings;
 use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
 use PhoenixPanel\Http\Middleware\Api\Application\AuthenticateApplicationUser;
 use PhoenixPanel\Http\Middleware\InjectAdsMiddleware;
+
+use PhoenixPanel\Http\Middleware\CheckRegistrationEnabled;
+use PhoenixPanel\Http\Middleware\VerifyCaptcha;
 
 class Kernel extends HttpKernel
 {
@@ -97,8 +99,8 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'can' => Authorize::class,
         'bindings' => SubstituteBindings::class,
-        'recaptcha' => VerifyReCaptcha::class,
-        'check.registration' => \PhoenixPanel\Http\Middleware\CheckRegistrationEnabled::class,
+        'recaptcha' => VerifyCaptcha::class,
+        'check.registration' => CheckRegistrationEnabled::class,
         'node.maintenance' => MaintenanceMiddleware::class,
     ];
 }
