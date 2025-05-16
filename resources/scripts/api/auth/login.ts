@@ -1,4 +1,5 @@
 import http from '@/api/http';
+import { AxiosError } from 'axios';
 
 export interface LoginResponse {
     complete: boolean;
@@ -35,6 +36,14 @@ export default ({ username, password, captchaKey, captchaData }: LoginData): Pro
                     confirmationToken: response.data.data.confirmationToken || undefined,
                 });
             })
-            .catch(reject);
+            .catch((error: any) => { // Revert to any type as requested previously
+                // Check if the error is an HTTP error with status 400 and the specific captcha failure message
+                if (error.response && error.response.status === 400 && error.response.data && Array.isArray(error.response.data.errors) && error.response.data.errors.length > 0 && error.response.data.errors[0] === 'Failed to validate CAPTCHA data.') {
+                    reject(new Error('Incorrect captcha, please try again!'));
+                } else {
+                    // Otherwise, reject with the original error
+                    reject(error);
+                }
+            });
     });
 };
