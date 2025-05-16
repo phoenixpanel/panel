@@ -78,7 +78,7 @@ class LoginController extends AbstractLoginController
         return new JsonResponse([
             'data' => [
                 'complete' => false,
-                'confirmation_token' => $token,
+                'confirmationToken' => $token,
             ],
         ]);
     }
