@@ -181,10 +181,15 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                 setToken('');
                 if (ref.current) ref.current.reset();
                 setSubmitting(false);
-                if (error.response && error.response.status === 400) {
-                    // Set the password error message
+
+                // Check if the error is the specific captcha error from login.ts
+                if (error instanceof Error && error.message === 'Incorrect captcha, please try again!') {
+                    clearAndAddHttpError({ key: 'form:login', error: new Error(error.message) });
+                } else if (error.response && error.response.status === 400) {
+                    // Existing logic for generic 400 errors (like incorrect credentials)
                     setErrors({ password: 'Incorrect credentials, ' });
                 } else {
+                    // Handle other HTTP errors
                     clearAndAddHttpError({ error });
                 }
             });
