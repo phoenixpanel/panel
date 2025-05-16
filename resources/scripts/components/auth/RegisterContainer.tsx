@@ -285,7 +285,7 @@ const RegisterContainer = ({ history }: RouteComponentProps) => {
     return (
         <LoginPageWrapper>
             <StyledFormBox>
-                <FormBackgroundLogo src='/assets/phoenixpanel-transparent.png' alt='Phoenix Panel background logo' />
+                <FormBackgroundLogo src='/phoenixassets/phoenixpanel-transparent.png' alt='Phoenix Panel background logo' />
                 <div css={tw`text-center mb-8 relative z-10`}>
                     <Typography.Title
                         level={1}
