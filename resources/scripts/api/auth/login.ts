@@ -9,20 +9,22 @@ export interface LoginResponse {
 export interface LoginData {
     username: string;
     password: string;
-    recaptchaData?: string | null;
+    captchaKey?: string;
+    captchaData?: string | null;
 }
 
-export default ({ username, password, recaptchaData }: LoginData): Promise<LoginResponse> => {
+export default ({ username, password, captchaKey, captchaData }: LoginData): Promise<LoginResponse> => {
+    const data: any = { user: username, password };
+    if (captchaKey && captchaData) {
+        data[captchaKey] = captchaData;
+    }
+
     return new Promise((resolve, reject) => {
         http.get('/sanctum/csrf-cookie')
             .then(() =>
-                http.post('/auth/login', {
-                    user: username,
-                    password,
-                    'g-recaptcha-response': recaptchaData,
-                })
+                http.post('/auth/login', data)
             )
-            .then((response) => {
+            .then((response: { data: { data: LoginResponse } }) => {
                 if (!(response.data instanceof Object)) {
                     return reject(new Error('An error occurred while processing the login request.'));
                 }
@@ -30,7 +32,7 @@ export default ({ username, password, recaptchaData }: LoginData): Promise<Login
                 return resolve({
                     complete: response.data.data.complete,
                     intended: response.data.data.intended || undefined,
-                    confirmationToken: response.data.data.confirmation_token || undefined,
+                    confirmationToken: response.data.data.confirmationToken || undefined,
                 });
             })
             .catch(reject);

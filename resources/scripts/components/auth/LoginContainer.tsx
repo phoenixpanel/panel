@@ -1,3 +1,4 @@
+import 'styled-components/macro';
 import React, { useEffect, useRef, useState } from 'react';
 import type {} from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
@@ -7,6 +8,7 @@ import { Formik, FormikHelpers, Field as FormikField, FormikProps } from 'formik
 import { object, string } from 'yup';
 import tw from 'twin.macro';
 import Reaptcha from 'reaptcha';
+import Turnstile from 'react-turnstile';
 import useFlash from '@/plugins/useFlash';
 import { Form, Input, Button as AntButton, Typography } from 'antd'; // Removed Checkbox as it's not used directly
 import styled from 'styled-components';
@@ -113,77 +115,17 @@ const SubmitButton = styled(AntButton)`
     background: #e08000 !important; // Darker orange for hover/focus
     border-color: #e08000 !important;
   }
-`;
-
-// Visually accurate placeholder for Cloudflare Turnstile/reCAPTCHA
-const RecaptchaPlaceholder = styled.div`
-  width: 300px; // Width from screenshot
-  height: 65px; // Height from screenshot
-  background-color: #222222; // Background from screenshot
-  border: 1px solid #4A4A4A; // Border from screenshot (approx)
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  padding: 10px 12px;
-  margin: 25px auto; // Centered with more margin
-  font-family: 'Roboto', sans-serif; // Consistent font
-
-  .checkbox-container {
-    width: 28px;
-    height: 28px;
-    background-color: #000000;
-    border: 2px solid #B0B0B0;
-    border-radius: 3px;
-    margin-right: 12px;
-    // Add inner tick or visual cue if needed, for now, it's a box
-  }
-
-  .text-verify {
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 400;
-    flex-grow: 1;
-  }
-
-  .cloudflare-branding {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    .logo-placeholder {
-      width: 75px; /* from HTML analysis */
-      height: 25px; /* from HTML analysis */
-      position: relative;
-      margin-bottom: 3px;
-
-      // Simplified Cloudflare logo elements based on screenshot analysis
-      .cf-shape { position: absolute; }
-      .cf-bar1 { /* Orange main shape */
-        width: 28.04px; height: 16.27px; background: #F48120; left: 9.49px; top: 0;
-      }
-      .cf-bar2 { /* White overlay/cutout */
-        width: 24.38px; height: 9.48px; background: #FFFFFF; left: 28.1px; top: 6.64px;
-      }
-      .cf-bar3 { /* Yellow accent */
-        width: 10.67px; height: 9.26px; background: #FAAD3F; left: 45.20px; top: 6.87px;
-      }
-      .cf-text-shape { /* White bar for "CLOUDFLARE" text */
-        width: 65px; height: 5px; background: #FFFFFF; left: 0; top: 18.80px;
-      }
-    }
-
-    .privacy-terms {
-      color: #A9A9A9; // Lighter grey for privacy/terms
-      font-size: 9px;
-      font-weight: 400;
-      a {
-        color: #A9A9A9;
-        text-decoration: none;
-        &:hover { text-decoration: underline; }
-      }
-    }
   }
 `;
+
+interface Values {
+    username: string;
+    password: string;
+}
+
+interface StyledFormItemProps {
+  enabled: string | undefined;
+}
 
 interface Values {
     username: string;
@@ -201,7 +143,11 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
 
     useEffect(() => {
         clearFlashes();
+        
+        // Necessary for CF Turnstiles
+        window.javascriptCallback = function(token: string) {};
     }, []);
+
 
     const handleFormSubmit = (values: Values, { setSubmitting, setErrors }: FormikHelpers<Values>) => {
         clearFlashes();
@@ -214,14 +160,17 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             return;
         }
 
-        console.log('Frontend Captcha State:');
-        console.log('  Provider:', provider);
-        console.log('  Enabled:', enabled);
-        console.log('  Token:', token);
-        login({ ...values, recaptchaData: token })
+        let captchaKey: string | undefined;
+        if (provider === 'google') {
+            captchaKey = 'captcha-response';
+        } else if (provider === 'cloudflare') {
+            captchaKey = 'cf-turnstile-response';
+        }
+
+        login({ ...values, captchaKey, captchaData: token || '' })
             .then((response) => {
                 if (response.complete) {
-                    // @ts-expect-error this is valid
+                    // @ts-expect-error
                     window.location = response.intended || '/';
                     return;
                 }
@@ -244,12 +193,12 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
     return (
         <LoginPageWrapper>
             <StyledFormBox>
-                <FormBackgroundLogo src="/assets/phoenixpanel-transparent.png" alt="Phoenix Panel background logo" />
+                <FormBackgroundLogo src="/phoenixassets/phoenixpanel-transparent.png" alt="Phoenix Panel background logo" />
                 <div css={tw`text-center mb-8 relative z-10`}>
-                    <Typography.Title level={1} style={{ color: '#FFFFFF', fontSize: '38px', fontFamily: `'Roboto', sans-serif`, fontWeight: 400, lineHeight: '46px', marginBottom: '6px' }}>
+                    <Typography.Title level={1} style={{ color: '#FFFFFF', fontSize: '38px', fontFamily: 'Roboto, sans-serif', fontWeight: 400, lineHeight: '46px', marginBottom: '6px' }}>
                         Login
                     </Typography.Title>
-                    <Typography.Text style={{ color: '#767676', fontSize: '13px', fontFamily: `'Roboto', sans-serif`, fontWeight: 400, lineHeight: '18px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    <Typography.Text style={{ color: '#767676', fontSize: '13px', fontFamily: 'Roboto, sans-serif', fontWeight: 400, lineHeight: '18px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                         JUST ONE CLICK AWAY FROM YOUR SERVERS
                     </Typography.Text>
                 </div>
@@ -265,7 +214,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                     {({ handleSubmit, handleChange, handleBlur, values, touched, errors, isSubmitting, setSubmitting, submitForm, setErrors }: FormikProps<Values>) => (
                         <Form onFinish={handleSubmit} layout="vertical" css={tw`relative z-10`}>
                             <Form.Item
-                                label={<span style={{ color: '#979797', fontSize: '12px', fontFamily: `'Roboto', sans-serif`, fontWeight: 400, lineHeight: '16px', display: 'block'}}>Email associated:</span>}
+                                label={<span style={{ color: '#979797', fontSize: '12px', fontFamily: 'Roboto, sans-serif', fontWeight: 400, lineHeight: '16px', display: 'block'}}>Email associated:</span>}
                                 name="username"
                                 validateStatus={touched.username && errors.username ? 'error' : undefined}
                                 help={touched.username && errors.username ? <span css={tw`text-red-400 text-xs mt-1`}>{errors.username}</span> : null}
@@ -304,19 +253,20 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                                     disabled={isSubmitting}
                                     autoComplete="current-password"
                                 />
-                            </Form.Item>
+                           </Form.Item>
 
-                            {provider === 'cloudflare' && enabled === true ? (
+                            {provider === 'cloudflare' && enabled === "1" ? (
                                 <div css={tw`mx-auto`}>
-                                    <div
-                                        className="cf-turnstile"
-                                        data-sitekey={siteKey}
-                                        data-callback="javascriptCallback"
-                                    ></div>
-                                    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                                    <Turnstile
+                                        sitekey={siteKey}
+                                        onSuccess={(token: string) => {
+                                            console.log('Turnstile callback called with token:', token);
+                                            setToken(token);
+                                        }}
+                                    />
                                 </div>
-                            ) : provider === 'google' && enabled === true  ? (
-                               <div css={tw`mx-auto`}>
+                            ) : provider === 'google' && enabled === "1" ? (
+                                <div css={tw`mx-auto`}>
                                     <Reaptcha
                                         ref={ref}
                                         sitekey={siteKey}
@@ -334,11 +284,13 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                                 </div>
                             ) : null}
 
-                            <Form.Item css={tw`mt-8 mb-6`}>
+
+                            <Form.Item css={tw`mt-[1rem] mb-[1rem]`} style={{ marginTop: '1rem !important' }}>
                                 <SubmitButton
                                     type="primary"
                                     htmlType="submit"
                                     loading={isSubmitting}
+                                    style={{ marginTop: '1rem !important' }}
                                 >
                                     SUBMIT
                                 </SubmitButton>

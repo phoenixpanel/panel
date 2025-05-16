@@ -182,7 +182,7 @@ export default () => {
     return (
         <RequestPasswordPageWrapper>
             <StyledFormBox>
-                <FormBackgroundLogo src='/assets/phoenixpanel-transparent.png' alt='Phoenix Panel background logo' />
+                <FormBackgroundLogo src='/phoenixassets/phoenixpanel-transparent.png' alt='Phoenix Panel background logo' />
                 <div css={tw`text-center mb-8 relative z-10`}>
                     <Typography.Title level={1} style={{ color: '#FFFFFF', fontSize: '38px', fontFamily: `'Roboto', sans-serif`, fontWeight: 400, lineHeight: '46px', marginBottom: '6px' }}>
                         Reset Password

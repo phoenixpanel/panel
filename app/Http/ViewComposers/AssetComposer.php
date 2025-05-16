@@ -26,7 +26,7 @@ class AssetComposer
             'captcha' => [
                 'enabled' => config('phoenixpanel.captcha.enabled') ?? false,
                 'provider' => config('phoenixpanel.captcha.provider') ?? '',
-                'siteKey' => config('phoenixpanel.captcha.google.site_key') ? config('phoenixpanel.captcha.cloudflare.site_key') : '',
+                'siteKey' => config('phoenixpanel.captcha.provider') === 'google' ? config('phoenixpanel.captcha.google.site_key') : (config('phoenixpanel.captcha.provider') === 'cloudflare' ? config('phoenixpanel.captcha.cloudflare.site_key') : ''),
             ],
         ]);
     }
