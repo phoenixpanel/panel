@@ -160,7 +160,14 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             return;
         }
 
-        login({ ...values, recaptchaData: token || '' })
+        let captchaKey: string | undefined;
+        if (provider === 'google') {
+            captchaKey = 'captcha-response';
+        } else if (provider === 'cloudflare') {
+            captchaKey = 'cf-turnstile-response';
+        }
+
+        login({ ...values, captchaKey, captchaData: token || '' })
             .then((response) => {
                 if (response.complete) {
                     // @ts-expect-error
@@ -186,7 +193,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
     return (
         <LoginPageWrapper>
             <StyledFormBox>
-                <FormBackgroundLogo src="/assets/phoenixpanel-transparent.png" alt="Phoenix Panel background logo" />
+                <FormBackgroundLogo src="/phoenixassets/phoenixpanel-transparent.png" alt="Phoenix Panel background logo" />
                 <div css={tw`text-center mb-8 relative z-10`}>
                     <Typography.Title level={1} style={{ color: '#FFFFFF', fontSize: '38px', fontFamily: 'Roboto, sans-serif', fontWeight: 400, lineHeight: '46px', marginBottom: '6px' }}>
                         Login
