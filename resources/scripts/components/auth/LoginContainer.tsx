@@ -123,10 +123,6 @@ interface Values {
     password: string;
 }
 
-interface StyledFormItemProps {
-  enabled: string | undefined;
-}
-
 interface Values {
     username: string;
     password: string;
@@ -182,9 +178,11 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                 if (ref.current) ref.current.reset();
                 setSubmitting(false);
 
+                console.log(error.message);
                 // Check if the error is the specific captcha error from login.ts
                 if (error instanceof Error && error.message === 'Incorrect captcha, please try again!') {
                     clearAndAddHttpError({ key: 'form:login', error: new Error(error.message) });
+                    setErrors({ password: 'Incorrect captcha, try again later!' });
                 } else if (error.response && error.response.status === 400) {
                     // Existing logic for generic 400 errors (like incorrect credentials)
                     setErrors({ password: 'Incorrect credentials, ' });
@@ -243,9 +241,13 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                                     <span css={tw`text-red-400 text-xs mt-1`}>
                                         Please enter your account password.
                                     </span>
-                                ) : touched.password && errors.password && errors.password !== 'Please enter your account password.' ? (
+                                ) : touched.password && errors.password && errors.password === "Incorrect credentials, " ? (
                                     <span css={tw`text-red-400 text-xs mt-1`}>
                                         Incorrect credentials, <Link to={'/auth/password'} css={tw`text-sm no-underline hover:underline`} style={{ color: '#FF9500', fontWeight: 500 }}>reset password!</Link>
+                                    </span>
+                                ) : touched.password && errors.password && errors.password === "Incorrect captcha, try again later!" ? (
+                                    <span css={tw`text-red-400 text-xs mt-1`}>
+                                        Incorrect captcha, try again later!
                                     </span>
                                 ) : null}
                             >
