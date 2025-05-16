@@ -10,10 +10,10 @@ use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class VerifyCaptcha
+class VerifyReCaptcha
 {
     /**
-     * VerifyCaptcha constructor.
+     * VerifyReCaptcha constructor.
      */
     public function __construct(private Dispatcher $dispatcher, private Repository $config)
     {
@@ -31,7 +31,7 @@ class VerifyCaptcha
         $captchaProvider = $this->config->get('phoenixpanel.captcha.provider');
 
         if ($captchaProvider === 'google') {
-            $responseKey = 'captcha-response';
+            $responseKey = 'g-recaptcha-response';
             $secretKey = $this->config->get('phoenixpanel.captcha.google.secret_key');
         } elseif ($captchaProvider === 'cloudflare') {
             $responseKey = 'cf-turnstile-response';
@@ -46,15 +46,7 @@ class VerifyCaptcha
 
         if ($request->filled($responseKey)) {
             $client = new Client();
-            $verificationUrl = '';
-
-            if ($captchaProvider === 'google') {
-                $verificationUrl = 'https://www.google.com/recaptcha/api/siteverify';
-            } elseif ($captchaProvider === 'cloudflare') {
-                $verificationUrl = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-            }
-
-            $res = $client->post($verificationUrl, [
+            $res = $client->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
                 'form_params' => [
                     'secret' => $secretKey,
                     'response' => $request->input($responseKey),
@@ -66,15 +58,6 @@ class VerifyCaptcha
 
                 if ($result->success && $this->isResponseVerified($result, $request)) {
                     return $next($request);
-                } else { // Throw exception on verification failure with 200 status
-                    $this->dispatcher->dispatch(
-                        new FailedCaptcha(
-                            $request->ip(),
-                            $request->getHost()
-                        )
-                    );
-
-                    throw new HttpException(Response::HTTP_BAD_REQUEST, 'Failed to validate CAPTCHA data.');
                 }
             } else {
                 $this->dispatcher->dispatch(
