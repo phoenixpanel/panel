@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use PhoenixPanel\Http\Middleware\VerifyReCaptcha;
+use PhoenixPanel\Http\Middleware\VerifyCaptcha;
 
 class RegisterController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(VerifyReCaptcha::class)->only('register');
+        // $this->middleware(\PhoenixPanel\Http\Middleware\VerifyCaptcha::class)->only('register');
     }
 
     public function register(Request $request)
