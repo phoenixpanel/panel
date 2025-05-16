@@ -197,11 +197,6 @@ return [
         'enabled' => env('RECAPTCHA_ENABLED', false),
 
         /*
-         * API endpoint for recaptcha checks. You should not edit this.
-         */
-        'domain' => env('RECAPTCHA_DOMAIN', 'https://www.google.com/recaptcha/api/siteverify'),
-
-        /*
          * Use a custom secret key, we use our public one by default
          */
         'secret_key' => env('RECAPTCHA_SECRET_KEY', '6LcJcjwUAAAAALOcDJqAEYKTDhwELCkzUkNDQ0J5'),

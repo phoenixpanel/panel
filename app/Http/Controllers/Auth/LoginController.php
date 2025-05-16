@@ -11,6 +11,7 @@ use PhoenixPanel\Facades\Activity;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use PhoenixPanel\Http\Middleware\VerifyCaptcha;
 
 class LoginController extends AbstractLoginController
 {
