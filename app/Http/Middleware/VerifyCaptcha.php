@@ -66,6 +66,15 @@ class VerifyCaptcha
 
                 if ($result->success && $this->isResponseVerified($result, $request)) {
                     return $next($request);
+                } else { // Throw exception on verification failure with 200 status
+                    $this->dispatcher->dispatch(
+                        new FailedCaptcha(
+                            $request->ip(),
+                            $request->getHost()
+                        )
+                    );
+
+                    throw new HttpException(Response::HTTP_BAD_REQUEST, 'Failed to validate CAPTCHA data.');
                 }
             } else {
                 $this->dispatcher->dispatch(
