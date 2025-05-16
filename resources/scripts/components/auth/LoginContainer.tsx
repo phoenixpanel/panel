@@ -163,34 +163,48 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             captchaKey = 'cf-turnstile-response';
         }
 
-        login({ ...values, captchaKey, captchaData: token || '' })
-            .then((response) => {
-                if (response.complete) {
-                    // @ts-expect-error
-                    window.location = response.intended || '/';
-                    return;
-                }
-                history.replace('/auth/login/checkpoint', { token: response.confirmationToken });
-            })
-            .catch((error: any) => {
-                console.error('Login API error:', error);
-                setToken('');
-                if (ref.current) ref.current.reset();
-                setSubmitting(false);
+        try {
+            login({ ...values, captchaKey, captchaData: token || '' })
+                .then((response) => {
+                    console.log('Login API response:', response); // Add this log
+                    if (response.complete) {
+                        // Use history.replace for consistent routing
+                        history.replace(response.intended || '/');
+                        return;
+                    }
+                    // Only navigate to checkpoint if confirmationToken is present
+                    if (response.confirmationToken) {
+                        history.replace('/auth/login/checkpoint', { token: response.confirmationToken });
+                    } else {
+                        // Handle unexpected response - maybe show an error message
+                        console.error('Login API error: 2FA required but no confirmation token received.');
+                        clearAndAddHttpError({ key: 'form:login', error: new Error('An unexpected error occurred during login.') });
+                    }
+                })
+                .catch((error: any) => {
+                    console.error('Login API error:', error);
+                    setToken('');
+                    if (ref.current) ref.current.reset();
 
-                console.log(error.message);
-                // Check if the error is the specific captcha error from login.ts
-                if (error instanceof Error && error.message === 'Incorrect captcha, please try again!') {
-                    clearAndAddHttpError({ key: 'form:login', error: new Error(error.message) });
-                    setErrors({ password: 'Incorrect captcha, try again later!' });
-                } else if (error.response && error.response.status === 400) {
-                    // Existing logic for generic 400 errors (like incorrect credentials)
-                    setErrors({ password: 'Incorrect credentials, ' });
-                } else {
-                    // Handle other HTTP errors
-                    clearAndAddHttpError({ error });
-                }
-            });
+                    console.log(error.message);
+                    // Check if the error is the specific captcha error from login.ts
+                    if (error instanceof Error && error.message === 'Incorrect captcha, please try again!') {
+                        clearAndAddHttpError({ key: 'form:login', error: new Error(error.message) });
+                        setErrors({ password: 'Incorrect captcha, try again later!' });
+                    } else if (error.response && error.response.status === 400) {
+                        // Existing logic for generic 400 errors (like incorrect credentials)
+                        setErrors({ password: 'Incorrect credentials, ' });
+                    } else {
+                        // Handle other HTTP errors
+                        clearAndAddHttpError({ error });
+                    }
+                });
+        } catch (error: any) {
+            console.error('Unexpected error during login process:', error);
+            clearAndAddHttpError({ error });
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
