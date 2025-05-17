@@ -13,6 +13,12 @@ import useFlash from '@/plugins/useFlash';
 import { Form, Input, Button as AntButton, Typography } from 'antd';
 import styled from 'styled-components';
 
+// Interface for form values - added comment to potentially refresh linter
+interface Values {
+    username: string;
+    password: string;
+}
+
 // Overall page wrapper
 const LoginPageWrapper = styled.div`
     ${tw`min-h-screen flex items-center justify-center p-4`}
@@ -339,7 +345,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                             </Form.Item>
 
                             {provider === 'cloudflare' && enabled === '1' ? (
-                                <div css={tw`mx-auto mb-6`}>
+                                <div css={tw`mx-auto`} style={{marginBottom: "0px !important"}}>
                                     <Turnstile
                                         sitekey={siteKey}
                                         onSuccess={(token: string) => {
@@ -349,7 +355,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                                     />
                                 </div>
                             ) : provider === 'google' && enabled === '1' ? (
-                                <div css={tw`mx-auto mb-6`}>
+                                <div css={tw`mx-auto`} style={{marginBottom: "0px !important"}}>
                                     <Reaptcha
                                         ref={ref}
                                         sitekey={siteKey}
@@ -367,7 +373,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                                 </div>
                             ) : null}
 
-                            <Form.Item css={tw`mt-8 mb-6`}>
+                            <Form.Item css={tw`mt-[0.5rem !important]`}>
                                 <SubmitButton type='primary' htmlType='submit' loading={isSubmitting}>
                                     SUBMIT
                                 </SubmitButton>
