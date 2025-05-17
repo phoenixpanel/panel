@@ -45,6 +45,7 @@
         "sockette": "^2.0.6",
         "styled-components": "^5.2.1",
         "styled-components-breakpoint": "^3.0.0-preview.20",
+        "styled-components/macro": "^5.2.3",
         "swr": "^0.2.3",
         "tailwindcss": "^3.0.24",
         "use-fit-text": "^2.4.0",
