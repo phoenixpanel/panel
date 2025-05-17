@@ -8,7 +8,7 @@ import { useFormikContext, withFormik, FormikProps, FormikHelpers } from 'formik
 import useFlash from '@/plugins/useFlash';
 import { FlashStore } from '@/state/flashes';
 import tw from 'twin.macro';
-import { Form, Input, Button as AntButton, Typography } from 'antd';
+import { Form, Input, Button as AntButton, Typography, InputRef } from 'antd';
 import styled from 'styled-components';
 
 // Overall page wrapper
@@ -20,8 +20,8 @@ const LoginPageWrapper = styled.div`
 // The main form container
 const StyledFormBox = styled.div`
     ${tw`w-full relative overflow-hidden`}
-    width: 34rem;
-    height: 30rem; // Adjusted to ensure content fits, can be flexible
+    width: 35rem;
+    height: 100%;
     background: rgba(35.55, 35.55, 35.55, 0.82);
     border-radius: 20px;
     padding: 40px; // Adjusted padding for uniform spacing
@@ -40,7 +40,11 @@ const FormBackgroundLogo = styled.img`
 `;
 
 // Define StyledInput component for individual characters
-const StyledCodeInput = styled(Input)`
+interface StyledCodeInputProps {
+    hasError?: boolean;
+}
+
+const StyledCodeInput = styled(Input)<StyledCodeInputProps>`
     ${tw`text-center`}
     background: rgba(49.04, 49.04, 49.04, 0.72) !important;
     border: 1px #373737 solid !important;
@@ -51,6 +55,13 @@ const StyledCodeInput = styled(Input)`
     width: 40px !important; // Fixed width for individual inputs
     font-size: 20px !important; // Larger font size
     margin: 0 4px; // Space between inputs
+
+    ${(props: StyledCodeInputProps) =>
+        props.hasError &&
+        `
+        border-color: #ff4d4f !important;
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2) !important;
+    `}
 
     &::placeholder {
         color: rgba(110.34, 110.34, 110.34, 0.85) !important;
@@ -88,6 +99,11 @@ const SubmitButton = styled(AntButton)`
 interface Values {
     code: string;
     recoveryCode: string;
+    hasError?: boolean;
+}
+
+interface FormikStatus {
+    error?: string;
 }
 
 type OwnProps = RouteComponentProps<Record<string, string | undefined>, StaticContext, { token?: string }>;
@@ -97,11 +113,11 @@ type Props = OwnProps & {
 };
 
 const LoginCheckpointContainer = () => {
-    const { isSubmitting, setFieldValue, submitForm } = useFormikContext<Values>();
+    const { isSubmitting, setFieldValue, submitForm, status } = useFormikContext<Values>();
     const [isMissingDevice, setIsMissingDevice] = useState(false);
     const codeLength = isMissingDevice ? 10 : 6;
     const [codeValues, setCodeValues] = useState<string[]>(Array(codeLength).fill(''));
-    const inputRefs = useRef<(Input | null)[]>([]);
+    const inputRefs = useRef<(InputRef | null)[]>([]);
 
     useEffect(() => {
         setCodeValues(Array(codeLength).fill(''));
@@ -192,7 +208,7 @@ const LoginCheckpointContainer = () => {
                         {Array.from({ length: codeLength }).map((_, index) => (
                             <StyledCodeInput
                                 key={index}
-                                ref={(el: Input | null) => { inputRefs.current[index] = el; }}
+                                ref={(el: InputRef | null) => { inputRefs.current[index] = el; }}
                                 value={codeValues[index]}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(index, e)}
                                 onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => handleKeyDown(index, e)}
@@ -200,9 +216,15 @@ const LoginCheckpointContainer = () => {
                                 disabled={isSubmitting}
                                 autoFocus={index === 0}
                                 type={isMissingDevice ? 'text' : 'number'} // Use text for recovery code to allow alphanumeric
+                                hasError={status?.error ? true : false}
                             />
                         ))}
                     </Form.Item>
+                    {status?.error && (
+                        <Typography.Text type="danger" css={tw`text-center block mt-4`}>
+                            {status.error}
+                        </Typography.Text>
+                    )}
 
                     {/* The submit button is now triggered automatically */}
                     {/* <div css={tw`mt-6`}>
@@ -240,7 +262,7 @@ const LoginCheckpointContainer = () => {
 const EnhancedForm = withFormik<Props, Values>({
     handleSubmit: (
         { code, recoveryCode }: Values,
-        { setSubmitting, props: { clearAndAddHttpError, location } }: FormikHelpers<Values> & { props: Props }
+        { setSubmitting, setStatus, setFieldValue, props: { clearAndAddHttpError, location } }: FormikHelpers<Values> & { props: Props }
     ) => {
         loginCheckpoint(location.state?.token || '', code, recoveryCode)
             .then((response) => {
@@ -251,17 +273,32 @@ const EnhancedForm = withFormik<Props, Values>({
                 }
 
                 setSubmitting(false);
+                setStatus(undefined); // Clear status on success
             })
             .catch((error) => {
                 console.error(error);
                 setSubmitting(false);
-                clearAndAddHttpError({ error });
+
+
+                // Check for the specific invalid 2FA code error structure
+                if (error.response && error.response.status === 400 && error.response.data && error.response.data.errors && error.response.data.errors.length > 0 && error.response.data.errors[0].code === 'DisplayException' && error.response.data.errors[0].detail === 'The two-factor authentication token was invalid.') {
+                    setStatus({ error: error.response.data.errors[0].detail }); // Set error status
+                    setFieldValue('hasError', true);
+                } else if(error.response && error.response.status === 400 && error.response.data && error.response.data.errors && error.response.data.errors.length > 0 && error.response.data.errors[0].code === 'DisplayException' && error.response.data.errors[0].detail === 'The authentication token provided has expired, please refresh the page and try again.') {
+                    setStatus({ error: error.response.data.errors[0].detail }); // Set error status
+                    setFieldValue('hasError', true);
+                } else {
+                    setStatus(undefined); // Clear error status for other errors
+                    clearAndAddHttpError({ error });
+                    setFieldValue('hasError', false);
+                }
             });
     },
 
     mapPropsToValues: () => ({
         code: '',
         recoveryCode: '',
+        hasError: false,
     }),
 })(LoginCheckpointContainer);
 
