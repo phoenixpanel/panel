@@ -4,14 +4,11 @@ module.exports = function (api) {
         'babel-plugin-macros',
         'styled-components',
         'react-hot-loader/babel',
-        '@babel/transform-runtime',
-        '@babel/transform-react-jsx',
-        '@babel/proposal-class-properties',
-        '@babel/proposal-object-rest-spread',
-        '@babel/proposal-optional-chaining',
-        '@babel/proposal-nullish-coalescing-operator',
-        '@babel/syntax-dynamic-import',
-        '@babel/plugin-proposal-logical-assignment-operators',
+        'babel-plugin-macros',
+        'styled-components',
+        'react-hot-loader/babel',
+        '@babel/plugin-syntax-dynamic-import',
+        // '@babel/plugin-proposal-private-property-in-object',
     ];
 
     if (api.env('test')) {
@@ -26,7 +23,7 @@ module.exports = function (api) {
             '@babel/typescript',
             ['@babel/env', {
                 modules: false,
-                useBuiltIns: 'entry',
+                useBuiltIns: 'usage',
                 corejs: 3,
                 targets,
             }],

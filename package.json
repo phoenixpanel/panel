@@ -4,6 +4,8 @@
         "node": ">=14"
     },
     "dependencies": {
+        "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@floating-ui/react-dom-interactions": "^0.6.6",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -44,7 +46,6 @@
         "reaptcha": "^1.7.2",
         "sockette": "^2.0.6",
         "styled-components": "^5.2.1",
-        "@styled-components/macro": "latest",
         "styled-components-breakpoint": "^3.0.0-preview.20",
         "swr": "^0.2.3",
         "tailwindcss": "^3.0.24",
