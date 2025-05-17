@@ -13,6 +13,7 @@ const gray = {
     700: '#3b4148',  // Darker grey (secondary elements/borders)
     800: '#2a2f33',  // Very dark grey (secondary elements/borders)
     900: '#23272a',  // Near-black (primary background)
+    950: '#1e1e1e'
 };
 
 // Phoenix color palette
