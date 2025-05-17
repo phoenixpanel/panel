@@ -12,9 +12,7 @@ const gray = {
     650: '#272727', // Darkish grey (ServerRow BG)
     700: '#3b4148',  // Darker grey (secondary elements/borders)
     800: '#2a2f33',  // Very dark grey (secondary elements/borders)
-    850: '#23272a',  // Near-black (primary background)
-    900: '#1e1e1e',
-    950: '#191919'
+    900: '#23272a',  // Near-black (primary background)
 };
 
 // Phoenix color palette
