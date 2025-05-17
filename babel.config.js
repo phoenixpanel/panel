@@ -4,11 +4,13 @@ module.exports = function (api) {
         'babel-plugin-macros',
         'styled-components',
         'react-hot-loader/babel',
-        'babel-plugin-macros',
-        'styled-components',
-        'react-hot-loader/babel',
-        '@babel/plugin-syntax-dynamic-import',
-        // '@babel/plugin-proposal-private-property-in-object',
+        '@babel/transform-runtime',
+        '@babel/transform-react-jsx',
+        '@babel/proposal-class-properties',
+        '@babel/proposal-object-rest-spread',
+        '@babel/proposal-optional-chaining',
+        '@babel/proposal-nullish-coalescing-operator',
+        '@babel/syntax-dynamic-import',
     ];
 
     if (api.env('test')) {
@@ -17,13 +19,12 @@ module.exports = function (api) {
     }
 
     return {
-        sourceType: 'unambiguous',
         plugins,
         presets: [
             '@babel/typescript',
             ['@babel/env', {
                 modules: false,
-                useBuiltIns: 'usage',
+                useBuiltIns: 'entry',
                 corejs: 3,
                 targets,
             }],

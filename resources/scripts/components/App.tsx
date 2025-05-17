@@ -25,11 +25,13 @@ interface ExtendedWindow extends Window {
         uuid: string;
         username: string;
         email: string;
+        /* eslint-disable camelcase */
+        root_admin: boolean;
+        use_totp: boolean;
         language: string;
-        rootAdmin: boolean;
-        useTotp: boolean;
-        createdAt: string;
-        updatedAt: string;
+        updated_at: string;
+        created_at: string;
+        /* eslint-enable camelcase */
     };
 }
 
