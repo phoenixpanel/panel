@@ -11,6 +11,7 @@ module.exports = function (api) {
         '@babel/proposal-optional-chaining',
         '@babel/proposal-nullish-coalescing-operator',
         '@babel/syntax-dynamic-import',
+        '@babel/plugin-proposal-logical-assignment-operators',
     ];
 
     if (api.env('test')) {
@@ -19,6 +20,7 @@ module.exports = function (api) {
     }
 
     return {
+        sourceType: 'unambiguous',
         plugins,
         presets: [
             '@babel/typescript',

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "module": "es2020",
+    "module": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
     "lib": [
@@ -12,8 +12,8 @@
     "noEmit": true,
     "sourceMap": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
+    "skipLibCheck": false,
+    "skipDefaultLibCheck": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",

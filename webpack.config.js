@@ -8,9 +8,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    cache: true,
-    target: 'web',
-    mode: process.env.NODE_ENV,
     devtool: isProduction ? false : (process.env.DEVTOOL || 'eval-source-map'),
     performance: {
         hints: false,
@@ -26,9 +23,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                exclude: /node_modules|\.spec\.tsx?$/,
+                test: /\.(ts|tsx|js)?$/,
+                exclude: /\.spec\.tsx?$/,
                 loader: 'babel-loader',
+                options: {
+                    configFile: path.resolve(__dirname, 'babel.config.js'),
+                },
             },
             {
                 test: /\.mjs$/,
@@ -70,6 +70,8 @@ module.exports = {
             },
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
+                enforce: 'pre',
                 loader: 'source-map-loader',
             }
         ],
