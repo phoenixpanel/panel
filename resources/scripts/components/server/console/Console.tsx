@@ -20,7 +20,7 @@ import 'xterm/css/xterm.css';
 import styles from './style.module.css';
 
 const theme = {
-    background: `#212121`,
+    background: `#1c1c1c`,
     cursor: 'transparent',
     black: th`colors.black`.toString(),
     red: '#E54B4B',
@@ -192,12 +192,13 @@ export default () => {
     }, [connected, instance]);
 
     return (
-        <div className={classNames(styles.terminal, 'relative')}>
+        <div className={classNames(styles.terminal, 'relative')} style={{ backgroundColor: '#1c1c1c' }}>
             <SpinnerOverlay visible={!connected} size={'large'} />
             <div
                 className={classNames(styles.container, styles.overflows_container, { 'rounded-b': !canSendCommands })}
+                style={{ backgroundColor: '#1c1c1c' }}
             >
-                <div className={'h-full'}>
+                <div className={'h-full'} style={{ backgroundColor: '#1c1c1c' }}>
                     <div id={styles.terminal} ref={ref} />
                 </div>
             </div>
