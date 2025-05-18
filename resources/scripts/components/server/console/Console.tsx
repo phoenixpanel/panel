@@ -20,7 +20,7 @@ import 'xterm/css/xterm.css';
 import styles from './style.module.css';
 
 const theme = {
-    background: th`colors.black`.toString(),
+    background: `#212121`,
     cursor: 'transparent',
     black: th`colors.black`.toString(),
     red: '#E54B4B',
@@ -205,6 +205,7 @@ export default () => {
                 <div className={classNames('relative', styles.overflows_container)}>
                     <input
                         className={classNames('peer', styles.command_input)}
+                        style={{ backgroundColor: '#1c1c1c' }}
                         type={'text'}
                         placeholder={'Type a command...'}
                         aria-label={'Console command input.'}
