@@ -163,7 +163,7 @@ const EditSubuserModal = ({ subuser }: Props) => {
                                 title={key}
                                 isEditable={canEditUser}
                                 permissions={Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`)}
-                                css={index > 0 ? tw`mt-4` : undefined}
+                                css={tw`mt-4`}
                             >
                                 <p css={tw`text-sm text-neutral-400 mb-4`}>{permissions[key].description}</p>
                                 {Object.keys(permissions[key].keys).map((pkey) => (
