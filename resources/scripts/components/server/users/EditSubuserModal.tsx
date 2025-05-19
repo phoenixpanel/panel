@@ -17,6 +17,7 @@ import PermissionTitleBox from '@/components/server/users/PermissionTitleBox';
 import asModal from '@/hoc/asModal';
 import PermissionRow from '@/components/server/users/PermissionRow';
 import ModalContext from '@/context/ModalContext';
+import SelectAllPermissionsBox from '@/components/server/users/SelectAllPermissionsBox';
 
 type Props = {
     subuser?: Subuser;
@@ -57,6 +58,17 @@ const EditSubuserModal = ({ subuser }: Props) => {
 
         return list.filter((key) => loggedInPermissions.indexOf(key) >= 0);
     }, [isRootAdmin, permissions, loggedInPermissions]);
+
+    // Get all available permissions for the "Select All" checkbox (excluding websocket)
+    const allAvailablePermissions = useDeepCompareMemo(() => {
+        const cleaned = Object.keys(permissions)
+            .filter((key) => key !== 'websocket')
+            .map((key) =>
+                Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`)
+            );
+
+        return ([] as string[]).concat.apply([], Object.values(cleaned));
+    }, [permissions]);
 
     const submit = (values: Values) => {
         setPropOverrides({ showSpinnerOverlay: true });
@@ -136,6 +148,13 @@ const EditSubuserModal = ({ subuser }: Props) => {
                     </div>
                 )}
                 <div css={tw`my-6`}>
+                    {/* Add Select All Permissions Box */}
+                    <SelectAllPermissionsBox
+                        isEditable={canEditUser}
+                        allPermissions={allAvailablePermissions}
+                        className={tw`mb-4`}
+                    />
+                    {/* Existing permission boxes */}
                     {Object.keys(permissions)
                         .filter((key) => key !== 'websocket')
                         .map((key, index) => (
