@@ -152,7 +152,7 @@ const EditSubuserModal = ({ subuser }: Props) => {
                     <SelectAllPermissionsBox
                         isEditable={canEditUser}
                         allPermissions={allAvailablePermissions}
-                        className={tw`mb-4`}
+                        css={tw`mb-4`}
                     />
                     {/* Existing permission boxes */}
                     {Object.keys(permissions)

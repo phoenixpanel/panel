@@ -8,10 +8,10 @@ import isEqual from 'react-fast-compare';
 interface Props {
     isEditable: boolean;
     allPermissions: string[];
-    className?: string;
+    css?: any;
 }
 
-const SelectAllPermissionsBox: React.FC<Props> = memo(({ isEditable, allPermissions, className }) => {
+const SelectAllPermissionsBox: React.FC<Props> = memo(({ isEditable, allPermissions, css }) => {
     const [{ value }, , { setValue }] = useField<string[]>('permissions');
 
     const onCheckboxClicked = useCallback(
@@ -41,7 +41,7 @@ const SelectAllPermissionsBox: React.FC<Props> = memo(({ isEditable, allPermissi
                     )}
                 </div>
             }
-            className={className}
+            css={css}
         >
             <p css={tw`text-sm text-neutral-400 mb-4`}>
                 Select or deselect all permissions across all categories.
