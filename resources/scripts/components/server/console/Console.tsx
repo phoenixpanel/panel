@@ -147,8 +147,15 @@ export default () => {
                 }
             }
             
-            // Send POST request to logs.phoenixpanel.io/documents
-            const response = await axios.post('https://logs.phoenixpanel.io/documents', fullContent);
+            // Send POST request to our server-side proxy endpoint
+            const response = await axios.post(`/api/client/servers/${serverId}/logs/export`, {
+                content: fullContent
+            });
+            
+            if (response.data.error) {
+                throw new Error(response.data.error);
+            }
+            
             const key = response.data.key;
             
             // Construct URL
