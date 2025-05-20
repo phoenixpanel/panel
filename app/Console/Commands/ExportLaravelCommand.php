@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 // Ngl, did this at god knows what time so have fun trying it! ~ Benno
 class ExportLaravelCommand extends Command
@@ -66,29 +68,40 @@ class ExportLaravelCommand extends Command
             $lineCount = substr_count($logContent, "\n") + 1;
             $this->line("   Log file contains {$lineCount} lines");
             
-            // Make sure we're sending with proper content type and encoding
-            // Try using raw content approach to preserve line breaks
-            $response = Http::timeout(30)
-                ->withHeaders([
-                    'Content-Type' => 'text/plain; charset=UTF-8',
-                    'Accept' => 'application/json',
-                ])
-                ->withOptions([
-                    'body' => $logContent,
-                ])
-                ->post('https://logs.phoenixpanel.io/documents');
+            // Send the log content as raw data
+            // Using Guzzle directly to have more control over how the request is sent
+            $client = new Client(['timeout' => 30]);
             
-            if (!$response->successful()) {
+            $this->line("   Sending request with raw content...");
+            
+            $response = $client->request('POST', 'https://logs.phoenixpanel.io/documents', [
+                'headers' => [
+                    'Content-Type' => 'text/plain',
+                    'Accept' => 'application/json',
+                ],
+                'body' => $logContent,
+                'debug' => false,
+            ]);
+            
+            // Convert Guzzle response to Laravel response for consistent handling
+            $statusCode = $response->getStatusCode();
+            $responseBody = $response->getBody()->getContents();
+            
+            $this->line("   Response status code: {$statusCode}");
+            $this->line("   Response body: {$responseBody}");
+            
+            $responseData = json_decode($responseBody, true);
+            
+            if ($statusCode !== 200) {
                 $this->error('❌ Failed to upload logs!');
-                $this->line('   Server responded with status code: ' . $response->status());
+                $this->line('   Server responded with status code: ' . $statusCode);
                 return 1;
             }
-            
-            $responseData = $response->json();
             
             if (!isset($responseData['key'])) {
                 $this->error('❌ Invalid response from server!');
                 $this->line('   The server response did not contain a key.');
+                $this->line('   Response: ' . $responseBody);
                 return 1;
             }
             
@@ -104,9 +117,13 @@ class ExportLaravelCommand extends Command
             
             return 0;
             
+        } catch (GuzzleException $e) {
+            $this->error('❌ An error occurred while uploading logs!');
+            $this->line('   Guzzle error: ' . $e->getMessage());
+            return 1;
         } catch (\Exception $e) {
             $this->error('❌ An error occurred while uploading logs!');
-            $this->line('   ' . $e->getMessage());
+            $this->line('   Error: ' . $e->getMessage());
             return 1;
         }
     }

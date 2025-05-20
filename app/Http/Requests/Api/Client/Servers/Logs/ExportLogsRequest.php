@@ -12,9 +12,8 @@ class ExportLogsRequest extends ClientApiRequest
      */
     public function rules(): array
     {
-        return [
-            'content' => 'required|string',
-        ];
+        // No validation rules needed for raw content
+        return [];
     }
 
     /**
