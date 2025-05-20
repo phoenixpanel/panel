@@ -22,6 +22,6 @@ class ExportLogsRequest extends ClientApiRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('view-logs', $this->parameter('server'));
+        return $this->user()->can('view-logs', $this->parameter('server', Server::class));
     }
 }
