@@ -275,49 +275,53 @@ export default () => {
             </div>
             {canSendCommands && (
                 <div className={classNames('relative', styles.overflows_container)}>
-                    <input
-                        className={classNames('peer', styles.command_input)}
-                        style={{ backgroundColor: '#1c1c1c' }}
-                        type={'text'}
-                        placeholder={'Type a command...'}
-                        aria-label={'Console command input.'}
-                        disabled={!instance || !connected}
-                        onKeyDown={handleCommandKeyDown}
-                        autoCorrect={'off'}
-                        autoCapitalize={'none'}
-                    />
-                    <div
-                        className={classNames(
-                            'text-gray-100 peer-focus:text-gray-50 peer-focus:animate-pulse',
-                            styles.command_icon
-                        )}
-                    >
-                        <ChevronDoubleRightIcon className={'w-4 h-4'} />
-                    </div>
-                    <div className="relative">
-                        {hasCopied && (
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-900 text-sm text-gray-200 px-3 py-2 rounded z-50 whitespace-nowrap">
-                                Console log link copied to clipboard!
-                            </div>
-                        )}
-                        {exportError && (
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-900 text-sm text-gray-200 px-3 py-2 rounded z-50 whitespace-nowrap">
-                                {exportError}
-                            </div>
-                        )}
-                        <Tooltip
-                            content={'Export Logs'}
-                            placement="left"
+                    <div className="relative flex items-center">
+                        <input
+                            className={classNames('peer', styles.command_input)}
+                            style={{ backgroundColor: '#1c1c1c' }}
+                            type={'text'}
+                            placeholder={'Type a command...'}
+                            aria-label={'Console command input.'}
+                            disabled={!instance || !connected}
+                            onKeyDown={handleCommandKeyDown}
+                            autoCorrect={'off'}
+                            autoCapitalize={'none'}
+                        />
+                        <div
+                            className={classNames(
+                                'text-gray-100 peer-focus:text-gray-50 peer-focus:animate-pulse',
+                                styles.command_icon
+                            )}
                         >
-                            <div
-                                className={classNames(
-                                    'absolute right-4 top-0 flex items-center h-full cursor-pointer text-gray-100 hover:text-gray-50 z-10'
-                                )}
-                                onClick={handleExportLogs}
+                            <ChevronDoubleRightIcon className={'w-4 h-4'} />
+                        </div>
+                        
+                        {/* Export Logs Button */}
+                        <div className="relative">
+                            {hasCopied && (
+                                <div className="absolute bottom-full right-0 mb-2 bg-gray-900 text-sm text-gray-200 px-3 py-2 rounded z-50 whitespace-nowrap">
+                                    Console log link copied to clipboard!
+                                </div>
+                            )}
+                            {exportError && (
+                                <div className="absolute bottom-full right-0 mb-2 bg-gray-900 text-sm text-gray-200 px-3 py-2 rounded z-50 whitespace-nowrap">
+                                    {exportError}
+                                </div>
+                            )}
+                            <Tooltip
+                                content={'Export Logs'}
+                                placement="left"
                             >
-                                <FontAwesomeIcon icon={faFileExport} className={'w-4 h-4'} />
-                            </div>
-                        </Tooltip>
+                                <div
+                                    className={classNames(
+                                        'flex items-center h-full px-4 cursor-pointer text-gray-100 hover:text-gray-50 z-10'
+                                    )}
+                                    onClick={handleExportLogs}
+                                >
+                                    <FontAwesomeIcon icon={faFileExport} className={'w-4 h-4'} />
+                                </div>
+                            </Tooltip>
+                        </div>
                     </div>
                 </div>
             )}
