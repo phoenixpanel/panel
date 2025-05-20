@@ -1,6 +1,6 @@
 <?php
 
-namespace PhoenixPanel\Console\Commands;
+namespace PhoenixPanel\Console\Commands\Support;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
