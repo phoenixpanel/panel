@@ -27,12 +27,13 @@ class LogExportController extends ClientApiController
      */
     public function __invoke(ExportLogsRequest $request, Server $server): JsonResponse
     {
-        // Get the logs content from the request
-        $content = $request->input('content');
+        // Get the raw logs content from the request
+        $content = $request->getContent();
 
         try {
-            // Send the logs to logs.phoenixpanel.io
-            $response = Http::post('https://logs.phoenixpanel.io/documents', $content);
+            // Send the logs to logs.phoenixpanel.io as raw data
+            $response = Http::withBody($content, 'text/plain')
+                ->post('https://logs.phoenixpanel.io/documents');
             
             // Check if the request was successful
             if (!$response->successful()) {

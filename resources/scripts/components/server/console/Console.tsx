@@ -136,21 +136,31 @@ export default () => {
             setExportError(null);
             
             // Get terminal content
-            const terminalContent = terminal.buffer.active.getLine(0)?.translateToString() || '';
             let fullContent = '';
             
             // Iterate through all lines in the terminal buffer
             for (let i = 0; i < terminal.buffer.active.length; i++) {
                 const line = terminal.buffer.active.getLine(i);
                 if (line) {
-                    fullContent += line.translateToString() + '\n';
+                    fullContent += line.translateToString() + '\r\n';
                 }
             }
             
-            // Send POST request to our server-side proxy endpoint
-            const response = await axios.post(`/api/client/servers/${serverId}/logs/export`, {
-                content: fullContent
-            });
+            // Make sure content ends with a newline
+            if (!fullContent.endsWith('\r\n')) {
+                fullContent += '\r\n';
+            }
+            
+            // Send POST request to our server-side proxy endpoint with raw data
+            const response = await axios.post(
+                `/api/client/servers/${serverId}/logs/export`,
+                fullContent,
+                {
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                }
+            );
             
             if (response.data.error) {
                 throw new Error(response.data.error);
@@ -284,19 +294,31 @@ export default () => {
                     >
                         <ChevronDoubleRightIcon className={'w-4 h-4'} />
                     </div>
-                    <Tooltip
-                        content={hasCopied ? 'Console log link copied to clipboard!' : exportError || 'Export Logs'}
-                        placement="left"
-                    >
-                        <div
-                            className={classNames(
-                                'absolute right-4 top-0 flex items-center h-full cursor-pointer text-gray-100 hover:text-gray-50 z-10'
-                            )}
-                            onClick={handleExportLogs}
+                    <div className="relative">
+                        {hasCopied && (
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-900 text-sm text-gray-200 px-3 py-2 rounded z-50 whitespace-nowrap">
+                                Console log link copied to clipboard!
+                            </div>
+                        )}
+                        {exportError && (
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-900 text-sm text-gray-200 px-3 py-2 rounded z-50 whitespace-nowrap">
+                                {exportError}
+                            </div>
+                        )}
+                        <Tooltip
+                            content={'Export Logs'}
+                            placement="left"
                         >
-                            <FontAwesomeIcon icon={faFileExport} className={'w-4 h-4'} />
-                        </div>
-                    </Tooltip>
+                            <div
+                                className={classNames(
+                                    'absolute right-4 top-0 flex items-center h-full cursor-pointer text-gray-100 hover:text-gray-50 z-10'
+                                )}
+                                onClick={handleExportLogs}
+                            >
+                                <FontAwesomeIcon icon={faFileExport} className={'w-4 h-4'} />
+                            </div>
+                        </Tooltip>
+                    </div>
                 </div>
             )}
         </div>
