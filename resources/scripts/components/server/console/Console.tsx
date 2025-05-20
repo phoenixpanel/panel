@@ -15,6 +15,11 @@ import { usePersistedState } from '@/plugins/usePersistedState';
 import { SocketEvent, SocketRequest } from '@/components/server/events';
 import classNames from 'classnames';
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+import Tooltip from '@/components/elements/tooltip/Tooltip';
+import copy from 'copy-to-clipboard';
+import axios from 'axios';
 
 import 'xterm/css/xterm.css';
 import styles from './style.module.css';
@@ -66,6 +71,8 @@ export default () => {
     const isTransferring = ServerContext.useStoreState((state) => state.server.data!.isTransferring);
     const [history, setHistory] = usePersistedState<string[]>(`${serverId}:command_history`, []);
     const [historyIndex, setHistoryIndex] = useState(-1);
+    const [hasCopied, setHasCopied] = useState(false);
+    const [exportError, setExportError] = useState<string | null>(null);
     // SearchBarAddon has hardcoded z-index: 999 :(
     const zIndex = `
     .xterm-search-bar__addon {
@@ -118,6 +125,53 @@ export default () => {
 
             instance && instance.send('send command', command);
             e.currentTarget.value = '';
+        }
+    };
+
+    // Stupid idea that somehow works lmfao ~ Benno
+    const handleExportLogs = async () => {
+        if (!terminal) return;
+        
+        try {
+            setExportError(null);
+            
+            // Get terminal content
+            const terminalContent = terminal.buffer.active.getLine(0)?.translateToString() || '';
+            let fullContent = '';
+            
+            // Iterate through all lines in the terminal buffer
+            for (let i = 0; i < terminal.buffer.active.length; i++) {
+                const line = terminal.buffer.active.getLine(i);
+                if (line) {
+                    fullContent += line.translateToString() + '\n';
+                }
+            }
+            
+            // Send POST request to logs.phoenixpanel.io/documents
+            const response = await axios.post('https://logs.phoenixpanel.io/documents', fullContent);
+            const key = response.data.key;
+            
+            // Construct URL
+            const url = `https://logs.phoenixpanel.io/${key}`;
+            
+            // Copy URL to clipboard
+            copy(url);
+            
+            // Show success tooltip
+            setHasCopied(true);
+            
+            // Reset tooltip after 2.5 seconds
+            setTimeout(() => {
+                setHasCopied(false);
+            }, 2500);
+        } catch (error) {
+            console.error('Failed to export logs:', error);
+            setExportError('Failed to export logs');
+            
+            // Reset error after 2.5 seconds
+            setTimeout(() => {
+                setExportError(null);
+            }, 2500);
         }
     };
 
@@ -223,6 +277,19 @@ export default () => {
                     >
                         <ChevronDoubleRightIcon className={'w-4 h-4'} />
                     </div>
+                    <Tooltip
+                        content={hasCopied ? 'Console log link copied to clipboard!' : exportError || 'Export Logs'}
+                        placement="left"
+                    >
+                        <div
+                            className={classNames(
+                                'absolute right-4 top-0 flex items-center h-full cursor-pointer text-gray-100 hover:text-gray-50 z-10'
+                            )}
+                            onClick={handleExportLogs}
+                        >
+                            <FontAwesomeIcon icon={faFileExport} className={'w-4 h-4'} />
+                        </div>
+                    </Tooltip>
                 </div>
             )}
         </div>
