@@ -17,7 +17,7 @@ class ExportLaravelCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'exportlaravel';
+    protected $signature = 'support:exportlaravel';
 
     /**
      * The console command description.
