@@ -13,19 +13,16 @@ import useFlash from '@/plugins/useFlash';
 import { Form, Input, Button as AntButton, Typography } from 'antd';
 import styled from 'styled-components';
 
-// Interface for form values - added comment to potentially refresh linter
 interface Values {
     username: string;
     password: string;
 }
 
-// Overall page wrapper
 const LoginPageWrapper = styled.div`
     ${tw`min-h-screen flex items-center justify-center p-4`}
     background: #0F0F0F;
 `;
 
-// The main form container
 const StyledFormBox = styled.div`
     ${tw`w-full relative overflow-hidden`}
     width: 34rem;
@@ -47,7 +44,6 @@ const FormBackgroundLogo = styled.img`
     transform-origin: top left;
 `;
 
-// Define StyledInput component
 const StyledInput = styled(Input)`
     background: rgba(49.04, 49.04, 49.04, 0.72) !important;
     border: 1px #373737 solid !important;
