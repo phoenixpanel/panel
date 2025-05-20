@@ -52,28 +52,17 @@ class ExportLaravelCommand extends Command
             return 0;
         }
         
-        // Check if the content contains line breaks
-        $hasLineBreaks = strpos($logContent, "\n") !== false;
-        $this->line("   Log file " . ($hasLineBreaks ? "contains" : "does not contain") . " line breaks");
-        
         // Ensure line breaks are properly preserved
         // Some APIs might expect \r\n line breaks (Windows style)
         $logContent = str_replace(["\r\n", "\r"], "\n", $logContent); // Normalize to \n
         
         $this->info('📤 Uploading logs to logs.phoenixpanel.io...');
         
-        try {
-            // Ensure line breaks are properly preserved by explicitly encoding them
-            // Count lines before sending for debugging
-            $lineCount = substr_count($logContent, "\n") + 1;
-            $this->line("   Log file contains {$lineCount} lines");
-            
+        try {            
             // Send the log content as raw data
             // Using Guzzle directly to have more control over how the request is sent
             $client = new Client(['timeout' => 30]);
-            
-            $this->line("   Sending request with raw content...");
-            
+                        
             $response = $client->request('POST', 'https://logs.phoenixpanel.io/documents', [
                 'headers' => [
                     'Content-Type' => 'text/plain',
@@ -87,9 +76,6 @@ class ExportLaravelCommand extends Command
             $statusCode = $response->getStatusCode();
             $responseBody = $response->getBody()->getContents();
             
-            $this->line("   Response status code: {$statusCode}");
-            $this->line("   Response body: {$responseBody}");
-            
             $responseData = json_decode($responseBody, true);
             
             if ($statusCode !== 200) {
@@ -101,7 +87,6 @@ class ExportLaravelCommand extends Command
             if (!isset($responseData['key'])) {
                 $this->error('❌ Invalid response from server!');
                 $this->line('   The server response did not contain a key.');
-                $this->line('   Response: ' . $responseBody);
                 return 1;
             }
             
