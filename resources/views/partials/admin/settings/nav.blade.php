@@ -9,7 +9,10 @@
                     <li @if($activeTab === 'basic')class="active"@endif><a href="{{ route('admin.settings') }}">General</a></li>
                     <li @if($activeTab === 'mail')class="active"@endif><a href="{{ route('admin.settings.mail') }}">Mail</a></li>
                     <li @if($activeTab === 'advanced')class="active"@endif><a href="{{ route('admin.settings.advanced') }}">Advanced</a></li>
-                    <li @if($activeTab === 'ads')class="active"@endif><a href="{{ route('admin.settings.ads') }}">Ad Manager</a></li>
+<<<<<<< Updated upstream
+=======
+                    <li @if($activeTab === 'ads')class="active"@endif><a href="{{ route('admin.settings.ads') }}">Ads</a></li>
+>>>>>>> Stashed changes
                 </ul>
             </div>
         </div>
