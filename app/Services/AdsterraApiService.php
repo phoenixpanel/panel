@@ -5,7 +5,7 @@ namespace PhoenixPanel\Services;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
-use PhoenixPanel\Repositories\SettingsRepository;
+use PhoenixPanel\Repositories\Eloquent\SettingsRepository;
 
 class AdsterraApiService
 {
@@ -15,7 +15,7 @@ class AdsterraApiService
     protected $client;
 
     /**
-     * @var \PhoenixPanel\Repositories\SettingsRepository
+     * @var \PhoenixPanel\Repositories\Eloquent\SettingsRepository
      */
     protected $settings;
 
@@ -32,7 +32,7 @@ class AdsterraApiService
     /**
      * AdsterraApiService constructor.
      *
-     * @param \PhoenixPanel\Repositories\SettingsRepository $settings
+     * @param \PhoenixPanel\Repositories\Eloquent\SettingsRepository $settings
      */
     public function __construct(SettingsRepository $settings)
     {
