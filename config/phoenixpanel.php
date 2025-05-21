@@ -213,7 +213,23 @@ return [
          * as public keys can't have domain verification on google's side enabled (obviously).
          */
         'verify_domain' => true,
+<<<<<<< Updated upstream
+=======
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ad Settings
+    |--------------------------------------------------------------------------
+    |
+    | Configuration for the advertisement system.
+    */
+
+    'ads' => [
+        'api_key' => env('PHOENIXPANEL_ADS_API_KEY', ''),
+        'universal_code_enabled' => env('PHOENIXPANEL_ADS_UNIVERSAL_CODE_ENABLED', false),
+        'universal_code' => env('PHOENIXPANEL_ADS_UNIVERSAL_CODE', ''),
+>>>>>>> Stashed changes
     ]
 ];
-
 

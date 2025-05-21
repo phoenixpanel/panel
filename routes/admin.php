@@ -68,12 +68,28 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('/', [Admin\Settings\IndexController::class, 'index'])->name('admin.settings');
     Route::get('/mail', [Admin\Settings\MailController::class, 'index'])->name('admin.settings.mail');
     Route::get('/advanced', [Admin\Settings\AdvancedController::class, 'index'])->name('admin.settings.advanced');
+<<<<<<< Updated upstream
+=======
+    Route::get('/ads', [Admin\Settings\AdsController::class, 'index'])->name('admin.settings.ads');
+>>>>>>> Stashed changes
 
     Route::post('/mail/test', [Admin\Settings\MailController::class, 'test'])->name('admin.settings.mail.test');
 
     Route::patch('/', [Admin\Settings\IndexController::class, 'update']);
     Route::patch('/mail', [Admin\Settings\MailController::class, 'update']);
     Route::patch('/advanced', [Admin\Settings\AdvancedController::class, 'update']);
+<<<<<<< Updated upstream
+=======
+    Route::patch('/ads', [Admin\Settings\AdsController::class, 'update']);
+    Route::post('/ads/preview', [Admin\Settings\AdsController::class, 'preview'])->name('admin.settings.ads.preview');
+    Route::post('/ads/metrics', [Admin\Settings\AdsController::class, 'metrics'])->name('admin.settings.ads.metrics');
+    Route::post('/ads/variants', [Admin\Settings\AdsController::class, 'createVariant'])->name('admin.settings.ads.variants.create');
+    Route::patch('/ads/variants/{id}', [Admin\Settings\AdsController::class, 'updateVariant'])->name('admin.settings.ads.variants.update');
+    Route::delete('/ads/variants/{id}', [Admin\Settings\AdsController::class, 'deleteVariant'])->name('admin.settings.ads.variants.delete');
+    Route::post('/ads/schedule', [Admin\Settings\AdsController::class, 'schedule'])->name('admin.settings.ads.schedule');
+    Route::get('/ads/schedule/{placement}', [Admin\Settings\AdsController::class, 'getSchedule'])->name('admin.settings.ads.get_schedule');
+    Route::post('/ads/schedules', [Admin\Settings\AdsController::class, 'getSchedules'])->name('admin.settings.ads.get_schedules');
+>>>>>>> Stashed changes
 });
 
 /*
