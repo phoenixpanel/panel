@@ -8,16 +8,22 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Carbon;
 use PhoenixPanel\Http\Controllers\Controller;
+use Prologue\Alerts\AlertsMessageBag;
 use PhoenixPanel\Models\AdPlacement;
 use PhoenixPanel\Models\AdVariant;
-use PhoenixPanel\Repositories\SettingsRepository;
+use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
 use PhoenixPanel\Services\AdsterraApiService;
 use PhoenixPanel\Services\Helpers\SoftwareVersionService;
 
 class AdsController extends Controller
 {
     /**
-     * @var \PhoenixPanel\Repositories\SettingsRepository
+     * @var \Prologue\Alerts\AlertsMessageBag
+     */
+    private $alert;
+
+    /**
+     * @var \PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface
      */
     private $settings;
 
@@ -35,10 +41,12 @@ class AdsController extends Controller
      * AdsController constructor.
      */
     public function __construct(
-        SettingsRepository $settings,
+        AlertsMessageBag $alert,
+        SettingsRepositoryInterface $settings,
         SoftwareVersionService $versionService,
         AdsterraApiService $adsterraService
     ) {
+        $this->alert = $alert;
         $this->settings = $settings;
         $this->versionService = $versionService;
         $this->adsterraService = $adsterraService;
