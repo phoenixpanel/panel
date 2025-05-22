@@ -878,6 +878,8 @@
             // Toggle visual editor
             $('#toggle-visual-editor').click(function() {
                 const container = $('#ad-manager-container');
+                console.log('AdManager: Toggle button clicked, container visible:', container.is(':visible'));
+                
                 if (container.is(':visible')) {
                     container.hide();
                     $(this).html('<i class="fa fa-eye"></i> Show Visual Editor');
@@ -887,19 +889,34 @@
                         window.adManager = null;
                     }
                 } else {
+                    console.log('AdManager: Showing visual editor container...');
                     container.show();
                     $(this).html('<i class="fa fa-eye-slash"></i> Hide Visual Editor');
+                    
+                    // DIAGNOSTIC: Check dependencies before initialization
+                    console.log('AdManager: Checking dependencies...');
+                    console.log('AdManager: jQuery available:', typeof $ !== 'undefined');
+                    console.log('AdManager: interact.js available:', typeof interact !== 'undefined');
+                    console.log('AdManager: AdManager class available:', typeof AdManager !== 'undefined');
+                    console.log('AdManager: Container element:', container[0]);
+                    console.log('AdManager: Container display style:', container.css('display'));
+                    
                     // Initialize AdManager when showing
                     console.log('AdManager: Showing visual editor, initializing...');
                     console.log('AdManager: Checking if initializeAdManager function exists:', typeof initializeAdManager);
                     console.log('AdManager: Checking window.initializeAdManager:', typeof window.initializeAdManager);
-                    if (typeof initializeAdManager === 'function') {
-                        initializeAdManager();
-                    } else if (typeof window.initializeAdManager === 'function') {
-                        window.initializeAdManager();
-                    } else {
-                        console.error('AdManager: initializeAdManager function not found in any scope');
-                    }
+                    
+                    // Add a small delay to ensure container is fully visible
+                    setTimeout(function() {
+                        console.log('AdManager: Delayed initialization starting...');
+                        if (typeof initializeAdManager === 'function') {
+                            initializeAdManager();
+                        } else if (typeof window.initializeAdManager === 'function') {
+                            window.initializeAdManager();
+                        } else {
+                            console.error('AdManager: initializeAdManager function not found in any scope');
+                        }
+                    }, 100);
                 }
             });
             

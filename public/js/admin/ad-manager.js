@@ -486,18 +486,34 @@ class AdManager {
         
         console.log('AdManager: Initializing drag and drop functionality...');
         
+        // DIAGNOSTIC: Check interact.js availability
+        console.log('AdManager: interact.js type:', typeof interact);
+        console.log('AdManager: interact.js version:', interact ? interact.version : 'N/A');
+        
+        // DIAGNOSTIC: Check DOM elements
+        const templates = document.querySelectorAll('.ad-placement-template');
+        const placements = document.querySelectorAll('.ad-placement');
+        console.log('AdManager: Found', templates.length, 'ad placement templates');
+        console.log('AdManager: Found', placements.length, 'existing ad placements');
+        console.log('AdManager: Toolbox element:', this.toolbox);
+        console.log('AdManager: Page preview element:', this.pagePreview);
+        
         // Clear any existing interact.js instances to prevent conflicts
         interact('.ad-placement-template').unset();
         interact('.ad-placement').unset();
         
         // Verify interact.js is loaded
         if (typeof interact === 'undefined') {
-            console.error('AdManager: interact.js is not loaded');
+            console.error('AdManager: interact.js is not loaded - drag and drop will not work');
+            console.error('AdManager: Please check if interact.js CDN is accessible');
             return;
         }
+        
+        console.log('AdManager: interact.js is available, proceeding with setup...');
 
         // Make toolbox items draggable
-        interact('.ad-placement-template').draggable({
+        console.log('AdManager: Setting up draggable for .ad-placement-template elements');
+        const dragSetup = interact('.ad-placement-template').draggable({
             inertia: true,
             modifiers: [
                 interact.modifiers.restrictRect({
@@ -508,6 +524,13 @@ class AdManager {
             autoScroll: true,
             onstart: function(event) {
                 console.log('AdManager: Drag started for template');
+                console.log('AdManager: Drag target:', event.target);
+                console.log('AdManager: Target classes:', event.target.className);
+                console.log('AdManager: Target data attributes:', {
+                    width: event.target.getAttribute('data-width'),
+                    height: event.target.getAttribute('data-height')
+                });
+                
                 const target = event.target;
                 
                 // Create a clone of the template for dragging
@@ -520,6 +543,8 @@ class AdManager {
                 clone.style.opacity = '0.8';
                 clone.style.pointerEvents = 'none';
                 document.body.appendChild(clone);
+                
+                console.log('AdManager: Clone created and added to body:', clone);
                 
                 // Store the clone as the drag element
                 event.interaction.element = clone;
@@ -579,9 +604,12 @@ class AdManager {
                 }
             }
         });
+        
+        console.log('AdManager: Template draggable setup complete:', dragSetup);
 
         // Make existing ad placements draggable and resizable
-        interact('.ad-placement')
+        console.log('AdManager: Setting up draggable and resizable for .ad-placement elements');
+        const placementSetup = interact('.ad-placement')
             .draggable({
                 inertia: true,
                 modifiers: [
@@ -702,6 +730,9 @@ class AdManager {
                     }
                 }
             });
+            
+        console.log('AdManager: Placement draggable/resizable setup complete:', placementSetup);
+        console.log('AdManager: Drag and drop initialization finished');
     }
 
     /**
