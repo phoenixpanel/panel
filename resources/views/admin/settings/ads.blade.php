@@ -834,6 +834,37 @@
         });
     </script>
     <script>
+        // Global AdManager initialization function
+        function initializeAdManager() {
+            const adManagerContainer = document.getElementById('ad-manager-container');
+            if (!adManagerContainer) {
+                console.error('AdManager: Container not found');
+                return;
+            }
+            
+            // Check if container is visible
+            if (!$(adManagerContainer).is(':visible')) {
+                console.warn('AdManager: Container is not visible, skipping initialization');
+                return;
+            }
+            
+            // Prevent multiple initializations
+            if (window.adManager) {
+                console.log('AdManager: Already initialized, skipping');
+                return;
+            }
+            
+            try {
+                console.log('AdManager: Initializing new instance');
+                // Store the adManager instance globally
+                window.adManager = new AdManager(adManagerContainer);
+                window.adManager.init();
+                console.log('AdManager: Initialization complete');
+            } catch (error) {
+                console.error('AdManager: Initialization failed', error);
+            }
+        }
+        
         $(document).ready(function() {
             // Toggle universal code textarea based on checkbox
             $('input[name="phoenixpanel:ads:universal_code_enabled"]').change(function() {
@@ -860,7 +891,15 @@
                     $(this).html('<i class="fa fa-eye-slash"></i> Hide Visual Editor');
                     // Initialize AdManager when showing
                     console.log('AdManager: Showing visual editor, initializing...');
-                    initializeAdManager();
+                    console.log('AdManager: Checking if initializeAdManager function exists:', typeof initializeAdManager);
+                    console.log('AdManager: Checking window.initializeAdManager:', typeof window.initializeAdManager);
+                    if (typeof initializeAdManager === 'function') {
+                        initializeAdManager();
+                    } else if (typeof window.initializeAdManager === 'function') {
+                        window.initializeAdManager();
+                    } else {
+                        console.error('AdManager: initializeAdManager function not found in any scope');
+                    }
                 }
             });
             
@@ -910,37 +949,6 @@
                 setTimeout(function() {
                     notification.alert('close');
                 }, 10000);
-                
-                // Initialize AdManager function
-                function initializeAdManager() {
-                    const adManagerContainer = document.getElementById('ad-manager-container');
-                    if (!adManagerContainer) {
-                        console.error('AdManager: Container not found');
-                        return;
-                    }
-                    
-                    // Check if container is visible
-                    if (!$(adManagerContainer).is(':visible')) {
-                        console.warn('AdManager: Container is not visible, skipping initialization');
-                        return;
-                    }
-                    
-                    // Prevent multiple initializations
-                    if (window.adManager) {
-                        console.log('AdManager: Already initialized, skipping');
-                        return;
-                    }
-                    
-                    try {
-                        console.log('AdManager: Initializing new instance');
-                        // Store the adManager instance globally
-                        window.adManager = new AdManager(adManagerContainer);
-                        window.adManager.init();
-                        console.log('AdManager: Initialization complete');
-                    } catch (error) {
-                        console.error('AdManager: Initialization failed', error);
-                    }
-                }
                 
                 // Add event listeners for placement events (using event delegation)
                 $(document).on('adPlacementCreated', function(e) {
@@ -1211,10 +1219,16 @@
         
         // Auto-initialize if visual editor is already visible on page load
         $(document).ready(function() {
+            console.log('AdManager: Document ready, checking AdManager class availability:', typeof AdManager);
+            console.log('AdManager: Checking initializeAdManager function availability:', typeof initializeAdManager);
             const container = $('#ad-manager-container');
             if (container.is(':visible')) {
                 console.log('AdManager: Container visible on page load, initializing...');
-                initializeAdManager();
+                if (typeof initializeAdManager === 'function') {
+                    initializeAdManager();
+                } else {
+                    console.error('AdManager: initializeAdManager function not available on document ready');
+                }
             }
         });
     </script>
