@@ -6,15 +6,29 @@
  * ad banners on site pages.
  */
 
-// Initialize when document is ready
+// Initialize when document is ready - but only if container is visible
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('AdManager: DOM loaded, checking for container...');
+    
     // Check if the ad manager container exists
     const adManagerContainer = document.getElementById('ad-manager-container');
-    if (!adManagerContainer) return;
+    if (!adManagerContainer) {
+        console.log('AdManager: Container not found on DOM load');
+        return;
+    }
 
-    // Initialize the Ad Manager
-    const adManager = new AdManager(adManagerContainer);
-    adManager.init();
+    // Only initialize if container is visible (not hidden by default)
+    if (adManagerContainer.style.display !== 'none' &&
+        window.getComputedStyle(adManagerContainer).display !== 'none') {
+        console.log('AdManager: Container is visible, initializing...');
+        // Initialize the Ad Manager
+        const adManager = new AdManager(adManagerContainer);
+        adManager.init();
+        // Store globally for access from other scripts
+        window.adManager = adManager;
+    } else {
+        console.log('AdManager: Container is hidden, skipping initialization');
+    }
 });
 
 /**
@@ -55,16 +69,29 @@ class AdManager {
      * Initialize the Ad Manager
      */
     init() {
-        this.createLayout();
-        this.setupToolbox();
-        this.setupPagePreview();
-        this.setupConfigPanel();
-        this.setupDeviceViewSelector();
-        this.setupEventListeners();
-        this.initDragAndDrop();
-        this.loadExistingPlacements();
-        this.setupPreviewButton();
-        this.setupTooltips();
+        console.log('AdManager: Starting initialization...');
+        try {
+            this.createLayout();
+            this.setupToolbox();
+            this.setupPagePreview();
+            this.setupConfigPanel();
+            this.setupDeviceViewSelector();
+            this.setupEventListeners();
+            this.loadExistingPlacements();
+            this.setupPreviewButton();
+            this.setupTooltips();
+            
+            // Initialize drag and drop after a short delay to ensure DOM is ready
+            setTimeout(() => {
+                this.initDragAndDrop();
+                console.log('AdManager: Drag and drop initialized');
+            }, 100);
+            
+            console.log('AdManager: Initialization completed successfully');
+        } catch (error) {
+            console.error('AdManager: Initialization failed:', error);
+            throw error;
+        }
     }
     
     /**
@@ -297,6 +324,33 @@ class AdManager {
             .form-group-inline .form-group {
                 flex: 1;
             }
+            
+            /* Drag and drop visual feedback */
+            .ad-placement-template:active {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            
+            .ad-placement.dragging {
+                opacity: 0.8;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+            
+            .ad-placement.resizing {
+                box-shadow: 0 0 0 2px #007bff;
+            }
+            
+            #dragging-template {
+                pointer-events: none;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+            
+            /* Visual feedback for drop zones */
+            .ad-manager-page-preview.drag-over {
+                background-color: rgba(0, 123, 255, 0.1);
+                border-color: #007bff;
+            }
         `;
         document.head.appendChild(styleElement);
     }
@@ -429,6 +483,18 @@ class AdManager {
      */
     initDragAndDrop() {
         const self = this;
+        
+        console.log('AdManager: Initializing drag and drop functionality...');
+        
+        // Clear any existing interact.js instances to prevent conflicts
+        interact('.ad-placement-template').unset();
+        interact('.ad-placement').unset();
+        
+        // Verify interact.js is loaded
+        if (typeof interact === 'undefined') {
+            console.error('AdManager: interact.js is not loaded');
+            return;
+        }
 
         // Make toolbox items draggable
         interact('.ad-placement-template').draggable({
@@ -441,6 +507,7 @@ class AdManager {
             ],
             autoScroll: true,
             onstart: function(event) {
+                console.log('AdManager: Drag started for template');
                 const target = event.target;
                 
                 // Create a clone of the template for dragging
@@ -451,6 +518,7 @@ class AdManager {
                 clone.style.width = target.offsetWidth + 'px';
                 clone.style.height = target.offsetHeight + 'px';
                 clone.style.opacity = '0.8';
+                clone.style.pointerEvents = 'none';
                 document.body.appendChild(clone);
                 
                 // Store the clone as the drag element
@@ -469,32 +537,46 @@ class AdManager {
                 clone.setAttribute('data-y', y);
             },
             onend: function(event) {
+                console.log('AdManager: Drag ended for template');
                 const clone = event.interaction.element;
                 
-                // Check if the drop was over the page preview
-                const previewRect = self.pagePreview.getBoundingClientRect();
-                const cloneRect = clone.getBoundingClientRect();
-                
-                if (
-                    cloneRect.left >= previewRect.left &&
-                    cloneRect.right <= previewRect.right &&
-                    cloneRect.top >= previewRect.top &&
-                    cloneRect.bottom <= previewRect.bottom
-                ) {
-                    // Calculate position relative to the page preview
-                    const x = cloneRect.left - previewRect.left;
-                    const y = cloneRect.top - previewRect.top;
+                try {
+                    // Check if the drop was over the page preview
+                    const previewRect = self.pagePreview.getBoundingClientRect();
+                    const cloneRect = clone.getBoundingClientRect();
                     
-                    // Get the ad size from the template
-                    const width = parseInt(event.target.getAttribute('data-width'));
-                    const height = parseInt(event.target.getAttribute('data-height'));
+                    console.log('AdManager: Preview rect:', previewRect);
+                    console.log('AdManager: Clone rect:', cloneRect);
                     
-                    // Create a new ad placement
-                    self.createAdPlacement(x, y, width, height);
+                    if (
+                        cloneRect.left >= previewRect.left &&
+                        cloneRect.right <= previewRect.right &&
+                        cloneRect.top >= previewRect.top &&
+                        cloneRect.bottom <= previewRect.bottom
+                    ) {
+                        // Calculate position relative to the page preview
+                        const x = cloneRect.left - previewRect.left;
+                        const y = cloneRect.top - previewRect.top;
+                        
+                        // Get the ad size from the template
+                        const width = parseInt(event.target.getAttribute('data-width'));
+                        const height = parseInt(event.target.getAttribute('data-height'));
+                        
+                        console.log('AdManager: Creating placement at:', { x, y, width, height });
+                        
+                        // Create a new ad placement
+                        self.createAdPlacement(x, y, width, height);
+                    } else {
+                        console.log('AdManager: Drop outside preview area, placement not created');
+                    }
+                } catch (error) {
+                    console.error('AdManager: Error during drag end:', error);
                 }
                 
                 // Remove the clone
-                document.body.removeChild(clone);
+                if (clone && clone.parentNode) {
+                    document.body.removeChild(clone);
+                }
             }
         });
 
@@ -825,63 +907,78 @@ class AdManager {
      * @param {number} height - Height
      */
     createAdPlacement(x, y, width, height) {
-        // Generate a unique ID
-        const id = 'ad-placement-' + Date.now();
-        
-        // Snap to grid
-        const snappedX = Math.round(x / this.gridSize) * this.gridSize;
-        const snappedY = Math.round(y / this.gridSize) * this.gridSize;
-        
-        // Create the placement element
-        const placement = document.createElement('div');
-        placement.className = 'ad-placement';
-        placement.setAttribute('data-id', id);
-        placement.setAttribute('data-x', snappedX);
-        placement.setAttribute('data-y', snappedY);
-        placement.style.width = width + 'px';
-        placement.style.height = height + 'px';
-        placement.style.transform = `translate(${snappedX}px, ${snappedY}px)`;
-        
-        // Add a label
-        const label = document.createElement('div');
-        label.className = 'ad-placement-label';
-        label.textContent = `${width}×${height}`;
-        placement.appendChild(label);
-        
-        // Add to page preview
-        this.pagePreview.appendChild(placement);
-        
-        // Store the placement data
-        const placementData = {
-            id,
-            x: snappedX,
-            y: snappedY,
-            width,
-            height,
-            name: `Ad Placement ${this.adPlacements.length + 1}`,
-            deviceTargeting: ['desktop', 'tablet', 'mobile'],
-            isActive: true,
-            variants: [] // Initialize with empty variants array
-        };
-        this.adPlacements.push(placementData);
-        
-        // Add click event to select this placement
-        placement.addEventListener('click', (e) => {
-            e.stopPropagation();
+        try {
+            console.log('AdManager: Creating new ad placement:', { x, y, width, height });
+            
+            // Generate a unique ID
+            const id = 'ad-placement-' + Date.now();
+            
+            // Snap to grid
+            const snappedX = Math.round(x / this.gridSize) * this.gridSize;
+            const snappedY = Math.round(y / this.gridSize) * this.gridSize;
+            
+            // Create the placement element
+            const placement = document.createElement('div');
+            placement.className = 'ad-placement';
+            placement.setAttribute('data-id', id);
+            placement.setAttribute('data-x', snappedX);
+            placement.setAttribute('data-y', snappedY);
+            placement.style.width = width + 'px';
+            placement.style.height = height + 'px';
+            placement.style.transform = `translate(${snappedX}px, ${snappedY}px)`;
+            
+            // Add a label
+            const label = document.createElement('div');
+            label.className = 'ad-placement-label';
+            label.textContent = `${width}×${height}`;
+            placement.appendChild(label);
+            
+            // Add to page preview
+            this.pagePreview.appendChild(placement);
+            
+            // Store the placement data
+            const placementData = {
+                id,
+                x: snappedX,
+                y: snappedY,
+                width,
+                height,
+                name: `Ad Placement ${this.adPlacements.length + 1}`,
+                deviceTargeting: ['desktop', 'tablet', 'mobile'],
+                isActive: true,
+                variants: [] // Initialize with empty variants array
+            };
+            this.adPlacements.push(placementData);
+            
+            console.log('AdManager: Placement data stored:', placementData);
+            
+            // Add click event to select this placement
+            placement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.selectPlacement(placement);
+            });
+            
+            // Select the new placement
             this.selectPlacement(placement);
-        });
-        
-        // Select the new placement
-        this.selectPlacement(placement);
-        
-        // Reinitialize drag and drop for the new element
-        this.initDragAndDrop();
-        
-        // Dispatch custom event for placement creation
-        const event = new CustomEvent('adPlacementCreated', {
-            detail: placementData
-        });
-        document.dispatchEvent(event);
+            
+            // Reinitialize drag and drop for the new element
+            setTimeout(() => {
+                this.initDragAndDrop();
+                console.log('AdManager: Drag and drop reinitialized for new placement');
+            }, 50);
+            
+            // Dispatch custom event for placement creation
+            const event = new CustomEvent('adPlacementCreated', {
+                detail: placementData
+            });
+            document.dispatchEvent(event);
+            
+            console.log('AdManager: Ad placement created successfully');
+            
+        } catch (error) {
+            console.error('AdManager: Error creating ad placement:', error);
+            throw error;
+        }
     }
 
     /**
