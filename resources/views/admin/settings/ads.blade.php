@@ -850,9 +850,17 @@
                 if (container.is(':visible')) {
                     container.hide();
                     $(this).html('<i class="fa fa-eye"></i> Show Visual Editor');
+                    // Cleanup AdManager instance when hiding
+                    if (window.adManager) {
+                        console.log('AdManager: Hiding visual editor');
+                        window.adManager = null;
+                    }
                 } else {
                     container.show();
                     $(this).html('<i class="fa fa-eye-slash"></i> Hide Visual Editor');
+                    // Initialize AdManager when showing
+                    console.log('AdManager: Showing visual editor, initializing...');
+                    initializeAdManager();
                 }
             });
             
@@ -903,29 +911,55 @@
                     notification.alert('close');
                 }, 10000);
                 
-                // Create a global reference to the adManager instance
-                window.addEventListener('DOMContentLoaded', function() {
+                // Initialize AdManager function
+                function initializeAdManager() {
                     const adManagerContainer = document.getElementById('ad-manager-container');
-                    if (!adManagerContainer) return;
+                    if (!adManagerContainer) {
+                        console.error('AdManager: Container not found');
+                        return;
+                    }
                     
-                    // Store the adManager instance globally
-                    window.adManager = new AdManager(adManagerContainer);
-                    window.adManager.init();
+                    // Check if container is visible
+                    if (!$(adManagerContainer).is(':visible')) {
+                        console.warn('AdManager: Container is not visible, skipping initialization');
+                        return;
+                    }
                     
-                    // Add event listener for placement creation
-                    document.addEventListener('adPlacementCreated', function(e) {
-                        // Open the modal
-                        $('#newPlacementModal').modal('show');
-                        
-                        // Update form fields with placement data
+                    // Prevent multiple initializations
+                    if (window.adManager) {
+                        console.log('AdManager: Already initialized, skipping');
+                        return;
+                    }
+                    
+                    try {
+                        console.log('AdManager: Initializing new instance');
+                        // Store the adManager instance globally
+                        window.adManager = new AdManager(adManagerContainer);
+                        window.adManager.init();
+                        console.log('AdManager: Initialization complete');
+                    } catch (error) {
+                        console.error('AdManager: Initialization failed', error);
+                    }
+                }
+                
+                // Add event listeners for placement events (using event delegation)
+                $(document).on('adPlacementCreated', function(e) {
+                    console.log('AdManager: Placement created event received', e.detail);
+                    // Open the modal
+                    $('#newPlacementModal').modal('show');
+                    
+                    // Update form fields with placement data
+                    if (window.adManager) {
                         window.adManager.updateFormFields('#newPlacementModal form', e.detail);
-                    });
-                    
-                    // Add event listener for placement selection
-                    document.addEventListener('adPlacementSelected', function(e) {
-                        // Update form fields with placement data
+                    }
+                });
+                
+                $(document).on('adPlacementSelected', function(e) {
+                    console.log('AdManager: Placement selected event received', e.detail);
+                    // Update form fields with placement data
+                    if (window.adManager) {
                         window.adManager.updateFormFields('#newPlacementModal form', e.detail);
-                    });
+                    }
                 });
             });
             
@@ -1170,6 +1204,18 @@
                     $('#scheduleModalLabel').text('Schedule for ' + placementName);
                 }
             });
+        });
+        
+        // Global initialization function for external access
+        window.initializeAdManager = initializeAdManager;
+        
+        // Auto-initialize if visual editor is already visible on page load
+        $(document).ready(function() {
+            const container = $('#ad-manager-container');
+            if (container.is(':visible')) {
+                console.log('AdManager: Container visible on page load, initializing...');
+                initializeAdManager();
+            }
         });
     </script>
 @endsection
