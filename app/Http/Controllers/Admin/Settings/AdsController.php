@@ -68,14 +68,37 @@ class AdsController extends Controller
      */
     public function update(Request $request): RedirectResponse
     {
-        // Ad Settings
-        $this->settings->set('phoenixpanel:ads:api_key', $request->input('phoenixpanel:ads:api_key'));
-        $this->settings->set('phoenixpanel:ads:universal_code_enabled', $request->input('phoenixpanel:ads:universal_code_enabled'));
-        $this->settings->set('phoenixpanel:ads:universal_code', $request->input('phoenixpanel:ads:universal_code'));
+        // DIAGNOSTIC: Log that the update method was called
+        \Log::info('AdsController::update called', [
+            'method' => $request->method(),
+            'all_input' => $request->all(),
+            'has_api_key' => $request->has('phoenixpanel:ads:api_key'),
+            'has_universal_code_enabled' => $request->has('phoenixpanel:ads:universal_code_enabled'),
+            'has_universal_code' => $request->has('phoenixpanel:ads:universal_code'),
+        ]);
 
-        $this->alert->success('Ad settings have been updated successfully.')->flash();
+        try {
+            // Ad Settings
+            $this->settings->set('phoenixpanel:ads:api_key', $request->input('phoenixpanel:ads:api_key'));
+            $this->settings->set('phoenixpanel:ads:universal_code_enabled', $request->input('phoenixpanel:ads:universal_code_enabled'));
+            $this->settings->set('phoenixpanel:ads:universal_code', $request->input('phoenixpanel:ads:universal_code'));
 
-        return redirect()->route('admin.settings.ads');
+            // DIAGNOSTIC: Log successful save
+            \Log::info('AdsController::update - Settings saved successfully');
+
+            $this->alert->success('Ad settings have been updated successfully.')->flash();
+
+            return redirect()->route('admin.settings.ads');
+        } catch (\Exception $e) {
+            // DIAGNOSTIC: Log any errors
+            \Log::error('AdsController::update - Error saving settings', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            $this->alert->danger('An error occurred while saving ad settings: ' . $e->getMessage())->flash();
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

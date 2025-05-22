@@ -18,7 +18,7 @@
     @yield('settings::nav')
     <div class="row">
         <div class="col-xs-12">
-            <form action="" method="POST">
+            <form action="{{ route('admin.settings.ads') }}" method="POST">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Adsterra API Configuration</h3>
@@ -1246,6 +1246,46 @@
                 } else {
                     console.error('AdManager: initializeAdManager function not available on document ready');
                 }
+            }
+        });
+
+        // DIAGNOSTIC: Add form submission logging
+        $(document).ready(function() {
+            console.log('DIAGNOSTIC: Setting up form submission monitoring...');
+            
+            // Find the main settings form
+            const settingsForm = $('form[action*="admin.settings.ads"]').first();
+            console.log('DIAGNOSTIC: Found settings form:', settingsForm.length > 0);
+            
+            if (settingsForm.length > 0) {
+                // Monitor form submission
+                settingsForm.on('submit', function(e) {
+                    console.log('DIAGNOSTIC: Form submission detected!');
+                    console.log('DIAGNOSTIC: Form action:', $(this).attr('action'));
+                    console.log('DIAGNOSTIC: Form method:', $(this).attr('method'));
+                    console.log('DIAGNOSTIC: Form data:', $(this).serialize());
+                    
+                    // Check for _method field
+                    const methodField = $(this).find('input[name="_method"]');
+                    console.log('DIAGNOSTIC: _method field found:', methodField.length > 0);
+                    if (methodField.length > 0) {
+                        console.log('DIAGNOSTIC: _method value:', methodField.val());
+                    }
+                    
+                    // Check for CSRF token
+                    const csrfField = $(this).find('input[name="_token"]');
+                    console.log('DIAGNOSTIC: CSRF token found:', csrfField.length > 0);
+                    if (csrfField.length > 0) {
+                        console.log('DIAGNOSTIC: CSRF token value:', csrfField.val().substring(0, 10) + '...');
+                    }
+                });
+                
+                // Monitor save button clicks
+                settingsForm.find('button[type="submit"]').on('click', function(e) {
+                    console.log('DIAGNOSTIC: Save button clicked!');
+                    console.log('DIAGNOSTIC: Button name:', $(this).attr('name'));
+                    console.log('DIAGNOSTIC: Button value:', $(this).attr('value'));
+                });
             }
         });
     </script>
