@@ -547,10 +547,10 @@ class AdManager {
                 console.log('AdManager: Clone created and added to body:', clone);
                 
                 // Store the clone as the drag element
-                event.interaction.element = clone;
+                event.interaction.customElement = clone;
             },
             onmove: function(event) {
-                const clone = event.interaction.element;
+                const clone = event.interaction.customElement;
                 
                 // Update position of the clone
                 const x = (parseFloat(clone.getAttribute('data-x')) || 0) + event.dx;
@@ -563,7 +563,7 @@ class AdManager {
             },
             onend: function(event) {
                 console.log('AdManager: Drag ended for template');
-                const clone = event.interaction.element;
+                const clone = event.interaction.customElement;
                 
                 try {
                     // Check if the drop was over the page preview
