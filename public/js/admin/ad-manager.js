@@ -533,6 +533,9 @@ class AdManager {
                 
                 const target = event.target;
                 
+                // Get the original template's position
+                const targetRect = target.getBoundingClientRect();
+                
                 // Create a clone of the template for dragging
                 const clone = target.cloneNode(true);
                 clone.id = 'dragging-template';
@@ -542,9 +545,23 @@ class AdManager {
                 clone.style.height = target.offsetHeight + 'px';
                 clone.style.opacity = '0.8';
                 clone.style.pointerEvents = 'none';
+                
+                // Set initial position to match the original template's screen coordinates
+                clone.style.left = targetRect.left + 'px';
+                clone.style.top = targetRect.top + 'px';
+                
+                // Initialize data attributes for transform tracking
+                clone.setAttribute('data-x', 0);
+                clone.setAttribute('data-y', 0);
+                
                 document.body.appendChild(clone);
                 
-                console.log('AdManager: Clone created and added to body:', clone);
+                console.log('AdManager: Clone created and positioned at:', {
+                    left: targetRect.left,
+                    top: targetRect.top,
+                    width: target.offsetWidth,
+                    height: target.offsetHeight
+                });
                 
                 // Store the clone as the drag element
                 event.interaction.customElement = clone;
@@ -552,14 +569,17 @@ class AdManager {
             onmove: function(event) {
                 const clone = event.interaction.customElement;
                 
-                // Update position of the clone
+                // Update position of the clone using accumulated deltas
                 const x = (parseFloat(clone.getAttribute('data-x')) || 0) + event.dx;
                 const y = (parseFloat(clone.getAttribute('data-y')) || 0) + event.dy;
                 
+                // Apply transform relative to the initial position (set via left/top)
                 clone.style.transform = `translate(${x}px, ${y}px)`;
                 
                 clone.setAttribute('data-x', x);
                 clone.setAttribute('data-y', y);
+                
+                console.log('AdManager: Clone moved to transform:', { x, y });
             },
             onend: function(event) {
                 console.log('AdManager: Drag ended for template');
@@ -570,15 +590,45 @@ class AdManager {
                     const previewRect = self.pagePreview.getBoundingClientRect();
                     const cloneRect = clone.getBoundingClientRect();
                     
-                    console.log('AdManager: Preview rect:', previewRect);
-                    console.log('AdManager: Clone rect:', cloneRect);
+                    console.log('AdManager: Drop detection analysis:');
+                    console.log('  Preview rect:', {
+                        left: previewRect.left,
+                        top: previewRect.top,
+                        right: previewRect.right,
+                        bottom: previewRect.bottom,
+                        width: previewRect.width,
+                        height: previewRect.height
+                    });
+                    console.log('  Clone rect:', {
+                        left: cloneRect.left,
+                        top: cloneRect.top,
+                        right: cloneRect.right,
+                        bottom: cloneRect.bottom,
+                        width: cloneRect.width,
+                        height: cloneRect.height
+                    });
+                    console.log('  Clone transform data:', {
+                        dataX: clone.getAttribute('data-x'),
+                        dataY: clone.getAttribute('data-y'),
+                        transform: clone.style.transform
+                    });
                     
-                    if (
+                    const isWithinBounds = (
                         cloneRect.left >= previewRect.left &&
                         cloneRect.right <= previewRect.right &&
                         cloneRect.top >= previewRect.top &&
                         cloneRect.bottom <= previewRect.bottom
-                    ) {
+                    );
+                    
+                    console.log('  Within bounds check:', {
+                        leftOK: cloneRect.left >= previewRect.left,
+                        rightOK: cloneRect.right <= previewRect.right,
+                        topOK: cloneRect.top >= previewRect.top,
+                        bottomOK: cloneRect.bottom <= previewRect.bottom,
+                        overall: isWithinBounds
+                    });
+                    
+                    if (isWithinBounds) {
                         // Calculate position relative to the page preview
                         const x = cloneRect.left - previewRect.left;
                         const y = cloneRect.top - previewRect.top;
