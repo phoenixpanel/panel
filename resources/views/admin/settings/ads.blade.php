@@ -34,6 +34,10 @@
                             <div>
                                 <input type="password" class="form-control" name="phoenixpanel:ads:api_key" value="{{ old('phoenixpanel:ads:api_key', config('phoenixpanel.ads.api_key')) }}">
                                 <p class="text-muted small">Your Adsterra API key for accessing their services.</p>
+                                <!-- Debug info - remove after testing -->
+                                @if(config('app.debug'))
+                                    <small class="text-info">Debug: Config value = {{ config('phoenixpanel.ads.api_key') ? '[REDACTED]' : 'null' }}</small>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -55,6 +59,10 @@
                                 <label>
                                     <input type="checkbox" name="phoenixpanel:ads:universal_code_enabled" value="1" @if(old('phoenixpanel:ads:universal_code_enabled', config('phoenixpanel.ads.universal_code_enabled')) == 1) checked @endif> Enable
                                 </label>
+                                <!-- Debug info - remove after testing -->
+                                @if(config('app.debug'))
+                                    <small class="text-info">Debug: Config value = {{ config('phoenixpanel.ads.universal_code_enabled') }}</small>
+                                @endif
                                 <p class="text-muted small">If enabled, the universal ad code will be used across the panel.</p>
                             </div>
                         </div>
@@ -63,6 +71,10 @@
                             <div>
                                 <textarea class="form-control" name="phoenixpanel:ads:universal_code" rows="6">{{ old('phoenixpanel:ads:universal_code', config('phoenixpanel.ads.universal_code')) }}</textarea>
                                 <p class="text-muted small">The universal ad code to be used if enabled.</p>
+                                <!-- Debug info - remove after testing -->
+                                @if(config('app.debug'))
+                                    <small class="text-info">Debug: Config value = {{ config('phoenixpanel.ads.universal_code') ? '[REDACTED]' : 'null' }}</small>
+                                @endif
                             </div>
                         </div>
                     </div>
