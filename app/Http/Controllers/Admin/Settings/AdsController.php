@@ -69,15 +69,37 @@ class AdsController extends Controller
     public function update(Request $request): RedirectResponse
     {
         try {
-            // Ad Settings
-            $this->settings->set('phoenixpanel:ads:api_key', $request->input('phoenixpanel:ads:api_key'));
-            $this->settings->set('phoenixpanel:ads:universal_code_enabled', $request->input('phoenixpanel:ads:universal_code_enabled'));
-            $this->settings->set('phoenixpanel:ads:universal_code', $request->input('phoenixpanel:ads:universal_code'));
+            // Log the incoming request data for debugging
+            \Log::info('Ads settings update request data:', $request->all());
+            
+            // Log what we're about to save to database
+            $apiKey = $request->input('phoenixpanel:ads:api_key');
+            $universalCodeEnabled = $request->input('phoenixpanel:ads:universal_code_enabled');
+            $universalCode = $request->input('phoenixpanel:ads:universal_code');
+            
+            \Log::info('About to save ads settings:', [
+                'api_key' => $apiKey ? '[REDACTED]' : 'null',
+                'universal_code_enabled' => $universalCodeEnabled,
+                'universal_code' => $universalCode ? '[REDACTED]' : 'null'
+            ]);
+
+            // Ad Settings - FIXED: Add settings:: prefix
+            $this->settings->set('settings::phoenixpanel:ads:api_key', $apiKey);
+            $this->settings->set('settings::phoenixpanel:ads:universal_code_enabled', $universalCodeEnabled);
+            $this->settings->set('settings::phoenixpanel:ads:universal_code', $universalCode);
+
+            // Log what was actually saved
+            \Log::info('Settings saved. Checking config values:', [
+                'config_api_key' => config('phoenixpanel.ads.api_key') ? '[REDACTED]' : 'null',
+                'config_universal_code_enabled' => config('phoenixpanel.ads.universal_code_enabled'),
+                'config_universal_code' => config('phoenixpanel.ads.universal_code') ? '[REDACTED]' : 'null'
+            ]);
 
             $this->alert->success('Ad settings have been updated successfully.')->flash();
 
             return redirect()->route('admin.settings.ads');
         } catch (\Exception $e) {
+            \Log::error('Error saving ads settings: ' . $e->getMessage());
             $this->alert->danger('An error occurred while saving ad settings: ' . $e->getMessage())->flash();
             return redirect()->back()->withInput();
         }
