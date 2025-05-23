@@ -57,6 +57,16 @@ class AdsController extends Controller
      */
     public function index(): View
     {
+        // DIAGNOSTIC: Check what values are available when loading the page
+        \Log::info('AdsController::index - Loading ads settings page', [
+            'api_key_from_db' => $this->settings->get('phoenixpanel:ads:api_key', 'NOT_IN_DB'),
+            'universal_code_enabled_from_db' => $this->settings->get('phoenixpanel:ads:universal_code_enabled', 'NOT_IN_DB'),
+            'universal_code_from_db' => $this->settings->get('phoenixpanel:ads:universal_code', 'NOT_IN_DB'),
+            'api_key_from_config' => config('phoenixpanel.ads.api_key', 'NOT_IN_CONFIG'),
+            'universal_code_enabled_from_config' => config('phoenixpanel.ads.universal_code_enabled', 'NOT_IN_CONFIG'),
+            'universal_code_from_config' => config('phoenixpanel.ads.universal_code', 'NOT_IN_CONFIG'),
+        ]);
+        
         return view('admin.settings.ads');
     }
 
@@ -83,8 +93,22 @@ class AdsController extends Controller
             $this->settings->set('phoenixpanel:ads:universal_code_enabled', $request->input('phoenixpanel:ads:universal_code_enabled'));
             $this->settings->set('phoenixpanel:ads:universal_code', $request->input('phoenixpanel:ads:universal_code'));
 
-            // DIAGNOSTIC: Log successful save
+            // DIAGNOSTIC: Log successful save and check what's in the database
             \Log::info('AdsController::update - Settings saved successfully');
+            
+            // DIAGNOSTIC: Check if values are in database
+            \Log::info('AdsController::update - Database values after save:', [
+                'api_key_from_db' => $this->settings->get('phoenixpanel:ads:api_key', 'NOT_FOUND'),
+                'universal_code_enabled_from_db' => $this->settings->get('phoenixpanel:ads:universal_code_enabled', 'NOT_FOUND'),
+                'universal_code_from_db' => $this->settings->get('phoenixpanel:ads:universal_code', 'NOT_FOUND'),
+            ]);
+            
+            // DIAGNOSTIC: Check if values are in config
+            \Log::info('AdsController::update - Config values after save:', [
+                'api_key_from_config' => config('phoenixpanel.ads.api_key', 'NOT_IN_CONFIG'),
+                'universal_code_enabled_from_config' => config('phoenixpanel.ads.universal_code_enabled', 'NOT_IN_CONFIG'),
+                'universal_code_from_config' => config('phoenixpanel.ads.universal_code', 'NOT_IN_CONFIG'),
+            ]);
 
             $this->alert->success('Ad settings have been updated successfully.')->flash();
 
