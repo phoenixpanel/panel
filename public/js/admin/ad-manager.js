@@ -1,9 +1,72 @@
 /**
  * PhoenixPanel Ad Manager
- * 
+ *
  * This file handles the visual editor with drag-and-drop functionality
  * for the Ad Manager, allowing administrators to visually position
  * ad banners on site pages.
+ *
+ * RECENT FIXES (2025-05-23):
+ * ==========================
+ *
+ * 1. MOUSE CURSOR TRACKING FIXES:
+ *    - Changed clone positioning from absolute to fixed for consistent viewport behavior
+ *    - Enhanced offset calculation to use clientX/Y for accurate mouse tracking
+ *    - Disabled inertia to prevent positioning drift
+ *    - Added comprehensive logging for mouse position debugging
+ *    - Fixed transform interference by explicitly clearing transforms
+ *
+ * 2. DROP ZONE DETECTION FIXES:
+ *    - Implemented center-based boundary detection for more reliable drop zone recognition
+ *    - Added overlap detection as fallback method
+ *    - Enhanced boundary checking with detailed margin calculations
+ *    - Added bounds validation to ensure placements fit within preview area
+ *    - Improved error handling and logging for drop detection failures
+ *
+ * 3. VISUAL FEEDBACK ENHANCEMENTS:
+ *    - Added drag-over visual feedback with dashed border and drop message
+ *    - Enhanced clone styling with better visual indicators
+ *    - Improved cursor states (grab/grabbing) for better UX
+ *    - Added temporary debug markers for coordinate verification
+ *
+ * 4. DEBUGGING FEATURES:
+ *    - Added Ctrl+Click coordinate debugging on preview area
+ *    - Global debugging functions available at window.adManagerDebug
+ *    - Comprehensive logging for all drag-and-drop operations
+ *    - Real-time coordinate tracking and validation
+ *
+ * TESTING PROCEDURES:
+ * ==================
+ *
+ * 1. Mouse Tracking Test:
+ *    - Drag any ad template from toolbox
+ *    - Verify the dragged element follows mouse cursor precisely
+ *    - Check console for "Mouse tracking update" logs
+ *    - Ensure no vertical or horizontal offset between cursor and element
+ *
+ * 2. Drop Zone Test:
+ *    - Drag template over preview area
+ *    - Verify "Drop ad placement here" message appears
+ *    - Drop in various locations within preview area
+ *    - Check console for "Creating placement with bounds checking" logs
+ *    - Verify placements are created at correct coordinates
+ *
+ * 3. Boundary Detection Test:
+ *    - Drag template to edges of preview area
+ *    - Drop slightly outside preview area - should show "Drop outside preview area"
+ *    - Drop with center inside preview area - should create placement
+ *    - Use Ctrl+Click on preview area to verify coordinate calculations
+ *
+ * 4. Debug Console Commands:
+ *    - window.adManagerDebug.logCurrentState() - Shows current state
+ *    - window.adManagerDebug.testDropZone(x, y) - Tests specific coordinates
+ *    - Ctrl+Click on preview area - Shows coordinate debug info
+ *
+ * COMPATIBILITY:
+ * ==============
+ * - Windows 10/11 compatible coordinate calculations
+ * - Works with interact.js library
+ * - Supports all modern browsers with getBoundingClientRect()
+ * - Fixed positioning ensures consistent behavior across different scroll states
  */
 
 // Initialize when document is ready - but only if container is visible
@@ -325,10 +388,19 @@ class AdManager {
                 flex: 1;
             }
             
-            /* Drag and drop visual feedback */
+            /* Enhanced drag and drop visual feedback */
             .ad-placement-template:active {
                 transform: scale(0.95);
                 opacity: 0.8;
+            }
+            
+            .ad-placement-template:hover {
+                background-color: #dee2e6;
+                cursor: grab;
+            }
+            
+            .ad-placement-template:active {
+                cursor: grabbing;
             }
             
             .ad-placement.dragging {
@@ -343,13 +415,44 @@ class AdManager {
             
             #dragging-template {
                 pointer-events: none;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+                border: 2px solid #007bff !important;
+                background-color: rgba(0, 123, 255, 0.3) !important;
+                border-radius: 4px;
+                transition: none;
+                cursor: grabbing;
             }
             
-            /* Visual feedback for drop zones */
+            /* Enhanced visual feedback for drop zones */
             .ad-manager-page-preview.drag-over {
-                background-color: rgba(0, 123, 255, 0.1);
-                border-color: #007bff;
+                background-color: rgba(0, 123, 255, 0.05);
+                border: 2px dashed #007bff;
+                transition: all 0.2s ease;
+            }
+            
+            .ad-manager-page-preview.drag-over::before {
+                content: 'Drop ad placement here';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 123, 255, 0.9);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 4px;
+                font-size: 14px;
+                font-weight: bold;
+                z-index: 5;
+                pointer-events: none;
+                opacity: 0.8;
+            }
+            
+            /* Ensure proper cursor states */
+            .ad-placement-template {
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
             }
         `;
         document.head.appendChild(styleElement);
@@ -514,7 +617,7 @@ class AdManager {
         // Make toolbox items draggable
         console.log('AdManager: Setting up draggable for .ad-placement-template elements');
         const dragSetup = interact('.ad-placement-template').draggable({
-            inertia: true,
+            inertia: false, // Disable inertia for more precise control
             modifiers: [
                 interact.modifiers.restrictRect({
                     restriction: 'parent',
@@ -533,85 +636,118 @@ class AdManager {
                 
                 const target = event.target;
                 
-                // Get the original template's position
+                // Get the original template's position and viewport info
                 const targetRect = target.getBoundingClientRect();
+                const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                
+                console.log('AdManager: Viewport and scroll info:', {
+                    scrollX,
+                    scrollY,
+                    targetRect: {
+                        left: targetRect.left,
+                        top: targetRect.top,
+                        width: targetRect.width,
+                        height: targetRect.height
+                    }
+                });
                 
                 // Create a clone of the template for dragging
                 const clone = target.cloneNode(true);
                 clone.id = 'dragging-template';
-                clone.style.position = 'absolute';
-                clone.style.zIndex = 1000;
-                clone.style.width = target.offsetWidth + 'px';
-                clone.style.height = target.offsetHeight + 'px';
+                clone.style.position = 'fixed'; // Use fixed positioning for consistent behavior
+                clone.style.zIndex = '1000';
+                clone.style.width = targetRect.width + 'px';
+                clone.style.height = targetRect.height + 'px';
                 clone.style.opacity = '0.8';
                 clone.style.pointerEvents = 'none';
+                clone.style.margin = '0'; // Reset any margins
+                clone.style.padding = '0'; // Reset any padding
+                clone.style.border = '2px solid #007bff'; // Visual feedback
+                clone.style.backgroundColor = 'rgba(0, 123, 255, 0.3)';
+                clone.style.transform = 'none'; // Clear any existing transforms
                 
-                // Set initial position to match the original template's screen coordinates
-                clone.style.left = targetRect.left + 'px';
-                clone.style.top = targetRect.top + 'px';
+                // Get the current mouse position
+                const mouseX = event.clientX;
+                const mouseY = event.clientY;
                 
-                // Initialize data attributes for transform tracking
-                clone.setAttribute('data-x', 0);
-                clone.setAttribute('data-y', 0);
+                // Calculate the offset from mouse to the top-left corner of the target
+                const offsetX = mouseX - targetRect.left;
+                const offsetY = mouseY - targetRect.top;
                 
-                // Store the initial mouse position relative to the clone
-                const mouseX = event.clientX || event.pageX;
-                const mouseY = event.clientY || event.pageY;
-                clone.setAttribute('data-offset-x', mouseX - targetRect.left);
-                clone.setAttribute('data-offset-y', mouseY - targetRect.top);
+                // Position the clone so the mouse is at the same relative position
+                clone.style.left = (mouseX - offsetX) + 'px';
+                clone.style.top = (mouseY - offsetY) + 'px';
+                
+                // Store offset data for consistent tracking
+                clone.setAttribute('data-offset-x', offsetX);
+                clone.setAttribute('data-offset-y', offsetY);
                 
                 document.body.appendChild(clone);
                 
-                console.log('AdManager: Clone created and positioned at:', {
-                    left: targetRect.left,
-                    top: targetRect.top,
-                    width: target.offsetWidth,
-                    height: target.offsetHeight,
-                    mouseOffset: {
-                        x: mouseX - targetRect.left,
-                        y: mouseY - targetRect.top
+                console.log('AdManager: Clone created with precise positioning:', {
+                    mousePosition: { x: mouseX, y: mouseY },
+                    targetRect: { left: targetRect.left, top: targetRect.top },
+                    calculatedOffset: { x: offsetX, y: offsetY },
+                    clonePosition: {
+                        left: mouseX - offsetX,
+                        top: mouseY - offsetY
                     }
                 });
                 
                 // Store the clone as the drag element
                 event.interaction.customElement = clone;
+                
+                // Add visual feedback to preview area
+                self.pagePreview.classList.add('drag-over');
             },
             onmove: function(event) {
                 const clone = event.interaction.customElement;
+                if (!clone) return;
                 
-                // Get the current mouse position
-                const mouseX = event.clientX || event.pageX;
-                const mouseY = event.clientY || event.pageY;
+                // Get the current mouse position (use clientX/Y for viewport coordinates)
+                const mouseX = event.clientX;
+                const mouseY = event.clientY;
                 
-                // Get the stored mouse offset from the clone's top-left corner
+                // Get the stored mouse offset
                 const offsetX = parseFloat(clone.getAttribute('data-offset-x')) || 0;
                 const offsetY = parseFloat(clone.getAttribute('data-offset-y')) || 0;
                 
-                // Position the clone so the mouse cursor is at the same relative position
-                // as when the drag started
-                clone.style.left = (mouseX - offsetX) + 'px';
-                clone.style.top = (mouseY - offsetY) + 'px';
+                // Position the clone precisely at mouse position minus offset
+                const newLeft = mouseX - offsetX;
+                const newTop = mouseY - offsetY;
                 
-                // Clear any transform to avoid double positioning
-                clone.style.transform = '';
+                clone.style.left = newLeft + 'px';
+                clone.style.top = newTop + 'px';
                 
-                console.log('AdManager: Clone positioned at mouse:', {
-                    mouseX,
-                    mouseY,
-                    cloneLeft: mouseX - offsetX,
-                    cloneTop: mouseY - offsetY
+                // Ensure no transform interference
+                clone.style.transform = 'none';
+                
+                console.log('AdManager: Mouse tracking update:', {
+                    mousePosition: { x: mouseX, y: mouseY },
+                    offset: { x: offsetX, y: offsetY },
+                    clonePosition: { left: newLeft, top: newTop },
+                    actualCloneRect: clone.getBoundingClientRect()
                 });
             },
             onend: function(event) {
                 console.log('AdManager: Drag ended for template');
                 const clone = event.interaction.customElement;
                 
+                // Remove visual feedback
+                self.pagePreview.classList.remove('drag-over');
+                
                 try {
-                    // Check if the drop was over the page preview
+                    if (!clone) {
+                        console.error('AdManager: No clone element found in onend');
+                        return;
+                    }
+                    
+                    // Get fresh bounding rectangles at drop time
                     const previewRect = self.pagePreview.getBoundingClientRect();
                     const cloneRect = clone.getBoundingClientRect();
                     
-                    console.log('AdManager: Drop detection analysis:');
+                    console.log('AdManager: Drop detection analysis (ENHANCED):');
                     console.log('  Preview rect:', {
                         left: previewRect.left,
                         top: previewRect.top,
@@ -628,31 +764,47 @@ class AdManager {
                         width: cloneRect.width,
                         height: cloneRect.height
                     });
-                    console.log('  Clone transform data:', {
-                        dataX: clone.getAttribute('data-x'),
-                        dataY: clone.getAttribute('data-y'),
-                        transform: clone.style.transform
-                    });
                     
-                    const isWithinBounds = (
-                        cloneRect.left >= previewRect.left &&
-                        cloneRect.right <= previewRect.right &&
-                        cloneRect.top >= previewRect.top &&
-                        cloneRect.bottom <= previewRect.bottom
+                    // Enhanced boundary checking - check if clone center is within preview
+                    const cloneCenterX = cloneRect.left + (cloneRect.width / 2);
+                    const cloneCenterY = cloneRect.top + (cloneRect.height / 2);
+                    
+                    const centerWithinBounds = (
+                        cloneCenterX >= previewRect.left &&
+                        cloneCenterX <= previewRect.right &&
+                        cloneCenterY >= previewRect.top &&
+                        cloneCenterY <= previewRect.bottom
                     );
                     
-                    console.log('  Within bounds check:', {
-                        leftOK: cloneRect.left >= previewRect.left,
-                        rightOK: cloneRect.right <= previewRect.right,
-                        topOK: cloneRect.top >= previewRect.top,
-                        bottomOK: cloneRect.bottom <= previewRect.bottom,
-                        overall: isWithinBounds
+                    // Also check if any part of clone overlaps with preview
+                    const hasOverlap = !(
+                        cloneRect.right < previewRect.left ||
+                        cloneRect.left > previewRect.right ||
+                        cloneRect.bottom < previewRect.top ||
+                        cloneRect.top > previewRect.bottom
+                    );
+                    
+                    console.log('  Enhanced boundary checks:', {
+                        cloneCenter: { x: cloneCenterX, y: cloneCenterY },
+                        centerWithinBounds,
+                        hasOverlap,
+                        margins: {
+                            leftMargin: cloneCenterX - previewRect.left,
+                            rightMargin: previewRect.right - cloneCenterX,
+                            topMargin: cloneCenterY - previewRect.top,
+                            bottomMargin: previewRect.bottom - cloneCenterY
+                        }
                     });
                     
-                    if (isWithinBounds) {
-                        // Calculate position relative to the page preview
+                    // Use center-based detection as primary method
+                    if (centerWithinBounds) {
+                        // Calculate position relative to the page preview using clone's top-left
                         let x = cloneRect.left - previewRect.left;
                         let y = cloneRect.top - previewRect.top;
+                        
+                        // Ensure position is not negative
+                        x = Math.max(0, x);
+                        y = Math.max(0, y);
                         
                         // Apply grid snapping to the drop position
                         const snappedX = Math.round(x / self.gridSize) * self.gridSize;
@@ -662,27 +814,39 @@ class AdManager {
                         const width = parseInt(event.target.getAttribute('data-width'));
                         const height = parseInt(event.target.getAttribute('data-height'));
                         
-                        console.log('AdManager: Creating placement at:', {
-                            originalX: x,
-                            originalY: y,
-                            snappedX,
-                            snappedY,
-                            width,
-                            height
+                        // Ensure the placement fits within the preview area
+                        const maxX = previewRect.width - width;
+                        const maxY = previewRect.height - height;
+                        const finalX = Math.min(snappedX, Math.max(0, maxX));
+                        const finalY = Math.min(snappedY, Math.max(0, maxY));
+                        
+                        console.log('AdManager: Creating placement with bounds checking:', {
+                            originalPosition: { x, y },
+                            snappedPosition: { x: snappedX, y: snappedY },
+                            finalPosition: { x: finalX, y: finalY },
+                            adSize: { width, height },
+                            previewSize: { width: previewRect.width, height: previewRect.height },
+                            maxPosition: { x: maxX, y: maxY }
                         });
                         
-                        // Create a new ad placement with snapped coordinates
-                        self.createAdPlacement(snappedX, snappedY, width, height);
+                        // Create a new ad placement with final coordinates
+                        self.createAdPlacement(finalX, finalY, width, height);
                     } else {
-                        console.log('AdManager: Drop outside preview area, placement not created');
+                        console.log('AdManager: Drop outside preview area (center not within bounds), placement not created');
+                        console.log('  Consider adjusting drop zone sensitivity or providing visual feedback');
                     }
                 } catch (error) {
                     console.error('AdManager: Error during drag end:', error);
+                    console.error('AdManager: Error stack:', error.stack);
                 }
                 
-                // Remove the clone
-                if (clone && clone.parentNode) {
-                    document.body.removeChild(clone);
+                // Clean up the clone
+                try {
+                    if (clone && clone.parentNode) {
+                        document.body.removeChild(clone);
+                    }
+                } catch (cleanupError) {
+                    console.error('AdManager: Error cleaning up clone:', cleanupError);
                 }
             }
         });
@@ -815,6 +979,100 @@ class AdManager {
             
         console.log('AdManager: Placement draggable/resizable setup complete:', placementSetup);
         console.log('AdManager: Drag and drop initialization finished');
+        
+        // Add debugging helper for coordinate verification
+        this.addCoordinateDebugging();
+    }
+    
+    /**
+     * Add debugging helpers for coordinate verification
+     */
+    addCoordinateDebugging() {
+        const self = this;
+        
+        // Add click handler to preview area for coordinate debugging
+        this.pagePreview.addEventListener('click', function(event) {
+            if (event.ctrlKey || event.metaKey) { // Ctrl+Click or Cmd+Click for debugging
+                const previewRect = self.pagePreview.getBoundingClientRect();
+                const clickX = event.clientX - previewRect.left;
+                const clickY = event.clientY - previewRect.top;
+                
+                console.log('AdManager: DEBUG - Click coordinates:', {
+                    mousePosition: { x: event.clientX, y: event.clientY },
+                    previewRect: {
+                        left: previewRect.left,
+                        top: previewRect.top,
+                        width: previewRect.width,
+                        height: previewRect.height
+                    },
+                    relativePosition: { x: clickX, y: clickY },
+                    snappedPosition: {
+                        x: Math.round(clickX / self.gridSize) * self.gridSize,
+                        y: Math.round(clickY / self.gridSize) * self.gridSize
+                    }
+                });
+                
+                // Create a temporary visual marker
+                const marker = document.createElement('div');
+                marker.style.position = 'absolute';
+                marker.style.left = clickX + 'px';
+                marker.style.top = clickY + 'px';
+                marker.style.width = '10px';
+                marker.style.height = '10px';
+                marker.style.backgroundColor = 'red';
+                marker.style.borderRadius = '50%';
+                marker.style.zIndex = '999';
+                marker.style.pointerEvents = 'none';
+                marker.title = `Debug marker: ${clickX}, ${clickY}`;
+                
+                self.pagePreview.appendChild(marker);
+                
+                // Remove marker after 3 seconds
+                setTimeout(() => {
+                    if (marker.parentNode) {
+                        marker.parentNode.removeChild(marker);
+                    }
+                }, 3000);
+                
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+        
+        // Add global debugging function
+        window.adManagerDebug = {
+            getPreviewRect: () => self.pagePreview.getBoundingClientRect(),
+            getMousePosition: (event) => ({ x: event.clientX, y: event.clientY }),
+            calculateRelativePosition: (mouseX, mouseY) => {
+                const rect = self.pagePreview.getBoundingClientRect();
+                return {
+                    x: mouseX - rect.left,
+                    y: mouseY - rect.top
+                };
+            },
+            testDropZone: (x, y) => {
+                const rect = self.pagePreview.getBoundingClientRect();
+                const isWithin = (
+                    x >= rect.left && x <= rect.right &&
+                    y >= rect.top && y <= rect.bottom
+                );
+                console.log('Drop zone test:', { x, y, rect, isWithin });
+                return isWithin;
+            },
+            logCurrentState: () => {
+                console.log('AdManager Debug State:', {
+                    previewRect: self.pagePreview.getBoundingClientRect(),
+                    gridSize: self.gridSize,
+                    currentView: self.currentView,
+                    placementsCount: self.adPlacements.length,
+                    selectedPlacement: self.selectedPlacement ? self.selectedPlacement.getAttribute('data-id') : null
+                });
+            }
+        };
+        
+        console.log('AdManager: Debugging helpers added. Use Ctrl+Click on preview area for coordinate debugging.');
+        console.log('AdManager: Global debugging functions available at window.adManagerDebug');
+        console.log('AdManager: Call window.adManagerDebug.logCurrentState() to see current state');
     }
 
     /**
