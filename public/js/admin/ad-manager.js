@@ -554,13 +554,23 @@ class AdManager {
                 clone.setAttribute('data-x', 0);
                 clone.setAttribute('data-y', 0);
                 
+                // Store the initial mouse position relative to the clone
+                const mouseX = event.clientX || event.pageX;
+                const mouseY = event.clientY || event.pageY;
+                clone.setAttribute('data-offset-x', mouseX - targetRect.left);
+                clone.setAttribute('data-offset-y', mouseY - targetRect.top);
+                
                 document.body.appendChild(clone);
                 
                 console.log('AdManager: Clone created and positioned at:', {
                     left: targetRect.left,
                     top: targetRect.top,
                     width: target.offsetWidth,
-                    height: target.offsetHeight
+                    height: target.offsetHeight,
+                    mouseOffset: {
+                        x: mouseX - targetRect.left,
+                        y: mouseY - targetRect.top
+                    }
                 });
                 
                 // Store the clone as the drag element
@@ -569,17 +579,28 @@ class AdManager {
             onmove: function(event) {
                 const clone = event.interaction.customElement;
                 
-                // Update position of the clone using accumulated deltas
-                const x = (parseFloat(clone.getAttribute('data-x')) || 0) + event.dx;
-                const y = (parseFloat(clone.getAttribute('data-y')) || 0) + event.dy;
+                // Get the current mouse position
+                const mouseX = event.clientX || event.pageX;
+                const mouseY = event.clientY || event.pageY;
                 
-                // Apply transform relative to the initial position (set via left/top)
-                clone.style.transform = `translate(${x}px, ${y}px)`;
+                // Get the stored mouse offset from the clone's top-left corner
+                const offsetX = parseFloat(clone.getAttribute('data-offset-x')) || 0;
+                const offsetY = parseFloat(clone.getAttribute('data-offset-y')) || 0;
                 
-                clone.setAttribute('data-x', x);
-                clone.setAttribute('data-y', y);
+                // Position the clone so the mouse cursor is at the same relative position
+                // as when the drag started
+                clone.style.left = (mouseX - offsetX) + 'px';
+                clone.style.top = (mouseY - offsetY) + 'px';
                 
-                console.log('AdManager: Clone moved to transform:', { x, y });
+                // Clear any transform to avoid double positioning
+                clone.style.transform = '';
+                
+                console.log('AdManager: Clone positioned at mouse:', {
+                    mouseX,
+                    mouseY,
+                    cloneLeft: mouseX - offsetX,
+                    cloneTop: mouseY - offsetY
+                });
             },
             onend: function(event) {
                 console.log('AdManager: Drag ended for template');
@@ -630,17 +651,28 @@ class AdManager {
                     
                     if (isWithinBounds) {
                         // Calculate position relative to the page preview
-                        const x = cloneRect.left - previewRect.left;
-                        const y = cloneRect.top - previewRect.top;
+                        let x = cloneRect.left - previewRect.left;
+                        let y = cloneRect.top - previewRect.top;
+                        
+                        // Apply grid snapping to the drop position
+                        const snappedX = Math.round(x / self.gridSize) * self.gridSize;
+                        const snappedY = Math.round(y / self.gridSize) * self.gridSize;
                         
                         // Get the ad size from the template
                         const width = parseInt(event.target.getAttribute('data-width'));
                         const height = parseInt(event.target.getAttribute('data-height'));
                         
-                        console.log('AdManager: Creating placement at:', { x, y, width, height });
+                        console.log('AdManager: Creating placement at:', {
+                            originalX: x,
+                            originalY: y,
+                            snappedX,
+                            snappedY,
+                            width,
+                            height
+                        });
                         
-                        // Create a new ad placement
-                        self.createAdPlacement(x, y, width, height);
+                        // Create a new ad placement with snapped coordinates
+                        self.createAdPlacement(snappedX, snappedY, width, height);
                     } else {
                         console.log('AdManager: Drop outside preview area, placement not created');
                     }
@@ -994,19 +1026,18 @@ class AdManager {
             // Generate a unique ID
             const id = 'ad-placement-' + Date.now();
             
-            // Snap to grid
-            const snappedX = Math.round(x / this.gridSize) * this.gridSize;
-            const snappedY = Math.round(y / this.gridSize) * this.gridSize;
+            // x and y are already snapped to grid from the drag handler
+            // No need to snap again here
             
             // Create the placement element
             const placement = document.createElement('div');
             placement.className = 'ad-placement';
             placement.setAttribute('data-id', id);
-            placement.setAttribute('data-x', snappedX);
-            placement.setAttribute('data-y', snappedY);
+            placement.setAttribute('data-x', x);
+            placement.setAttribute('data-y', y);
             placement.style.width = width + 'px';
             placement.style.height = height + 'px';
-            placement.style.transform = `translate(${snappedX}px, ${snappedY}px)`;
+            placement.style.transform = `translate(${x}px, ${y}px)`;
             
             // Add a label
             const label = document.createElement('div');
@@ -1020,8 +1051,8 @@ class AdManager {
             // Store the placement data
             const placementData = {
                 id,
-                x: snappedX,
-                y: snappedY,
+                x: x,
+                y: y,
                 width,
                 height,
                 name: `Ad Placement ${this.adPlacements.length + 1}`,
