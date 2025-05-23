@@ -35,6 +35,9 @@ class SettingsServiceProvider extends ServiceProvider
         'phoenixpanel:client_features:allocations:enabled',
         'phoenixpanel:client_features:allocations:range_start',
         'phoenixpanel:client_features:allocations:range_end',
+        'phoenixpanel:ads:api_key',
+        'phoenixpanel:ads:universal_code_enabled',
+        'phoenixpanel:ads:universal_code',
     ];
 
     /**
