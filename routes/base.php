@@ -13,8 +13,10 @@ Route::get('/locales/locale.json', Base\LocaleController::class)
     ->withoutMiddleware(['auth', RequireTwoFactorAuthentication::class])
     ->where('namespace', '.*');
 
+// Route for ad refresh
+Route::get('/refresh-ad', [\PhoenixPanel\Http\Controllers\Base\AdRefreshController::class, 'refresh']);
+
 Route::get('/{react}', [Base\IndexController::class, 'index'])
     ->where('react', '^(?!(\/)?(api|auth|admin|daemon)).+');
 
-Route::get('/get-ad', [\PhoenixPanel\Http\Controllers\Base\AdController::class, 'getAd']);
 
