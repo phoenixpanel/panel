@@ -12,14 +12,6 @@
     justify-content: center;
 }
 
-.ad-display.left {
-    left: 25%;
-}
-
-.ad-display.right {
-    right: 25%;
-}
-
 @media (max-width: 768px) {
     .ad-display {
         width: 100px;
