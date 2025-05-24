@@ -38,6 +38,7 @@
                             <div>
                                 <textarea name="phoenixpanel:ads:code" class="form-control" rows="5" placeholder="Paste your Adsterra ad code here">{{ old('phoenixpanel:ads:code', config('phoenixpanel.ads.code')) }}</textarea>
                                 <p class="help-block">Enter the ad code provided by Adsterra for the 160x600 ad unit.</p>
+                                <p class="help-block">Need an Adsterra account? <a href="https://beta.publishers.adsterra.com/referral/wJKNd3ApCE" target="_blank" rel="noopener noreferrer">Sign up here</a> using this referral link.</p>
                             </div>
                         </div>
                     </div>
