@@ -22,6 +22,7 @@ class AdManagerSettingsFormRequest extends AdminFormRequest
     {
         return [
             'phoenixpanel:ads:enabled' => 'Adterra Functionality',
+            'phoenixpanel:ads:code' => 'Adterra Code'
         ];
     }
 
