@@ -10,7 +10,7 @@ use Illuminate\View\Factory as ViewFactory;
 use PhoenixPanel\Http\Controllers\Controller;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
-use PhoenixPanel\Http\Requests\Admin\Settings\AdvancedSettingsFormRequest;
+use PhoenixPanel\Http\Requests\Admin\Settings\AdManagerSettingsFormRequest;
 
 class AdManagerController extends Controller
 {
@@ -38,7 +38,7 @@ class AdManagerController extends Controller
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
-    public function update(AdvancedSettingsFormRequest $request): RedirectResponse
+    public function update(AdManagerSettingsFormRequest $request): RedirectResponse
     {
         foreach ($request->normalize() as $key => $value) {
             $this->settings->set('settings::' . $key, $value);

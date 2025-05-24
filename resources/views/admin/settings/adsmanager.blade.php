@@ -20,15 +20,15 @@
             <form action="" method="POST">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Captcha Configuration</h3>
+                        <h3 class="box-title">Ads Management</h3>
                     </div>
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="control-label">Enable Captcha</label>
+                            <label class="control-label">Enable Adterra Functionality</label>
                             <div>
-                                <input type="hidden" name="phoenixpanel:captcha:enabled" value="0">
+                                <input type="hidden" name="phoenixpanel:ads:enabled" value="0">
                                 <label>
-                                    <input type="checkbox" name="phoenixpanel:captcha:enabled" value="1" @if(old('phoenixpanel:captcha:enabled', config('phoenixpanel.captcha.enabled')) == 1) checked @endif> Enable
+                                    <input type="checkbox" name="phoenixpanel:ads:enabled" value="1" @if(old('phoenixpanel:ads:enabled', config('phoenixpanel.ads.enabled')) == 1) checked @endif> Enable
                                 </label>
                             </div>
                         </div>                        
