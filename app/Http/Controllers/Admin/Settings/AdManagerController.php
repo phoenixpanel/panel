@@ -5,73 +5,50 @@ namespace PhoenixPanel\Http\Controllers\Admin\Settings;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory as ViewFactory;
 use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Models\AdSetting;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
+use PhoenixPanel\Http\Requests\Admin\Settings\AdvancedSettingsFormRequest;
 
-class AdManagerController extends Controller
+class AdvancedController extends Controller
 {
     /**
-     * AdManagerController constructor.
+     * AdvancedController constructor.
      */
     public function __construct(
         private AlertsMessageBag $alert,
+        private ConfigRepository $config,
+        private Kernel $kernel,
+        private SettingsRepositoryInterface $settings,
         private ViewFactory $view
     ) {
     }
 
     /**
-     * Render the UI for Ad Manager settings.
+     * Render Ads Manager Panel settings UI.
      */
     public function index(): View
     {
-        $adSettings = AdSetting::first() ?? new AdSetting(['enabled' => false]);
-        
-        return $this->view->make('admin.settings.ads', [
-            'adSettings' => $adSettings,
-        ]);
+        return $this->view->make('admin.settings.adsmanager', []);
     }
 
     /**
-     * Handle ad settings update.
+     * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
+     * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
-    public function update(Request $request): RedirectResponse
+    public function update(AdvancedSettingsFormRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'enabled' => 'boolean',
-            'header_ad_code' => 'nullable|string',
-            'sidebar_ad_code' => 'nullable|string',
-            'footer_ad_code' => 'nullable|string',
-            'content_ad_code' => 'nullable|string',
-        ]);
-
-        $adSettings = AdSetting::first();
-        
-        if (!$adSettings) {
-            $adSettings = new AdSetting();
-        }
-        
-        // Only update columns that exist in the database
-        try {
-            // Check if the table has the required columns
-            $columns = \Schema::getColumnListing('ad_settings');
-            $filteredData = array_intersect_key($validated, array_flip($columns));
-            
-            $adSettings->fill($filteredData);
-            $adSettings->save();
-        } catch (\Exception $e) {
-            // Fallback to just updating the enabled status if other columns don't exist
-            if (isset($validated['enabled'])) {
-                $adSettings->enabled = $validated['enabled'];
-                $adSettings->save();
-            }
-            
-            $this->alert->warning('Some ad settings could not be saved. Please run the database migrations.')->flash();
+        foreach ($request->normalize() as $key => $value) {
+            $this->settings->set('settings::' . $key, $value);
         }
 
-        $this->alert->success('Ad settings have been updated successfully.')->flash();
+        $this->kernel->call('queue:restart');
+        $this->alert->success('Advanced settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
 
-        return redirect()->route('admin.settings.ads');
+        return redirect()->route('admin.settings.adsmanager');
     }
 }
+
+
