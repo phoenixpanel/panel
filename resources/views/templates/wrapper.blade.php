@@ -30,9 +30,49 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         @show
     </head>
-    <body>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <header class="main-header">
+                <a href="{{ route('index') }}" class="logo">
+                    <span>{{ config('app.name', 'PhoenixPanel') }}</span>
+                </a>
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                </nav>
+            </header>
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li>
+                            <a href="{{ route('index') }}">
+                                <i class="fa fa-home"></i> <span>Home</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+            <div class="content-wrapper">
+                <section class="content">
+                    @yield('content')
+                </section>
+            </div>
+            <footer class="main-footer">
+                <div class="pull-right small text-gray" style="margin-right:10px;margin-top:-7px;">
+                    <strong><i class="fa fa-fw fa-code-fork"></i></strong> {{ config('app.version', '0.0.0') }}<br />
+                    <strong><i class="fa fa-fw fa-clock-o"></i></strong> {{ round(microtime(true) - LARAVEL_START, 3) }}s
+                </div>
+                Copyright &copy; 2015 - {{ date('Y') }} <a href="https://phoenixpanel.io/">PhoenixPanel</a>.
+            </footer>
+        </div>
+
         <!-- Left Ad Display -->
-        @if(config('phoenixpanel.ads.enabled'))
+        @if(config('phoenixpanel.ads.enabled') && !str_starts_with(Route::currentRouteName(), 'admin.'))
             <div class="ad-display" style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000;">
                 <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
                     {!! config('phoenixpanel.ads.code') !!}
@@ -41,15 +81,13 @@
         @endif
 
         <!-- Right Ad Display -->
-        @if(config('phoenixpanel.ads.enabled'))
+        @if(config('phoenixpanel.ads.enabled') && !str_starts_with(Route::currentRouteName(), 'admin.'))
             <div class="ad-display" style="position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 1000;">
                 <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
                     {!! config('phoenixpanel.ads.code') !!}
                 </div>
             </div>
         @endif
-
-        @yield('content')
 
         @section('footer-scripts')
             {!! Theme::js('vendor/jquery/jquery.min.js?t={cache-version}') !!}
