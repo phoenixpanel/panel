@@ -72,7 +72,7 @@
         </div>
 
         <!-- Left Ad Display -->
-        @if(config('phoenixpanel.ads.enabled') && !str_starts_with(Route::currentRouteName(), 'admin.'))
+        @if(config('phoenixpanel.ads.enabled') && !\Illuminate\Support\Str::startsWith(request()->path(), 'admin/'))
             <div class="ad-display" style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 1000;">
                 <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
                     {!! config('phoenixpanel.ads.code') !!}
@@ -81,7 +81,7 @@
         @endif
 
         <!-- Right Ad Display -->
-        @if(config('phoenixpanel.ads.enabled') && !str_starts_with(Route::currentRouteName(), 'admin.'))
+        @if(config('phoenixpanel.ads.enabled') && !\Illuminate\Support\Str::startsWith(request()->path(), 'admin/'))
             <div class="ad-display" style="position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 1000;">
                 <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
                     {!! config('phoenixpanel.ads.code') !!}
