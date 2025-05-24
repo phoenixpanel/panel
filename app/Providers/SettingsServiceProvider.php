@@ -20,6 +20,7 @@ class SettingsServiceProvider extends ServiceProvider
         'app:name',
         'app:locale',
         'phoenixpanel:captcha:provider',
+        'phoenixpanel:ads:enabled',
         'phoenixpanel:captcha:enabled',
         'phoenixpanel:captcha:cloudflare:site_key',
         'phoenixpanel:captcha:cloudflare:secret_key',
