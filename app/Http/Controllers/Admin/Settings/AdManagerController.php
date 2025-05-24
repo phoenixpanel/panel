@@ -8,42 +8,37 @@ use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\View\Factory as ViewFactory;
 use PhoenixPanel\Http\Controllers\Controller;
-use PhoenixPanel\Traits\Helpers\AvailableLanguages;
-use PhoenixPanel\Services\Helpers\SoftwareVersionService;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
-use PhoenixPanel\Http\Requests\Admin\Settings\BaseSettingsFormRequest;
+use PhoenixPanel\Http\Requests\Admin\Settings\AdvancedSettingsFormRequest;
 
-class AdController extends Controller
+class AdvancedController extends Controller
 {
-    use AvailableLanguages;
-
     /**
-     * AdController constructor.
+     * AdvancedController constructor.
      */
     public function __construct(
         private AlertsMessageBag $alert,
+        private ConfigRepository $config,
         private Kernel $kernel,
         private SettingsRepositoryInterface $settings,
-        private SoftwareVersionService $versionService,
         private ViewFactory $view
     ) {
     }
 
     /**
-     * Render the UI for basic Panel settings.
+     * Render Ads Manager Panel settings UI.
      */
     public function index(): View
     {
-        return $this->view->make('admin.settings.ads');
+        return $this->view->make('admin.settings.adsmanager', []);
     }
 
     /**
-     * Handle settings update.
-     *
      * @throws \PhoenixPanel\Exceptions\Model\DataValidationException
      * @throws \PhoenixPanel\Exceptions\Repository\RecordNotFoundException
      */
-    public function update(BaseSettingsFormRequest $request): RedirectResponse
+    public function update(AdvancedSettingsFormRequest $request): RedirectResponse
     {
         foreach ($request->normalize() as $key => $value) {
             $this->settings->set('settings::' . $key, $value);
@@ -52,7 +47,7 @@ class AdController extends Controller
         $this->kernel->call('queue:restart');
         $this->alert->success('Advanced settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
 
-        return redirect()->route('admin.settings.advanced');
+        return redirect()->route('admin.settings.adsmanager');
     }
 }
 
