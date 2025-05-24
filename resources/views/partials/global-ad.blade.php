@@ -4,6 +4,7 @@
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
+    left: 0;
     z-index: 1000;
     width: 160px;
     height: 600px;
@@ -28,6 +29,12 @@
         </div>
     </div>
     <div class="ad-display right">
+        <style>
+            .ad-display.right {
+                right: 0;
+                left: auto;
+            }
+        </style>
         <div style="width: 100%; height: 100%; border: 1px solid #ccc; margin: 10px 0;">
             {!! config('phoenixpanel.ads.code') !!}
         </div>
