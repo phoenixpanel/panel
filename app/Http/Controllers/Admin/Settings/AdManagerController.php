@@ -33,6 +33,7 @@ class AdManagerController extends Controller
     {
         return $this->view->make('admin.settings.adsmanager', [
             'ads_enabled' => $this->settings->get('phoenixpanel:ads:enabled', config('phoenixpanel.ads.enabled')),
+            'ads_code' => $this->settings->get('phoenixpanel:ads:code', config('phoenixpanel.ads.code')),
         ]);
     }
 
