@@ -41,6 +41,14 @@
                                 <p class="help-block">Need an Adsterra account? <a href="https://beta.publishers.adsterra.com/referral/wJKNd3ApCE" target="_blank" rel="noopener noreferrer">Sign up here</a> using this referral link.</p>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Adsterra API Key <small>(optional)</small></label>
+                            <div>
+                                <input type="text" name="phoenixpanel:ads:api_key" class="form-control" value="{{ old('phoenixpanel:ads:api_key', config('phoenixpanel.ads.api_key')) }}" placeholder="Enter Adsterra API Key">
+                                <p class="help-block">API key for Adsterra API integration (if using advanced features).</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="box box-primary">
@@ -83,3 +91,42 @@
         </div>
     </div>
 @endsection
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ad Metrics -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Ad Metrics</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-eye"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total Impressions</span>
+                                    <span class="info-box-number">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="fa fa-mouse-pointer"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total Clicks</span>
+                                    <span class="info-box-number">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
