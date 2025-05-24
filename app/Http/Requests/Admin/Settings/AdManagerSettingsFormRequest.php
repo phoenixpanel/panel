@@ -28,7 +28,8 @@ class AdManagerSettingsFormRequest extends AdminFormRequest
     {
         $data = parent::normalize($only);
 
-        $data['phoenixpanel:ads:enabled'] = $this->has('phoenixpanel:ads:enabled') ? 1 : 0;
+        
+        $data['phoenixpanel:ads:enabled'] = $this->input('phoenixpanel:ads:enabled') === '1' ? 1 : 0;
 
         return $data;
     }
