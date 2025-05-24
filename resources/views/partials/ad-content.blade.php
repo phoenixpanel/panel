@@ -11,25 +11,29 @@
 </div>
 
 <script>
-// Refresh ads every minute
+// Refresh ads every minute with cache-busting
 function refreshAds() {
-    fetch('/refresh-ad')
+    // Add cache-buster parameter to prevent browser caching
+    const cacheBuster = '?t=' + new Date().getTime();
+    fetch('/refresh-ad' + cacheBuster)
         .then(response => response.text())
         .then(html => {
             // Create a temporary container to parse the HTML
             const temp = document.createElement('div');
             temp.innerHTML = html;
             
-            // Update left ad
-            const leftAd = temp.querySelector('#left-ad');
-            if (leftAd && document.getElementById('left-ad')) {
-                document.getElementById('left-ad').innerHTML = leftAd.innerHTML;
+            // Update left ad container including styles
+            const leftAdContainer = temp.querySelector('.ad-content:nth-of-type(1)');
+            if (leftAdContainer && document.querySelector('.ad-content:nth-of-type(1)')) {
+                document.querySelector('.ad-content:nth-of-type(1)').innerHTML =
+                    leftAdContainer.innerHTML;
             }
             
-            // Update right ad
-            const rightAd = temp.querySelector('#right-ad');
-            if (rightAd && document.getElementById('right-ad')) {
-                document.getElementById('right-ad').innerHTML = rightAd.innerHTML;
+            // Update right ad container including styles
+            const rightAdContainer = temp.querySelector('.ad-content:nth-of-type(2)');
+            if (rightAdContainer && document.querySelector('.ad-content:nth-of-type(2)')) {
+                document.querySelector('.ad-content:nth-of-type(2)').innerHTML =
+                    rightAdContainer.innerHTML;
             }
         })
         .catch(error => console.error('Ad refresh error:', error));
