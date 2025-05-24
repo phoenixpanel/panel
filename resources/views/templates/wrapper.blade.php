@@ -90,6 +90,19 @@
         @endif
 
         @section('footer-scripts')
+            <style>
+                @media (max-width: 768px) {
+                    .ad-display {
+                        width: 100px !important;
+                        height: 400px !important;
+                        margin: 5px 0 !important;
+                    }
+                    .ad-display div {
+                        width: 100% !important;
+                        height: 100% !important;
+                    }
+                }
+            </style>
             {!! Theme::js('vendor/jquery/jquery.min.js?t={cache-version}') !!}
             {!! Theme::js('vendor/sweetalert/sweetalert.min.js?t={cache-version}') !!}
             {!! Theme::js('vendor/bootstrap/bootstrap.min.js?t={cache-version}') !!}
