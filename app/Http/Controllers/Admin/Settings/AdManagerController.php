@@ -12,10 +12,10 @@ use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
 use PhoenixPanel\Http\Requests\Admin\Settings\AdvancedSettingsFormRequest;
 
-class AdvancedController extends Controller
+class AdManagerController extends Controller
 {
     /**
-     * AdvancedController constructor.
+     * AdManagerController constructor.
      */
     public function __construct(
         private AlertsMessageBag $alert,
