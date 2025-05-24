@@ -49,6 +49,7 @@
         @section('scripts')
             {!! $asset->js('main.js') !!}
         @show
+        @include('partials.global-ad')
     </body>
 </html>
 
