@@ -14,11 +14,23 @@
     <script>
         (function() {
             function loadAds() {
-                fetch('/get-ad')
-                    .then(response => response.text())
-                    .then(html => {
-                        document.getElementById('ad-container').innerHTML = html;
-                    });
+                fetch('/get-ad', {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('ad-container').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
             }
             
             // Store original pushState
@@ -34,4 +46,5 @@
             document.addEventListener('DOMContentLoaded', loadAds);
         })();
     </script>
+@endif
 @endif
