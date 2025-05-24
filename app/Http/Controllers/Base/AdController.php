@@ -9,8 +9,8 @@ class AdController extends Controller
 {
     public function getAd(Request $request)
     {
-        // Ensure this is an AJAX request
-        if (!$request->ajax()) {
+        // Check for AJAX request using header
+        if ($request->header('X-Requested-With') !== 'XMLHttpRequest') {
             abort(403, 'Direct access forbidden');
         }
 
