@@ -9,6 +9,6 @@ class AdRefreshController extends Controller
 {
     public function refresh()
     {
-        return view('partials.ad-content');
+        return view('partials.ad-content-refresh');
     }
 }
