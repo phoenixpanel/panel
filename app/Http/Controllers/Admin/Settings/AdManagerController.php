@@ -31,7 +31,9 @@ class AdManagerController extends Controller
      */
     public function index(): View
     {
-        return $this->view->make('admin.settings.adsmanager', []);
+        return $this->view->make('admin.settings.adsmanager', [
+            'ads_enabled' => $this->settings->get('phoenixpanel:ads:enabled', config('phoenixpanel.ads.enabled')),
+        ]);
     }
 
     /**
@@ -45,7 +47,7 @@ class AdManagerController extends Controller
         }
 
         $this->kernel->call('queue:restart');
-        $this->alert->success('Advanced settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
+        $this->alert->success('Ad management settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
 
         return redirect()->route('admin.settings.adsmanager');
     }
