@@ -24,14 +24,22 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="control-label">Enable Adterra Functionality</label>
+                            <label class="control-label">Enable Adsterra Functionality</label>
                             <div>
                                 <input type="hidden" name="phoenixpanel:ads:enabled" value="0">
                                 <label>
                                     <input type="checkbox" name="phoenixpanel:ads:enabled" value="1" @if(old('phoenixpanel:ads:enabled', config('phoenixpanel.ads.enabled')) == 1) checked @endif> Enable
                                 </label>
                             </div>
-                        </div>                        
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Adsterra Ad Code (160x600)</label>
+                            <div>
+                                <textarea name="phoenixpanel:ads:code" class="form-control" rows="5" placeholder="Paste your Adsterra ad code here">{{ old('phoenixpanel:ads:code', config('phoenixpanel.ads.code')) }}</textarea>
+                                <p class="help-block">Enter the ad code provided by Adsterra for the 160x600 ad unit.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="box box-primary">
@@ -41,6 +49,36 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Ad Preview -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Ad Preview</h3>
+                </div>
+                <div class="box-body">
+                    <p>Left Margin Ad (160x600):</p>
+                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
+                        @if(config('phoenixpanel.ads.enabled'))
+                            {!! config('phoenixpanel.ads.code') !!}
+                        @else
+                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
+                        @endif
+                    </div>
+
+                    <p>Right Margin Ad (160x600):</p>
+                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
+                        @if(config('phoenixpanel.ads.enabled'))
+                            {!! config('phoenixpanel.ads.code') !!}
+                        @else
+                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
