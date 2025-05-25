@@ -22,6 +22,7 @@ class SettingsServiceProvider extends ServiceProvider
         'phoenixpanel:captcha:provider',
         'phoenixpanel:ads:enabled',
         'phoenixpanel:ads:code',
+        'phoenixpanel:ads:api_key',
         'phoenixpanel:captcha:enabled',
         'phoenixpanel:captcha:cloudflare:site_key',
         'phoenixpanel:captcha:cloudflare:secret_key',

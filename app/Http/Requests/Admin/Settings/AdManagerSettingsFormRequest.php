@@ -15,6 +15,7 @@ class AdManagerSettingsFormRequest extends AdminFormRequest
         return [
             'phoenixpanel:ads:enabled' => 'sometimes|boolean',
             'phoenixpanel:ads:code' => 'required_if:phoenixpanel:ads:enabled,1|string|max:10000|nullable',
+            'phoenixpanel:ads:api_key' => 'string|max:10000|nullable'
         ];
     }
 
@@ -22,7 +23,8 @@ class AdManagerSettingsFormRequest extends AdminFormRequest
     {
         return [
             'phoenixpanel:ads:enabled' => 'Adterra Functionality',
-            'phoenixpanel:ads:code' => 'Adterra Code'
+            'phoenixpanel:ads:code' => 'Adterra Code',
+            'phoenixpanel:ads:api_key' => 'Adterra API Key'
         ];
     }
 
@@ -33,6 +35,7 @@ class AdManagerSettingsFormRequest extends AdminFormRequest
         
         $data['phoenixpanel:ads:enabled'] = $this->input('phoenixpanel:ads:enabled') === '1' ? 1 : 0;
         $data['phoenixpanel:ads:code'] = $this->input('phoenixpanel:ads:code', '');
+        $data['phoenixpanel:ads:api_key'] = $this->input('phoenixpanel:ads:api_key', '');
 
         return $data;
     }
