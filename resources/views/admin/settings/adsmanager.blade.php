@@ -132,7 +132,14 @@
                                     <span class="info-box-icon bg-yellow"><i class="fa fa-percent" style="top: 2rem; position: relative;"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Average CTR</span>
-                                        <span id="metric-ctr" class="info-box-number">{{ number_format(array_sum(array_column($metrics['items'], 'ctr')) / count($metrics['items']), 2) }}%</span>
+                                        <span id="metric-ctr" class="info-box-number">
+                                            @php
+                                            $totalImpressions = isset($metrics['items']) ? array_sum(array_column($metrics['items'], 'impression')) : 0;
+                                            $totalClicks = isset($metrics['items']) ? array_sum(array_column($metrics['items'], 'clicks')) : 0;
+                                            $ctr = $totalImpressions > 0 ? ($totalClicks / $totalImpressions) * 100 : 0;
+                                            echo number_format($ctr, 2) . '%';
+                                            @endphp
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -191,6 +198,11 @@
     </div>
     
     @push('scripts')
+    <!-- Add debugging div for troubleshooting -->
+    <div id="debug-info" style="display: none; border: 1px solid #ccc; margin-top: 20px; padding: 10px; background: #f9f9f9;">
+        <h4>Debug Info</h4>
+        <div id="debug-content"></div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
@@ -200,6 +212,15 @@
     $(document).ready(function() {
         let chart = null;
         
+        // Setup CSRF token for all AJAX requests
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        console.log("Metrics page initialized");
+        
         // Initialize date pickers
         $('#date-range-start, #date-range-end').datepicker({
             format: 'yyyy-mm-dd',
@@ -207,9 +228,20 @@
         });
         
         // Handle date range options
-        $('.date-range-option').click(function(e) {
+        // Debug logging function
+        function logDebug(message, data) {
+            console.log(message, data);
+            $('#debug-content').append(`<p><strong>${message}:</strong> ${JSON.stringify(data)}</p>`);
+        }
+        
+        // Handle dropdown menu clicks directly on the links
+        $(document).on('click', '.date-range-option', function(e) {
             e.preventDefault();
+            e.stopPropagation(); // Stop event bubbling
+            
             const days = $(this).data('days');
+            logDebug("Date range option clicked", {days: days});
+            
             $('#date-range-text').text($(this).text());
             
             if (days === 'custom') {
@@ -218,16 +250,26 @@
                 $('.date-range-picker').hide();
                 const startDate = moment().subtract(days, 'days').format('YYYY-MM-DD');
                 const endDate = moment().format('YYYY-MM-DD');
+                
+                console.log("Setting date range:", startDate, "to", endDate);
+                
                 $('#date-range-start').val(startDate);
                 $('#date-range-end').val(endDate);
                 fetchMetrics(startDate, endDate);
             }
+            
+            return false; // Additional prevention of default behavior
         });
         
         // Handle apply button for custom range
-        $('#apply-date-range').click(function() {
+        $('#apply-date-range').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Stop event bubbling
+            
             const startDate = $('#date-range-start').val();
             const endDate = $('#date-range-end').val();
+            
+            logDebug("Custom date range", {startDate, endDate});
             
             if (!startDate || !endDate) {
                 alert('Please select both start and end dates');
@@ -235,24 +277,40 @@
             }
             
             fetchMetrics(startDate, endDate);
+            return false;
         });
         
         function fetchMetrics(startDate, endDate) {
             $('#metrics-loading').show();
             $('#metrics-content').hide();
             
+            logDebug("Fetching metrics for", {startDate, endDate});
+            
+            // Clear any previous errors
+            $('.info-box-number').removeClass('text-danger');
+            
             $.ajax({
+                type: 'GET',
                 url: '{{ route('admin.settings.adsmanager.metrics') }}',
                 data: {
                     start_date: startDate,
-                    end_date: endDate
+                    end_date: endDate,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                cache: false, // Prevent caching of AJAX requests
+                beforeSend: function(xhr) {
+                    // Ensure proper CSRF headers
+                    xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
                 },
                 success: function(data) {
+                    logDebug("Metrics data received", data);
                     updateMetricsDisplay(data);
                     $('#metrics-loading').hide();
                     $('#metrics-content').show();
                 },
-                error: function() {
+                error: function(xhr, status, error) {
+                    logDebug("Metrics fetch error", {status, error, responseText: xhr.responseText});
                     $('#metrics-loading').hide();
                     $('#metrics-content').show();
                     $('.info-box-number').text('COULDN\'T RETRIEVE METRICS').addClass('text-danger');
@@ -261,7 +319,10 @@
         }
         
         function updateMetricsDisplay(data) {
-            if (!data.items || data.items.length === 0) {
+            console.log("Updating metrics display with data:", data);
+            
+            if (!data || !data.items || data.items.length === 0) {
+                console.log("No metrics data available");
                 $('#metric-impressions').text('0');
                 $('#metric-clicks').text('0');
                 $('#metric-ctr').text('0.00%');
@@ -276,20 +337,39 @@
             let totalCtr = 0;
             
             data.items.forEach(item => {
-                totalImpressions += parseInt(item.impression || 0);
-                totalClicks += parseInt(item.clicks || 0);
-                totalRevenue += parseFloat(item.revenue || 0);
-                totalCtr += parseFloat(item.ctr || 0);
+                const impressions = parseInt(item.impression || 0);
+                const clicks = parseInt(item.clicks || 0);
+                const revenue = parseFloat(item.revenue || 0);
+                const ctr = parseFloat(item.ctr || 0);
+                
+                console.log("Processing item:", item.date,
+                    "impressions:", impressions,
+                    "clicks:", clicks,
+                    "revenue:", revenue,
+                    "ctr:", ctr);
+                
+                totalImpressions += impressions;
+                totalClicks += clicks;
+                totalRevenue += revenue;
+                totalCtr += ctr;
             });
             
-            const avgCtr = data.items.length > 0 ? totalCtr / data.items.length : 0;
+            // Calculate CTR correctly from total values, not by averaging individual CTRs
+            const avgCtr = totalImpressions > 0 ? (totalClicks / totalImpressions) * 100 : 0;
+            
+            logDebug("Calculated totals", {
+                impressions: totalImpressions,
+                clicks: totalClicks,
+                revenue: totalRevenue,
+                avgCtr: avgCtr
+            });
             
             // Update metrics display
             $('#metric-impressions').text(totalImpressions.toLocaleString());
             $('#metric-clicks').text(totalClicks.toLocaleString());
             $('#metric-ctr').text(avgCtr.toFixed(2) + '%');
             $('#metric-revenue').text('$' + totalRevenue.toFixed(2));
-            $('#metrics-last-updated').text('Last updated: ' + data.dbDateTime);
+            $('#metrics-last-updated').text('Last updated: ' + (data.dbDateTime || new Date().toLocaleString()));
             
             // Update chart
             updateChart(data.items);
@@ -368,6 +448,21 @@
         @if(isset($metrics['items']) && count($metrics['items']) > 0)
         updateChart({!! json_encode($metrics['items']) !!});
         @endif
+    });
+    </script>
+    
+    <script>
+    // Add this at the end to show debug info when needed
+    function toggleDebug() {
+        $('#debug-info').toggle();
+    }
+    
+    // Add keyboard shortcut 'Ctrl+D' to toggle debug info
+    $(document).keydown(function(e) {
+        if (e.ctrlKey && e.keyCode === 68) { // 68 is the key code for 'D'
+            e.preventDefault();
+            toggleDebug();
+        }
     });
     </script>
     @endpush
