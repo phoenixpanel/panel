@@ -49,7 +49,7 @@ class AdvancedController extends Controller
             'googleSecretKey' => $this->settings->get('phoenixpanel:captcha:google:secret_key', config('phoenixpanel.captcha.google.secret_key')),
 
             'ProtectCordEnabled' => $this->settings->get('phoenixpanel:protectcord:enabled', config('phoenixpanel.protectcord.enabled')),
-            'ProtectCordAPI Key' => $this->settings->get('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')),
+            'ProtectCordAPIKey' => $this->settings->get('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')),
         ]);
     }
 
