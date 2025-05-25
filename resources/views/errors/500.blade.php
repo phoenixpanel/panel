@@ -27,19 +27,20 @@
             
             body {
                 font-family: 'Rubik', sans-serif;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: #333;
+                color: #e5e5e5;
                 line-height: 1.6;
             }
             
             .error-container {
-                background: white;
+                background: #2d2d2d;
+                border: 1px solid #4b5563;
                 border-radius: 12px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
                 max-width: 500px;
                 width: 90%;
                 padding: 40px;
@@ -50,7 +51,7 @@
             .error-icon {
                 width: 80px;
                 height: 80px;
-                background: #dc3545;
+                background: #ef4444;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -63,19 +64,19 @@
             .error-title {
                 font-size: 28px;
                 font-weight: 500;
-                color: #dc3545;
+                color: #ef4444;
                 margin-bottom: 20px;
             }
             
             .error-message {
                 font-size: 16px;
-                color: #666;
+                color: #d1d5db;
                 margin-bottom: 30px;
                 line-height: 1.8;
             }
             
             .retry-button {
-                background: #E25822;
+                background: #f97316;
                 color: white;
                 border: none;
                 padding: 12px 30px;
@@ -90,13 +91,13 @@
             }
             
             .retry-button:hover {
-                background: #c44a1c;
+                background: #ea580c;
                 color: white;
                 text-decoration: none;
             }
             
             .home-button {
-                background: #6c757d;
+                background: #4b5563;
                 color: white;
                 border: none;
                 padding: 12px 30px;
@@ -111,7 +112,7 @@
             }
             
             .home-button:hover {
-                background: #5a6268;
+                background: #374151;
                 color: white;
                 text-decoration: none;
             }

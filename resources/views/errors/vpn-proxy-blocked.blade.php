@@ -27,19 +27,20 @@
             
             body {
                 font-family: 'Rubik', sans-serif;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: #333;
+                color: #e5e5e5;
                 line-height: 1.6;
             }
             
             .error-container {
-                background: white;
+                background: #2d2d2d;
+                border: 1px solid #4b5563;
                 border-radius: 12px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
                 max-width: 600px;
                 width: 90%;
                 padding: 40px;
@@ -50,7 +51,7 @@
             .error-icon {
                 width: 80px;
                 height: 80px;
-                background: #E25822;
+                background: #f97316;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -63,20 +64,20 @@
             .error-title {
                 font-size: 28px;
                 font-weight: 500;
-                color: #E25822;
+                color: #f97316;
                 margin-bottom: 20px;
             }
             
             .error-message {
                 font-size: 16px;
-                color: #666;
+                color: #d1d5db;
                 margin-bottom: 30px;
                 line-height: 1.8;
             }
             
             .threat-info {
-                background: #f8f9fa;
-                border-left: 4px solid #E25822;
+                background: #3d3d3d;
+                border-left: 4px solid #f97316;
                 padding: 20px;
                 margin: 25px 0;
                 text-align: left;
@@ -84,7 +85,7 @@
             }
             
             .threat-info h4 {
-                color: #E25822;
+                color: #f97316;
                 margin-bottom: 10px;
                 font-size: 16px;
                 font-weight: 500;
@@ -99,7 +100,7 @@
             }
             
             .threat-badge {
-                background: #E25822;
+                background: #f97316;
                 color: white;
                 padding: 6px 12px;
                 border-radius: 20px;
@@ -109,7 +110,8 @@
             }
             
             .steps-container {
-                background: #f8f9fa;
+                background: #3d3d3d;
+                border: 1px solid #4b5563;
                 border-radius: 8px;
                 padding: 25px;
                 margin: 25px 0;
@@ -117,7 +119,7 @@
             }
             
             .steps-title {
-                color: #E25822;
+                color: #f97316;
                 font-size: 18px;
                 font-weight: 500;
                 margin-bottom: 15px;
@@ -136,6 +138,7 @@
                 position: relative;
                 font-size: 14px;
                 line-height: 1.6;
+                color: #d1d5db;
             }
             
             .steps-list li::before {
@@ -143,7 +146,7 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: #E25822;
+                background: #f97316;
                 color: white;
                 width: 24px;
                 height: 24px;
@@ -156,27 +159,27 @@
             }
             
             .contact-info {
-                background: #e8f4fd;
-                border: 1px solid #bee5eb;
+                background: #3d3d3d;
+                border: 1px solid #4b5563;
                 border-radius: 8px;
                 padding: 20px;
                 margin: 25px 0;
             }
             
             .contact-info h4 {
-                color: #0c5460;
+                color: #f97316;
                 margin-bottom: 10px;
                 font-size: 16px;
             }
             
             .contact-info p {
-                color: #0c5460;
+                color: #d1d5db;
                 font-size: 14px;
                 margin: 0;
             }
             
             .retry-button {
-                background: #E25822;
+                background: #f97316;
                 color: white;
                 border: none;
                 padding: 12px 30px;
@@ -191,7 +194,7 @@
             }
             
             .retry-button:hover {
-                background: #c44a1c;
+                background: #ea580c;
                 color: white;
                 text-decoration: none;
             }
@@ -199,13 +202,13 @@
             .technical-details {
                 margin-top: 30px;
                 padding-top: 20px;
-                border-top: 1px solid #eee;
+                border-top: 1px solid #4b5563;
                 font-size: 12px;
-                color: #999;
+                color: #9ca3af;
             }
             
             .technical-details strong {
-                color: #666;
+                color: #d1d5db;
             }
             
             @media (max-width: 768px) {
