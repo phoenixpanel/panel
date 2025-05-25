@@ -454,7 +454,13 @@ configure_phoenix_panel() {
         PANEL_URL="localhost"
     fi
     
-    ADMIN_EMAIL="admin@${PANEL_URL}"
+    # Clean PANEL_URL and handle localhost case for email
+    CLEAN_PANEL_URL=$(echo "${PANEL_URL}" | sed 's/https\?:\/\///')
+    if [[ "$CLEAN_PANEL_URL" == "localhost" ]]; then
+        ADMIN_EMAIL="admin@admin.localhost"
+    else
+        ADMIN_EMAIL="admin@${CLEAN_PANEL_URL}"
+    fi
     
     # Create the admin user
     php artisan p:user:make --email="$ADMIN_EMAIL" --username=admin --name-first=Admin --name-last=User --password="$ADMIN_PASSWORD" --admin=1
