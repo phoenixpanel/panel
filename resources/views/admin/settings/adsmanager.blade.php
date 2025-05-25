@@ -45,13 +45,12 @@
                         <div class="form-group">
                             <label class="control-label">Adsterra API Key <small>(optional)</small></label>
                             <div>
-                                <input type="text" name="phoenixpanel:ads:api_key" class="form-control" value="{{ old('phoenixpanel:ads:api_key', config('phoenixpanel.ads.api_key')) }}" placeholder="Enter Adsterra API Key">
+                                <input type="password" name="phoenixpanel:ads:api_key" class="form-control" value="{{ old('phoenixpanel:ads:api_key', config('phoenixpanel.ads.api_key')) }}" placeholder="Enter Adsterra API Key">
                                 <p class="text-muted small">API key for Adsterra API integration (if using advanced features).</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="box box-primary">
+
                     <div class="box-footer">
                         {{ csrf_field() }}
                         <button type="submit" name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>
@@ -69,22 +68,17 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Ad Metrics</h3>
                     <div class="box-tools">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <span id="date-range-text">Last 7 Days</span> <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#" class="date-range-option" data-days="7">Last 7 Days</a></li>
-                                    <li><a href="#" class="date-range-option" data-days="30">Last 30 Days</a></li>
-                                    <li><a href="#" class="date-range-option" data-days="custom">Custom Range</a></li>
-                                </ul>
+                        <div class="date-range-controls" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <!-- Quick Select Buttons -->
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-default date-range-option" data-days="1">Today</button>
+                                <button type="button" class="btn btn-sm btn-default date-range-option" data-days="7">7 Days</button>
+                                <button type="button" class="btn btn-sm btn-default date-range-option" data-days="30">30 Days</button>
+                                <button type="button" class="btn btn-sm btn-default date-range-option" data-days="90">90 Days</button>
                             </div>
-                            <div class="date-range-picker" style="display: none;">
-                                <input type="text" class="form-control" id="date-range-start" placeholder="Start Date" value="{{ $startDate }}">
-                                <input type="text" class="form-control" id="date-range-end" placeholder="End Date" value="{{ $endDate }}">
-                                <button type="button" class="btn btn-primary" id="apply-date-range">Apply</button>
-                            </div>
+                            
+                            <!-- Current Selection Display -->
+                            <span class="label label-primary" id="current-selection">Last 7 Days</span>
                         </div>
                     </div>
                 </div>
@@ -98,7 +92,7 @@
                     <div id="metrics-content">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="info-box">
+                                <div class="info-box" style="background: #212121">
                                     <span class="info-box-icon bg-aqua"><i class="fa fa-eye" style="top: 2rem; position: relative;"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Impressions</span>
@@ -111,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="info-box">
+                                <div class="info-box" style="background: #212121">
                                     <span class="info-box-icon bg-green"><i class="fa fa-mouse-pointer" style="top: 2rem; position: relative;"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Clicks</span>
@@ -128,7 +122,7 @@
                         @if(isset($metrics['items']) && count($metrics['items']) > 0)
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="info-box">
+                                <div class="info-box" style="background: #212121">
                                     <span class="info-box-icon bg-yellow"><i class="fa fa-percent" style="top: 2rem; position: relative;"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Average CTR</span>
@@ -144,7 +138,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="info-box">
+                                <div class="info-box" style="background: #212121">
                                     <span class="info-box-icon bg-purple"><i class="fa fa-dollar" style="top: 2rem; position: relative;"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Revenue</span>
@@ -154,7 +148,9 @@
                             </div>
                         </div>
                         
-                        <div id="metrics-chart" style="height: 250px;"></div>
+                        <div style="position: relative; height: 250px; width: 100%;">
+                            <canvas id="metrics-chart"></canvas>
+                        </div>
                         
                         <div class="text-muted">
                             <small id="metrics-last-updated">Last updated: {{ isset($metrics['dbDateTime']) ? $metrics['dbDateTime'] : 'Unknown' }}</small>
@@ -166,47 +162,90 @@
         </div>
     </div>
     @endif
+@endsection
 
-    <!-- Ad Preview -->
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Ad Preview</h3>
-                </div>
-                <div class="box-body">
-                    <p>Left Margin Ad (160x600):</p>
-                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
-                        @if(config('phoenixpanel.ads.enabled'))
-                            {!! config('phoenixpanel.ads.code') !!}
-                        @else
-                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
-                        @endif
-                    </div>
-
-                    <p>Right Margin Ad (160x600):</p>
-                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
-                        @if(config('phoenixpanel.ads.enabled'))
-                            {!! config('phoenixpanel.ads.code') !!}
-                        @else
-                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('footer-scripts')
+    @parent
     
-    @push('scripts')
-    <!-- Add debugging div for troubleshooting -->
-    <div id="debug-info" style="display: none; border: 1px solid #ccc; margin-top: 20px; padding: 10px; background: #f9f9f9;">
-        <h4>Debug Info</h4>
-        <div id="debug-content"></div>
-    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    
+    <style>
+    .date-range-controls {
+        margin-bottom: 10px;
+        position: relative;
+    }
+    
+    .date-range-controls .btn-group .btn {
+        margin-right: 0;
+    }
+    
+    .custom-date-panel {
+        animation: slideDown 0.3s ease-in-out;
+        position: fixed;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        min-width: 600px;
+        max-width: 90vw;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .date-range-controls .label {
+        font-size: 11px;
+        padding: 4px 8px;
+        vertical-align: middle;
+    }
+    
+    /* Ensure the box-tools container has proper positioning context */
+    .box-tools {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Ensure metric cards don't interfere with dropdown */
+    .info-box {
+        position: relative;
+        z-index: 1;
+    }
+    
+    @media (max-width: 768px) {
+        .date-range-controls {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 5px !important;
+        }
+        
+        .custom-date-panel {
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+            margin-top: 15px;
+        }
+        
+        .custom-date-panel .col-md-4 {
+            margin-bottom: 15px;
+        }
+    }
+    </style>
 
     <script>
     $(document).ready(function() {
@@ -219,73 +258,51 @@
             }
         });
         
-        console.log("Metrics page initialized");
-        
         // Initialize date pickers
         $('#date-range-start, #date-range-end').datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true
         });
         
-        // Handle date range options
-        // Debug logging function
-        function logDebug(message, data) {
-            console.log(message, data);
-            $('#debug-content').append(`<p><strong>${message}:</strong> ${JSON.stringify(data)}</p>`);
-        }
-        
-        // Handle dropdown menu clicks directly on the links
+        // Handle date range button clicks
         $(document).on('click', '.date-range-option', function(e) {
             e.preventDefault();
-            e.stopPropagation(); // Stop event bubbling
+            e.stopPropagation();
             
             const days = $(this).data('days');
-            logDebug("Date range option clicked", {days: days});
+            const clickedText = $(this).text();
             
-            $('#date-range-text').text($(this).text());
+            // Remove active state from all buttons and add to clicked one
+            $('.date-range-option').removeClass('btn-primary').addClass('btn-default');
+            $(this).removeClass('btn-default').addClass('btn-primary');
             
-            if (days === 'custom') {
-                $('.date-range-picker').show();
+            // Update current selection display
+            $('#current-selection').text(clickedText);
+            
+            // Hide custom date panel
+            $('.custom-date-panel').hide();
+            
+            // Calculate and set date range
+            let startDate, endDate;
+            if (days === 1) {
+                startDate = moment().format('YYYY-MM-DD');
+                endDate = moment().format('YYYY-MM-DD');
             } else {
-                $('.date-range-picker').hide();
-                const startDate = moment().subtract(days, 'days').format('YYYY-MM-DD');
-                const endDate = moment().format('YYYY-MM-DD');
-                
-                console.log("Setting date range:", startDate, "to", endDate);
-                
-                $('#date-range-start').val(startDate);
-                $('#date-range-end').val(endDate);
-                fetchMetrics(startDate, endDate);
+                startDate = moment().subtract(days - 1, 'days').format('YYYY-MM-DD');
+                endDate = moment().format('YYYY-MM-DD');
             }
-            
-            return false; // Additional prevention of default behavior
-        });
-        
-        // Handle apply button for custom range
-        $('#apply-date-range').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation(); // Stop event bubbling
-            
-            const startDate = $('#date-range-start').val();
-            const endDate = $('#date-range-end').val();
-            
-            logDebug("Custom date range", {startDate, endDate});
-            
-            if (!startDate || !endDate) {
-                alert('Please select both start and end dates');
-                return;
-            }
-            
+                        
+            $('#date-range-start').val(startDate);
+            $('#date-range-end').val(endDate);
             fetchMetrics(startDate, endDate);
+            
             return false;
         });
         
         function fetchMetrics(startDate, endDate) {
             $('#metrics-loading').show();
             $('#metrics-content').hide();
-            
-            logDebug("Fetching metrics for", {startDate, endDate});
-            
+                        
             // Clear any previous errors
             $('.info-box-number').removeClass('text-danger');
             
@@ -298,70 +315,21 @@
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
-                cache: false, // Prevent caching of AJAX requests
+                cache: false,
                 beforeSend: function(xhr) {
-                    // Ensure proper CSRF headers
                     xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
                 },
                 success: function(data) {
-                    // Detailed console logging of the entire metrics response
-                    console.log('---- BEGIN METRICS DATA DUMP ----');
-                    console.log('FULL METRICS RESPONSE:', data);
-                    
-                    if (data && data.items) {
-                        console.log('METRICS ITEMS COUNT:', data.items.length);
-                        
-                        // Log each day's metrics in detail
-                        data.items.forEach((item, index) => {
-                            console.log(`DAY ${index + 1} [${item.date}]:`, {
-                                impressions: item.impression,
-                                clicks: item.clicks,
-                                ctr: item.ctr,
-                                revenue: item.revenue,
-                                raw_item: item // Log the full item for reference
-                            });
-                        });
-                        
-                        // Calculate and log totals
-                        const totalImpressions = data.items.reduce((sum, item) => sum + parseInt(item.impression || 0), 0);
-                        const totalClicks = data.items.reduce((sum, item) => sum + parseInt(item.clicks || 0), 0);
-                        const totalRevenue = data.items.reduce((sum, item) => sum + parseFloat(item.revenue || 0), 0);
-                        const avgCtr = totalImpressions > 0 ? (totalClicks / totalImpressions) * 100 : 0;
-                        
-                        console.log('CALCULATED TOTALS:', {
-                            impressions: totalImpressions,
-                            clicks: totalClicks,
-                            revenue: totalRevenue,
-                            avgCtr: avgCtr
-                        });
-                    } else {
-                        console.log('NO METRICS DATA OR ITEMS AVAILABLE');
-                    }
-                    console.log('---- END METRICS DATA DUMP ----');
-                    
                     updateMetricsDisplay(data);
                     $('#metrics-loading').hide();
                     $('#metrics-content').show();
                 },
                 error: function(xhr, status, error) {
-                    console.log('---- BEGIN ERROR DATA DUMP ----');
-                    console.log('METRICS API ERROR:', {
+                    console.log('Metrics API error:', {
                         status: status,
                         error: error,
-                        xhr: xhr,
-                        responseText: xhr.responseText,
-                        statusText: xhr.statusText,
-                        readyState: xhr.readyState
+                        responseText: xhr.responseText
                     });
-                    
-                    try {
-                        // Try to parse the error response as JSON
-                        const errorResponse = JSON.parse(xhr.responseText);
-                        console.log('PARSED ERROR RESPONSE:', errorResponse);
-                    } catch (e) {
-                        console.log('RESPONSE IS NOT VALID JSON');
-                    }
-                    console.log('---- END ERROR DATA DUMP ----');
                     
                     $('#metrics-loading').hide();
                     $('#metrics-content').show();
@@ -370,12 +338,7 @@
             });
         }
         
-        function updateMetricsDisplay(data) {
-            console.log("Updating metrics display with data:", data);
-            
-            // Log raw data structure before processing
-            console.log('METRICS DISPLAY DATA STRUCTURE:', JSON.stringify(data, null, 2));
-            
+        function updateMetricsDisplay(data) {            
             if (!data || !data.items || data.items.length === 0) {
                 console.log("No metrics data available");
                 $('#metric-impressions').text('0');
@@ -389,35 +352,15 @@
             let totalImpressions = 0;
             let totalClicks = 0;
             let totalRevenue = 0;
-            let totalCtr = 0;
             
             data.items.forEach(item => {
-                const impressions = parseInt(item.impression || 0);
-                const clicks = parseInt(item.clicks || 0);
-                const revenue = parseFloat(item.revenue || 0);
-                const ctr = parseFloat(item.ctr || 0);
-                
-                console.log("Processing item:", item.date,
-                    "impressions:", impressions,
-                    "clicks:", clicks,
-                    "revenue:", revenue,
-                    "ctr:", ctr);
-                
-                totalImpressions += impressions;
-                totalClicks += clicks;
-                totalRevenue += revenue;
-                totalCtr += ctr;
+                totalImpressions += parseInt(item.impression || 0);
+                totalClicks += parseInt(item.clicks || 0);
+                totalRevenue += parseFloat(item.revenue || 0);
             });
             
-            // Calculate CTR correctly from total values, not by averaging individual CTRs
+            // Calculate CTR correctly from total values
             const avgCtr = totalImpressions > 0 ? (totalClicks / totalImpressions) * 100 : 0;
-            
-            logDebug("Calculated totals", {
-                impressions: totalImpressions,
-                clicks: totalClicks,
-                revenue: totalRevenue,
-                avgCtr: avgCtr
-            });
             
             // Update metrics display
             $('#metric-impressions').text(totalImpressions.toLocaleString());
@@ -447,79 +390,100 @@
                 revenues.push(parseFloat(item.revenue || 0));
             });
             
-            if (chart) {
+            // Properly destroy existing chart
+            if (chart && typeof chart.destroy === 'function') {
                 chart.destroy();
+                chart = null;
             }
             
-            const ctx = document.getElementById('metrics-chart').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        {
-                            label: 'Impressions',
-                            data: impressions,
-                            borderColor: '#00c0ef',
-                            backgroundColor: 'rgba(0, 192, 239, 0.1)',
-                            tension: 0.1,
-                            fill: true
-                        },
-                        {
-                            label: 'Clicks',
-                            data: clicks,
-                            borderColor: '#00a65a',
-                            backgroundColor: 'rgba(0, 166, 90, 0.1)',
-                            tension: 0.1,
-                            fill: true
-                        },
-                        {
-                            label: 'Revenue ($)',
-                            data: revenues,
-                            borderColor: '#605ca8',
-                            backgroundColor: 'rgba(96, 92, 168, 0.1)',
-                            tension: 0.1,
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
+            // Get canvas element and verify it exists
+            const canvasElement = document.getElementById('metrics-chart');
+            if (!canvasElement) {
+                return;
+            }
+            
+            try {
+                const ctx = canvasElement.getContext('2d');
+                
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                label: 'Impressions',
+                                data: impressions,
+                                borderColor: '#00c0ef',
+                                backgroundColor: 'rgba(0, 192, 239, 0.1)',
+                                tension: 0.1,
+                                fill: true
+                            },
+                            {
+                                label: 'Clicks',
+                                data: clicks,
+                                borderColor: '#00a65a',
+                                backgroundColor: 'rgba(0, 166, 90, 0.1)',
+                                tension: 0.1,
+                                fill: true
+                            },
+                            {
+                                label: 'Revenue ($)',
+                                data: revenues,
+                                borderColor: '#605ca8',
+                                backgroundColor: 'rgba(96, 92, 168, 0.1)',
+                                tension: 0.1,
+                                fill: true
+                            }
+                        ]
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        animation: {
+                            duration: 0 // Disable animations to prevent continuous redraws
+                        },
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            }
                         }
                     }
-                }
-            });
+                });                
+            } catch (error) {
+                console.error("Error creating chart:", error);
+            }
+        }
+        
+        // Initialize default selection (7 days) on page load
+        function initializeDefaultSelection() {            
+            // Set default active button (7 days)
+            $('.date-range-option[data-days="7"]').removeClass('btn-default').addClass('btn-primary');
+            
+            // Set default date range
+            const startDate = moment().subtract(6, 'days').format('YYYY-MM-DD');
+            const endDate = moment().format('YYYY-MM-DD');
+            
+            $('#date-range-start').val(startDate);
+            $('#date-range-end').val(endDate);
         }
         
         // Initialize chart if data exists
         @if(isset($metrics['items']) && count($metrics['items']) > 0)
         updateChart({!! json_encode($metrics['items']) !!});
         @endif
+        
+        // Initialize default selection
+        initializeDefaultSelection();
     });
     </script>
-    
-    <script>
-    // Add this at the end to show debug info when needed
-    function toggleDebug() {
-        $('#debug-info').toggle();
-    }
-    
-    // Add keyboard shortcut 'Ctrl+D' to toggle debug info
-    $(document).keydown(function(e) {
-        if (e.ctrlKey && e.keyCode === 68) { // 68 is the key code for 'D'
-            e.preventDefault();
-            toggleDebug();
-        }
-    });
-    </script>
-    @endpush
-
 @endsection

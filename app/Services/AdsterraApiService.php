@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class AdsterraApiService
 {
-    private $apiUrl = 'https://api3.adsterratools.com/publisher/stats';
+    private $apiUrl = 'https://api3.adsterratools.com/publisher/stats.json';
     private $cacheTime = 10; // Cache for 10 minutes
     
     public function getMetrics($apiKey, $startDate = null, $endDate = null)
@@ -42,46 +42,23 @@ class AdsterraApiService
         
         // Real API connection
         try {
-            Log::debug('Initiating Adsterra API request', [
-                'api_url' => $this->apiUrl,
-                'start_date' => $startDate,
-                'end_date' => $endDate,
-                'api_key_length' => strlen($apiKey),  // Log length but not the actual key for security
-            ]);
-            
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
+                'X-Api-Key' => $apiKey,
             ])->get($this->apiUrl, [
                 'start_date' => $startDate,
-                'end_date' => $endDate,
+                'finish_date' => $endDate,
             ]);
             
             if ($response->successful()) {
                 $data = $response->json();
-                Log::debug('Adsterra API response successful', [
-                    'status' => $response->status(),
-                    'data_structure' => array_keys($data ?? []),
-                    'items_count' => isset($data['items']) ? count($data['items']) : 0
-                ]);
                 
                 // Cache the results for one hour
                 Cache::put($cacheKey, $data, now()->addMinutes($this->cacheTime));
                 return $data;
             }
             
-            Log::error('Adsterra API error', [
-                'status' => $response->status(),
-                'body' => $response->body(),
-                'headers' => $response->headers()
-            ]);
             return false;
         } catch (\Exception $e) {
-            Log::error('Adsterra API exception', [
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
-            ]);
             return false;
         }
     }

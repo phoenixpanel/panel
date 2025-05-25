@@ -98,7 +98,7 @@
                         <div class="form-group protectcord-api-key">
                             <label class="control-label">ProtectCord API Key</label>
                             <div>
-                                <input type="text" class="form-control protectcord-api-key" name="phoenixpanel:protectcord:api_key" value="{{ old('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')) }}">
+                                <input type="password" class="form-control protectcord-api-key" name="phoenixpanel:protectcord:api_key" value="{{ old('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')) }}">
                                 <p class="text-muted small">Need a ProtectCord API Key? <a href="https://discord.gg/ZPtaJzjpmT" target="_blank" rel="noopener noreferrer">Join here</a> then run <span class="ant-typography" id="license-command" style="border-radius: 3px; background-color: #871f0e; padding: 0px 2px 0px 2px">/licenses create</span> to get a license key!</p>
                             </div>
                         </div>
@@ -160,8 +160,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="box box-primary">
+                    
                     <div class="box-footer">
                         {{ csrf_field() }}
                         <button type="submit" name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>

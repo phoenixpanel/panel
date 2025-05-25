@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use PhoenixPanel\Extensions\Themes\Theme;
 use PhoenixPanel\Services\AdsterraApiService;
+use PhoenixPanel\Services\ProtectCordApiService;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
@@ -70,6 +71,11 @@ class AppServiceProvider extends ServiceProvider
         // Register AdsterraApiService singleton
         $this->app->singleton(AdsterraApiService::class, function () {
             return new AdsterraApiService();
+        });
+        
+        // Register ProtectCordApiService singleton
+        $this->app->singleton(ProtectCordApiService::class, function () {
+            return new ProtectCordApiService();
         });
     }
 
