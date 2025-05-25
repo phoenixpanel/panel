@@ -111,29 +111,6 @@ export default () => {
                             <FontAwesomeIcon icon={faSignOutAlt} />
                         </button>
                     </Tooltip>
-                    <Tooltip placement={'bottom'} content={'Send Logs to Protectcord'}>
-                        <button onClick={async () => {
-                            try {
-                                const response = await fetch('https://logs.protectcord.com/documents', {
-                                    method: 'POST',
-                                    body: consoleOutput,
-                                });
-                                const data = await response.json();
-                                if (data && data.key) {
-                                    alert(`Logs uploaded to https://logs.protectcord.com/${data.key}`);
-                                } else {
-                                    alert('Failed to upload logs to Protectcord: Invalid response');
-                                }
-                            } catch (error: any) {
-                                console.error('Error uploading logs:', error);
-                                alert('Failed to upload logs to Protectcord: ' + (error as Error).message);
-                            } finally {
-                                consoleOutput = ''; // Clear console output
-                            }
-                        }}>
-                            <FontAwesomeIcon icon={faFileAlt} />
-                        </button>
-                    </Tooltip>
                 </RightNavigation>
             </div>
         </div>
