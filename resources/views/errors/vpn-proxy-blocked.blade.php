@@ -51,7 +51,7 @@
             .error-icon {
                 width: 80px;
                 height: 80px;
-                background: #f97316;
+                background: #374151;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
