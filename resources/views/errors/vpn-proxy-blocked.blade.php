@@ -211,6 +211,26 @@
                 color: #d1d5db;
             }
             
+            .protectcord-footer {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #4b5563;
+                text-align: center;
+                font-size: 12px;
+                color: #9ca3af;
+            }
+            
+            .protectcord-footer a {
+                color: #f97316;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            
+            .protectcord-footer a:hover {
+                color: #ea580c;
+                text-decoration: none;
+            }
+            
             @media (max-width: 768px) {
                 .error-container {
                     padding: 30px 20px;
@@ -283,6 +303,11 @@
                 @if(!empty($ipAddress))
                     <strong>{{ __('errors.vpn_proxy_blocked.technical_details.ip_address') }}:</strong> {{ $ipAddress }}
                 @endif
+            </div>
+            
+            <!-- ProtectCord Footer -->
+            <div class="protectcord-footer">
+                Powered by <a href="https://protectcord.com/discord" target="_blank" rel="noopener noreferrer">ProtectCord</a>
             </div>
         </div>
     </body>
