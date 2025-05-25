@@ -331,23 +331,25 @@ setup_database() {
     
     # Create SQL commands
     mysql -u root << EOF
-CREATE USER 'pterodactyl'@'127.0.0.1' IDENTIFIED BY '$DB_PASSWORD';
+DROP USER IF EXISTS 'phoenixpanel'@'127.0.0.1';
+DROP DATABASE IF EXISTS panel;
+CREATE USER 'phoenixpanel'@'127.0.0.1' IDENTIFIED BY '$DB_PASSWORD';
 CREATE DATABASE panel;
-GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyl'@'127.0.0.1' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON panel.* TO 'phoenixpanel'@'127.0.0.1' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EOF
     
     if [[ $? -eq 0 ]]; then
         log_success "Database and user created successfully"
         log_info "Database: panel"
-        log_info "Username: pterodactyl"
+        log_info "Username: phoenixpanel"
         log_info "Password: $DB_PASSWORD"
         log_warning "Please save these database credentials securely!"
         
         # Update .env file with database credentials
         cd /var/www/phoenixpanel
         sed -i "s/DB_DATABASE=.*/DB_DATABASE=panel/" .env
-        sed -i "s/DB_USERNAME=.*/DB_USERNAME=pterodactyl/" .env
+        sed -i "s/DB_USERNAME=.*/DB_USERNAME=phoenixpanel/" .env
         sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$DB_PASSWORD/" .env
         sed -i "s/DB_HOST=.*/DB_HOST=127.0.0.1/" .env
         
@@ -355,7 +357,7 @@ EOF
         
         # Configure Phoenix Panel database environment
         log_info "Configuring Phoenix Panel database environment..."
-        php artisan p:environment:database --host=127.0.0.1 --port=3306 --database=panel --username=pterodactyl --password="$DB_PASSWORD"
+        php artisan p:environment:database --host=127.0.0.1 --port=3306 --database=panel --username=phoenixpanel --password="$DB_PASSWORD"
         
         # Run database migrations with seeding
         log_info "Running database migrations and seeding..."
@@ -799,7 +801,7 @@ show_post_install_info() {
     echo
     echo "Database Information:"
     echo "  • Database: panel"
-    echo "  • Username: pterodactyl"
+    echo "  • Username: phoenixpanel"
     echo "  • Password: $DB_PASSWORD"
     echo
     echo "Admin Account Information:"
