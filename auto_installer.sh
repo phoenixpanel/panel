@@ -382,9 +382,11 @@ configure_phoenix_panel() {
     
     # Temporarily disable exit on error for interactive commands
     set +e
-    # Ensure interactive mode by redirecting stdin properly
-    php artisan p:environment:setup < /dev/tty
+    # Run the command with proper terminal handling
+    exec 3<&0 4>&1 5>&2
+    php artisan p:environment:setup 0<&3 1>&4 2>&5
     ENV_SETUP_EXIT_CODE=$?
+    exec 3<&- 4>&- 5>&-
     set -e
     
     if [[ $ENV_SETUP_EXIT_CODE -ne 0 ]]; then
@@ -403,9 +405,11 @@ configure_phoenix_panel() {
             
             # Temporarily disable exit on error for interactive commands
             set +e
-            # Ensure interactive mode by redirecting stdin properly
-            php artisan p:environment:mail < /dev/tty
+            # Run the command with proper terminal handling
+            exec 3<&0 4>&1 5>&2
+            php artisan p:environment:mail 0<&3 1>&4 2>&5
             MAIL_SETUP_EXIT_CODE=$?
+            exec 3<&- 4>&- 5>&-
             set -e
             
             if [[ $MAIL_SETUP_EXIT_CODE -eq 0 ]]; then
