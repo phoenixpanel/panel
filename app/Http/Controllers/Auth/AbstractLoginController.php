@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Log;
 use PhoenixPanel\Events\Auth\DirectLogin;
 use PhoenixPanel\Exceptions\DisplayException;
 use PhoenixPanel\Http\Controllers\Controller;
@@ -54,33 +53,16 @@ abstract class AbstractLoginController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request, Authenticatable $user = null, string $message = null)
     {
-        // DEBUG: Log failed login response
-        Log::warning('AbstractLoginController: sendFailedLoginResponse() called', [
-            'ip' => $request->ip(),
-            'route' => $request->route()->getName(),
-            'user_id' => $user?->id,
-            'custom_message' => $message,
-            'is_checkpoint' => $request->route()->named('auth.login-checkpoint')
-        ]);
-
         $this->incrementLoginAttempts($request);
         $this->fireFailedLoginEvent($user, [
             $this->getField($request->input('user')) => $request->input('user'),
         ]);
 
         if ($request->route()->named('auth.login-checkpoint')) {
-            $errorMessage = $message ?? trans('auth.two_factor.checkpoint_failed');
-            Log::warning('AbstractLoginController: Throwing checkpoint DisplayException', [
-                'message' => $errorMessage
-            ]);
-            throw new DisplayException($errorMessage);
+            throw new DisplayException($message ?? trans('auth.two_factor.checkpoint_failed'));
         }
 
-        $errorMessage = trans('auth.failed');
-        Log::warning('AbstractLoginController: Throwing auth.failed DisplayException', [
-            'message' => $errorMessage
-        ]);
-        throw new DisplayException($errorMessage);
+        throw new DisplayException(trans('auth.failed'));
     }
 
     /**
