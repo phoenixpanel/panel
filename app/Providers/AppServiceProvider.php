@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use PhoenixPanel\Extensions\Themes\Theme;
+use PhoenixPanel\Services\AdsterraApiService;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
@@ -64,6 +65,11 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('extensions.themes', function () {
             return new Theme();
+        });
+        
+        // Register AdsterraApiService singleton
+        $this->app->singleton(AdsterraApiService::class, function () {
+            return new AdsterraApiService();
         });
     }
 

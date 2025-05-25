@@ -69,6 +69,7 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('/mail', [Admin\Settings\MailController::class, 'index'])->name('admin.settings.mail');
     Route::get('/advanced', [Admin\Settings\AdvancedController::class, 'index'])->name('admin.settings.advanced');
     Route::get('/adsmanager', [Admin\Settings\AdManagerController::class, 'index'])->name('admin.settings.adsmanager');
+    Route::get('/adsmanager/metrics', [Admin\Settings\AdManagerController::class, 'getMetrics'])->name('admin.settings.adsmanager.metrics');
 
     Route::post('/mail/test', [Admin\Settings\MailController::class, 'test'])->name('admin.settings.mail.test');
 
