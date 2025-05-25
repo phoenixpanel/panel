@@ -195,7 +195,7 @@ install_rhel_packages() {
     # Install PHP 8.3 and extensions
     $PACKAGE_MANAGER -y install php php-common php-cli php-gd php-mysqlnd \
                                 php-mbstring php-bcmath php-xml php-fpm \
-                                php-curl php-zip
+                                php-curl php-zip php-posix
     
     # Install other packages
     $PACKAGE_MANAGER -y install MariaDB-server nginx redis tar unzip git curl
@@ -218,13 +218,65 @@ install_composer() {
         export PATH="/usr/local/bin:$PATH"
     fi
     
-    # Verify installation by checking the file exists and is executable
+    # Add diagnostic logging to understand the verification failure
+    log_info "Verifying Composer installation..."
+    
+    # Check if file exists
+    if [[ -f /usr/local/bin/composer ]]; then
+        log_info "✓ Composer file exists at /usr/local/bin/composer"
+    else
+        log_error "✗ Composer file does not exist at /usr/local/bin/composer"
+        exit 1
+    fi
+    
+    # Check file permissions
+    COMPOSER_PERMS=$(ls -la /usr/local/bin/composer)
+    log_info "Composer file permissions: $COMPOSER_PERMS"
+    
+    # Check if file is executable
     if [[ -x /usr/local/bin/composer ]]; then
+        log_info "✓ Composer file is executable"
+    else
+        log_error "✗ Composer file is not executable"
+        log_info "Attempting to fix permissions..."
+        chmod +x /usr/local/bin/composer
+        if [[ -x /usr/local/bin/composer ]]; then
+            log_info "✓ Permissions fixed"
+        else
+            log_error "✗ Could not fix permissions"
+        fi
+    fi
+    
+    # Check SELinux context (if SELinux is enabled)
+    if command -v getenforce >/dev/null 2>&1; then
+        SELINUX_STATUS=$(getenforce 2>/dev/null || echo "Unknown")
+        log_info "SELinux status: $SELINUX_STATUS"
+        if [[ "$SELINUX_STATUS" == "Enforcing" ]]; then
+            log_info "SELinux is enforcing - checking context..."
+            SELINUX_CONTEXT=$(ls -Z /usr/local/bin/composer 2>/dev/null || echo "Could not get context")
+            log_info "SELinux context: $SELINUX_CONTEXT"
+        fi
+    fi
+    
+    # Test execution
+    log_info "Testing Composer execution..."
+    if /usr/local/bin/composer --version >/dev/null 2>&1; then
         log_success "Composer installed successfully"
         /usr/local/bin/composer --version
     else
-        log_error "Composer installation failed"
-        exit 1
+        log_error "Composer execution failed"
+        log_info "Attempting to run with explicit PHP..."
+        if php /usr/local/bin/composer --version >/dev/null 2>&1; then
+            log_warning "Composer works with explicit PHP but not directly"
+            log_info "Creating wrapper script..."
+            echo '#!/bin/bash' > /usr/local/bin/composer-wrapper
+            echo 'php /usr/local/bin/composer "$@"' >> /usr/local/bin/composer-wrapper
+            chmod +x /usr/local/bin/composer-wrapper
+            log_success "Composer installed with wrapper"
+        else
+            log_error "Composer installation failed completely"
+            exit 1
+        fi
     fi
 }
 
