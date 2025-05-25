@@ -99,7 +99,7 @@
                             <label class="control-label">ProtectCord API Key</label>
                             <div>
                                 <input type="text" class="form-control protectcord-api-key" name="phoenixpanel:protectcord:api_key" value="{{ old('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')) }}">
-                                <p class="text-muted small">Need a ProtectCord API Key? <a href="https://discord.gg/ZPtaJzjpmT" target="_blank" rel="noopener noreferrer">Get one here</a> then run <span class="ant-typography" id="license-command">/licenses create</span> <button class="ant-btn ant-btn-sm" onclick="copyToClipboard()">Copy</button> to get a license key!</p>
+                                <p class="text-muted small">Need a ProtectCord API Key? <a href="https://discord.gg/ZPtaJzjpmT" target="_blank" rel="noopener noreferrer">Join here</a> then run <span class="ant-typography" id="license-command" style="border-radius: 3px; background-color: #871f0e; padding: 0px 2px 0px 2px">/licenses create</span> to get a license key!</p>
                             </div>
                         </div>
                         
@@ -174,18 +174,6 @@
 
 @section('footer-scripts')
     <script>
-    </script>
-    @parent
-    <script>
-        function copyToClipboard() {
-            const text = document.getElementById('license-command').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Command copied to clipboard: ' + text);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
-        }
-</script>
         $(document).ready(function() {
             // Function to show/hide input fields based on selected radio button
             function toggleInputFields() {
@@ -251,5 +239,3 @@
             });
         });
     </script>
-
-            
