@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use PhoenixPanel\Services\ProtectCordApiService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -59,32 +60,49 @@ class BlockVpnProxy
         }
 
         try {
-            // Check if the IP is a VPN or Proxy
-            $isVpnOrProxy = $this->protectCordService->isVpnOrProxy($ipAddress);
+            // Get comprehensive threat analysis
+            $threatAnalysis = $this->protectCordService->getThreatAnalysis($ipAddress);
 
-            if ($isVpnOrProxy) {
-                // Log the blocked attempt
+            if ($threatAnalysis['is_threat']) {
+                // Generate a unique request ID for tracking
+                $requestId = Str::uuid()->toString();
+
+                // Log the blocked attempt with detailed information
                 Log::warning('BlockVpnProxy: Blocked VPN/Proxy access attempt', [
+                    'request_id' => $requestId,
                     'ip' => $ipAddress,
                     'user_agent' => $request->userAgent(),
                     'url' => $request->fullUrl(),
-                    'referer' => $request->header('referer')
+                    'referer' => $request->header('referer'),
+                    'threat_types' => $threatAnalysis['threat_types'],
+                    'confidence' => $threatAnalysis['confidence']
                 ]);
 
-                // Return 403 Forbidden response
-                throw new HttpException(
-                    Response::HTTP_FORBIDDEN,
-                    'Access denied. VPN and proxy connections are not allowed.'
-                );
+                try {
+                    // Return custom error page with threat information
+                    return response()->view('errors.vpn-proxy-blocked', [
+                        'ipAddress' => $ipAddress,
+                        'threatTypes' => $threatAnalysis['threat_types'],
+                        'requestId' => $requestId,
+                        'timestamp' => now(),
+                        'userAgent' => $request->userAgent(),
+                    ], Response::HTTP_FORBIDDEN);
+                } catch (\Exception $viewException) {
+                    // If custom view fails, fall back to standard 403
+                    Log::error('BlockVpnProxy: Error rendering custom error page, falling back to standard 403', [
+                        'request_id' => $requestId,
+                        'view_error' => $viewException->getMessage()
+                    ]);
+                    
+                    return response()->view('errors.403', [], Response::HTTP_FORBIDDEN);
+                }
             }
 
             Log::debug('BlockVpnProxy: IP check passed', [
-                'ip' => $ipAddress
+                'ip' => $ipAddress,
+                'threat_analysis' => $threatAnalysis
             ]);
 
-        } catch (HttpException $e) {
-            // Re-throw HTTP exceptions (like our 403)
-            throw $e;
         } catch (\Exception $e) {
             // Log the error but fail open (allow access) if service is unavailable
             Log::error('BlockVpnProxy: Error checking IP, allowing request', [

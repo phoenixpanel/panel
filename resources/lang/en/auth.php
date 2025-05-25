@@ -25,4 +25,11 @@ return [
     'password_requirements' => 'Password must be at least 8 characters in length and should be unique to this site.',
     '2fa_must_be_enabled' => 'The administrator has required that 2-Factor Authentication be enabled for your account in order to use the Panel.',
     'vpn_proxy_blocked' => 'Access denied. For security reasons, login and registration are not allowed from VPN or proxy connections. Please disable your VPN/proxy and try again.',
+    
+    // Additional VPN/Proxy blocking messages for different contexts
+    'vpn_proxy_general_blocked' => 'Access to this application is restricted from VPN, proxy, or anonymization services.',
+    'vpn_detected' => 'VPN connection detected. Please disable your VPN to continue.',
+    'proxy_detected' => 'Proxy connection detected. Please disable your proxy to continue.',
+    'tor_detected' => 'Tor network access detected. Please use a standard internet connection.',
+    'datacenter_detected' => 'Datacenter IP detected. Please use a residential internet connection.',
 ];

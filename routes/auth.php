@@ -41,7 +41,7 @@ Route::middleware(['throttle:authentication'])->group(function () {
 // Password reset routes. This endpoint is hit after going through
 // the forgot password routes to acquire a token (or after an account
 // is created).
-Route::post('/password/reset', Auth\ResetPasswordController::class)->name('auth.reset-password');
+Route::post('/password/reset', Auth\ResetPasswordController::class)->name('auth.reset-password')->middleware('check.vpn.proxy.auth');
 
 // Remove the guest middleware and apply the authenticated middleware to this endpoint,
 // so it cannot be used unless you're already logged in.
