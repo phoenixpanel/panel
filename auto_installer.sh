@@ -210,10 +210,18 @@ install_composer() {
     # Download and install Composer
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     
-    # Verify installation
-    if command -v composer >/dev/null 2>&1; then
+    # Make sure composer is executable
+    chmod +x /usr/local/bin/composer
+    
+    # Update PATH to include /usr/local/bin if not already there
+    if [[ ":$PATH:" != *":/usr/local/bin:"* ]]; then
+        export PATH="/usr/local/bin:$PATH"
+    fi
+    
+    # Verify installation by checking the file exists and is executable
+    if [[ -x /usr/local/bin/composer ]]; then
         log_success "Composer installed successfully"
-        composer --version
+        /usr/local/bin/composer --version
     else
         log_error "Composer installation failed"
         exit 1
