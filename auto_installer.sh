@@ -382,7 +382,8 @@ configure_phoenix_panel() {
     
     # Temporarily disable exit on error for interactive commands
     set +e
-    php artisan p:environment:setup
+    # Ensure interactive mode by redirecting stdin properly
+    php artisan p:environment:setup < /dev/tty
     ENV_SETUP_EXIT_CODE=$?
     set -e
     
@@ -402,7 +403,8 @@ configure_phoenix_panel() {
             
             # Temporarily disable exit on error for interactive commands
             set +e
-            php artisan p:environment:mail
+            # Ensure interactive mode by redirecting stdin properly
+            php artisan p:environment:mail < /dev/tty
             MAIL_SETUP_EXIT_CODE=$?
             set -e
             
