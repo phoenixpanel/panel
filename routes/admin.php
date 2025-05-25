@@ -69,11 +69,16 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('/mail', [Admin\Settings\MailController::class, 'index'])->name('admin.settings.mail');
     Route::get('/advanced', [Admin\Settings\AdvancedController::class, 'index'])->name('admin.settings.advanced');
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::get('/adsmanager', [Admin\Settings\AdManagerController::class, 'index'])->name('admin.settings.adsmanager');
     Route::get('/adsmanager/metrics', [Admin\Settings\AdManagerController::class, 'getMetrics'])->name('admin.settings.adsmanager.metrics');
 =======
     Route::get('/ads', [Admin\Settings\AdManagerController::class, 'index'])->name('admin.settings.ads');
 >>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
+=======
+    Route::get('/adsmanager', [Admin\Settings\AdManagerController::class, 'index'])->name('admin.settings.adsmanager');
+    Route::get('/adsmanager/metrics', [Admin\Settings\AdManagerController::class, 'getMetrics'])->name('admin.settings.adsmanager.metrics');
+>>>>>>> d68d74ff8daa290fdaf5194b4622adbcaf129e8e
 
     Route::post('/mail/test', [Admin\Settings\MailController::class, 'test'])->name('admin.settings.mail.test');
 
@@ -81,10 +86,14 @@ Route::group(['prefix' => 'settings'], function () {
     Route::patch('/mail', [Admin\Settings\MailController::class, 'update']);
     Route::patch('/advanced', [Admin\Settings\AdvancedController::class, 'update']);
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::patch('/adsmanager', [Admin\Settings\AdManagerController::class, 'update']);
 =======
     Route::patch('/ads', [Admin\Settings\AdManagerController::class, 'update']);
 >>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
+=======
+    Route::patch('/adsmanager', [Admin\Settings\AdManagerController::class, 'update']);
+>>>>>>> d68d74ff8daa290fdaf5194b4622adbcaf129e8e
 });
 
 /*
