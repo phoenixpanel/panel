@@ -64,17 +64,47 @@ class AdManagerController extends Controller
         $apiKey = $this->settings->get('phoenixpanel:ads:api_key', config('phoenixpanel.ads.api_key'));
         
         if (empty($apiKey)) {
-            return response()->json(['error' => 'API key not configured'], 400);
+            \Log::warning('Adsterra metrics requested without API key configured');
+            return response()->json([
+                'error' => 'API key not configured',
+                'debug_info' => [
+                    'timestamp' => now()->toIso8601String(),
+                    'has_api_key' => false
+                ]
+            ], 400);
         }
         
         $startDate = $request->input('start_date', now()->subDays(7)->format('Y-m-d'));
         $endDate = $request->input('end_date', now()->format('Y-m-d'));
         
+        \Log::info('Fetching Adsterra metrics', [
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+            'api_key_length' => strlen($apiKey) // Log the length but not the actual key
+        ]);
+        
         $metrics = $this->adsterraApiService->getMetrics($apiKey, $startDate, $endDate);
         
         if ($metrics === false) {
-            return response()->json(['error' => 'Failed to fetch metrics'], 500);
+            \Log::error('Failed to fetch Adsterra metrics', [
+                'start_date' => $startDate,
+                'end_date' => $endDate
+            ]);
+            
+            return response()->json([
+                'error' => 'Failed to fetch metrics',
+                'debug_info' => [
+                    'timestamp' => now()->toIso8601String(),
+                    'start_date' => $startDate,
+                    'end_date' => $endDate,
+                    'has_api_key' => true
+                ]
+            ], 500);
         }
+        
+        \Log::info('Successfully fetched Adsterra metrics', [
+            'items_count' => isset($metrics['items']) ? count($metrics['items']) : 0
+        ]);
         
         return response()->json($metrics);
     }
