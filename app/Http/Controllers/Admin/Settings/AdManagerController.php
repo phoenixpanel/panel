@@ -86,7 +86,7 @@ class AdManagerController extends Controller
     public function update(AdManagerSettingsFormRequest $request): RedirectResponse
     {
         foreach ($request->normalize() as $key => $value) {
-            $this->settings->set('settings::' . $key, $value);
+            $this->settings->set($key, $value);
         }
 
         $this->kernel->call('queue:restart');
