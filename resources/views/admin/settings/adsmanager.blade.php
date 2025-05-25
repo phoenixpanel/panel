@@ -304,13 +304,65 @@
                     xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
                 },
                 success: function(data) {
-                    logDebug("Metrics data received", data);
+                    // Detailed console logging of the entire metrics response
+                    console.log('---- BEGIN METRICS DATA DUMP ----');
+                    console.log('FULL METRICS RESPONSE:', data);
+                    
+                    if (data && data.items) {
+                        console.log('METRICS ITEMS COUNT:', data.items.length);
+                        
+                        // Log each day's metrics in detail
+                        data.items.forEach((item, index) => {
+                            console.log(`DAY ${index + 1} [${item.date}]:`, {
+                                impressions: item.impression,
+                                clicks: item.clicks,
+                                ctr: item.ctr,
+                                revenue: item.revenue,
+                                raw_item: item // Log the full item for reference
+                            });
+                        });
+                        
+                        // Calculate and log totals
+                        const totalImpressions = data.items.reduce((sum, item) => sum + parseInt(item.impression || 0), 0);
+                        const totalClicks = data.items.reduce((sum, item) => sum + parseInt(item.clicks || 0), 0);
+                        const totalRevenue = data.items.reduce((sum, item) => sum + parseFloat(item.revenue || 0), 0);
+                        const avgCtr = totalImpressions > 0 ? (totalClicks / totalImpressions) * 100 : 0;
+                        
+                        console.log('CALCULATED TOTALS:', {
+                            impressions: totalImpressions,
+                            clicks: totalClicks,
+                            revenue: totalRevenue,
+                            avgCtr: avgCtr
+                        });
+                    } else {
+                        console.log('NO METRICS DATA OR ITEMS AVAILABLE');
+                    }
+                    console.log('---- END METRICS DATA DUMP ----');
+                    
                     updateMetricsDisplay(data);
                     $('#metrics-loading').hide();
                     $('#metrics-content').show();
                 },
                 error: function(xhr, status, error) {
-                    logDebug("Metrics fetch error", {status, error, responseText: xhr.responseText});
+                    console.log('---- BEGIN ERROR DATA DUMP ----');
+                    console.log('METRICS API ERROR:', {
+                        status: status,
+                        error: error,
+                        xhr: xhr,
+                        responseText: xhr.responseText,
+                        statusText: xhr.statusText,
+                        readyState: xhr.readyState
+                    });
+                    
+                    try {
+                        // Try to parse the error response as JSON
+                        const errorResponse = JSON.parse(xhr.responseText);
+                        console.log('PARSED ERROR RESPONSE:', errorResponse);
+                    } catch (e) {
+                        console.log('RESPONSE IS NOT VALID JSON');
+                    }
+                    console.log('---- END ERROR DATA DUMP ----');
+                    
                     $('#metrics-loading').hide();
                     $('#metrics-content').show();
                     $('.info-box-number').text('COULDN\'T RETRIEVE METRICS').addClass('text-danger');
@@ -320,6 +372,9 @@
         
         function updateMetricsDisplay(data) {
             console.log("Updating metrics display with data:", data);
+            
+            // Log raw data structure before processing
+            console.log('METRICS DISPLAY DATA STRUCTURE:', JSON.stringify(data, null, 2));
             
             if (!data || !data.items || data.items.length === 0) {
                 console.log("No metrics data available");
