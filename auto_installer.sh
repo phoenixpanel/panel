@@ -167,8 +167,8 @@ gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 EOF
     
-    # Redis Repository (EPEL provides Redis, but we can use Remi for newer versions)
-    $PACKAGE_MANAGER -y module enable redis:remi
+    # Redis is available from EPEL repository (no need for Remi module)
+    # Note: Redis from EPEL is sufficient for Phoenix Panel requirements
     
     log_success "Repositories configured for $DISTRO"
 }
