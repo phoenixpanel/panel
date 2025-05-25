@@ -154,8 +154,28 @@ setup_rhel_repos() {
     fi
     
     # Enable Remi PHP 8.3
+    log_info "Resetting PHP module..."
     $PACKAGE_MANAGER -y module reset php
+    if [[ $? -eq 0 ]]; then
+        log_success "✓ PHP module reset successful"
+    else
+        log_error "✗ PHP module reset failed"
+    fi
+    
+    log_info "Enabling PHP 8.3 from Remi repository..."
     $PACKAGE_MANAGER -y module enable php:remi-8.3
+    if [[ $? -eq 0 ]]; then
+        log_success "✓ PHP 8.3 module enabled successfully"
+    else
+        log_error "✗ PHP 8.3 module enablement failed"
+        log_info "Available PHP modules:"
+        $PACKAGE_MANAGER module list php 2>/dev/null || log_warning "Could not list PHP modules"
+    fi
+    
+    # Verify the enabled module
+    log_info "Verifying enabled PHP module..."
+    ENABLED_PHP_MODULE=$($PACKAGE_MANAGER module list --enabled | grep php || echo "No PHP module found")
+    log_info "Currently enabled PHP module: $ENABLED_PHP_MODULE"
     
     # MariaDB Repository
     cat > /etc/yum.repos.d/MariaDB.repo << EOF
@@ -192,12 +212,40 @@ install_debian_ubuntu_packages() {
 install_rhel_packages() {
     log_info "Installing packages for $DISTRO..."
     
+    # Add diagnostic logging for PHP module status
+    log_info "Checking PHP module status before installation..."
+    $PACKAGE_MANAGER module list php 2>/dev/null || log_warning "Could not list PHP modules"
+    
     # Install PHP 8.3 and extensions
+    log_info "Installing PHP 8.3 and extensions..."
     $PACKAGE_MANAGER -y install php php-common php-cli php-gd php-mysqlnd \
                                 php-mbstring php-bcmath php-xml php-fpm \
                                 php-curl php-zip php-posix
     
+    # Verify PHP POSIX extension installation
+    log_info "Verifying PHP POSIX extension installation..."
+    if $PACKAGE_MANAGER list installed | grep -q "php-posix"; then
+        log_success "✓ php-posix package is installed"
+    else
+        log_error "✗ php-posix package installation failed"
+        log_info "Available PHP packages:"
+        $PACKAGE_MANAGER search php-posix || log_warning "Could not search for php-posix packages"
+    fi
+    
+    # Check if POSIX extension is loaded in PHP
+    log_info "Checking if POSIX extension is loaded in PHP..."
+    if php -m | grep -q "posix"; then
+        log_success "✓ POSIX extension is loaded in PHP"
+    else
+        log_error "✗ POSIX extension is NOT loaded in PHP"
+        log_info "Currently loaded PHP extensions:"
+        php -m | head -20
+        log_info "PHP configuration files:"
+        php --ini
+    fi
+    
     # Install other packages
+    log_info "Installing other required packages..."
     $PACKAGE_MANAGER -y install MariaDB-server nginx redis tar unzip git curl
     
     log_success "Packages installed for $DISTRO"
