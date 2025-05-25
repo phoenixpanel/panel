@@ -232,11 +232,11 @@ install_nvm_node_yarn() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
     
-    # Install latest LTS Node.js
-    log_info "Installing Node.js LTS..."
-    nvm install --lts
-    nvm use --lts
-    nvm alias default lts/*
+    # Install Node.js 16.10.0
+    log_info "Installing Node.js 16.10.0..."
+    nvm install 16.10.0
+    nvm use 16.10.0
+    nvm alias default 16.10.0
     
     # Install Yarn globally
     log_info "Installing Yarn globally..."
@@ -377,7 +377,17 @@ configure_phoenix_panel() {
     
     # Run Phoenix Panel environment setup
     log_info "Running Phoenix Panel environment setup..."
+    
+    # Temporarily disable exit on error for interactive commands
+    set +e
     php artisan p:environment:setup
+    ENV_SETUP_EXIT_CODE=$?
+    set -e
+    
+    if [[ $ENV_SETUP_EXIT_CODE -ne 0 ]]; then
+        log_error "Phoenix Panel environment setup failed"
+        exit 1
+    fi
     
     # Ask user about SMTP configuration
     echo
@@ -387,8 +397,18 @@ configure_phoenix_panel() {
     case "$smtp_choice" in
         [Yy]|[Yy][Ee][Ss])
             log_info "Configuring SMTP mail settings..."
+            
+            # Temporarily disable exit on error for interactive commands
+            set +e
             php artisan p:environment:mail
-            log_success "SMTP mail configuration completed"
+            MAIL_SETUP_EXIT_CODE=$?
+            set -e
+            
+            if [[ $MAIL_SETUP_EXIT_CODE -eq 0 ]]; then
+                log_success "SMTP mail configuration completed"
+            else
+                log_warning "SMTP mail configuration encountered issues, but continuing..."
+            fi
             ;;
         [Nn]|[Nn][Oo])
             log_info "Skipping SMTP configuration"
