@@ -33,8 +33,17 @@ class CheckVpnProxyAuth
      */
     public function handle(Request $request, Closure $next)
     {
+        // DEBUG: Log middleware execution
+        Log::info('CheckVpnProxyAuth: Middleware executing', [
+            'ip' => $request->ip(),
+            'route' => $request->route()->getName(),
+            'url' => $request->fullUrl(),
+            'method' => $request->method()
+        ]);
+
         // Check if ProtectCord protection is enabled
         if (!config('phoenixpanel.protectcord.enabled', false)) {
+            Log::info('CheckVpnProxyAuth: ProtectCord disabled, allowing request');
             return $next($request);
         }
 
@@ -70,6 +79,12 @@ class CheckVpnProxyAuth
                     'url' => $request->fullUrl(),
                     'referer' => $request->header('referer'),
                     'route' => $request->route()->getName()
+                ]);
+
+                // DEBUG: Log before throwing VPN/proxy exception
+                Log::warning('CheckVpnProxyAuth: About to throw VPN/proxy DisplayException', [
+                    'message' => trans('auth.vpn_proxy_blocked'),
+                    'ip' => $ipAddress
                 ]);
 
                 // Throw DisplayException for user-friendly error handling
