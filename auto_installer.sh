@@ -183,7 +183,7 @@ install_debian_ubuntu_packages() {
                    php8.3-curl php8.3-zip
     
     # Install other packages
-    apt -y install mariadb-server nginx redis-server tar unzip git curl
+    apt -y install --allow-downgrades mariadb-server nginx redis-server tar unzip git curl
     
     log_success "Packages installed for $DISTRO"
 }
