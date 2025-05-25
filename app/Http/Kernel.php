@@ -32,6 +32,7 @@ use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
 use PhoenixPanel\Http\Middleware\Api\Client\SubstituteClientBindings;
 use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
 use PhoenixPanel\Http\Middleware\Api\Application\AuthenticateApplicationUser;
+use PhoenixPanel\Http\Middleware\InjectAdsMiddleware;
 
 use PhoenixPanel\Http\Middleware\CheckRegistrationEnabled;
 use PhoenixPanel\Http\Middleware\VerifyCaptcha;
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
             VerifyCsrfToken::class,
             SubstituteBindings::class,
             LanguageMiddleware::class,
+            InjectAdsMiddleware::class,
         ],
         'api' => [
             EnsureStatefulRequests::class,

@@ -17,6 +17,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+<<<<<<< HEAD
+=======
+    "importsNotUsedAsValues": "preserve",
+>>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
     "paths": {
       "@/*": [
         "./resources/scripts/*"

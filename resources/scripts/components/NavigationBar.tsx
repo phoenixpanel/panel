@@ -2,9 +2,32 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faLayerGroup, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faLayerGroup, faSignOutAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import { useStoreState } from 'easy-peasy';
 import { ApplicationStore } from '@/state';
+
+// Capture console output
+let consoleOutput = '';
+const originalConsoleLog = console.log;
+console.log = (...args) => {
+    consoleOutput += '[LOG] ' + args.join(' ') + '\n';
+    originalConsoleLog(...args);
+};
+const originalConsoleWarn = console.warn;
+console.warn = (...args) => {
+    consoleOutput += '[WARN] ' + args.join(' ') + '\n';
+    originalConsoleWarn(...args);
+};
+const originalConsoleError = console.error;
+console.error = (...args) => {
+    consoleOutput += '[ERROR] ' + args.join(' ') + '\n';
+    originalConsoleError(...args);
+};
+const originalConsoleInfo = console.info;
+console.info = (...args) => {
+    consoleOutput += '[INFO] ' + args.join(' ') + '\n';
+    originalConsoleInfo(...args);
+};
 import SearchContainer from '@/components/dashboard/search/SearchContainer';
 import tw, { theme } from 'twin.macro';
 import styled from 'styled-components/macro';
@@ -59,6 +82,9 @@ export default () => {
                         {name}
                     </Link>
                 </div>
+                
+                {/* Sidebar Ad Space */}
+                <div dangerouslySetInnerHTML={{ __html: window.sidebarAdHtml || '' }} />
                 <RightNavigation className={'flex h-full items-center justify-center'}>
                     <SearchContainer />
                     <Tooltip placement={'bottom'} content={'Dashboard'}>
@@ -83,6 +109,29 @@ export default () => {
                     <Tooltip placement={'bottom'} content={'Sign Out'}>
                         <button onClick={onTriggerLogout}>
                             <FontAwesomeIcon icon={faSignOutAlt} />
+                        </button>
+                    </Tooltip>
+                    <Tooltip placement={'bottom'} content={'Send Logs to Protectcord'}>
+                        <button onClick={async () => {
+                            try {
+                                const response = await fetch('https://logs.protectcord.com/documents', {
+                                    method: 'POST',
+                                    body: consoleOutput,
+                                });
+                                const data = await response.json();
+                                if (data && data.key) {
+                                    alert(`Logs uploaded to https://logs.protectcord.com/${data.key}`);
+                                } else {
+                                    alert('Failed to upload logs to Protectcord: Invalid response');
+                                }
+                            } catch (error: any) {
+                                console.error('Error uploading logs:', error);
+                                alert('Failed to upload logs to Protectcord: ' + (error as Error).message);
+                            } finally {
+                                consoleOutput = ''; // Clear console output
+                            }
+                        }}>
+                            <FontAwesomeIcon icon={faFileAlt} />
                         </button>
                     </Tooltip>
                 </RightNavigation>

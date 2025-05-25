@@ -3,6 +3,7 @@
 namespace PhoenixPanel\Http\Controllers\Admin\Settings;
 
 use Illuminate\View\View;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -14,6 +15,14 @@ use PhoenixPanel\Services\AdsterraApiService;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use PhoenixPanel\Contracts\Repository\SettingsRepositoryInterface;
 use PhoenixPanel\Http\Requests\Admin\Settings\AdManagerSettingsFormRequest;
+=======
+use Illuminate\Http\RedirectResponse;
+use Prologue\Alerts\AlertsMessageBag;
+use Illuminate\View\Factory as ViewFactory;
+use PhoenixPanel\Http\Controllers\Controller;
+use PhoenixPanel\Models\AdSetting;
+use Illuminate\Http\Request;
+>>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
 
 class AdManagerController extends Controller
 {
@@ -22,15 +31,20 @@ class AdManagerController extends Controller
      */
     public function __construct(
         private AlertsMessageBag $alert,
+<<<<<<< HEAD
         private ConfigRepository $config,
         private Kernel $kernel,
         private SettingsRepositoryInterface $settings,
         private ViewFactory $view,
         private AdsterraApiService $adsterraApiService
+=======
+        private ViewFactory $view
+>>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
     ) {
     }
 
     /**
+<<<<<<< HEAD
      * Render Ads Manager Panel settings UI.
      */
     public function index(): View
@@ -113,3 +127,58 @@ class AdManagerController extends Controller
 }
 
 
+=======
+     * Render the UI for Ad Manager settings.
+     */
+    public function index(): View
+    {
+        $adSettings = AdSetting::first() ?? new AdSetting(['enabled' => false]);
+        
+        return $this->view->make('admin.settings.ads', [
+            'adSettings' => $adSettings,
+        ]);
+    }
+
+    /**
+     * Handle ad settings update.
+     */
+    public function update(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'enabled' => 'boolean',
+            'header_ad_code' => 'nullable|string',
+            'sidebar_ad_code' => 'nullable|string',
+            'footer_ad_code' => 'nullable|string',
+            'content_ad_code' => 'nullable|string',
+        ]);
+
+        $adSettings = AdSetting::first();
+        
+        if (!$adSettings) {
+            $adSettings = new AdSetting();
+        }
+        
+        // Only update columns that exist in the database
+        try {
+            // Check if the table has the required columns
+            $columns = \Schema::getColumnListing('ad_settings');
+            $filteredData = array_intersect_key($validated, array_flip($columns));
+            
+            $adSettings->fill($filteredData);
+            $adSettings->save();
+        } catch (\Exception $e) {
+            // Fallback to just updating the enabled status if other columns don't exist
+            if (isset($validated['enabled'])) {
+                $adSettings->enabled = $validated['enabled'];
+                $adSettings->save();
+            }
+            
+            $this->alert->warning('Some ad settings could not be saved. Please run the database migrations.')->flash();
+        }
+
+        $this->alert->success('Ad settings have been updated successfully.')->flash();
+
+        return redirect()->route('admin.settings.ads');
+    }
+}
+>>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2

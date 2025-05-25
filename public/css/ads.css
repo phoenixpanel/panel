@@ -1,0 +1,40 @@
+/* Ad Container Styles */
+.ad-container {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Header Ad Container */
+.header-ad-container {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Sidebar Ad Container */
+.sidebar-ad-container {
+    margin-bottom: 20px;
+}
+
+/* Content Ad Container */
+.content-ad-container {
+    margin: 20px 0;
+}
+
+/* Footer Ad Container */
+.footer-ad-container {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .ad-container {
+        padding: 5px;
+    }
+}

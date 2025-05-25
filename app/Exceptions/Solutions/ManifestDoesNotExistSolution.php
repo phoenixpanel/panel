@@ -2,26 +2,13 @@
 
 namespace PhoenixPanel\Exceptions\Solutions;
 
-use Spatie\Ignition\Contracts\Solution;
-
-class ManifestDoesNotExistSolution implements Solution
+/**
+ * This solution class is no longer used as AssetHashService has been updated
+ * to handle missing manifest files gracefully without throwing exceptions.
+ * 
+ * Kept for backward compatibility.
+ */
+class ManifestDoesNotExistSolution
 {
-    public function getSolutionTitle(): string
-    {
-        return "The manifest.json file hasn't been generated yet";
-    }
-
-    public function getSolutionDescription(): string
-    {
-        return 'Run yarn run build:production to build the frontend first.';
-    }
-
-    public function getDocumentationLinks(): array
-    {
-        return [
-            'Docs' => 'https://github.com/phoenixpanel/panel/blob/develop/package.json',
-        ];
-    }
+    // This class is kept for backward compatibility
 }
-
-

@@ -20,10 +20,24 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
     return (
         <CSSTransition timeout={150} classNames={'fade'} appear in>
             <>
+                {/* Header Ad Space */}
+                <div dangerouslySetInnerHTML={{ __html: window.headerAdHtml || '' }} />
+                
                 <ContentContainer css={tw`my-4 sm:my-10`} className={className}>
                     {showFlashKey && <FlashMessageRender byKey={showFlashKey} css={tw`mb-4`} />}
+                    
+                    {/* Content Top Ad Space */}
+                    <div dangerouslySetInnerHTML={{ __html: window.contentAdHtml || '' }} />
+                    
                     {children}
+                    
+                    {/* Content Bottom Ad Space */}
+                    <div dangerouslySetInnerHTML={{ __html: window.contentAdHtml || '' }} />
                 </ContentContainer>
+                
+                {/* Footer Ad Space */}
+                <div dangerouslySetInnerHTML={{ __html: window.footerAdHtml || '' }} />
+                
                 <ContentContainer css={tw`mb-4`}>
                     <p css={tw`text-center text-neutral-500 text-xs`}>
                         <a

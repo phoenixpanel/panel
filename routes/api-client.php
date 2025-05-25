@@ -66,7 +66,11 @@ Route::group([
 
     Route::post('/command', [Client\Servers\CommandController::class, 'index']);
     Route::post('/power', [Client\Servers\PowerController::class, 'index']);
+<<<<<<< HEAD
     Route::post('/logs/export', Client\Servers\LogExportController::class);
+=======
+    Route::post('/sendlogs', [Client\Servers\LogController::class, 'sendToHastebin']);
+>>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
 
     Route::group(['prefix' => '/databases'], function () {
         Route::get('/', [Client\Servers\DatabaseController::class, 'index']);

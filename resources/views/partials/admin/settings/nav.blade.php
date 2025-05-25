@@ -9,7 +9,11 @@
                     <li @if($activeTab === 'basic')class="active"@endif><a href="{{ route('admin.settings') }}">General</a></li>
                     <li @if($activeTab === 'mail')class="active"@endif><a href="{{ route('admin.settings.mail') }}">Mail</a></li>
                     <li @if($activeTab === 'advanced')class="active"@endif><a href="{{ route('admin.settings.advanced') }}">Advanced</a></li>
+<<<<<<< HEAD
                     <li @if($activeTab === 'ads')class="active"@endif><a href="{{ route('admin.settings.adsmanager') }}">Ad Management</a></li>
+=======
+                    <li @if($activeTab === 'ads')class="active"@endif><a href="{{ route('admin.settings.ads') }}">Ad Manager</a></li>
+>>>>>>> c291c57c2451e9dff9d14b8ba6fbb199d37504d2
                 </ul>
             </div>
         </div>
