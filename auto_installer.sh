@@ -178,7 +178,7 @@ install_debian_ubuntu_packages() {
     log_info "Installing packages for $DISTRO..."
     
     # Install PHP 8.3 and extensions
-    apt -y install php8.3 php8.3-common php8.3-cli php8.3-gd php8.3-mysql \
+    apt -y install --allow-downgrades php8.3 php8.3-common php8.3-cli php8.3-gd php8.3-mysql \
                    php8.3-mbstring php8.3-bcmath php8.3-xml php8.3-fpm \
                    php8.3-curl php8.3-zip
     
