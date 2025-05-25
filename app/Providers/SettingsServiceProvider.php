@@ -29,6 +29,8 @@ class SettingsServiceProvider extends ServiceProvider
         'phoenixpanel:captcha:google:secret_key',
         'phoenixpanel:guzzle:timeout',
         'phoenixpanel:guzzle:connect_timeout',
+        'phoenixpanel:phoenixpanel:api_key',
+        'phoenixpanel:phoenixpanel:enabled',
         'phoenixpanel:console:count',
         'phoenixpanel:console:frequency',
         'phoenixpanel:auth:2fa_required',

@@ -84,9 +84,9 @@
                         <h3 class="box-title">ProtectCord Configuration</h3>
                     </div>
                     <div class="box-body">
-                        <div class="form-group">
+                        <div class="form-group protectcord">
+                            <p class="text-muted small"><a href="https://protectcord.com" target="_blank" rel="noopener noreferrer">ProtectCord</a> is a system that can be integrated into Login and Registration to secure your systems from VPNs and Proxies, with our new system you can easily block potentially malicious users from accessing your network. We forever offer 10RPM for free but feel free to add some more credits if you handle more customers. You can find ProtectCord's dashboard <a href="https://dash.protectcord.com" target="_blank" rel="noopener noreferrer">here!</a></p>
                             <label class="control-label">Enable ProtectCord</label>
-                            <p class="text-muted small"><a href="https://protectcord.com" target="_blank" rel="noopener noreferrer">ProtectCord</a> is a system that can be integrated into Login and Registration to secure your systems from VPNs and Proxies, with our new system you can easily block and potentially malicious users from accessing your network. We forever offer 10RPM for free but feel free to add some more credits if you handle more customers. You can find ProtectCord's dashboard <a href="https://dash.protectcord.com" target="_blank" rel="noopener noreferrer">here!</a></p>
                             <div>
                                 <input type="hidden" name="phoenixpanel:protectcord:enabled" value="0">
                                 <label>
@@ -99,7 +99,7 @@
                             <label class="control-label">ProtectCord API Key</label>
                             <div>
                                 <input type="text" class="form-control protectcord-api-key" name="phoenixpanel:protectcord:api_key" value="{{ old('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')) }}">
-                                <p class="text-muted small">Need a ProtectCord API Key? <a href="https://dash.protectcord.com" target="_blank" rel="noopener noreferrer">Get one here!</a></p>
+                                <p class="text-muted small">Need a ProtectCord API Key? <a href="https://discord.gg/ZPtaJzjpmT" target="_blank" rel="noopener noreferrer">Get one here</a> then run <span class="ant-typography" id="license-command">/licenses create</span> <button class="ant-btn ant-btn-sm" onclick="copyToClipboard()">Copy</button> to get a license key!</p>
                             </div>
                         </div>
                         
@@ -177,6 +177,15 @@
     </script>
     @parent
     <script>
+        function copyToClipboard() {
+            const text = document.getElementById('license-command').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Command copied to clipboard: ' + text);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+</script>
         $(document).ready(function() {
             // Function to show/hide input fields based on selected radio button
             function toggleInputFields() {

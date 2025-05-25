@@ -26,7 +26,7 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
         $rules['phoenixpanel:client_features:allocations:range_end'] = ['required', 'integer', 'min:1024', 'max:65535', 'gte:phoenixpanel:client_features:allocations:range_start'];
 
         $rules['phoenixpanel:protectcord:enabled'] = ['sometimes', 'integer', 'in:0,1'];
-        $rules['phoenixpanel:protectcord:api_key'] = ['required_if:phoenixpanel:ProtectCord:enabled,1', 'string', 'min:0', 'max:255'];
+        $rules['phoenixpanel:protectcord:api_key'] = ['required_if:phoenixpanel:protectcord:enabled,1', 'string', 'min:0', 'max:255'];
 
 
         return $rules;
