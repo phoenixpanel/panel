@@ -126,7 +126,7 @@
                         <li class="header">MARKETPLACE</li>
                         <li>
                             <a href="https://market.phoenixpanel.io" target="_blank">
-                                <i class="fa fa-store"></i> <span>Get Addons</span>
+                                <i class="fa fa-shopping-cart"></i> <span>Get Addons</span>
                             </a>
                         </li>
                     </ul>
