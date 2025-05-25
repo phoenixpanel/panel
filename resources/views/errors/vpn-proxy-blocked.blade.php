@@ -61,6 +61,12 @@
                 font-size: 36px;
             }
             
+            .error-icon img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+            }
+            
             .error-title {
                 font-size: 28px;
                 font-weight: 500;
@@ -258,7 +264,7 @@
     <body>
         <div class="error-container">
             <div class="error-icon">
-                🛡️
+                <img src="/phoenixassets/protectcord-shield.png" alt="ProtectCord" />
             </div>
             
             <h1 class="error-title">{{ __('errors.vpn_proxy_blocked.title') }}</h1>
