@@ -61,36 +61,6 @@
         </div>
     </div>
 
-    <!-- Ad Preview -->
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Ad Preview</h3>
-                </div>
-                <div class="box-body">
-                    <p>Left Margin Ad (160x600):</p>
-                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
-                        @if(config('phoenixpanel.ads.enabled'))
-                            {!! config('phoenixpanel.ads.code') !!}
-                        @else
-                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
-                        @endif
-                    </div>
-
-                    <p>Right Margin Ad (160x600):</p>
-                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
-                        @if(config('phoenixpanel.ads.enabled'))
-                            {!! config('phoenixpanel.ads.code') !!}
-                        @else
-                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Ad Metrics -->
     @if(!empty(config('phoenixpanel.ads.api_key')))
     <div class="row">
@@ -182,6 +152,37 @@
                         <div class="text-muted">
                             <small id="metrics-last-updated">Last updated: {{ isset($metrics['dbDateTime']) ? $metrics['dbDateTime'] : 'Unknown' }}</small>
                         </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    <!-- Ad Preview -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Ad Preview</h3>
+                </div>
+                <div class="box-body">
+                    <p>Left Margin Ad (160x600):</p>
+                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
+                        @if(config('phoenixpanel.ads.enabled'))
+                            {!! config('phoenixpanel.ads.code') !!}
+                        @else
+                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
+                        @endif
+                    </div>
+
+                    <p>Right Margin Ad (160x600):</p>
+                    <div style="width: 160px; height: 600px; border: 1px solid #ccc; margin: 10px 0;">
+                        @if(config('phoenixpanel.ads.enabled'))
+                            {!! config('phoenixpanel.ads.code') !!}
+                        @else
+                            <div style="text-align: center; padding: 20px;">Ad Disabled</div>
                         @endif
                     </div>
                 </div>
@@ -370,6 +371,5 @@
     });
     </script>
     @endpush
-    @endif
 
 @endsection

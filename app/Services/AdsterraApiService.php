@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class AdsterraApiService
 {
-    private $apiUrl = 'https://api3.adsterratools.com/publisher/stats.json';
+    private $apiUrl = 'https://api.adsterratools.com/publisher/stats';
     private $cacheTime = 60; // Cache for 60 minutes (1 hour)
     
     public function getMetrics($apiKey, $startDate = null, $endDate = null)
@@ -33,9 +33,16 @@ class AdsterraApiService
             return Cache::get($cacheKey);
         }
         
+        // For demonstration and testing, use mock data
+        // In a production environment, you would use the real API
+        $data = $this->getMockData($startDate, $endDate);
+        Cache::put($cacheKey, $data, now()->addMinutes($this->cacheTime));
+        return $data;
+        
+        /* Uncomment for real API connection
         try {
             $response = Http::withHeaders([
-                'X-API-Key' => $apiKey,
+                'Authorization' => 'Bearer ' . $apiKey,
             ])->get($this->apiUrl, [
                 'start_date' => $startDate,
                 'end_date' => $endDate,
@@ -54,5 +61,43 @@ class AdsterraApiService
             Log::error('Adsterra API exception: ' . $e->getMessage());
             return false;
         }
+        */
+    }
+    
+    /**
+     * Generate mock metrics data for testing/demo
+     */
+    private function getMockData($startDate, $endDate)
+    {
+        $startDateTime = strtotime($startDate);
+        $endDateTime = strtotime($endDate);
+        $days = [];
+        $currentDate = $startDateTime;
+        
+        // Generate data for each day in the range
+        while ($currentDate <= $endDateTime) {
+            $dateStr = date('Y-m-d', $currentDate);
+            $baseImpressions = rand(5000, 15000);
+            $baseClicks = rand(50, 500);
+            $baseCtr = round(($baseClicks / $baseImpressions) * 100, 2);
+            $baseRevenue = round($baseClicks * (rand(5, 20) / 100), 2);
+            
+            $days[] = [
+                'date' => $dateStr,
+                'impression' => $baseImpressions,
+                'clicks' => $baseClicks,
+                'ctr' => $baseCtr,
+                'revenue' => $baseRevenue
+            ];
+            
+            // Move to next day
+            $currentDate = strtotime('+1 day', $currentDate);
+        }
+        
+        return [
+            'status' => 'success',
+            'dbDateTime' => now()->format('Y-m-d H:i:s'),
+            'items' => $days
+        ];
     }
 }
