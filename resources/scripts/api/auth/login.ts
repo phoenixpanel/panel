@@ -5,6 +5,16 @@ export interface LoginResponse {
     complete: boolean;
     intended?: string;
     confirmationToken?: string;
+    user?: {
+        uuid: string;
+        username: string;
+        email: string;
+        language: string;
+        root_admin: boolean;
+        use_totp: boolean;
+        created_at: string;
+        updated_at: string;
+    };
 }
 
 export interface LoginData {
@@ -34,6 +44,7 @@ export default ({ username, password, captchaKey, captchaData }: LoginData): Pro
                     complete: response.data.data.complete,
                     intended: response.data.data.intended || undefined,
                     confirmationToken: response.data.data.confirmationToken || undefined,
+                    user: response.data.data.user || undefined,
                 });
             })
             .catch((error: any) => { // Revert to any type as requested previously

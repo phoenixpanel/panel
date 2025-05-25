@@ -2,32 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faLayerGroup, faSignOutAlt, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faLayerGroup, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useStoreState } from 'easy-peasy';
 import { ApplicationStore } from '@/state';
-
-// Capture console output
-let consoleOutput = '';
-const originalConsoleLog = console.log;
-console.log = (...args) => {
-    consoleOutput += '[LOG] ' + args.join(' ') + '\n';
-    originalConsoleLog(...args);
-};
-const originalConsoleWarn = console.warn;
-console.warn = (...args) => {
-    consoleOutput += '[WARN] ' + args.join(' ') + '\n';
-    originalConsoleWarn(...args);
-};
-const originalConsoleError = console.error;
-console.error = (...args) => {
-    consoleOutput += '[ERROR] ' + args.join(' ') + '\n';
-    originalConsoleError(...args);
-};
-const originalConsoleInfo = console.info;
-console.info = (...args) => {
-    consoleOutput += '[INFO] ' + args.join(' ') + '\n';
-    originalConsoleInfo(...args);
-};
 import SearchContainer from '@/components/dashboard/search/SearchContainer';
 import tw, { theme } from 'twin.macro';
 import styled from 'styled-components/macro';
@@ -82,9 +59,6 @@ export default () => {
                         {name}
                     </Link>
                 </div>
-                
-                {/* Sidebar Ad Space */}
-                <div dangerouslySetInnerHTML={{ __html: window.sidebarAdHtml || '' }} />
                 <RightNavigation className={'flex h-full items-center justify-center'}>
                     <SearchContainer />
                     <Tooltip placement={'bottom'} content={'Dashboard'}>

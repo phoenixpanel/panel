@@ -138,8 +138,8 @@
                                 <label class="control-label">Status</label>
                                 <div>
                                     <select class="form-control" name="phoenixpanel:client_features:allocations:enabled">
-                                        <option value="false">Disabled</option>
-                                        <option value="true" @if(old('phoenixpanel:client_features:allocations:enabled', config('phoenixpanel.client_features.allocations.enabled'))) selected @endif>Enabled</option>
+                                        <option value="Disabled" @if(!old('phoenixpanel:client_features:allocations:enabled', config('phoenixpanel.client_features.allocations.enabled'))) selected @endif>Disabled</option>
+                                        <option value="Enabled" @if(old('phoenixpanel:client_features:allocations:enabled', config('phoenixpanel.client_features.allocations.enabled'))) selected @endif>Enabled</option>
                                     </select>
                                     <p class="text-muted small">If enabled users will have the option to automatically create new allocations for their server via the frontend.</p>
                                 </div>

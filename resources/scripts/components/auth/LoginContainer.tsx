@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type {} from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import login from '@/api/auth/login';
-import { useStoreState } from 'easy-peasy';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import { Formik, FormikHelpers, Field as FormikField, FormikProps } from 'formik';
 import { object, string } from 'yup';
 import tw from 'twin.macro';
@@ -130,6 +130,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
 
     const { clearFlashes, clearAndAddHttpError } = useFlash();
     const settingsData = useStoreState((state: any) => state.settings.data);
+    const setUserData = useStoreActions((actions: any) => actions.user.setUserData);
     const captchaSettings = settingsData?.captcha;
     const { provider, siteKey, enabled } = captchaSettings || {};
 
@@ -161,8 +162,21 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
         try {
             login({ ...values, captchaKey, captchaData: token || '' })
                 .then((response) => {
-                    console.log('Login API response:', response); // Add this log
                     if (response.complete) {
+                        // Update user data in store before redirecting
+                        if (response.user) {
+                            setUserData({
+                                uuid: response.user.uuid,
+                                username: response.user.username,
+                                email: response.user.email,
+                                language: response.user.language,
+                                rootAdmin: response.user.root_admin,
+                                useTotp: response.user.use_totp,
+                                createdAt: new Date(response.user.created_at),
+                                updatedAt: new Date(response.user.updated_at),
+                            });
+                        }
+                        
                         // Use history.replace for consistent routing
                         history.replace(response.intended || '/');
                         return;

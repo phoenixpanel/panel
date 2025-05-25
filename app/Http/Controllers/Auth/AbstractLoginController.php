@@ -89,6 +89,15 @@ abstract class AbstractLoginController extends Controller
     }
 
     /**
+     * Get the post-login redirect path.
+     */
+    public function redirectPath(): string
+    {
+        // Return the intended URL from session or default redirect path
+        return session()->pull('url.intended', $this->redirectTo);
+    }
+
+    /**
      * Determine if the user is logging in using an email or username.
      */
     protected function getField(string $input = null): string

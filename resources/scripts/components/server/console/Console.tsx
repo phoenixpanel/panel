@@ -13,7 +13,6 @@ import useEventListener from '@/plugins/useEventListener';
 import { debounce } from 'debounce';
 import { usePersistedState } from '@/plugins/usePersistedState';
 import { SocketEvent, SocketRequest } from '@/components/server/events';
-import sendToHastebin from '@/api/server/logs';
 import classNames from 'classnames';
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -124,7 +123,7 @@ export default () => {
             setHistory((prevHistory) => [command, ...prevHistory!].slice(0, 32));
             setHistoryIndex(-1);
 
-            instance && instance.send('send logs', command);
+            instance && instance.send('send command', command);
             e.currentTarget.value = '';
         }
     };
@@ -251,7 +250,7 @@ export default () => {
             Object.keys(listeners).forEach((key: string) => {
                 instance.addListener(key, listeners[key]);
             });
-            instance.send(SocketRequest.SEND_COMMAND);
+            instance.send(SocketRequest.SEND_LOGS);
         }
 
         return () => {
