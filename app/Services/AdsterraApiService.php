@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Cache;
 
 class AdsterraApiService
 {
-    private $apiUrl = 'https://api.adsterratools.com/publisher/stats';
-    private $cacheTime = 60; // Cache for 60 minutes (1 hour)
+    private $apiUrl = 'https://api3.adsterratools.com/publisher/stats';
+    private $cacheTime = 10; // Cache for 10 minutes
     
     public function getMetrics($apiKey, $startDate = null, $endDate = null)
     {
