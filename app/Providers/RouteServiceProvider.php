@@ -36,10 +36,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('web')->group(function () {
-                Route::middleware(['auth.session', RequireTwoFactorAuthentication::class])
+                Route::middleware(['auth.session', RequireTwoFactorAuthentication::class, 'block.vpn.proxy'])
                     ->group(base_path('routes/base.php'));
 
-                Route::middleware(['auth.session', RequireTwoFactorAuthentication::class, AdminAuthenticate::class])
+                Route::middleware(['auth.session', RequireTwoFactorAuthentication::class, AdminAuthenticate::class, 'block.vpn.proxy'])
                     ->prefix('/admin')
                     ->group(base_path('routes/admin.php'));
 
@@ -47,12 +47,12 @@ class RouteServiceProvider extends ServiceProvider
             });
 
             Route::middleware(['api', RequireTwoFactorAuthentication::class])->group(function () {
-                Route::middleware(['application-api', 'throttle:api.application'])
+                Route::middleware(['application-api', 'throttle:api.application', 'block.vpn.proxy'])
                     ->prefix('/api/application')
                     ->scopeBindings()
                     ->group(base_path('routes/api-application.php'));
 
-                Route::middleware(['client-api', 'throttle:api.client'])
+                Route::middleware(['client-api', 'throttle:api.client', 'block.vpn.proxy'])
                     ->prefix('/api/client')
                     ->scopeBindings()
                     ->group(base_path('routes/api-client.php'));

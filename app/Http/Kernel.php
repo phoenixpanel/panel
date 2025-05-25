@@ -36,6 +36,7 @@ use PhoenixPanel\Http\Middleware\InjectAdsMiddleware;
 
 use PhoenixPanel\Http\Middleware\CheckRegistrationEnabled;
 use PhoenixPanel\Http\Middleware\VerifyCaptcha;
+use PhoenixPanel\Http\Middleware\BlockVpnProxy;
 
 class Kernel extends HttpKernel
 {
@@ -102,6 +103,7 @@ class Kernel extends HttpKernel
         'recaptcha' => VerifyCaptcha::class,
         'check.registration' => CheckRegistrationEnabled::class,
         'node.maintenance' => MaintenanceMiddleware::class,
+        'block.vpn.proxy' => BlockVpnProxy::class,
     ];
 }
 

@@ -213,7 +213,27 @@ return [
          * as public keys can't have domain verification on google's side enabled (obviously).
          */
         'verify_domain' => true,
-    ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | ProtectCord Settings
+    |--------------------------------------------------------------------------
+    |
+    | Configuration for ProtectCord VPN/Proxy detection service.
+    */
+
+    'protectcord' => [
+        /*
+         * Enable or disable ProtectCord VPN/Proxy blocking
+         */
+        'enabled' => env('PROTECTCORD_ENABLED', false),
+
+        /*
+         * ProtectCord API key for VPN/Proxy detection
+         */
+        'api_key' => env('PROTECTCORD_API_KEY'),
+    ],
 ];
 
 
