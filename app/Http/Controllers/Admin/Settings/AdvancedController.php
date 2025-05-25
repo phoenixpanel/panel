@@ -48,8 +48,8 @@ class AdvancedController extends Controller
             'googleSiteKey' => $this->settings->get('phoenixpanel:captcha:google:site_key', config('phoenixpanel.captcha.google.site_key')),
             'googleSecretKey' => $this->settings->get('phoenixpanel:captcha:google:secret_key', config('phoenixpanel.captcha.google.secret_key')),
 
-            'ProtectCordEnabled' => $this->settings->get('phoenixpanel:ProtectCord:enabled', config('phoenixpanel.ProtectCord.enabled')),
-            'ProtectCordAPI Key' => $this->settings->get('phoenixpanel:ProtectCord:api_key', config('phoenixpanel.ProtectCord.api_key')),
+            'ProtectCordEnabled' => $this->settings->get('phoenixpanel:protectcord:enabled', config('phoenixpanel.protectcord.enabled')),
+            'ProtectCordAPI Key' => $this->settings->get('phoenixpanel:protectcord:api_key', config('phoenixpanel.protectcord.api_key')),
         ]);
     }
 

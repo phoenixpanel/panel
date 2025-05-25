@@ -37,8 +37,8 @@
                             <label class="control-label">Adsterra Ad Code (160x600)</label>
                             <div>
                                 <textarea name="phoenixpanel:ads:code" class="form-control" rows="5" placeholder="Paste your Adsterra ad code here">{{ old('phoenixpanel:ads:code', config('phoenixpanel.ads.code')) }}</textarea>
-                                <p class="help-block">Enter the ad code provided by Adsterra for the 160x600 ad unit.</p>
-                                <p class="help-block">Need an Adsterra account? <a href="https://beta.publishers.adsterra.com/referral/wJKNd3ApCE" target="_blank" rel="noopener noreferrer">Sign up here</a> using this referral link.</p>
+                                <p class="text-muted small">Enter the ad code provided by Adsterra for the 160x600 ad unit.</p>
+                                <p class="text-muted small">Need an Adsterra account? <a href="https://beta.publishers.adsterra.com/referral/wJKNd3ApCE" target="_blank" rel="noopener noreferrer">Sign up here</a> using this referral link.</p>
                             </div>
                         </div>
 
@@ -46,7 +46,7 @@
                             <label class="control-label">Adsterra API Key <small>(optional)</small></label>
                             <div>
                                 <input type="text" name="phoenixpanel:ads:api_key" class="form-control" value="{{ old('phoenixpanel:ads:api_key', config('phoenixpanel.ads.api_key')) }}" placeholder="Enter Adsterra API Key">
-                                <p class="help-block">API key for Adsterra API integration (if using advanced features).</p>
+                                <p class="text-muted small">API key for Adsterra API integration (if using advanced features).</p>
                             </div>
                         </div>
                     </div>
