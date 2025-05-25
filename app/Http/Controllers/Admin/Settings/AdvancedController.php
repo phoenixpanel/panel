@@ -41,12 +41,15 @@ class AdvancedController extends Controller
 
         return $this->view->make('admin.settings.advanced', [
             'showRecaptchaWarning' => $showRecaptchaWarning,
-            'captcha_provider' => $this->settings->get('phoenixpanel:captcha:provider', config('phoenixpanel.captcha.provider')),
-            'captcha_enabled' => $this->settings->get('phoenixpanel:captcha:enabled', config('phoenixpanel.captcha.enabled')),
-            'cloudflare_site_key' => $this->settings->get('phoenixpanel:captcha:cloudflare:site_key', config('phoenixpanel.captcha.cloudflare.site_key')),
-            'cloudflare_secret_key' => $this->settings->get('phoenixpanel:captcha:cloudflare:secret_key', config('phoenixpanel.captcha.cloudflare.secret_key')),
-            'google_site_key' => $this->settings->get('phoenixpanel:captcha:google:site_key', config('phoenixpanel.captcha.google.site_key')),
-            'google_secret_key' => $this->settings->get('phoenixpanel:captcha:google:secret_key', config('phoenixpanel.captcha.google.secret_key')),
+            'captchaProvider' => $this->settings->get('phoenixpanel:captcha:provider', config('phoenixpanel.captcha.provider')),
+            'captchaEnabled' => $this->settings->get('phoenixpanel:captcha:enabled', config('phoenixpanel.captcha.enabled')),
+            'cloudflaredSiteKey' => $this->settings->get('phoenixpanel:captcha:cloudflare:site_key', config('phoenixpanel.captcha.cloudflare.site_key')),
+            'cloudflareSecretKey' => $this->settings->get('phoenixpanel:captcha:cloudflare:secret_key', config('phoenixpanel.captcha.cloudflare.secret_key')),
+            'googleSiteKey' => $this->settings->get('phoenixpanel:captcha:google:site_key', config('phoenixpanel.captcha.google.site_key')),
+            'googleSecretKey' => $this->settings->get('phoenixpanel:captcha:google:secret_key', config('phoenixpanel.captcha.google.secret_key')),
+
+            'ProtectCordEnabled' => $this->settings->get('phoenixpanel:ProtectCord:enabled', config('phoenixpanel.ProtectCord.enabled')),
+            'ProtectCordAPI Key' => $this->settings->get('phoenixpanel:ProtectCord:api_key', config('phoenixpanel.ProtectCord.api_key')),
         ]);
     }
 

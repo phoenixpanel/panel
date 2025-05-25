@@ -25,6 +25,10 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
         $rules['phoenixpanel:client_features:allocations:range_start'] = ['required', 'integer', 'min:1024', 'max:65535'];
         $rules['phoenixpanel:client_features:allocations:range_end'] = ['required', 'integer', 'min:1024', 'max:65535', 'gte:phoenixpanel:client_features:allocations:range_start'];
 
+        $rules['phoenixpanel:ProtectCord:enabled'] = ['sometimes', 'integer', 'in:0,1'];
+        $rules['phoenixpanel:ProtectCord:api_key'] = ['required_if:phoenixpanel:ProtectCord:enabled,1', 'string', 'min:0', 'max:255'];
+
+
         return $rules;
     }
 
@@ -43,6 +47,9 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
             'phoenixpanel:captcha:cloudflare:secret_key' => 'Cloudflare Secret Key',
             'phoenixpanel:captcha:google:site_key' => 'Google Site Key',
             'phoenixpanel:captcha:google:secret_key' => 'Google Secret Key',
+
+            'phoenixpanel:ProtectCord:enabled' => 'PhoenixPanel Enabled',
+            'phoenixpanel:ProtectCord:api_key' => 'PhoenixPanel API Key'
         ];
     }
 }
