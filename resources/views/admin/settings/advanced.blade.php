@@ -81,6 +81,32 @@
                 </div>
                 <div class="box">
                     <div class="box-header with-border">
+                        <h3 class="box-title">ProtectCord Configuration</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="control-label">Enable ProtectCord</label>
+                            <p class="help-block"><a href="https://protectcord.com" target="_blank" rel="noopener noreferrer">ProtectCord</a> is a system that can be integrated into Login and Registration to secure your systems from VPNs and Proxies, with our new system you can easily block and potentially malicious users from accessing your network. We forever offer 10RPM for free but feel free to add some more credits if you handle more customers. You can find ProtectCord's dashboard <a href="https://dash.protectcord.com" target="_blank" rel="noopener noreferrer">here!</a></p>
+                            <div>
+                                <input type="hidden" name="phoenixpanel:ProtectCord:enabled" value="0">
+                                <label>
+                                    <input type="checkbox" name="phoenixpanel:ProtectCord:enabled" value="1" @if(old('phoenixpanel:ProtectCord:enabled', config('phoenixpanel.ProtectCord.enabled')) == 1) checked @endif> Enable
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group protectcord-api-key">
+                            <label class="control-label">ProtectCord API Key</label>
+                            <div>
+                                <input type="text" class="form-control protectcord-api-key" name="phoenixpanel:ProtectCord:api_key" value="{{ old('phoenixpanel:ProtectCord:api_key', config('phoenixpanel:ProtectCord:api_key')) }}">
+                                <p class="help-block">Need a ProtectCord API Key? <a href="https://dash.protectcord.com" target="_blank" rel="noopener noreferrer">Get one here!</a></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header with-border">
                         <h3 class="box-title">HTTP Connections</h3>
                     </div>
                     <div class="box-body">
