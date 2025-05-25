@@ -25,10 +25,10 @@ Route::get('/password/reset/{token}', [Auth\LoginController::class, 'index'])->n
 // @see \PhoenixPanel\Providers\RouteServiceProvider
 Route::middleware(['throttle:authentication'])->group(function () {
     // Login endpoints.
-    Route::post('/login', [Auth\LoginController::class, 'login'])->middleware('recaptcha');
+    Route::post('/login', [Auth\LoginController::class, 'login'])->middleware(['recaptcha', 'check.vpn.proxy.auth']);
     Route::post('/register', [Auth\RegisterController::class, 'register'])
         ->name('auth.register.post')
-        ->middleware(['recaptcha', 'check.registration']);
+        ->middleware(['recaptcha', 'check.registration', 'check.vpn.proxy.auth']);
     Route::post('/login/checkpoint', Auth\LoginCheckpointController::class)->name('auth.login-checkpoint');
 
     // Forgot password route. A post to this endpoint will trigger an
