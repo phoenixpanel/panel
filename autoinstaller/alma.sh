@@ -83,9 +83,8 @@ log_info "Installing panel requirements"
 sh -c "sudo dnf update -y"
 sh -c "sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm"
 sh -c "sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm"
-sh -c "sudo dnf module reset php"
 sh -c "sudo dnf module enable php:remi-8.3 -y"
-sh -c "sudo dnf install -y php php-common php-cli php-gd php-mysql php-mbstring php-bcmath php-xml php-fpm php-curl php-zip mariadb mariadb-server nginx redis zip unzip tar"
+sh -c "sudo dnf install -y php php-common php-cli php-gd php-mysql php-mbstring php-bcmath php-xml php-fpm php-curl php-zip php-posix mariadb mariadb-server nginx redis zip unzip tar"
 log_info "Enabling services"
 sh -c "sudo systemctl enable --now mariadb nginx redis"
 
@@ -114,14 +113,14 @@ log_info "Create phoenixpanel folder"
 sh -c "mkdir -p /var/www/phoenixpanel"
 sh -c "cd /var/www/phoenixpanel"
 
-sh -c "curl -Lo panel.tar.gz https://github.com/phoenixpanel/panel/releases/download/latest/panel.tar.gz"
-sh -c "tar -xzvf panel.tar.gz"
-sh -c "chmod -R 755 storage/* bootstrap/cache/"
+sh -c "cd /var/www/phoenixpanel && curl -Lo panel.tar.gz https://github.com/phoenixpanel/panel/releases/download/latest/panel.tar.gz"
+sh -c "cd /var/www/phoenixpanel && tar -xzvf panel.tar.gz"
+sh -c "cd /var/www/phoenixpanel && chmod -R 755 storage/* bootstrap/cache/"
 
-sh -c "cp .env.example .env"
-sh -c "COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader"
+sh -c "cd /var/www/phoenixpanel && cp .env.example .env"
+sh -c "cd /var/www/phoenixpanel && COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader"
 
-sh -c "php artisan key:generate --force"
+sh -c "cd /var/www/phoenixpanel && php artisan key:generate --force"
 
 log_info "Creating new PHP-FPM Configuration"
 cat >> /etc/php-fpm.d/www-phoenixpanel.conf << EOF
@@ -144,7 +143,7 @@ sh -c "sudo systemctl enable --now php-fpm"
 
 LENGTH=16
 DB_USER="phoenixpanel"
-DB_PASSWORD=$(head /dev/urandom | tr -dc 'A-Za-z0-9!@#$%^&*()_+-=' | head -c "$LENGTH")
+DB_PASSWORD=$(head /dev/urandom | tr -dc 'A-Za-z0-9@' | head -c "$LENGTH")
 DB_NAME="panel"
 
 mysql <<EOF
@@ -183,23 +182,23 @@ EOF
     esac
 fi
 
-sh -c "php artisan p:environment:database --host=127.0.0.1 --port=3306 --database=$DB_NAME --username=$DB_USER --password=\"$DB_PASSWORD\" --quiet"
+sh -c "cd /var/www/phoenixpanel && php artisan p:environment:database --host=127.0.0.1 --port=3306 --database=$DB_NAME --username=$DB_USER --password=\"$DB_PASSWORD\" --quiet"
 log_success "Setup environment database settings."
 
-sh -c "php artisan p:environment:setup --cache=redis --session=redis --queue=redis --settings-ui=yes --redis-host=127.0.0.1 --redis-pass= --redis-port=6379"
+sh -c "cd /var/www/phoenixpanel && php artisan p:environment:setup --cache=redis --session=redis --queue=redis --settings-ui=yes --redis-host=127.0.0.1 --redis-pass= --redis-port=6379"
 log_success "Setup environment settings."
 
 log_info "Setting up database!"
-sh -c "php artisan migrate --seed --force"
+sh -c "cd /var/www/phoenixpanel && php artisan migrate --seed --force"
 
 ADMIN_PASSWORD=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c "$LENGTH")
-ADMIN_EMAIL="admin@phoenix.io"
+ADMIN_EMAIL="admin@phoenixpanel.io"
 
 log_info "Creating administrator account (details at end)"
-sh -c "php artisan p:user:make --email=$ADMIN_EMAIL --username=admin --name-first=admin --name-last=admin --password=$ADMIN_PASSWORD --admin=yes"
+sh -c "cd /var/www/phoenixpanel && php artisan p:user:make --email=$ADMIN_EMAIL --username=admin --name-first=admin --name-last=admin --password=$ADMIN_PASSWORD --admin=1"
 
 log_info "Giving permissions to NGINX"
-sh -c "chown -R nginx:nginx /var/www/phoenixpanel/*"
+sh -c "cd /var/www/phoenixpanel && chown -R nginx:nginx /var/www/phoenixpanel/*"
 
 sh -c "sudo systemctl disable nginx"
 
@@ -283,7 +282,7 @@ server {
 EOF
 
 certbot=$(get_user_input "Do you want to use SSL (y/n): ")
-case certbot in 
+case "$certbot" in 
         y)
             log_info "Using SSL, recommended for security."
             sh -c "sudo systemctl enable nginx"
@@ -304,8 +303,28 @@ if [ USESSL = "y" ]; then
     URL="https://$domain"
 fi
 
+# Download and install NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+
+# Load NVM (important for the current shell session)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Install and use a specific Node.js version (e.g., 16.10.0)
+nvm install 16.10.0
+nvm use 16.10.0
+
+# Install Yarn globally using npm
+npm install -g yarn
+
+# Navigate to your project directory and run yarn commands
+# (Make sure /var/www/phoenixpanel exists and is the correct directory)
+cd /var/www/phoenixpanel && yarn && yarn build:production
+
+
 log_info "ADMIN USERNAME: admin
-ADMIN EMAIL: admin@phoenix.io
+ADMIN EMAIL: admin@phoenixpanel.io
 ADMIN PASSWORD: $ADMIN_PASSWORD
   [!] Change admin password
 
