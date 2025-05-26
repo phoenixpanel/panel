@@ -81,11 +81,11 @@ fi
 
 log_info "Installing panel requirements"
 sh -c "sudo dnf update -y"
-sh -c "sudo dnf install -y epel-release"
-sh -c "sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+sh -c "sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm"
+sh -c "sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm"
 sh -c "sudo dnf module reset php"
 sh -c "sudo dnf module enable php:remi-8.3 -y"
-sh -c "sudo dnf install -y php php-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb mariadb-server nginx redis zip unzip tar"
+sh -c "sudo dnf install -y php php-common php-cli php-gd php-mysql php-mbstring php-bcmath php-xml php-fpm php-curl php-zip mariadb mariadb-server nginx redis zip unzip tar"
 log_info "Enabling services"
 sh -c "sudo systemctl enable --now mariadb nginx redis"
 
@@ -297,17 +297,6 @@ case certbot in
 esac
 
 sh -c "sudo systemctl restart nginx"
-
-sh -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-export NVM_DIR=\"\$HOME/.nvm\"
-[ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"
-[ -s \"\$NVM_DIR/bash_completion\" ] && \. \"\$NVM_DIR/bash_completion\"
-"
-
-sh -c "nvm use 16.10.0"
-sh -c "npm install --global yarn"
-sh -c "yarn && yarn build:production"
-
 log_success "You've completed the setup."
 
 URL="http://$domain"
