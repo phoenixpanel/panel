@@ -297,6 +297,17 @@ case certbot in
 esac
 
 sh -c "sudo systemctl restart nginx"
+
+sh -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+export NVM_DIR=\"\$HOME/.nvm\"
+[ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"
+[ -s \"\$NVM_DIR/bash_completion\" ] && \. \"\$NVM_DIR/bash_completion\"
+"
+
+sh -c "nvm use 16.10.0"
+sh -c "npm install --global yarn"
+sh -c "yarn && yarn build:production"
+
 log_success "You've completed the setup."
 
 URL="http://$domain"
