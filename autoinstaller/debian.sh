@@ -11,27 +11,27 @@ USESSL=""
 
 # Enhanced logging functions
 log_info() {
-    echo -e "${BLUE}[INFO]${NC} $1"
+    echo "${BLUE}[INFO]${NC} $1"
     #echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] $1"
 }
 
 log_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+    echo "${GREEN}[SUCCESS]${NC} $1"
     #echo "[$(date '+%Y-%m-%d %H:%M:%S')] [SUCCESS] $1"
 }
 
 log_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+    echo "${YELLOW}[WARNING]${NC} $1"
     #echo "[$(date '+%Y-%m-%d %H:%M:%S')] [WARNING] $1"
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+    echo "${RED}[ERROR]${NC} $1"
     #echo "[$(date '+%Y-%m-%d %H:%M:%S')] [ERROR] $1"
 }
 
 log_debug() {
-    echo -e "${PURPLE}[DEBUG]${NC} $1"
+    echo "${PURPLE}[DEBUG]${NC} $1"
     #echo "[$(date '+%Y-%m-%d %H:%M:%S')] [DEBUG] $1"
 }
 
@@ -45,66 +45,31 @@ get_user_input() {
     echo "$resp"
 }
 
-# Function to check SELinux status on AlmaLinux
-check_selinux_status() {
-  # Check if sestatus command exists
-  if ! command -v sestatus &> /dev/null; then
-    echo 0
-  fi
-
-  # Get SELinux status
-  SELINUX_STATUS=$(sestatus | grep "SELinux status:" | awk '{print $3}')
-
-  case "$SELINUX_STATUS" in
-    enabled)
-      echo 1
-      ;;
-    disabled)
-      echo 0
-      ;;
-    permissive)
-      echo 1
-      ;;
-    *)
-      echo 0
-      ;;
-  esac
-
-  echo 0
-}
-
-selinux=$(check_selinux_status)
-if [ selinux = 1 ]; then
-    log_info "Due to you having SELinux enabled, I will install the extra packages..."
-    sh -c "sudo dnf install -y policycoreutils selinux-policy selinux-policy-targeted setroubleshoot-server setools setools-console mcstrans"
-fi
-
 log_info "Installing panel requirements"
-sh -c "sudo dnf update -y"
-sh -c "sudo dnf install -y epel-release"
-sh -c "sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
-sh -c "sudo dnf module reset php"
-sh -c "sudo dnf module enable php:remi-8.3 -y"
-sh -c "sudo dnf install -y php php-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb mariadb-server nginx redis zip unzip tar"
-log_info "Enabling services"
-sh -c "sudo systemctl enable --now mariadb nginx redis"
+sh -c "
+sudo apt -y install software-properties-common curl ca-certificates gnupg2 sudo lsb-release
+sudo echo \"deb https://packages.sury.org/php/ $(lsb_release -sc) main\" | sudo tee /etc/apt/sources.list.d/sury-php.list
+sudo curl -fsSL https://packages.sury.org/php/apt.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/sury-keyring.gpg
+sudo curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+sudo echo \"deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main\" | sudo tee /etc/apt/sources.list.d/redis.list
+sudo curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
+apt update
+sudo apt install -y php8.3 php8.3-common php8.3-cli php8.3-gd php8.3-mysql php8.3-mbstring php8.3-bcmath php8.3-xml php8.3-fpm php8.3-curl php8.3-zip mariadb-server nginx tar unzip git redis-server"
 
-INSTALL_FIREWALL=$(get_user_input "Do you want to install firewall-cmd (y/n): ")
+INSTALL_FIREWALL=$(get_user_input "Do you want to use ufw (y/n): ")
 INSTALL_FIREWALL_LOWER=$(echo "$INSTALL_FIREWALL" | tr '[:upper:]' '[:lower:]')
 
 case "$INSTALL_FIREWALL_LOWER" in
     y)
-        log_info "Installing firewalld"
-        sh -c "sudo dnf install firewalld"
-        sh -c "sudo systemctl start firewalld"
         log_info "Firewall setup for HTTP and HTTPs"
-        sh -c "sudo firewall-cmd --add-service=http --permanent"
-        sh -c "sudo firewall-cmd --add-service=https --permanent "
-        sh -c "sudo firewall-cmd --reload"
-        sh -c "sudo systemctl enable firewalld"
+        sh -c "sudo ufw allow http"
+        sh -c "sudo ufw allow https"
+        sh -c "sudo ufw reload"
         ;;
     *)
-        log_info "Continuing without firewall..."
+        sh -c "sudo ufw disable"
+        sh -c "systemctl disable ufw"
+        log_info "Continuing without ufw..."
         ;;
 esac
 log_info "Installing composer..."
@@ -122,24 +87,6 @@ sh -c "cp .env.example .env"
 sh -c "COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader"
 
 sh -c "php artisan key:generate --force"
-
-log_info "Creating new PHP-FPM Configuration"
-cat >> /etc/php-fpm.d/www-phoenixpanel.conf << EOF
-[phoenixpanel]
-
-user = nginx
-group = nginx
-
-listen = /var/run/php-fpm/phoenixpanel.sock
-listen.owner = nginx
-listen.group = nginx
-listen.mode = 0750
-
-pm = ondemand
-pm.max_children = 9
-pm.process_idle_timeout = 10s
-pm.max_requests = 200
-EOF
 sh -c "sudo systemctl enable --now php-fpm"
 
 LENGTH=16
@@ -214,8 +161,8 @@ Description=PhoenixPanel Queue Worker
 After=redis.service
 
 [Service]
-User=nginx
-Group=nginx
+User=www-data
+Group=www-data
 Restart=always
 ExecStart=/usr/bin/php /var/www/phoenixpanel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3
 StartLimitInterval=180
@@ -262,7 +209,7 @@ server {
 
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php-fpm/phoenixpanel.sock;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
@@ -287,7 +234,7 @@ case certbot in
         y)
             log_info "Using SSL, recommended for security."
             sh -c "sudo systemctl enable nginx"
-            sh -c "sudo dnf install certbot python3-certbot-nginx"
+            sh -c "sudo apt install certbot python3-certbot-nginx"
             sh -c "sudo certbot --nginx -d $domain"
             USESSL="y"
             ;;

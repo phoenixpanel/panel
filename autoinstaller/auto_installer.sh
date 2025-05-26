@@ -108,15 +108,15 @@ detect_os
 case "$OS_NAME" in
     ubuntu)
         echo "You're running an Ubuntu Machine"
-        sh -c 'curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/auto_installer.sh | bash'
+        sh -c 'curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/autoinstaller/ubuntu.sh | bash'
         ;;
     debian)
         echo "You're running a Debian Machine"
-        sh -c 'curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/auto_installer.sh | bash'
+        sh -c 'curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/autoinstaller/debian.sh | bash'
         ;;
     almalinux)
         echo "You're running an AlmaLinux Machine"
-        sh -c 'curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/auto_installer.sh | bash'
+        sh -c 'curl -sSL https://raw.githubusercontent.com/phoenixpanel/panel/refs/heads/main/autoinstaller/alma.sh | bash'
         ;;
     *)
         ;;
