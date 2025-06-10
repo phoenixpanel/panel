@@ -1,0 +1,89 @@
+*.bak
+
+# Dependencies
+/node_modules
+/vendor
+/venv
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+# Ignore all .env files except .env.example and .env.ci
+.env*
+!.env.example
+!.env.ci
+
+# IDE & Editor Directories/Files
+.idea/
+.vscode/
+*.code-workspace
+.project
+.classpath
+.c9/
+*.launch
+.sublime-*
+nbproject/
+.settings/
+*.tmproj
+*.esproj
+
+# IDE Helper Files (Laravel/PHP)
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Cache Files
+storage/framework/*
+!.gitignore
+.phpunit.result.cache
+.php-cs-fixer.cache
+.yarn
+
+# Local Development Tools/Files
+.vagrant/
+/.direnv/
+Homestead.yaml
+Homestead.json
+npm-debug.log
+yarn-error.log
+
+# Webpack/Build Manifests (Often generated)
+
+# Test & Coverage Reports
+coverage.xml
+junit.xml
+
+# Generated Language Files (If applicable)
+resources/lang/locales.js
+
+# Docker Local Development (If not committed)
+# docker-compose.yml
+# docker-compose.yaml
+# .dockerignore
+
+# Temporary Files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Sensitive Files (Should ideally never be committed, but good practice to ignore)
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
