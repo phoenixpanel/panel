@@ -1,0 +1,1193 @@
+﻿:root {
+    /* Keep background colors */
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #2a2f33;
+    --bg-tertiary: #3b4148;
+    --bg-login: #1a1d1f; /* Slightly darker for login */
+
+    /* Keep text colors */
+    --text-primary: #d1d5db;
+    --text-secondary: #aab3bf;
+    --text-accent: var(--phoenix-primary); /* Use phoenix primary for links */
+    --text-white: #ffffff;
+    --text-black: #1f2937; /* Dark text for light elements if needed */
+
+    /* Phoenix color palette */
+    --phoenix-primary: #e25822; /* Deep orange-red */
+    --phoenix-secondary: #ff9500; /* Bright orange-yellow */
+    --phoenix-accent: #ff4500; /* Bright orange-red for highlights */
+    --phoenix-dark: #8b2500; /* Dark red-brown for borders and shadows */
+
+    /* Phoenix gradients */
+    --phoenix-gradient: linear-gradient(135deg, var(--phoenix-primary), var(--phoenix-secondary));
+    --phoenix-gradient-subtle: linear-gradient(135deg, rgba(226, 88, 34, 0.2), rgba(255, 149, 0, 0.2));
+
+    /* Update accent references to use phoenix colors */
+    --accent-primary: var(--phoenix-primary);
+    --accent-secondary: var(--phoenix-secondary);
+
+    /* Border colors */
+    --border-color: #3b4148;
+    --border-color-light: #4f5861;
+    --border-phoenix: var(--phoenix-dark);
+
+    /* Input styles */
+    --input-bg: #2a2f33;
+    --input-border: #3b4148;
+    --input-text: #d1d5db;
+    --input-focus-border: var(--phoenix-primary); /* Use phoenix primary for focus */
+
+    /* Status colors */
+    --danger-bg: #450a0a; /* Darker red */
+    --danger-border: var(--phoenix-dark);
+    --danger-text: #fca5a5;
+    --danger-hover: var(--phoenix-primary);
+
+    --warning-bg: #78350f; /* Darker orange */
+    --warning-border: var(--phoenix-secondary);
+    --warning-text: #fdba74;
+    --warning-hover: var(--phoenix-secondary);
+
+    --success-bg: #14532d; /* Darker green */
+    --success-border: #166534;
+    --success-text: #86efac;
+    --success-hover: #166534;
+
+    /* Replace info colors with neutral greys */
+    --info-bg: var(--bg-secondary);
+    --info-border: var(--border-color);
+    --info-text: var(--text-secondary);
+    --info-hover: var(--bg-tertiary);
+
+    --white: #ffffff;
+    --black: #000000;
+}
+
+/**
+ * PhoenixPanel - Panel
+ * Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com>
+ * ... (rest of license) ...
+ */
+@import 'checkbox.css';
+
+.pt-8 {
+    padding-top: 0rem !important;
+}
+
+.login-page {
+    background: var(--bg-login);
+}
+
+#login-position-elements {
+    margin: 25% auto;
+}
+
+.login-logo {
+    color: var(--text-white);
+    font-weight: 400;
+}
+
+.login-copyright {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.login-copyright > a {
+    color: var(--text-accent);
+}
+
+.particles-js-canvas-el {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+}
+
+.phoenixpanel-login-box {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+    padding: 20px;
+}
+
+.phoenixpanel-login-input > input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 2px;
+    color: var(--input-text);
+}
+
+.phoenixpanel-login-input > .form-control-feedback {
+    color: var(--text-secondary);
+}
+
+.phoenixpanel-login-button--main {
+    background: var(--phoenix-primary);
+    border: 1px solid var(--phoenix-dark);
+    border-radius: 2px;
+    color: var(--text-white);
+    transition: all 0.2s ease;
+}
+
+.phoenixpanel-login-button--main:hover {
+    background: var(--phoenix-secondary);
+    border: 1px solid var(--phoenix-dark);
+    border-radius: 2px;
+    color: var(--text-white);
+    box-shadow: 0 0 8px rgba(226, 88, 34, 0.5);
+}
+
+.phoenixpanel-login-button--left {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color-light);
+    border-radius: 2px;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.phoenixpanel-login-button--left:hover {
+    background: var(--border-color-light);
+    border: 1px solid var(--phoenix-primary);
+    border-radius: 2px;
+    color: var(--text-white);
+}
+
+.weight-100 {
+    font-weight: 100;
+}
+
+.weight-300 {
+    font-weight: 300;
+}
+
+.btn-clear {
+    background: transparent;
+}
+
+.user-panel > .info {
+    position: relative;
+    left: 0;
+}
+
+code {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-radius: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    line-height: 1.4;
+    font-size: 85%;
+    border: 1px solid var(--border-color);
+    display: inline-block;
+}
+
+p {
+    line-height: 1.6 !important;
+}
+
+p.small {
+    margin-top: 3px !important;
+}
+
+/* Assuming this is part of AdminLTE dark theme - adjust if needed */
+.control-sidebar-dark .control-sidebar-menu > li > a.active {
+    background: var(--bg-secondary);
+}
+
+.callout-nomargin {
+    margin: 0;
+}
+
+.table {
+    font-size: 14px !important;
+}
+
+.table .min-size {
+    width: 1px;
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .box-header > .box-tools {
+        position: relative !important;
+        padding: 0px 10px 10px;
+    }
+}
+
+.middle,
+.align-middle {
+    vertical-align: middle !important;
+}
+
+#fileOptionMenu.dropdown-menu > li > a {
+    padding: 3px 6px;
+}
+
+.hasFileHover {
+    border: 2px dashed var(--phoenix-primary);
+    border-top: 0 !important;
+    border-radius: 5px;
+    margin: 0;
+    opacity: 0.5;
+}
+
+.hasFileHover * {
+    pointer-events: none !important;
+}
+
+td.has-progress {
+    padding: 0px !important;
+    border-top: 0px !important;
+}
+
+.progress.progress-table-bottom {
+    margin: 0 !important;
+    height: 5px !important;
+    padding: 0;
+    border: 0;
+}
+
+.muted {
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+
+.muted-hover:hover {
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+.use-pointer {
+    cursor: pointer !important;
+}
+
+.input-loader {
+    display: none;
+    position: relative;
+    top: -25px;
+    float: right;
+    right: 5px;
+    color: var(--text-secondary);
+    height: 0;
+}
+
+.box-header > .form-group {
+    margin-bottom: 0;
+}
+
+.box-header > .form-group > div > p.small {
+    margin: 0;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+li.select2-results__option--highlighted[aria-selected='false'] > .user-block > .username > a {
+    color: var(--text-white);
+}
+
+li.select2-results__option--highlighted[aria-selected='false'] > .user-block > .description {
+    color: var(--text-primary);
+}
+
+.select2-selection.select2-selection--multiple {
+    min-height: 36px !important;
+}
+
+.select2-search--inline .select2-search__field:focus {
+    outline: none;
+    border: 0 !important;
+}
+
+.img-bordered-xs {
+    border: 1px solid var(--border-color);
+    padding: 1px;
+}
+
+span[aria-labelledby='select2-pUserId-container'] {
+    padding-left: 2px !important;
+}
+
+.box {
+    box-shadow: none !important; /* Remove default light shadow */
+    border: 1px solid var(--border-color);
+}
+
+.alert-danger {
+    color: var(--danger-text) !important;
+    background: var(--danger-bg) !important;
+    border: 1px solid var(--danger-border);
+}
+
+.alert-info {
+    color: var(--info-text) !important;
+    background: var(--info-bg) !important;
+    border: 1px solid var(--info-border);
+}
+
+.alert-success {
+    color: var(--success-text) !important;
+    background: var(--success-bg) !important;
+    border: 1px solid var(--success-border);
+}
+
+.alert-warning {
+    color: var(--warning-text) !important;
+    background: var(--warning-bg) !important;
+    border: 1px solid var(--warning-border);
+}
+
+.callout-slim a {
+    color: var(--text-secondary) !important;
+}
+
+.bg-purple {
+    /* Keep purple or replace with a theme color if desired */
+    background-color: #79589f !important;
+}
+
+.label-default {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important; /* Add text color for contrast */
+}
+
+.callout.callout-info.callout-slim {
+    border: 1px solid var(--info-border) !important;
+    border-left: 5px solid var(--info-border) !important;
+    border-right: 5px solid var(--info-border) !important;
+    color: var(--text-secondary) !important;
+    background: var(--bg-secondary) !important; /* Add subtle background */
+}
+
+.callout.callout-danger.callout-slim {
+    border: 1px solid var(--danger-border) !important;
+    border-left: 5px solid var(--danger-border) !important;
+    border-right: 5px solid var(--danger-border) !important;
+    color: var(--text-secondary) !important;
+    background: var(--bg-secondary) !important; /* Add subtle background */
+}
+
+.callout.callout-warning.callout-slim {
+    border: 1px solid var(--warning-border) !important;
+    border-left: 5px solid var(--warning-border) !important;
+    border-right: 5px solid var(--warning-border) !important;
+    color: var(--text-secondary) !important;
+    background: var(--bg-secondary) !important; /* Add subtle background */
+}
+
+.callout.callout-success.callout-slim {
+    border: 1px solid var(--success-border) !important;
+    border-left: 5px solid var(--success-border) !important;
+    border-right: 5px solid var(--success-border) !important;
+    color: var(--text-secondary) !important;
+    background: var(--bg-secondary) !important; /* Add subtle background */
+}
+
+.callout.callout-default.callout-slim {
+    border: 1px solid var(--border-color) !important;
+    border-left: 5px solid var(--border-color) !important;
+    border-right: 5px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+    background: var(--bg-secondary) !important; /* Add subtle background */
+}
+
+.callout code {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color-light);
+}
+
+.tab-pane .box-footer {
+    margin: 0 -10px -10px;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li:hover {
+    border-top-color: var(--phoenix-primary);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active.tab-danger,
+.nav-tabs-custom > .nav-tabs > li.tab-danger:hover {
+    border-top-color: var(--danger-border);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active.tab-success,
+.nav-tabs-custom > .nav-tabs > li.tab-success:hover {
+    border-top-color: var(--success-border);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active.tab-info,
+.nav-tabs-custom > .nav-tabs > li.tab-info:hover {
+    border-top-color: var(--info-border);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active.tab-warning,
+.nav-tabs-custom > .nav-tabs > li.tab-warning:hover {
+    border-top-color: var(--warning-border);
+}
+
+.nav-tabs-custom.nav-tabs-floating > .nav-tabs {
+    border-bottom: 0px !important;
+}
+
+.nav-tabs-custom.nav-tabs-floating > .nav-tabs > li {
+    margin-bottom: 0px !important;
+}
+
+.nav-tabs-custom.nav-tabs-floating > .nav-tabs > li:first-child.active,
+.nav-tabs-custom.nav-tabs-floating > .nav-tabs > li:first-child:hover {
+    border-radius: 3px 0 0 0;
+}
+
+.nav-tabs-custom.nav-tabs-floating > .nav-tabs > li:first-child.active > a {
+    border-radius: 0 0 0 3px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.no-pad-bottom {
+    padding-bottom: 0 !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.btn-icon > i.fa {
+    line-height: 1.5;
+}
+
+.btn.active,
+.btn.active.focus {
+    background-color: var(--phoenix-primary);
+    color: var(--text-white); /* Ensure text contrast */
+    box-shadow: 0 0 5px rgba(226, 88, 34, 0.3);
+}
+
+.strong {
+    font-weight: bold !important;
+}
+
+.server-description > td {
+    padding-top: 0 !important;
+    border-top: 0 !important;
+}
+
+tr:hover + tr.server-description {
+    background-color: var(--bg-secondary) !important;
+}
+
+.login-corner-info {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    color: var(--text-white);
+}
+
+input.form-autocomplete-stop[readonly] {
+    background: transparent; /* Use transparent instead of inherit */
+    cursor: text;
+}
+
+/* fix Google Recaptcha badge */
+.grecaptcha-badge {
+    bottom: 54px !important;
+    background: var(--bg-primary); /* Match primary background */
+    box-shadow: 0 0 5px rgba(226, 88, 34, 0.3) !important;
+}
+
+.dropdown-massactions {
+    min-width: 80px;
+}
+
+.select-all-files {
+    position: relative;
+    bottom: 1px;
+    margin-right: 7px !important;
+}
+
+/* Phoenix Theme Additions */
+
+/* Phoenix Gradients */
+.phoenix-gradient {
+    background: linear-gradient(135deg, var(--phoenix-primary), var(--phoenix-secondary));
+    color: var(--text-white);
+}
+
+.phoenix-gradient-subtle {
+    background: linear-gradient(135deg, rgba(226, 88, 34, 0.2), rgba(255, 149, 0, 0.2));
+}
+
+/* Admin Panel Enhancements */
+.box-header {
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.box-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--phoenix-primary), transparent);
+}
+
+.box-header h3 {
+    color: var(--text-primary);
+}
+
+/* Button Enhancements */
+.btn-primary {
+    background-color: var(--phoenix-primary);
+    border-color: var(--phoenix-dark);
+    color: var(--text-white);
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--phoenix-secondary);
+    border-color: var(--phoenix-dark);
+    box-shadow: 0 0 8px rgba(226, 88, 34, 0.5);
+}
+
+/* Navigation Enhancements */
+.sidebar-menu > li.active > a {
+    border-left-color: var(--phoenix-primary);
+}
+
+.sidebar-menu > li > a:hover {
+    border-left-color: var(--phoenix-secondary);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+    border-top-color: var(--phoenix-primary);
+}
+
+/* Table Enhancements */
+.table > thead > tr > th {
+    border-bottom: 2px solid var(--phoenix-dark);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(226, 88, 34, 0.05);
+}
+
+/* Form Control Enhancements */
+.form-control:focus {
+    border-color: var(--phoenix-primary);
+    box-shadow: none;
+}
+
+/* Panel Enhancements */
+.panel-default > .panel-heading {
+    position: relative;
+    overflow: hidden;
+}
+
+.panel-default > .panel-heading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--phoenix-primary), var(--phoenix-secondary));
+}
+
+/* Dropdown Menu Enhancements */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: rgba(226, 88, 34, 0.1);
+    color: var(--text-primary);
+}
+
+/* Alert Enhancements */
+.alert {
+    border-left: 4px solid transparent;
+}
+
+.alert-info {
+    border-left-color: var(--phoenix-secondary);
+}
+
+.alert-success {
+    border-left-color: var(--success-border);
+}
+
+.alert-warning {
+    border-left-color: var(--warning-border);
+}
+
+.alert-danger {
+    border-left-color: var(--danger-border);
+}
+
+/* Modal Enhancements */
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--phoenix-primary), transparent);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    position: relative;
+}
+
+.modal-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--phoenix-primary), transparent);
+}
+
+.select-file {
+    position: relative;
+    bottom: 1px;
+    margin-right: 2px !important;
+}
+
+.select-folder {
+    position: relative;
+    bottom: 1px;
+    margin-right: 5px !important;
+}
+
+label.control-label > span {
+    font-size: 80%;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--danger-text);
+}
+
+label.control-label > span.field-required:before {
+    content: 'required';
+    color: var(--danger-text);
+}
+
+label.control-label > span.field-optional:before {
+    content: 'optional';
+    color: var(--text-secondary);
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    padding: 3px 10px !important;
+}
+
+.logo-mini > img {
+    height: 42px;
+    width: auto;
+}
+
+.search01 {
+    width: 30%;
+}
+
+.number-info-box-content {
+    padding: 15px 10px 0;
+}
+
+/* *******
+
+  > Version v1.0
+
+******* */
+
+body {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+.fixed .main-header {
+    box-shadow: none; /* Remove default light shadow */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.skin-blue .wrapper,
+.skin-blue .main-sidebar,
+.skin-blue .left-side {
+    background-color: var(--bg-primary);
+    box-shadow: none; /* Remove default light shadow */
+}
+
+.skin-blue .main-header .logo {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle {
+    color: var(--text-secondary);
+}
+
+.skin-blue .main-header .navbar .nav > li > a {
+    color: var(--text-secondary);
+}
+
+/* Remove blue hover background from navbar buttons */
+.skin-blue .main-header .navbar .nav > li > a:hover,
+.skin-blue .main-header .navbar .nav > li > a:active,
+.skin-blue .main-header .navbar .nav > li > a:focus,
+.skin-blue .main-header .navbar .nav .open > a,
+.skin-blue .main-header .navbar .nav .open > a:hover,
+.skin-blue .main-header .navbar .nav .open > a:focus {
+    background: var(--bg-tertiary);
+    color: var(--phoenix-primary);
+}
+
+.skin-blue .sidebar-menu > li.header {
+    color: var(--text-secondary);
+    background: var(--bg-primary); /* Match primary background */
+}
+
+.skin-blue .main-header .navbar {
+    background-color: var(--bg-secondary);
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--phoenix-primary);
+}
+
+.skin-blue .main-header .logo:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--phoenix-primary);
+}
+
+.main-footer {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.skin-blue .sidebar-menu > li.active > a {
+    border-left-color: var(--phoenix-primary); /* Use phoenix primary */
+}
+
+.text-gray {
+    color: var(--text-secondary) !important;
+}
+
+.text-green {
+    color: var(--success-text) !important;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.text-danger {
+    color: var(--danger-text);
+}
+
+.content-wrapper {
+    background-color: var(--bg-primary);
+}
+
+.btn-success {
+    background-color: var(--success-bg);
+    border-color: var(--success-border);
+    color: var(--success-text); /* Ensure text contrast */
+}
+
+.btn.btn-green:hover,
+.btn-success:hover {
+    background-color: var(--success-hover);
+    border-color: var(--success-border);
+    color: var(--success-text);
+}
+
+.btn-primary {
+    background-color: var(--phoenix-primary);
+    border-color: var(--phoenix-dark);
+    color: var(--text-white); /* Ensure text contrast */
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--phoenix-secondary);
+    border-color: var(--phoenix-dark);
+    color: var(--text-white);
+    box-shadow: 0 0 8px rgba(226, 88, 34, 0.5);
+}
+
+/* .box styles were already adjusted, this seems like a duplicate/override? */
+/* Let's ensure it uses variables */
+.box {
+    /* box-shadow: none !important; */ /* Already set earlier */
+    background: var(--bg-secondary);
+    border-top: 3px solid var(--border-color); /* Use border-color for top border */
+    /* border: 1px solid var(--border-color); */ /* Already set earlier */
+}
+
+.box-header {
+    color: var(--text-primary);
+    background: var(--bg-tertiary); /* Use tertiary for header */
+}
+
+.box-header.with-border {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.box.box-default {
+    border-top-color: var(--border-color);
+}
+
+.box-footer {
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+}
+.content-header > .breadcrumb > li > a {
+    color: var(--text-primary);
+}
+
+.breadcrumb > .active {
+    color: var(--text-primary);
+}
+
+.h1 .small,
+.h1 small,
+.h2 .small,
+.h2 small,
+.h3 .small,
+.h3 small,
+.h4 .small,
+.h4 small,
+.h5 .small,
+.h5 small,
+.h6 .small,
+.h6 small,
+h1 .small,
+h1 small,
+h2 .small,
+h2 small,
+h3 .small,
+h3 small,
+h4 .small,
+h4 small,
+h5 .small,
+h5 small,
+h6 .small,
+h6 small {
+    color: var(--text-primary);
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    border-top: 1px solid var(--border-color);
+}
+
+.table > thead > tr > th {
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: var(--bg-tertiary); /* Slightly darker hover */
+}
+
+a {
+    color: var(--text-accent);
+}
+
+.nav-tabs-custom {
+    background: var(--bg-secondary);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+    border-top-color: var(--phoenix-primary); /* Use phoenix primary */
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+    border-top-color: transparent;
+    border-left-color: var(--border-color);
+    border-right-color: var(--border-color);
+    background: var(--bg-primary); /* Match primary background */
+}
+
+.nav-tabs-custom > .nav-tabs > li > a {
+    color: var(--text-secondary);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li.active:hover > a {
+    color: var(--text-primary); /* Active tab text should be primary */
+}
+
+input.form-control {
+    padding: 0.75rem;
+    background-color: var(--input-bg);
+    border-width: 1px;
+    border-color: var(--input-border);
+    border-radius: 0.25rem;
+    color: var(--input-text);
+    box-shadow: none;
+    -webkit-transition: border 0.15s linear, box-shaodw 0.15s ease-in;
+    transition: border 0.15s linear, box-shaodw 0.15s ease-in;
+}
+
+textarea.form-control {
+    padding: 0.75rem;
+    background-color: var(--input-bg);
+    border-width: 1px;
+    border-color: var(--input-border);
+    border-radius: 0.25rem;
+    color: var(--input-text);
+    box-shadow: none;
+    -webkit-transition: border 0.15s linear, box-shaodw 0.15s ease-in;
+    transition: border 0.15s linear, box-shaodw 0.15s ease-in;
+}
+
+.input-group .input-group-addon {
+    border-color: var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
+
+.select2-container--default .select2-selection--single,
+.select2-selection .select2-selection--single {
+    border: 1px solid var(--input-border);
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: var(--input-bg);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--input-text);
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: var(--input-bg);
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid var(--input-border);
+    border-radius: 0;
+}
+
+code {
+    /* Duplicate code style? Ensure consistency */
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-default {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color-light);
+}
+
+.select2-results__option {
+    /* Select2 results */
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--phoenix-primary);
+    color: var(--text-white); /* Ensure highlighted text is readable */
+}
+
+.modal-body {
+    background: var(--bg-secondary);
+}
+
+.modal-header {
+    background: var(--bg-secondary);
+    border-bottom-color: var(--border-color);
+}
+
+.modal-footer {
+    background: var(--bg-secondary);
+    border-top-color: var(--border-color);
+}
+
+@media (max-width: 991px) {
+    .content-header > .breadcrumb {
+        background: var(--bg-secondary) !important;
+    }
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li.active:hover > a {
+    background-color: var(--bg-primary); /* Match primary background */
+}
+
+.select2-container--default .select2-results__option[aria-selected='true'],
+.select2-container--default .select2-results__option[aria-selected='true']:hover {
+    color: var(--text-white);
+}
+
+.select2-dropdown {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border-color: var(--input-focus-border) !important; /* Use accent for focus */
+    background-color: var(--input-bg);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--phoenix-primary); /* Use phoenix primary */
+}
+
+a {
+    color: var(--text-accent);
+}
+
+a:hover {
+    color: var(--phoenix-secondary); /* Phoenix secondary on hover */
+}
+
+.form-control {
+    border-color: var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+    background-color: var(--bg-tertiary); /* Darker bg for disabled */
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.well-lg {
+    padding: 24px;
+}
+
+.well-sm {
+    padding: 9px;
+}
+
+.small-box h3,
+.small-box p {
+    color: var(--text-primary);
+}
+
+.small-box-footer {
+    color: var(--text-accent);
+}
+
+.small-box .icon {
+    color: var(--text-secondary); /* Muted icon color */
+}
+
+.bg-gray {
+    background-color: var(--bg-tertiary) !important;
+}
+
+pre {
+    color: var(--text-primary);
+    background-color: var(--input-bg); /* Use input bg for pre */
+    border-color: var(--border-color);
+}
+
+/* Additional fixes for any remaining blue colors */
+.skin-blue .sidebar a {
+    color: var(--text-secondary);
+}
+
+.skin-blue .sidebar a:hover {
+    color: var(--phoenix-primary);
+}
+
+.skin-blue .sidebar-menu > li:hover > a,
+.skin-blue .sidebar-menu > li.active > a {
+    color: var(--text-white);
+    background: var(--bg-tertiary);
+    border-left-color: var(--phoenix-primary);
+}
+
+.skin-blue .sidebar-menu > li > .treeview-menu {
+    background: var(--bg-secondary);
+}
+
+.skin-blue .sidebar-menu .treeview-menu > li > a {
+    color: var(--text-secondary);
+}
+
+.skin-blue .sidebar-menu .treeview-menu > li.active > a,
+.skin-blue .sidebar-menu .treeview-menu > li > a:hover {
+    color: var(--phoenix-primary);
+}
+
+/* Fix any blue links */
+a.text-primary {
+    color: var(--phoenix-primary);
+}
+
+a.text-primary:hover,
+a.text-primary:focus {
+    color: var(--phoenix-secondary);
+}
+
+/* Fix any blue backgrounds */
+.bg-primary,
+.label-primary,
+.bg-blue {
+    background-color: var(--phoenix-primary) !important;
+}
+
+/* Fix pagination */
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: var(--phoenix-primary);
+    border-color: var(--phoenix-dark);
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: var(--phoenix-primary);
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: var(--phoenix-secondary);
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+}
