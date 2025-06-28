@@ -189,46 +189,16 @@ class ServerCreationService
 
     /**
      * Add extra allocations based on the egg's extra_allocations configuration.
-     * 
+     *
      * @throws DisplayException
      */
     private function addExtraAllocations(Server $server): void
     {
-        // Load the server's egg
-        $egg = Egg::find($server->egg_id);
-        
-        if (!$egg) {
-            throw new DisplayException('Unable to locate egg configuration for server.');
+        try {
+            $this->serverAllocationService->allocatePorts($server, $egg->extra_allocations);
+        } catch (\Exception $e) {
+            throw new DisplayException($e->getMessage());
         }
-
-        // Get the extra_allocations count directly from the egg model
-        $extraAllocationsCount = (int) $egg->extra_allocations;
-
-        if ($extraAllocationsCount <= 0) {
-            return;
-        }
-
-        // Find available allocations on the same node
-        $availableAllocations = Allocation::query()
-            ->where('node_id', $server->node_id)
-            ->whereNull('server_id')
-            ->limit($extraAllocationsCount)
-            ->get();
-
-        if ($availableAllocations->isEmpty()) {
-            throw new DisplayException("No available allocations found on the selected node to assign {$extraAllocationsCount} extra ports required by this egg.");
-        }
-
-        if ($availableAllocations->count() < $extraAllocationsCount) {
-            throw new DisplayException("Only {$availableAllocations->count()} allocations are available on the selected node, but {$extraAllocationsCount} extra ports are required by this egg.");
-        }
-
-        // Assign the extra allocations to this server
-        $allocationIds = $availableAllocations->pluck('id')->toArray();
-        
-        Allocation::query()->whereIn('id', $allocationIds)->update([
-            'server_id' => $server->id,
-        ]);
     }
 
     /**

@@ -3,7 +3,7 @@ import http from '@/api/http';
 import { rawDataToServerAllocation } from '@/api/transformers';
 
 export default async (uuid: string, id: number, notes: string | null): Promise<Allocation> => {
-    const { data } = await http.post(`/api/client/servers/${uuid}/network/allocations/${id}`, { notes });
+  const { data } = await http.post(`/api/client/servers/${uuid}/network/allocations/${id}`, { notes });
 
-    return rawDataToServerAllocation(data);
+  return rawDataToServerAllocation(data);
 };

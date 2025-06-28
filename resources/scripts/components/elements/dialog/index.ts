@@ -4,9 +4,9 @@ import DialogIcon from './DialogIcon';
 import ConfirmationDialog from './ConfirmationDialog';
 
 const Dialog = Object.assign(DialogComponent, {
-    Confirm: ConfirmationDialog,
-    Footer: DialogFooter,
-    Icon: DialogIcon,
+  Confirm: ConfirmationDialog,
+  Footer: DialogFooter,
+  Icon: DialogIcon,
 });
 
 export { Dialog };

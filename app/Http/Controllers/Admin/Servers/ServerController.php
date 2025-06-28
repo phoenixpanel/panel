@@ -11,6 +11,8 @@ use PhoenixPanel\Http\Controllers\Controller;
 use PhoenixPanel\Models\Filters\AdminServerFilter;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 
+use PhoenixPanel\app\Services\ServerAllocationService;
+
 class ServerController extends Controller
 {
     /**
@@ -35,6 +37,28 @@ class ServerController extends Controller
 
         return $this->view->make('admin.servers.index', ['servers' => $servers]);
     }
+
+    /**
+     * Allocates ports for a server.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $server
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function allocatePorts(Request $request, int $server): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $server = Server::findOrFail($server);
+            $numPorts = $request->input('ports');
+            \Log::debug('CSRF Token: ' . $request->input('_token')); // Add logging for CSRF token
+            if (!$numPorts) {
+                return response()->json(['error' => 'Number of ports is required'], 400);
+            }
+            app(ServerAllocationService::class)->allocatePorts($server, $numPorts);
+
+            return response()->json(['message' => 'Ports allocated successfully'], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
-
-

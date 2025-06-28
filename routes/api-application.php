@@ -89,6 +89,8 @@ Route::group(['prefix' => '/servers'], function () {
     Route::post('/{server:id}/unsuspend', [Application\Servers\ServerManagementController::class, 'unsuspend'])->name('api.application.servers.unsuspend');
     Route::post('/{server:id}/reinstall', [Application\Servers\ServerManagementController::class, 'reinstall'])->name('api.application.servers.reinstall');
 
+    Route::post('/{server:id}/allocate-ports', [PhoenixPanel\Http\Controllers\Admin\Servers\ServerController::class, 'allocatePorts'])->name('api.application.servers.allocate-ports');
+
     Route::delete('/{server:id}', [Application\Servers\ServerController::class, 'delete']);
     Route::delete('/{server:id}/{force?}', [Application\Servers\ServerController::class, 'delete']);
 

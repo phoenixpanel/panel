@@ -7,7 +7,7 @@ export type UUID = string;
 export interface Model {}
 
 interface ModelWithRelationships extends Model {
-    relationships: Record<string, FractalResponseData | FractalResponseList | undefined>;
+  relationships: Record<string, FractalResponseData | FractalResponseList | undefined>;
 }
 
 /**
@@ -21,7 +21,7 @@ interface ModelWithRelationships extends Model {
  *  >> // "user.servers" is no longer potentially undefined.
  */
 type WithLoaded<M extends ModelWithRelationships, R extends keyof M['relationships']> = M & {
-    relationships: MarkRequired<M['relationships'], R>;
+  relationships: MarkRequired<M['relationships'], R>;
 };
 
 /**

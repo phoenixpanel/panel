@@ -1,9 +1,9 @@
 import {
-    FractalPaginatedResponse,
-    FractalResponseData,
-    FractalResponseList,
-    getPaginationSet,
-    PaginatedResult,
+  FractalPaginatedResponse,
+  FractalResponseData,
+  FractalResponseList,
+  getPaginationSet,
+  PaginatedResult,
 } from '@/api/http';
 import { Model } from '@definitions/index';
 
@@ -13,43 +13,43 @@ const isList = (data: FractalResponseList | FractalResponseData): data is Fracta
 
 function transform<T, M>(data: null | undefined, transformer: TransformerFunc<T>, missing?: M): M;
 function transform<T, M>(
-    data: FractalResponseData | null | undefined,
-    transformer: TransformerFunc<T>,
-    missing?: M
+  data: FractalResponseData | null | undefined,
+  transformer: TransformerFunc<T>,
+  missing?: M
 ): T | M;
 function transform<T, M>(
-    data: FractalResponseList | FractalPaginatedResponse | null | undefined,
-    transformer: TransformerFunc<T>,
-    missing?: M
+  data: FractalResponseList | FractalPaginatedResponse | null | undefined,
+  transformer: TransformerFunc<T>,
+  missing?: M
 ): T[] | M;
 function transform<T>(
-    data: FractalResponseData | FractalResponseList | FractalPaginatedResponse | null | undefined,
-    transformer: TransformerFunc<T>,
-    missing = undefined
+  data: FractalResponseData | FractalResponseList | FractalPaginatedResponse | null | undefined,
+  transformer: TransformerFunc<T>,
+  missing = undefined
 ) {
-    if (data === undefined || data === null) {
-        return missing;
-    }
+  if (data === undefined || data === null) {
+    return missing;
+  }
 
-    if (isList(data)) {
-        return data.data.map(transformer);
-    }
+  if (isList(data)) {
+    return data.data.map(transformer);
+  }
 
-    if (!data || !data.attributes || data.object === 'null_resource') {
-        return missing;
-    }
+  if (!data || !data.attributes || data.object === 'null_resource') {
+    return missing;
+  }
 
-    return transformer(data);
+  return transformer(data);
 }
 
 function toPaginatedSet<T extends TransformerFunc<Model>>(
-    response: FractalPaginatedResponse,
-    transformer: T
+  response: FractalPaginatedResponse,
+  transformer: T
 ): PaginatedResult<ReturnType<T>> {
-    return {
-        items: transform(response, transformer) as ReturnType<T>[],
-        pagination: getPaginationSet(response.meta.pagination),
-    };
+  return {
+    items: transform(response, transformer) as ReturnType<T>[],
+    pagination: getPaginationSet(response.meta.pagination),
+  };
 }
 
 export { transform, toPaginatedSet };

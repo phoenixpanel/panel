@@ -2,9 +2,9 @@ import { BreakpointFunction, createBreakpoint } from 'styled-components-breakpoi
 
 type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export const breakpoint: BreakpointFunction<Breakpoints> = createBreakpoint<Breakpoints>({
-    xs: 0,
-    sm: 640,
-    md: 768,
-    lg: 1024,
-    xl: 1280,
+  xs: 0,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
 });

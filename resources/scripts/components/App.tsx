@@ -20,76 +20,76 @@ const ServerRouter = lazy(() => import(/* webpackChunkName: "server" */ '@/route
 const AuthenticationRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/AuthenticationRouter'));
 
 interface ExtendedWindow extends Window {
-    SiteConfiguration?: SiteSettings;
-    PhoenixPanelUser?: {
-        uuid: string;
-        username: string;
-        email: string;
-        /* eslint-disable camelcase */
-        root_admin: boolean;
-        use_totp: boolean;
-        language: string;
-        updated_at: string;
-        created_at: string;
-        /* eslint-enable camelcase */
-    };
+  SiteConfiguration?: SiteSettings;
+  PhoenixPanelUser?: {
+    uuid: string;
+    username: string;
+    email: string;
+    /* eslint-disable camelcase */
+    root_admin: boolean;
+    use_totp: boolean;
+    language: string;
+    updated_at: string;
+    created_at: string;
+    /* eslint-enable camelcase */
+  };
 }
 
 setupInterceptors(history);
 
 const App = () => {
-    const { PhoenixPanelUser, SiteConfiguration } = window as ExtendedWindow;
-    if (PhoenixPanelUser && !store.getState().user.data) {
-        store.getActions().user.setUserData({
-            uuid: PhoenixPanelUser.uuid,
-            username: PhoenixPanelUser.username,
-            email: PhoenixPanelUser.email,
-            language: PhoenixPanelUser.language,
-            rootAdmin: PhoenixPanelUser.root_admin,
-            useTotp: PhoenixPanelUser.use_totp,
-            createdAt: new Date(PhoenixPanelUser.created_at),
-            updatedAt: new Date(PhoenixPanelUser.updated_at),
-        });
-    }
+  const { PhoenixPanelUser, SiteConfiguration } = window as ExtendedWindow;
+  if (PhoenixPanelUser && !store.getState().user.data) {
+    store.getActions().user.setUserData({
+      uuid: PhoenixPanelUser.uuid,
+      username: PhoenixPanelUser.username,
+      email: PhoenixPanelUser.email,
+      language: PhoenixPanelUser.language,
+      rootAdmin: PhoenixPanelUser.root_admin,
+      useTotp: PhoenixPanelUser.use_totp,
+      createdAt: new Date(PhoenixPanelUser.created_at),
+      updatedAt: new Date(PhoenixPanelUser.updated_at),
+    });
+  }
 
-    if (!store.getState().settings.data) {
-        store.getActions().settings.setSettings(SiteConfiguration!);
-    }
+  if (!store.getState().settings.data) {
+    store.getActions().settings.setSettings(SiteConfiguration!);
+  }
 
-    return (
-        <>
-            <GlobalStylesheet />
-            <StoreProvider store={store}>
-                <ProgressBar />
-                <div css={tw`mx-auto w-auto`}>
-                    <Router history={history}>
-                        <Switch>
-                            <Route path={'/auth'}>
-                                <Spinner.Suspense>
-                                    <AuthenticationRouter />
-                                </Spinner.Suspense>
-                            </Route>
-                            <AuthenticatedRoute path={'/server/:id'}>
-                                <Spinner.Suspense>
-                                    <ServerContext.Provider>
-                                        <ServerRouter />
-                                    </ServerContext.Provider>
-                                </Spinner.Suspense>
-                            </AuthenticatedRoute>
-                            <AuthenticatedRoute path={'/'}>
-                                <Spinner.Suspense>
-                                    <DashboardRouter />
-                                </Spinner.Suspense>
-                            </AuthenticatedRoute>
-                            <Route path={'*'}>
-                                <NotFound />
-                            </Route>
-                        </Switch>
-                    </Router>
-                </div>
-            </StoreProvider>
-        </>
-    );
+  return (
+    <>
+      <GlobalStylesheet />
+      <StoreProvider store={store}>
+        <ProgressBar />
+        <div css={tw`mx-auto w-auto`}>
+          <Router history={history}>
+            <Switch>
+              <Route path={'/auth'}>
+                <Spinner.Suspense>
+                  <AuthenticationRouter />
+                </Spinner.Suspense>
+              </Route>
+              <AuthenticatedRoute path={'/server/:id'}>
+                <Spinner.Suspense>
+                  <ServerContext.Provider>
+                    <ServerRouter />
+                  </ServerContext.Provider>
+                </Spinner.Suspense>
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={'/'}>
+                <Spinner.Suspense>
+                  <DashboardRouter />
+                </Spinner.Suspense>
+              </AuthenticatedRoute>
+              <Route path={'*'}>
+                <NotFound />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </StoreProvider>
+    </>
+  );
 };
 
 export default hot(App);

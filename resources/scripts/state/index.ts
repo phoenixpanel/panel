@@ -6,19 +6,19 @@ import settings, { SettingsStore } from '@/state/settings';
 import progress, { ProgressStore } from '@/state/progress';
 
 export interface ApplicationStore {
-    permissions: GloablPermissionsStore;
-    flashes: FlashStore;
-    user: UserStore;
-    settings: SettingsStore;
-    progress: ProgressStore;
+  permissions: GloablPermissionsStore;
+  flashes: FlashStore;
+  user: UserStore;
+  settings: SettingsStore;
+  progress: ProgressStore;
 }
 
 const state: ApplicationStore = {
-    permissions,
-    flashes,
-    user,
-    settings,
-    progress,
+  permissions,
+  flashes,
+  user,
+  settings,
+  progress,
 };
 
 export const store = createStore(state);

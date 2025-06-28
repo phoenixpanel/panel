@@ -90,6 +90,21 @@
                     title: 'v' + data.version,
                 });
                 $(element).removeClass('text-muted').find('i').removeClass().addClass('fa fa-fw fa-heartbeat faa-pulse animated').css('color', '#50af51');
+
+                if (data.last_heartbeat) {
+                    var lastHeartbeat = new Date(data.last_heartbeat);
+                    var now = new Date();
+                    var diff = now.getTime() - lastHeartbeat.getTime();
+                    var seconds = diff / 1000;
+
+                    if (seconds > 30) {
+                        $(element).find('i').removeClass().addClass('fa fa-fw fa-heart-o').css('color', '#d9534f');
+                        $(element).find('i').tooltip({ title: 'Heartbeat is older than 30 seconds!' });
+                    }
+                } else {
+                    $(element).find('i').removeClass().addClass('fa fa-fw fa-heart-o').css('color', '#d9534f');
+                    $(element).find('i').tooltip({ title: 'No heartbeat data received!' });
+                }
             }).fail(function (error) {
                 var errorText = 'Error connecting to node! Check browser console for details.';
                 try {
@@ -103,5 +118,5 @@
             setTimeout(pingNodes, 10000);
         });
     })();
-    </script>
+</script>
 @endsection

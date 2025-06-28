@@ -3,17 +3,17 @@ import React from 'react';
 import { ServerContext } from '@/state/server';
 
 interface Props extends PageContentBlockProps {
-    title: string;
+  title: string;
 }
 
 const ServerContentBlock: React.FC<Props> = ({ title, children, ...props }) => {
-    const name = ServerContext.useStoreState((state) => state.server.data!.name);
+  const name = ServerContext.useStoreState((state) => state.server.data!.name);
 
-    return (
-        <PageContentBlock title={`${name} | ${title}`} {...props}>
-            {children}
-        </PageContentBlock>
-    );
+  return (
+    <PageContentBlock title={`${name} | ${title}`} {...props}>
+      {children}
+    </PageContentBlock>
+  );
 };
 
 export default ServerContentBlock;

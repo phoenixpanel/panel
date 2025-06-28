@@ -134,6 +134,8 @@ Route::group(['prefix' => 'servers'], function () {
     Route::post('/view/{server:id}/manage/transfer', [Admin\Servers\ServerTransferController::class, 'transfer'])->name('admin.servers.view.manage.transfer');
     Route::post('/view/{server:id}/delete', [Admin\ServersController::class, 'delete']);
 
+    Route::post('/{server:id}/allocate-ports', [Admin\ServersController::class, 'allocatePorts'])->middleware([PhoenixPanel\Http\Middleware\VerifyCsrfToken::class]);
+
     Route::patch('/view/{server:id}/details', [Admin\ServersController::class, 'setDetails']);
     Route::patch('/view/{server:id}/database', [Admin\ServersController::class, 'resetDatabasePassword']);
 

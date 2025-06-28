@@ -20,172 +20,164 @@ import ModalContext from '@/context/ModalContext';
 import SelectAllPermissionsBox from '@/components/server/users/SelectAllPermissionsBox';
 
 type Props = {
-    subuser?: Subuser;
+  subuser?: Subuser;
 };
 
 interface Values {
-    email: string;
-    permissions: string[];
+  email: string;
+  permissions: string[];
 }
 
 const EditSubuserModal = ({ subuser }: Props) => {
-    const ref = useRef<HTMLHeadingElement>(null);
-    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
-    const appendSubuser = ServerContext.useStoreActions((actions) => actions.subusers.appendSubuser);
-    const { clearFlashes, clearAndAddHttpError } = useStoreActions(
-        (actions: Actions<ApplicationStore>) => actions.flashes
+  const ref = useRef<HTMLHeadingElement>(null);
+  const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+  const appendSubuser = ServerContext.useStoreActions((actions) => actions.subusers.appendSubuser);
+  const { clearFlashes, clearAndAddHttpError } = useStoreActions(
+    (actions: Actions<ApplicationStore>) => actions.flashes
+  );
+  const { dismiss, setPropOverrides } = useContext(ModalContext);
+
+  const isRootAdmin = useStoreState((state) => state.user.data!.rootAdmin);
+  const permissions = useStoreState((state) => state.permissions.data);
+  // The currently logged in user's permissions. We're going to filter out any permissions
+  // that they should not need.
+  const loggedInPermissions = ServerContext.useStoreState((state) => state.server.permissions);
+  const [canEditUser] = usePermissions(subuser ? ['user.update'] : ['user.create']);
+
+  // The permissions that can be modified by this user.
+  const editablePermissions = useDeepCompareMemo(() => {
+    const cleaned = Object.keys(permissions).map((key) =>
+      Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`)
     );
-    const { dismiss, setPropOverrides } = useContext(ModalContext);
 
-    const isRootAdmin = useStoreState((state) => state.user.data!.rootAdmin);
-    const permissions = useStoreState((state) => state.permissions.data);
-    // The currently logged in user's permissions. We're going to filter out any permissions
-    // that they should not need.
-    const loggedInPermissions = ServerContext.useStoreState((state) => state.server.permissions);
-    const [canEditUser] = usePermissions(subuser ? ['user.update'] : ['user.create']);
+    const list: string[] = ([] as string[]).concat.apply([], Object.values(cleaned));
 
-    // The permissions that can be modified by this user.
-    const editablePermissions = useDeepCompareMemo(() => {
-        const cleaned = Object.keys(permissions).map((key) =>
-            Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`)
-        );
+    if (isRootAdmin || (loggedInPermissions.length === 1 && loggedInPermissions[0] === '*')) {
+      return list;
+    }
 
-        const list: string[] = ([] as string[]).concat.apply([], Object.values(cleaned));
+    return list.filter((key) => loggedInPermissions.indexOf(key) >= 0);
+  }, [isRootAdmin, permissions, loggedInPermissions]);
 
-        if (isRootAdmin || (loggedInPermissions.length === 1 && loggedInPermissions[0] === '*')) {
-            return list;
+  // Get all available permissions for the "Select All" checkbox (excluding websocket)
+  const allAvailablePermissions = useDeepCompareMemo(() => {
+    const cleaned = Object.keys(permissions)
+      .filter((key) => key !== 'websocket')
+      .map((key) => Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`));
+
+    return ([] as string[]).concat.apply([], Object.values(cleaned));
+  }, [permissions]);
+
+  const submit = (values: Values) => {
+    setPropOverrides({ showSpinnerOverlay: true });
+    clearFlashes('user:edit');
+
+    createOrUpdateSubuser(uuid, values, subuser)
+      .then((subuser) => {
+        appendSubuser(subuser);
+        dismiss();
+      })
+      .catch((error) => {
+        console.error(error);
+        setPropOverrides(null);
+        clearAndAddHttpError({ key: 'user:edit', error });
+
+        if (ref.current) {
+          ref.current.scrollIntoView();
         }
+      });
+  };
 
-        return list.filter((key) => loggedInPermissions.indexOf(key) >= 0);
-    }, [isRootAdmin, permissions, loggedInPermissions]);
+  useEffect(
+    () => () => {
+      clearFlashes('user:edit');
+    },
+    []
+  );
 
-    // Get all available permissions for the "Select All" checkbox (excluding websocket)
-    const allAvailablePermissions = useDeepCompareMemo(() => {
-        const cleaned = Object.keys(permissions)
+  return (
+    <Formik
+      onSubmit={submit}
+      initialValues={
+        {
+          email: subuser?.email || '',
+          permissions: subuser?.permissions || [],
+        } as Values
+      }
+      validationSchema={object().shape({
+        email: string()
+          .max(191, 'Email addresses must not exceed 191 characters.')
+          .email('A valid email address must be provided.')
+          .required('A valid email address must be provided.'),
+        permissions: array().of(string()),
+      })}
+    >
+      <Form>
+        <div css={tw`flex justify-between`}>
+          <h2 css={tw`text-2xl`} ref={ref}>
+            {subuser ? `${canEditUser ? 'Modify' : 'View'} permissions for ${subuser.email}` : 'Create new subuser'}
+          </h2>
+          <div>
+            <Button type={'submit'} css={tw`w-full sm:w-auto`}>
+              {subuser ? 'Save' : 'Invite User'}
+            </Button>
+          </div>
+        </div>
+        <FlashMessageRender byKey={'user:edit'} css={tw`mt-4`} />
+        {!isRootAdmin && loggedInPermissions[0] !== '*' && (
+          <div css={tw`mt-4 pl-4 py-2 border-l-4 border-phoenix-500`}>
+            <p css={tw`text-sm text-neutral-300`}>
+              Only permissions which your account is currently assigned may be selected when creating or modifying other
+              users.
+            </p>
+          </div>
+        )}
+        {!subuser && (
+          <div css={tw`mt-6`}>
+            <Field
+              name={'email'}
+              label={'User Email'}
+              description={'Enter the email address of the user you wish to invite as a subuser for this server.'}
+            />
+          </div>
+        )}
+        <div css={tw`my-6`}>
+          {/* Add Select All Permissions Box */}
+          <SelectAllPermissionsBox isEditable={canEditUser} allPermissions={allAvailablePermissions} css={tw`mb-4`} />
+          {/* Existing permission boxes */}
+          {Object.keys(permissions)
             .filter((key) => key !== 'websocket')
-            .map((key) => Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`));
-
-        return ([] as string[]).concat.apply([], Object.values(cleaned));
-    }, [permissions]);
-
-    const submit = (values: Values) => {
-        setPropOverrides({ showSpinnerOverlay: true });
-        clearFlashes('user:edit');
-
-        createOrUpdateSubuser(uuid, values, subuser)
-            .then((subuser) => {
-                appendSubuser(subuser);
-                dismiss();
-            })
-            .catch((error) => {
-                console.error(error);
-                setPropOverrides(null);
-                clearAndAddHttpError({ key: 'user:edit', error });
-
-                if (ref.current) {
-                    ref.current.scrollIntoView();
-                }
-            });
-    };
-
-    useEffect(
-        () => () => {
-            clearFlashes('user:edit');
-        },
-        []
-    );
-
-    return (
-        <Formik
-            onSubmit={submit}
-            initialValues={
-                {
-                    email: subuser?.email || '',
-                    permissions: subuser?.permissions || [],
-                } as Values
-            }
-            validationSchema={object().shape({
-                email: string()
-                    .max(191, 'Email addresses must not exceed 191 characters.')
-                    .email('A valid email address must be provided.')
-                    .required('A valid email address must be provided.'),
-                permissions: array().of(string()),
-            })}
-        >
-            <Form>
-                <div css={tw`flex justify-between`}>
-                    <h2 css={tw`text-2xl`} ref={ref}>
-                        {subuser
-                            ? `${canEditUser ? 'Modify' : 'View'} permissions for ${subuser.email}`
-                            : 'Create new subuser'}
-                    </h2>
-                    <div>
-                        <Button type={'submit'} css={tw`w-full sm:w-auto`}>
-                            {subuser ? 'Save' : 'Invite User'}
-                        </Button>
-                    </div>
-                </div>
-                <FlashMessageRender byKey={'user:edit'} css={tw`mt-4`} />
-                {!isRootAdmin && loggedInPermissions[0] !== '*' && (
-                    <div css={tw`mt-4 pl-4 py-2 border-l-4 border-phoenix-500`}>
-                        <p css={tw`text-sm text-neutral-300`}>
-                            Only permissions which your account is currently assigned may be selected when creating or
-                            modifying other users.
-                        </p>
-                    </div>
-                )}
-                {!subuser && (
-                    <div css={tw`mt-6`}>
-                        <Field
-                            name={'email'}
-                            label={'User Email'}
-                            description={
-                                'Enter the email address of the user you wish to invite as a subuser for this server.'
-                            }
-                        />
-                    </div>
-                )}
-                <div css={tw`my-6`}>
-                    {/* Add Select All Permissions Box */}
-                    <SelectAllPermissionsBox
-                        isEditable={canEditUser}
-                        allPermissions={allAvailablePermissions}
-                        css={tw`mb-4`}
-                    />
-                    {/* Existing permission boxes */}
-                    {Object.keys(permissions)
-                        .filter((key) => key !== 'websocket')
-                        .map((key, index) => (
-                            <PermissionTitleBox
-                                key={`permission_${key}`}
-                                title={key}
-                                isEditable={canEditUser}
-                                permissions={Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`)}
-                                css={tw`mt-4`}
-                            >
-                                <p css={tw`text-sm text-neutral-400 mb-4`}>{permissions[key].description}</p>
-                                {Object.keys(permissions[key].keys).map((pkey) => (
-                                    <PermissionRow
-                                        key={`permission_${key}.${pkey}`}
-                                        permission={`${key}.${pkey}`}
-                                        disabled={!canEditUser || editablePermissions.indexOf(`${key}.${pkey}`) < 0}
-                                    />
-                                ))}
-                            </PermissionTitleBox>
-                        ))}
-                </div>
-                <Can action={subuser ? 'user.update' : 'user.create'}>
-                    <div css={tw`pb-6 flex justify-end`}>
-                        <Button type={'submit'} css={tw`w-full sm:w-auto`}>
-                            {subuser ? 'Save' : 'Invite User'}
-                        </Button>
-                    </div>
-                </Can>
-            </Form>
-        </Formik>
-    );
+            .map((key, index) => (
+              <PermissionTitleBox
+                key={`permission_${key}`}
+                title={key}
+                isEditable={canEditUser}
+                permissions={Object.keys(permissions[key].keys).map((pkey) => `${key}.${pkey}`)}
+                css={tw`mt-4`}
+              >
+                <p css={tw`text-sm text-neutral-400 mb-4`}>{permissions[key].description}</p>
+                {Object.keys(permissions[key].keys).map((pkey) => (
+                  <PermissionRow
+                    key={`permission_${key}.${pkey}`}
+                    permission={`${key}.${pkey}`}
+                    disabled={!canEditUser || editablePermissions.indexOf(`${key}.${pkey}`) < 0}
+                  />
+                ))}
+              </PermissionTitleBox>
+            ))}
+        </div>
+        <Can action={subuser ? 'user.update' : 'user.create'}>
+          <div css={tw`pb-6 flex justify-end`}>
+            <Button type={'submit'} css={tw`w-full sm:w-auto`}>
+              {subuser ? 'Save' : 'Invite User'}
+            </Button>
+          </div>
+        </Can>
+      </Form>
+    </Formik>
+  );
 };
 
 export default asModal<Props>({
-    top: false,
+  top: false,
 })(EditSubuserModal);
