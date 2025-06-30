@@ -20,6 +20,8 @@ use PhoenixPanel\Services\Deployment\AllocationSelectionService;
 use PhoenixPanel\Exceptions\Http\Connection\DaemonConnectionException;
 use PhoenixPanel\Exceptions\DisplayException;
 
+use PhoenixPanel\Services\ServerAllocationService;
+
 class ServerCreationService
 {
     /**
@@ -34,6 +36,7 @@ class ServerCreationService
         private ServerDeletionService $serverDeletionService,
         private ServerVariableRepository $serverVariableRepository,
         private VariableValidatorService $validatorService,
+        private ServerAllocationService $serverAllocationService
     ) {
     }
 
@@ -195,7 +198,10 @@ class ServerCreationService
     private function addExtraAllocations(Server $server): void
     {
         try {
-            $this->serverAllocationService->allocatePorts($server, $egg->extra_allocations);
+            $egg = $server->egg;
+            if ($egg && isset($egg->extra_allocations) && $egg->extra_allocations > 0) {
+                $this->serverAllocationService->allocatePorts($server, $egg->extra_allocations);
+            }
         } catch (\Exception $e) {
             throw new DisplayException($e->getMessage());
         }

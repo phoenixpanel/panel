@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace PhoenixPanel\Services;
 
 use Exception;
+use PhoenixPanel\Models\Allocation;
 
 class ServerAllocationService
 {
